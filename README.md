@@ -2,7 +2,7 @@
 
 ## Development Environment      
 Xcode download      
-Adding github account to Xcode      
+Adding github account to Xcode   (http://irenebosque.com/how-to-xcode-and-github/)    
 
 
 ## Database Connection 
@@ -14,4 +14,7 @@ How to start database instance
 Branch Naming Convention      
 PR request before merge (PR should have breif descriptive message)   
 Comments 
+
+## Common Errors    
+There is some problem with certificates when using xcode git controls to push/pull. When off of eduroam it works fine. 
 
