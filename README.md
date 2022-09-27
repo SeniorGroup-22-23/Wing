@@ -16,5 +16,5 @@ PR request before merge (PR should have breif descriptive message)
 Comments 
 
 ## Common Errors    
-There is some problem with certificates when using xcode git controls to push/pull. When off of eduroam it works fine. 
+There is some problem with certificates when using xcode git controls to push/pull. When off of eduroam it works fine (I THINK eduroam has some kind of proxy/and or cache set up that blocks the certificates). Also will not work on public internet connections. 
 
