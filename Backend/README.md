@@ -1,6 +1,6 @@
 # Backend
 
-This document details the dev environment setup for the Wing backend.    
+This document details the dev environment setup on mac os for the Wing backend.    
 
 ## Installing Xcode 
 
