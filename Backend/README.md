@@ -11,5 +11,5 @@ This document details the dev environment setup on mac os for the Wing backend.
 ## Installing Insomnia 
 
 
-## Xcode Build 
+## Running the Backend   
 
