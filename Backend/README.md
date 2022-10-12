@@ -15,16 +15,19 @@ Vapor is a web framework that allows you to write backen, APIs, http servers, ec
 2. Check that homebrew is installed        
 `brew --version`
 
-3. Install Vapor      
+3. Install Vapor using Homebrew  
 `brew install vapor`
 
 
-## Fluent    
-### Installing Fluent    
+## Fluent       
+Fluent is an Object-Relational Mapping (ORM) framework. Fluent works in conjunction with Vapor to provide an interface to work with databases in Swift. Fluent is included with the Vapor download but needs to be added to project package. 
+### Adding Fluent to Project Package 
 
 
 ## Insomnia     
-### Installing Insomnia    
+
+### Installing Insomnia  
+1. Install Insomnia using Homebrew 
 
 
 ## Running the Backend   
