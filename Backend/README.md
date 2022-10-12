@@ -3,6 +3,7 @@
 This document sets up the development environment to run and contribute to the backend of Wing.        
 
 ## Xcode    
+Xcode is Apple's IDE. IT allows developpers to easily make iOS applications and add these applications to the app store. To ensure a uniform development experience we suggest you use Xcode to contribute 
 ### Installing Xcode    
 
 ## Vapor   
