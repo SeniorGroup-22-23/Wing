@@ -28,7 +28,8 @@ Fluent is an Object-Relational Mapping (ORM) framework. Fluent works in conjunct
 ## Insomnia     
 
 ### Installing Insomnia  
-1. Install Insomnia using Homebrew 
+1. Install Insomnia using Homebrew  
+`brew install --cask insomnia`  
 
 
 ## Running the Backend   
