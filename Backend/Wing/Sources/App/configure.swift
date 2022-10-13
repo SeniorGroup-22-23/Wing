@@ -5,10 +5,12 @@ import Vapor
 // configures your application
 public func configure(_ app: Application) throws {
 
+    //Add database configuration
+    //All default setup on local host 
     app.databases.use(.postgres(
         hostname: "localhost",
         username: "postgres",
-        password: "", //change in psql
+        password: "",
         database: "postgres"
     ), as: .psql)
 
