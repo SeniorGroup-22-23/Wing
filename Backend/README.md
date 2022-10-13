@@ -1,6 +1,4 @@
 
-This document sets up the development environment to run and contribute to the backend of Wing.  
-
 # Running the Backend Locally
 start database from postgres app.      
 
