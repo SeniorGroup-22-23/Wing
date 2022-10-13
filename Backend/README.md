@@ -1,5 +1,7 @@
 
 # Running the Backend Locally
+clone the repo (show how to)
+
 start database from postgres app.      
 
 migrate database to set it up with all the data. (will take awhile or tell you your local db is up to date )  
@@ -7,7 +9,7 @@ migrate database to set it up with all the data. (will take awhile or tell you y
 answer 'y' to "Would you like to continue?"   
 
 
-Open project in xcode and press play button (build takes some time)
+Open project in xcode (just open the backend Wing > Backend > Wing) and press play button (build takes some time)
 
 Check endpoints via browser OR Send insomnia requests    
 
