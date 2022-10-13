@@ -2,7 +2,7 @@
 # Running the Backend Locally
 start database from postgres app.      
 
-migrate database to set it up with all the data.    
+migrate database to set it up with all the data. (will take awhile)  
 `vapor run migrate` (in project directory) 
 answer 'y' to "Would you like to continue?"   
 
