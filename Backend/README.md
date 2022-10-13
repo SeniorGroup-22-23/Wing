@@ -2,14 +2,16 @@
 This document sets up the development environment to run and contribute to the backend of Wing.  
 
 # Running the Backend Locally
-cd into project directory and from termnial >      
-`swift run`    
+start database from postgres app.      
+
+migrate database to set it up with all the data.    
+`vapor run migrate` (in project directory) 
+answer 'y' to "Would you like to continue?"   
+
 
 Open project in xcode and press play button (build takes some time)
 
-Running Database >>>     
-Start: `brew services start postgresql@14`    
-Stop:  `brew services stop postgresql@14`  
+Check endpoints via browser OR Send insomnia requests    
 
 
 
@@ -69,6 +71,8 @@ Vapor is a web framework that allows you to write backen, APIs, http servers, ec
 ### Install Postgres
 1. Download postgres software 
 `brew install postgresql`
+
+2. Install Postgres App
 
 
 
