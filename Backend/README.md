@@ -2,6 +2,11 @@
 This document sets up the development environment to run and contribute to the backend of Wing.  
 
 # Running the Backend Locally
+cd into project directory and from termnial >      
+`swift run`    
+
+Open project in xcode and press play button (build takes some time)
+
 
 
 ## Common Errors    
@@ -55,9 +60,13 @@ Vapor is a web framework that allows you to write backen, APIs, http servers, ec
 `brew install vapor`
 
 
+## Database     
+
+
+
 ## Fluent       
 Fluent is an Object-Relational Mapping (ORM) framework. Fluent works in conjunction with Vapor to provide an interface to work with databases in Swift. Fluent is included with the Vapor download but needs to be added to project package. 
-### Adding Fluent to Project Package 
+### Adding Fluent to Project Package   
 
 
 
