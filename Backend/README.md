@@ -7,6 +7,10 @@ cd into project directory and from termnial >
 
 Open project in xcode and press play button (build takes some time)
 
+Running Database >>>     
+Start: `brew services start postgresql@14`    
+Stop:  `brew services stop postgresql@14`  
+
 
 
 ## Common Errors    
@@ -60,7 +64,12 @@ Vapor is a web framework that allows you to write backen, APIs, http servers, ec
 `brew install vapor`
 
 
-## Database     
+## Postgres Database 
+
+### Install Postgres
+1. Download postgres software 
+`brew install postgresql`
+
 
 
 
