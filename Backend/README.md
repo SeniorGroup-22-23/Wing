@@ -1,22 +1,36 @@
 
 # Running the Backend Locally
-clone the repo (show how to)
 
-start database from postgres app.      
+1. If you have not already - clone the Wing repo. You can do this from Xcode (after your Github account has been linked).  
 
-migrate database to set it up with all the data. (will take awhile or tell you your local db is up to date )  
-`vapor run migrate` (in project directory) 
-answer 'y' to "Would you like to continue?"   
+<img width="820" alt="Screen Shot 2022-10-13 at 4 51 45 PM" src="https://user-images.githubusercontent.com/80468156/195696008-334a5ee8-f48d-4674-9df1-f82cf62bac62.png">
 
+2. Start the postgres database using the postgres application. 
 
-Open project in xcode (just open the backend Wing > Backend > Wing) and press play button (build takes some time)
+<img width="820" alt="Screen Shot 2022-10-13 at 4 53 34 PM" src="https://user-images.githubusercontent.com/80468156/195696463-2bd83537-276a-4e31-b381-fd67cca4ef69.png">
 
-Check endpoints via browser OR Send insomnia requests    
+3. Migrate Data     
+Open a terminal instance and move to your local version of the Backend Wing project (Wing > Backend > Wing). Run the command listed below. When prompted answer 'y' to "Would you like to continue?". This will populate your local database with all of the project tables.    
+
+`vapor run migrate`    
+
+4. Build the project in Xcode    
+Open the project in xcode (Wing > Backend > Wing) and press play button in the top left hand corner. The first build will take some time, subsequent builds will go much quicker.   
+
+5. View API endpoints       
+Navigate to `http://127.0.0.1:8080`. Try out different endpoints to see how they work. All endpoints are outlined in the ROUTES.md file and the routes.swift file.   
+
+6. Test API endpoints     
+Formulate a http request in insomnia and try sending it to the server you are running locally.   
+  
+  
+ <img width="1196" alt="Screen Shot 2022-10-13 at 5 08 30 PM" src="https://user-images.githubusercontent.com/80468156/195699130-b9532219-608a-4d78-a980-0e81136da847.png">
 
 
 
 ## Common Errors    
-There is some problem with certificates when using xcode git controls to push/pull. When off of eduroam it works fine (I THINK eduroam has some kind of proxy/and or cache set up that blocks the certificates). Also will not work on public internet connections. 
+- **Blocked certificate when trying to push/pull from Xcode** 
+There is a problem with certificates when using Xcode git controls on Eduroam. Not sure how to fix - but when off Eduroam git controls work just fine. Same issue with public internet connections. 
 
 
 # Installations   
@@ -68,13 +82,10 @@ Vapor is a web framework that allows you to write backen, APIs, http servers, ec
 
 ## Postgres Database 
 
+
 ### Install Postgres
-1. Download postgres software 
-`brew install postgresql`
-
-2. Install Postgres App
-
-
+1. Download the latest version of postgres ([here](https://postgresapp.com/downloads.html))      
+This download has everything you need, and comes with a GUI. Upon opening postgres you should see that the default database already exists. For now - we will use this datbase in our Xcode build.  
 
 
 ## Fluent       
