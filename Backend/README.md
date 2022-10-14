@@ -1,3 +1,8 @@
+# On this Page 
+1. Running the backend locally
+2. Common Errors 
+3. Installation Instructions
+
 
 # Running the Backend Locally
 
