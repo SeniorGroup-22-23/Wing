@@ -1,0 +1,27 @@
+name: Swift
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: macos-12
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+          swift-version: "5.5.0"
+    - name: Build
+      run: |
+        cd Backend
+        cd Wing
+        swift build -v
+    - name: Run tests
+      run: |
+        cd Backend 
+        cd Wing
+        swift test -v

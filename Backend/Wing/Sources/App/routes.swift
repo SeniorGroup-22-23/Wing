@@ -23,6 +23,7 @@ func routes(_ app: Application) throws {
     app.get("json") { req in
         return Person(name: "Allie M. Griffin", age: 26)
     }
+    
 
     app.get("test_ci"){ req in
         return "Testing CI Pipeline"
