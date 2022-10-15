@@ -12,4 +12,16 @@ final class AppTests: XCTestCase {
             XCTAssertEqual(res.status, .ok)
         })
     }
+    
+    func testUsers() throws {
+        let app = Application(.testing)
+        defer { app.shutdown() }
+        try configure(app)
+
+        try app.test(.GET, "users", afterResponse: { res in
+            XCTAssertEqual(res.status, .ok)
+        })
+    }
+    
+    
 }
