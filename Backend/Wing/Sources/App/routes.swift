@@ -24,6 +24,9 @@ func routes(_ app: Application) throws {
         return Person(name: "Allie M. Griffin", age: 26)
     }
 
+    app.get("test_ci"){ req in
+        return "Testing CI Pipeline"
+    }
     //try app.register(collection: TodoController())
 }
 
