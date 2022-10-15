@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-12
+    runs-on: macos-12 #To work with swift versioning (not macos-latest)
 
     steps:
     - uses: actions/checkout@v2
@@ -17,7 +17,7 @@ jobs:
           swift-version: "5.5.0"
     - name: Build
       run: |
-        cd Backend
+        cd Backend 
         cd Wing
         swift build -v
     - name: Run tests
