@@ -17,9 +17,11 @@ jobs:
           swift-version: "5.5.0"
     - name: Build
       run: |
-        ls
+        cd Backend
+        cd Wing
         swift build -v
     - name: Run tests
       run: |
-        ls
+        cd Backend 
+        cd Wing
         swift test -v
