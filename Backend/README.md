@@ -31,6 +31,9 @@ Formulate a http request in insomnia and try sending it to the server you are ru
   
  <img width="1196" alt="Screen Shot 2022-10-13 at 5 08 30 PM" src="https://user-images.githubusercontent.com/80468156/195699130-b9532219-608a-4d78-a980-0e81136da847.png">
 
+7. To run unit tests     
+In terminal, navigate to project directory and run `swift test`      
+In Xcode, go to Product>Test      
 
 
 ## Common Errors    
