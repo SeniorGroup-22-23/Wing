@@ -16,10 +16,6 @@ jobs:
       with:
           swift-version: "5.5.0"
     - name: Build
-      run: |
-        cd Backend/Wing
-        swift build -v
+      run: swift build -v
     - name: Run tests
-      run: |
-        cd Backend/Wing
-        swift build -v
+      run: swift test -v
