@@ -10,6 +10,7 @@ final class AppTests: XCTestCase {
 
         try app.test(.GET, "json", afterResponse: { res in
             XCTAssertEqual(res.status, .ok)
+            
         })
     }
     
