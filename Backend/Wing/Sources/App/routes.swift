@@ -26,7 +26,7 @@ func routes(_ app: Application) throws {
     
 
     app.get("test_ci"){ req in
-        return "Testing CI Pipeline"
+        return "Testing CI Pipeline again lol"
     }
     //try app.register(collection: TodoController())
 }
