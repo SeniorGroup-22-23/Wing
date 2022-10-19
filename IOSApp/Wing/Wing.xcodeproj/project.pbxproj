@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		02C71E7928EB8F1000447686 /* WingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C71E7828EB8F1000447686 /* WingApp.swift */; };
-		02C71E7B28EB8F1000447686 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C71E7A28EB8F1000447686 /* ContentView.swift */; };
 		02C71E7D28EB8F1100447686 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C71E7C28EB8F1100447686 /* Assets.xcassets */; };
 		02C71E8028EB8F1100447686 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C71E7F28EB8F1100447686 /* Preview Assets.xcassets */; };
 		02C71E8A28EB8F1100447686 /* WingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C71E8928EB8F1100447686 /* WingTests.swift */; };
 		02C71E9428EB8F1100447686 /* WingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C71E9328EB8F1100447686 /* WingUITests.swift */; };
 		02C71E9628EB8F1100447686 /* WingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C71E9528EB8F1100447686 /* WingUITestsLaunchTests.swift */; };
+		747DAE9A28FE0087004FF768 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DAE9928FE0087004FF768 /* HomePageView.swift */; };
+		747DAEAB28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAE9F28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf */; };
+		747DAEAD28FF7F6C004FF768 /* KumbhSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEA128FF7F6C004FF768 /* KumbhSans-Bold.ttf */; };
+		747DAEAE28FF7F6C004FF768 /* KumbhSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEA228FF7F6C004FF768 /* KumbhSans-Light.ttf */; };
+		747DAEB128FF7F6C004FF768 /* KumbhSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEA528FF7F6C004FF768 /* KumbhSans-Regular.ttf */; };
+		747DAEC928FF7F85004FF768 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEB628FF7F85004FF768 /* NotoSans-Regular.ttf */; };
+		747DAECC28FF7F85004FF768 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEB928FF7F85004FF768 /* NotoSans-Bold.ttf */; };
+		747DAECE28FF7F85004FF768 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEBB28FF7F85004FF768 /* NotoSans-SemiBold.ttf */; };
+		747DAED228FF7F85004FF768 /* NotoSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEBF28FF7F85004FF768 /* NotoSans-Light.ttf */; };
+		747DAEDB28FF7F85004FF768 /* NotoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */; };
+		747DAEDD28FF7F96004FF768 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DAEDC28FF7F96004FF768 /* FontManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +46,6 @@
 /* Begin PBXFileReference section */
 		02C71E7528EB8F1000447686 /* Wing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02C71E7828EB8F1000447686 /* WingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingApp.swift; sourceTree = "<group>"; };
-		02C71E7A28EB8F1000447686 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		02C71E7C28EB8F1100447686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02C71E7F28EB8F1100447686 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		02C71E8528EB8F1100447686 /* WingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +53,18 @@
 		02C71E8F28EB8F1100447686 /* WingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02C71E9328EB8F1100447686 /* WingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingUITests.swift; sourceTree = "<group>"; };
 		02C71E9528EB8F1100447686 /* WingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		741E07A028F9B9E1001D6478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		747DAE9928FE0087004FF768 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		747DAE9F28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KumbhSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		747DAEA128FF7F6C004FF768 /* KumbhSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KumbhSans-Bold.ttf"; sourceTree = "<group>"; };
+		747DAEA228FF7F6C004FF768 /* KumbhSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KumbhSans-Light.ttf"; sourceTree = "<group>"; };
+		747DAEA528FF7F6C004FF768 /* KumbhSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KumbhSans-Regular.ttf"; sourceTree = "<group>"; };
+		747DAEB628FF7F85004FF768 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
+		747DAEB928FF7F85004FF768 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
+		747DAEBB28FF7F85004FF768 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		747DAEBF28FF7F85004FF768 /* NotoSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Light.ttf"; sourceTree = "<group>"; };
+		747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Italic.ttf"; sourceTree = "<group>"; };
+		747DAEDC28FF7F96004FF768 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +115,10 @@
 		02C71E7728EB8F1000447686 /* Wing */ = {
 			isa = PBXGroup;
 			children = (
+				741E07A028F9B9E1001D6478 /* Info.plist */,
+				741E079B28F9B94B001D6478 /* fonts */,
+				741E079728F9ADE5001D6478 /* views */,
 				02C71E7828EB8F1000447686 /* WingApp.swift */,
-				02C71E7A28EB8F1000447686 /* ContentView.swift */,
 				02C71E7C28EB8F1100447686 /* Assets.xcassets */,
 				02C71E7E28EB8F1100447686 /* Preview Content */,
 			);
@@ -125,6 +148,47 @@
 				02C71E9528EB8F1100447686 /* WingUITestsLaunchTests.swift */,
 			);
 			path = WingUITests;
+			sourceTree = "<group>";
+		};
+		741E079728F9ADE5001D6478 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				747DAE9928FE0087004FF768 /* HomePageView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		741E079B28F9B94B001D6478 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				747DAEB528FF7F85004FF768 /* Noto_Sans */,
+				747DAE9B28FF7F6C004FF768 /* Kumbh_Sans */,
+				747DAEDC28FF7F96004FF768 /* FontManager.swift */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		747DAE9B28FF7F6C004FF768 /* Kumbh_Sans */ = {
+			isa = PBXGroup;
+			children = (
+				747DAE9F28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf */,
+				747DAEA128FF7F6C004FF768 /* KumbhSans-Bold.ttf */,
+				747DAEA228FF7F6C004FF768 /* KumbhSans-Light.ttf */,
+				747DAEA528FF7F6C004FF768 /* KumbhSans-Regular.ttf */,
+			);
+			path = Kumbh_Sans;
+			sourceTree = "<group>";
+		};
+		747DAEB528FF7F85004FF768 /* Noto_Sans */ = {
+			isa = PBXGroup;
+			children = (
+				747DAEB628FF7F85004FF768 /* NotoSans-Regular.ttf */,
+				747DAEB928FF7F85004FF768 /* NotoSans-Bold.ttf */,
+				747DAEBB28FF7F85004FF768 /* NotoSans-SemiBold.ttf */,
+				747DAEBF28FF7F85004FF768 /* NotoSans-Light.ttf */,
+				747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */,
+			);
+			path = Noto_Sans;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,8 +295,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				747DAEAE28FF7F6C004FF768 /* KumbhSans-Light.ttf in Resources */,
 				02C71E8028EB8F1100447686 /* Preview Assets.xcassets in Resources */,
+				747DAEB128FF7F6C004FF768 /* KumbhSans-Regular.ttf in Resources */,
+				747DAECE28FF7F85004FF768 /* NotoSans-SemiBold.ttf in Resources */,
+				747DAED228FF7F85004FF768 /* NotoSans-Light.ttf in Resources */,
+				747DAECC28FF7F85004FF768 /* NotoSans-Bold.ttf in Resources */,
+				747DAEAB28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf in Resources */,
+				747DAEAD28FF7F6C004FF768 /* KumbhSans-Bold.ttf in Resources */,
+				747DAEDB28FF7F85004FF768 /* NotoSans-Italic.ttf in Resources */,
 				02C71E7D28EB8F1100447686 /* Assets.xcassets in Resources */,
+				747DAEC928FF7F85004FF768 /* NotoSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +330,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02C71E7B28EB8F1000447686 /* ContentView.swift in Sources */,
+				747DAE9A28FE0087004FF768 /* HomePageView.swift in Sources */,
+				747DAEDD28FF7F96004FF768 /* FontManager.swift in Sources */,
 				02C71E7928EB8F1000447686 /* WingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +493,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Wing/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Wing/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -447,6 +522,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Wing/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Wing/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
