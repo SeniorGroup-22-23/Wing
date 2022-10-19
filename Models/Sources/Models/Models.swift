@@ -1,5 +1,5 @@
 public struct Models {
-    public private(set) var text = "Hello, World!"
+    public private(set) var text = "TEST CI!"
 
     public init() {
     }
