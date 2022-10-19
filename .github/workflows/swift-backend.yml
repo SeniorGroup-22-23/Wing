@@ -3,12 +3,15 @@ name: Swift
 on:
   push:
     branches: [ "main" ]
+    paths: 
+      - 'Backend/Wing/**'
   pull_request:
     branches: [ "main" ]
+    paths: 
+      - 'Backend/Wing/**'
 
 jobs:
   build:
-
     runs-on: macos-12 #To work with swift versioning (not macos-latest)
 
     steps:
