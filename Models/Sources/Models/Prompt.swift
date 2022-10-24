@@ -1,17 +1,17 @@
 //
-//  File.swift
+//  Prompt.swift
 //  
 //
-//  Created by Courtney Perreault on 2022-10-20.
+//  Created by Courtney Perreault on 2022-10-24.
 //
 
-import Foundation
-import Vapor
+
 import Fluent
 import FluentPostgresDriver
+import Vapor
 
 
-final class Prompt: Model {
+final class Prompt: Model, Content{
     
     static let schema = "prompts"
     
@@ -21,10 +21,11 @@ final class Prompt: Model {
     @Field(key: "prompt_text")
     var promptText: String
     
-    init()
+    init(){}
     
     init(promptId: UUID? = nil, promptText: String){
         self.promptId = promptId
-        self.promptText = String
+        self.promptText = promptText
     }
 }
+
