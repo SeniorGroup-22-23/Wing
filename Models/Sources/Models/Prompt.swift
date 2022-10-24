@@ -8,11 +8,12 @@ import Fluent
 import Vapor
 
 final class Prompt: Model, Content{
+
     
     static let schema = "prompts"
     
     @ID(key: .id)
-    var promptId: UUID?
+    var id: UUID?
     
     @Field(key: "prompt_text")
     var promptText: String
@@ -21,8 +22,8 @@ final class Prompt: Model, Content{
         
     }
     
-    init(promptId: UUID? = nil, promptText: String){
-        self.promptId = promptId
+    init(id: UUID? = nil, promptText: String){
+        self.id = id
         self.promptText = promptText
     }
     

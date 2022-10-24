@@ -14,7 +14,7 @@ final class PromptResponse: Model, Content {
     static let schema = "PromptResponses"
     
     @ID(key: .id)
-    var responseId: UUID?
+    var id: UUID?
     
     @Field(key: "userId")
     var userId: UUID?
@@ -29,8 +29,8 @@ final class PromptResponse: Model, Content {
         
     }
     
-    init(responseId: UUID? = nil, userId: UUID?, promptId: UUID?, responseText: String){
-        self.responseId = responseId
+    init(id: UUID? = nil, userId: UUID?, promptId: UUID?, responseText: String){
+        self.id = id
         self.userId = userId
         self.promptId = promptId
         self.responseText = responseText
