@@ -3,9 +3,6 @@
 1. [Login](#login)
    1. [Get User by Phone](#getuserphone)
    2. [Get User by Email](#getuseremail)
-   3. [Get Profile by UserID](#getprofile)
-   4. [Get Photos by UserID](#getphotos)
-   5. [Get Prompts by UserID](#getprompts)
 2. [Create User Account](#createuser)
    1. [Get Usernames](#getusernames) 
    2. [Create User](#createuser1)
@@ -13,10 +10,16 @@
    4. [Add Photos](#addphotos)
    5. [Get Prompts](#getprompts)
    6. [Add Prompts](#addprompts)
-3. [Matches](#matches)  
-   1. [](#)
-   2. [](#)
-   3. [](#) 
+3. [Match](#matches)  
+   1. [Get Prospects]
+5. [Settings](#settings)
+   1. [Get Profile by UserID](#getprofile)
+   2. [Edit Profile]
+   3. [Get Photos by UserID](#getphotos)
+   4. [Edit Photos]
+   5. [Get Prompts by UserID](#getprompts)
+   6. [Edit Prompts]
+   
 
 ---
 
@@ -100,139 +103,6 @@ The password the user is trying to log in with
 ```json
 {
   "error" : "No user record found."
-}
-```
-
-#### Example
-
----
-
-### Get Profile by UserID <a name="getprofile"></a>
-
-#### URL:
-`/profile/:userID`
-
-#### Method:
-`GET`
-
-#### URL Parameters:
-###### :userID  
-UUID           
-The userID associated with the profile you would like to retrieve
-
-#### Success Response:
-200 OK  
-```json
-{
-  "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-  "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-  "name" : "Jane",
-  "birthdate" : "1998-04-23T18:25:43.511Z",
-  "occupation" : "Teacher" ,
-  "bio" : "Hey Everyone! I love the outdoors and my cats :)",
-  "gender" : 1,
-  "preference" : 0, 
-  "min_age" : 25,
-  "max_age" : 40, 
-  "max_distance" : 50
-}
-```
-
-#### Error Response: 
-404 Not Found
-```json
-{
- "error" : "No profile found."
-}
-```
-
-#### Example
-
----
-
-### Get Photos by UserID <a name="getphotos"></a>
-
-#### URL:
-`/photos/:userID`
-
-#### Method:
-`GET`
-
-#### URL Parameters:
-###### :userID  
-UUID           
-The userID associated with the profile you would like to retrieve
-
-#### Success Response:
-200 OK  
-```json
-{
-  "photos" : [
-    {
-      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-      "photo" : "photo/url"
-    }, 
-    {
-      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-      "photo" : "photo/url"
-    }
-  ]
-}
-```
-
-#### Error Response: 
-404 Not Found
-```json
-{
- "error" : "No profile found."
-}
-```
-
-#### Example
-
----
-
-### Get Prompts by UserID <a name="getprompts"></a>
-
-#### URL:
-`/prompts/:userID`
-
-#### Method:
-`GET`
-
-#### URL Parameters:
-###### :userID  
-UUID           
-The userID associated with the profile you would like to retrieve
-
-#### Success Response:
-200 OK  
-```json
-{
-   "prompts" : [
-    {
-      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-      "response_text" : "Christmas, of course!"
-    },
-    {
-      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120003",
-      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-      "response_text" : "Bali! I want to see the elephants."
-    }
-  ]
-}
-```
-
-#### Error Response: 
-404 Not Found
-```json
-{
- "error" : "No profile found."
 }
 ```
 
@@ -550,4 +420,144 @@ The userID associated with the profile you would like to add prompts too
 ---
 
 # Matches <a name="matches"></a>
+
+---
+
+# Settings <a name="settings"></a>
+
+---
+
+
+### Get Profile by UserID <a name="getprofile"></a>
+
+#### URL:
+`/profile/:userID`
+
+#### Method:
+`GET`
+
+#### URL Parameters:
+###### :userID  
+UUID           
+The userID associated with the profile you would like to retrieve
+
+#### Success Response:
+200 OK  
+```json
+{
+  "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+  "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+  "name" : "Jane",
+  "birthdate" : "1998-04-23T18:25:43.511Z",
+  "occupation" : "Teacher" ,
+  "bio" : "Hey Everyone! I love the outdoors and my cats :)",
+  "gender" : 1,
+  "preference" : 0, 
+  "min_age" : 25,
+  "max_age" : 40, 
+  "max_distance" : 50
+}
+```
+
+#### Error Response: 
+404 Not Found
+```json
+{
+ "error" : "No profile found."
+}
+```
+
+#### Example
+
+---
+
+### Get Photos by UserID <a name="getphotos"></a>
+
+#### URL:
+`/photos/:userID`
+
+#### Method:
+`GET`
+
+#### URL Parameters:
+###### :userID  
+UUID           
+The userID associated with the profile you would like to retrieve
+
+#### Success Response:
+200 OK  
+```json
+{
+  "photos" : [
+    {
+      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+      "photo" : "photo/url"
+    }, 
+    {
+      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+      "photo" : "photo/url"
+    }
+  ]
+}
+```
+
+#### Error Response: 
+404 Not Found
+```json
+{
+ "error" : "No profile found."
+}
+```
+
+#### Example
+
+---
+
+### Get Prompts by UserID <a name="getprompts"></a>
+
+#### URL:
+`/prompts/:userID`
+
+#### Method:
+`GET`
+
+#### URL Parameters:
+###### :userID  
+UUID           
+The userID associated with the profile you would like to retrieve
+
+#### Success Response:
+200 OK  
+```json
+{
+   "prompts" : [
+    {
+      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+      "response_text" : "Christmas, of course!"
+    },
+    {
+      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120003",
+      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+      "response_text" : "Bali! I want to see the elephants."
+    }
+  ]
+}
+```
+
+#### Error Response: 
+404 Not Found
+```json
+{
+ "error" : "No profile found."
+}
+```
+
+#### Example
+
+---
 
