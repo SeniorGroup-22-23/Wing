@@ -32,6 +32,7 @@ final class Wing: Model, Content{
     }
     
     init(id: UUID? = nil, senderId: UUID, recipientId: UUID, prospectId: UUID, status: Int){
+        
         self.id = id
         self.senderId = senderId
         self.recipientId = recipientId
