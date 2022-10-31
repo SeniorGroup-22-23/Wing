@@ -2,30 +2,28 @@
 //  File.swift
 //  
 //
-//  Created by Courtney Perreault on 2022-10-24.
+//  Created by Courtney Perreault on 2022-10-31.
 //
 
 import Vapor
 import Fluent
 
-final class Users: Model, Content{
+final class Friendship: Model, Content{
     
     static let schema = "users"
     
     @ID(key: .id)
     var id: UUID?
     
-    @Field(key: "username")
+    @Field(key: "requester")
     var username: String
     
-    @Field(key: "password")
+    @Field(key: "respondent")
     var password: String
     
-    @Field(key: "phone")
-    var phone: String
-    
-    @Field(key: "email")
-    var email: String
+    @Field(key: "status")
+    var status: Int
+
     
     init(){
         
@@ -35,8 +33,9 @@ final class Users: Model, Content{
         self.id = id
         self.username = username
         self.password = password
-        self.phone = phone
-        self.email = email
+        self.status = status
+
         
     }
 }
+

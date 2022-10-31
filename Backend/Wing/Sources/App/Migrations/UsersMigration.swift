@@ -1,4 +1,5 @@
 import Fluent
+import Models
 
 struct CreateUsers: AsyncMigration {
     
