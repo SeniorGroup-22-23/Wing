@@ -258,7 +258,7 @@ String
 The first 3 characters of the username the user would like to use
 
 #### Success Response:
-(*NOTE:* Only usernames that match the first 3 characters are returned. Results listed in alphabetical order. If no usernames match the first 3 characters empty array is returned.)
+(*NOTE:* Only usernames that match the first 3 characters are returned. Results listed in alphabetical order. If no usernames match the first 3 characters empty array is returned.)        
 200 OK
 ```json
 { 
@@ -272,7 +272,7 @@ The first 3 characters of the username the user would like to use
 ```
 
 #### Error Response: 
-(*NOTE:* This endpoint should not result in error message.)
+(*NOTE:* This endpoint should not result in error message.)            
 404 Not Found
 ```json
 {
@@ -455,7 +455,7 @@ Multipart Form
   "prompts" : [
     {
       "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_text" : "What is your favorite holiday? 
+      "prompt_text" : "What is your favorite holiday?" 
     },
     {
       "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
@@ -469,15 +469,12 @@ Multipart Form
 }
 ```
 
-#### Error Response: 
-400 Bad Request
+#### Error Response:  
+(*NOTE:* This endpoint should not result in error.)            
+404 Not Found
 ```json
 {
-  "error" : {
-    "message" : "Bad syntax",
-    "field" : ":userID",
-    "error" : "Invalid userID."
-  }
+  "error" : "Endpoint not found"
 }
 ```
 
