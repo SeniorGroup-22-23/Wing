@@ -3,15 +3,15 @@
 1. [Login](#login)
    1. [Get User by Phone](#getuserphone)
    2. [Get User by Email](#getuseremail)
-   3. [Get Profile by UserID](#getprofile) ADD other attributes to this example
+   3. [Get Profile by UserID](#getprofile)
    4. [Get Photos by UserID](#getphotos)
    5. [Get Prompts by UserID](#getprompts)
 2. [Create User Account](#createuser)
-   1. [Get Usernames] (match 3** characters) 
+   1. [Get Usernames](#getusernames) 
    2. [Create User](#createuser1)
-   3. [Create Profile](#createprofile) ADD other attributes to this example
+   3. [Create Profile](#createprofile)
    4. [Add Photos](#addphotos)
-   5. [Get Prompts]
+   5. [Get Prompts](#getprompts)
    6. [Add Prompts](#addprompts)
 3. [Matches](#matches)  
    1. [](#)
@@ -126,10 +126,15 @@ The userID associated with the profile you would like to retrieve
 {
   "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
   "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-  "first_name" : "Jane",
+  "name" : "Jane",
   "birthdate" : "1998-04-23T18:25:43.511Z",
   "occupation" : "Teacher" ,
-  "bio" : "Hey Everyone! I love the outdoors and my cats :)"
+  "bio" : "Hey Everyone! I love the outdoors and my cats :)",
+  "gender" : 1,
+  "preference" : 0, 
+  "min_age" : 25,
+  "max_age" : 40, 
+  "max_distance" : 50
 }
 ```
 
@@ -239,6 +244,46 @@ The userID associated with the profile you would like to retrieve
 
 ---
 
+### Get Usernames <a name="getusernames"></a>
+
+#### URL:   
+`/usernames/:usernameMatch`
+
+#### Method:
+`GET` 
+
+#### URL Parameters:  
+###### :usernameMatch
+String           
+The first 3 characters of the username the user would like to use
+
+#### Success Response:
+(*NOTE:* Only usernames that match the first 3 characters are returned. Results listed in alphabetical order. If no usernames match the first 3 characters empty array is returned.)
+200 OK
+```json
+{ 
+  "usernames" : [
+      "jan",
+      "jane",
+      "jane13",
+      "jannieDoe13"
+  ]
+}
+```
+
+#### Error Response: 
+(*NOTE:* This endpoint should not result in error message.)
+404 Not Found
+```json
+{
+  "error" : "Endpoint does not exist"
+}
+```
+
+#### Example    
+
+---
+
 ### Create User <a name="createuser1"></a>
 
 #### URL:   
@@ -297,10 +342,15 @@ The userID associated with the profile you would like to retrieve
 ```json
 {
   "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-  "first_name" : "Jane",
+  "name" : "Jane",
   "birthdate" : "1998-04-23T18:25:43.511Z",
   "occupation" : "Teacher" ,
-  "bio" : "Hey Everyone! I love the outdoors and my cats :)"
+  "bio" : "Hey Everyone! I love the outdoors and my cats :)",
+  "gender" : 1,
+  "preference" : 0, 
+  "min_age" : 25,
+  "max_age" : 40, 
+  "max_distance" : 50
 }
 ```
 
@@ -310,10 +360,15 @@ The userID associated with the profile you would like to retrieve
 {
   "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
   "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-  "first_name" : "Jane",
+  "name" : "Jane",
   "birthdate" : "1998-04-23T18:25:43.511Z",
   "occupation" : "Teacher" ,
-  "bio" : "Hey Everyone! I love the outdoors and my cats :)"
+  "bio" : "Hey Everyone! I love the outdoors and my cats :)",
+  "gender" : 1,
+  "preference" : 0, 
+  "min_age" : 25,
+  "max_age" : 40, 
+  "max_distance" : 50
 }
 ```
 
@@ -336,7 +391,7 @@ The userID associated with the profile you would like to retrieve
 ### Add Photos <a name="addphotos"></a>
 
 #### URL:  
-`photos/:userID`
+`/photos/:userID`
 
 #### Method: 
 `POST`
@@ -385,10 +440,56 @@ Multipart Form
 ---
 
 
+### Get Prompts <a name="getprompts"></a>
+
+#### URL:  
+`/prompts`
+
+#### Method: 
+`GET`
+
+#### Success Response:
+201 Created
+```json
+{
+  "prompts" : [
+    {
+      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+      "prompt_text" : "What is your favorite holiday? 
+    },
+    {
+      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+      "prompt_text" : "If you could pick one superpower, what would it be?"
+    },
+    {
+      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+      "prompt_text" : "Where in the world would you like to travel?"
+    }
+  ]
+}
+```
+
+#### Error Response: 
+400 Bad Request
+```json
+{
+  "error" : {
+    "message" : "Bad syntax",
+    "field" : ":userID",
+    "error" : "Invalid userID."
+  }
+}
+```
+
+#### Example
+
+---
+
+
 ### Add Prompts <a name="addprompts"></a>
 
 #### URL:  
-`prompts/:userID`
+`/prompts/:userID`
 
 #### Method: 
 `POST`
