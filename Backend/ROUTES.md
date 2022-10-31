@@ -7,7 +7,7 @@
    4. [Get Photos by UserID](#getphotos)
    5. [Get Prompts by UserID](#getprompts)
 2. [Create User Account](#createuser)
-   1. [Get Usernames]
+   1. [Get Usernames] (match 3** characters) 
    2. [Create User](#createuser1)
    3. [Create Profile](#createprofile) ADD other attributes to this example
    4. [Add Photos](#addphotos)
