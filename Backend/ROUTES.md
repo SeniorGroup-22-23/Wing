@@ -3,7 +3,7 @@
 1. [Login](#login)
    1. [Get User by Phone](#getuserphone)
    2. [Get User by Email](#getuseremail)
-   3. [Get Profile by UserID](#getprofile)
+   3. [Get Profile by UserID](#getprofile) ADD other attributes to this example
    4. [Get Photos by UserID](#getphotos)
    5. [Get Prompts by UserID](#getprompts)
 2. [Create User Account](#createuser)
