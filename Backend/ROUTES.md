@@ -11,7 +11,8 @@
    2. [Create User](#createuser1)
    3. [Create Profile](#createprofile) ADD other attributes to this example
    4. [Add Photos](#addphotos)
-   5. [Add Prompts](#addprompts)
+   5. [Get Prompts]
+   6. [Add Prompts](#addprompts)
 3. [Matches](#matches)  
    1. [](#)
    2. [](#)
