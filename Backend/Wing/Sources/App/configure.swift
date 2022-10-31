@@ -16,7 +16,6 @@ public func configure(_ app: Application) throws {
 
     //Migrations to run
     app.migrations.add(CreateUsers())
-
     // register routes
     try routes(app)
 }

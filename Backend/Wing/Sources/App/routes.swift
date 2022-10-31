@@ -14,10 +14,28 @@ func routes(_ app: Application) throws {
             .map { user }
     }
     
+    //map directly from request body content
+    app.post("prompts"){ req -> EventLoopFuture<Prompt> in
+        let prompt = try req.content.decode(Prompt.self)
+        return prompt.create(on: req.db)
+            .map { prompt }
+    }
+    
+    //map directly from request body content
+    app.post("prompt_responses"){ req -> EventLoopFuture<PromptResponse> in
+        let promptResponse = try req.content.decode(PromptResponse.self)
+        return promptResponse.create(on: req.db)
+            .map { promptResponse }
+    }
+    
     
     //GET
     app.get("users") { req async throws in
         try await User.query(on: req.db).all()
+    }
+    
+    app.get("prompts") { req async throws in
+        try await Prompt.query(on: req.db).all()
     }
     
     app.get("json") { req in

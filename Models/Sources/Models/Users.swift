@@ -1,6 +1,6 @@
 //
 //  File.swift
-//
+//  
 //
 //  Created by Courtney Perreault on 2022-10-24.
 //
@@ -8,7 +8,7 @@
 import Vapor
 import Fluent
 
-final class User: Model, Content{
+final class Users: Model, Content{
     
     static let schema = "users"
     
