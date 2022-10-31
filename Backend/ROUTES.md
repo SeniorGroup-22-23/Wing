@@ -9,7 +9,7 @@
 2. [Create User Account](#createuser)
    1. [Get Usernames]
    2. [Create User](#createuser1)
-   3. [Create Profile](#createprofile)
+   3. [Create Profile](#createprofile) ADD other attributes to this example
    4. [Add Photos](#addphotos)
    5. [Add Prompts](#addprompts)
 3. [Matches](#matches)  
