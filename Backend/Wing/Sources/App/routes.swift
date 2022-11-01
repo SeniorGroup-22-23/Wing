@@ -10,7 +10,7 @@ func routes(_ app: Application) throws {
     //CREATE
     //map directly from request body content 
     app.post("users"){ req -> EventLoopFuture<User> in
-        let user = try req.content.decode(Models.User.self)
+        let user = try req.content.decode(User.self)
         return user.create(on: req.db)
             .map { user }
     }
@@ -39,6 +39,10 @@ func routes(_ app: Application) throws {
         try await Prompt.query(on: req.db).all()
     }
     
+    app.get("prompt_responses"){ req async throws in
+        try await PromptResponse.query(on: req.db).all()
+        
+    }
     app.get("json") { req in
         return Person(name: "Allie M. Griffin", age: 26)
     }

@@ -6,6 +6,7 @@
 //
 
 import Fluent
+import Models
 
 struct CreatePromptResponses: AsyncMigration {
     
@@ -13,9 +14,8 @@ struct CreatePromptResponses: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("prompt_responses")
             .id()
-            .field("prompt_id", .uuid, .required, .references("prompts", "id"))
             .field("user_id", .uuid, .required, .references("users", "id"))
-            .field("star_id", .uuid, .required, .references("stars", "id"))
+            .field("prompt_id", .uuid, .required, .references("prompts", "id"))
             .field("response_text", .string, .required)
             .create()
     }

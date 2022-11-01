@@ -8,30 +8,30 @@
 import Vapor
 import Fluent
 
-final class User: Model, Content{
+public final class User: Model, Content{
     
-    static let schema = "users"
+    public static let schema = "users"
     
     @ID(key: .id)
-    var id: UUID?
+    public var id: UUID?
     
     @Field(key: "username")
-    var username: String
+    public var username: String
     
     @Field(key: "password")
-    var password: String
+    public var password: String
     
     @Field(key: "phone")
-    var phone: String
+    public var phone: String
     
     @Field(key: "email")
-    var email: String
+    public var email: String
     
-    init(){
+    public init(){
         
     }
     
-    init(id: UUID? = nil, username: String, password: String, phone: String, email: String){
+    public init(id: UUID? = nil, username: String, password: String, phone: String, email: String){
         self.id = id
         self.username = username
         self.password = password
