@@ -1,5 +1,6 @@
 import Fluent
 import Vapor
+import Models
 
 func routes(_ app: Application) throws {
     app.get { req async in
@@ -9,7 +10,7 @@ func routes(_ app: Application) throws {
     //CREATE
     //map directly from request body content 
     app.post("users"){ req -> EventLoopFuture<User> in
-        let user = try req.content.decode(User.self)
+        let user = try req.content.decode(Models.User.self)
         return user.create(on: req.db)
             .map { user }
     }
