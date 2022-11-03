@@ -7,32 +7,32 @@
 import Vapor
 import Fluent
 
-final class Message: Model, Content{
+public final class Message: Model, Content{
     
-    static let schema = "messages"
+    public static let schema = "messages"
     
     @ID(key: .id)
-    var id: UUID?
+    public var id: UUID?
     
     @Field(key: "sender_id")
-    var requesterId: UUID
+    public var requesterId: UUID
     
     @Field(key: "recipient_id")
-    var respondentId: UUID
+    public var respondentId: UUID
     
     @Field(key: "status")
-    var status: Int
+    public var status: Int
     
     @Field(key: "sent_at")
-    var sentAt: Date
+    public var sentAt: Date
     
 
     
-    init(){
+    public init(){
         
     }
     
-    init(id: UUID? = nil, sendId: UUID, recipientId: UUID, status: Int, sentAt: Date){
+    public init(id: UUID? = nil, sendId: UUID, recipientId: UUID, status: Int, sentAt: Date){
         
         self.id = id
         self.requesterId = requesterId

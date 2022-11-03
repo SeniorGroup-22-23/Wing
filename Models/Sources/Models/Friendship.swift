@@ -8,28 +8,28 @@
 import Vapor
 import Fluent
 
-final class Friendship: Model, Content{
+public final class Friendship: Model, Content{
     
-    static let schema = "friendships"
+    public static let schema = "friendships"
     
     @ID(key: .id)
-    var id: UUID?
+    public var id: UUID?
     
     @Field(key: "requester_id")
-    var requesterId: UUID
+    public var requesterId: UUID
     
     @Field(key: "respondent_id")
-    var respondentId: UUID
+    public var respondentId: UUID
     
     @Field(key: "status")
-    var status: Int
+    public var status: Int
 
     
-    init(){
+    public init(){
         
     }
     
-    init(id: UUID? = nil, requesterId: UUID, respondentId: UUID, status: Int){
+    public init(id: UUID? = nil, requesterId: UUID, respondentId: UUID, status: Int){
         self.id = id
         self.requesterId = requesterId
         self.respondentId = respondentId

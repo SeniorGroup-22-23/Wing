@@ -8,28 +8,28 @@
 import Vapor
 import Fluent
 
-final class Match: Model, Content{
+public final class Match: Model, Content{
     
-    static let schema = "matches"
+    public static let schema = "matches"
     
     @ID(key: .id)
-    var id: UUID?
+    public var id: UUID?
     
     @Field(key: "user1_id")
-    var user1Id: UUID
+    public var user1Id: UUID
     
     @Field(key: "user2_id")
-    var user2Id: UUID
+    public var user2Id: UUID
     
     @Field(key: "type")
-    var type: Int
+    public var type: Int
     
     
-    init(){
+    public init(){
         
     }
     
-    init(id: UUID? = nil, user1Id: UUID, user2Id: UUID, type: Int){
+    public init(id: UUID? = nil, user1Id: UUID, user2Id: UUID, type: Int){
         self.id = id
         self.user1Id = user1Id
         self.user2Id = user2Id

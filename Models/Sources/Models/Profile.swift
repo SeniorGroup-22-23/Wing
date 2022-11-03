@@ -8,50 +8,50 @@
 import Vapor
 import Fluent
 
-final class Profile: Model, Content{
+public final class Profile: Model, Content{
     
-    static let schema = "profile"
+    public static let schema = "profile"
     
     @ID(key: .id)
-    var id: UUID?
+    public var id: UUID?
     
     @Field(key: "user_id:")
-    var userId: UUID
+    public var userId: UUID
     
     @Field(key: "name")
-    var name: String
+    public var name: String
     
     @Field(key: "birthdate")
-    var birthdate: Date
+    public var birthdate: Date
     
     @Field(key: "occupation")
-    var occupation: String
+    public var occupation: String
     
     @Field(key: "bio")
-    var bio: String
+    public var bio: String
     
     @Field(key: "gender")
-    var gender: Int
+    public var gender: Int
     
     //put int codes and meanings here
     @Field(key: "preference")
-    var preference: Int
+    public var preference: Int
     
     @Field(key: "min_age")
-    var minAge: Int
+    public var minAge: Int
     
     @Field(key: "max_age")
-    var maxAge: Int
+    public var maxAge: Int
     
     @Field(key: "max_distance")
-    var maxDistance: Int
+    public var maxDistance: Int
     
     
-    init(){
+    public init(){
         
     }
     
-    init(id: UUID? = nil, userId: UUID, name: String, birthdate: Date, bio: String, gender: Int,
+    public init(id: UUID? = nil, userId: UUID, name: String, birthdate: Date, bio: String, gender: Int,
          preference: Int, minAge: Int, maxAge: Int, maxDistance: Int){
         
         self.id = id

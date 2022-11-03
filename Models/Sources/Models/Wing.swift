@@ -8,30 +8,30 @@
 import Vapor
 import Fluent
 
-final class Wing: Model, Content{
+public final class Wing: Model, Content{
     
-    static let schema = "wings"
+    public static let schema = "wings"
     
     @ID(key: .id)
-    var id: UUID?
+    public var id: UUID?
     
     @Field(key: "sender_id")
-    var senderId: UUID
+    public var senderId: UUID
     
     @Field(key: "recipient_id")
-    var recipientId: UUID
+    public var recipientId: UUID
     
     @Field(key: "prospect_id")
-    var prospectId: UUID
+    public var prospectId: UUID
     
     @Field(key: "status")
-    var status: Int
+    public var status: Int
     
-    init(){
+    public init(){
         
     }
     
-    init(id: UUID? = nil, senderId: UUID, recipientId: UUID, prospectId: UUID, status: Int){
+    public init(id: UUID? = nil, senderId: UUID, recipientId: UUID, prospectId: UUID, status: Int){
         
         self.id = id
         self.senderId = senderId
