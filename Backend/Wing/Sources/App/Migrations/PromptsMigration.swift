@@ -6,6 +6,7 @@
 //
 
 import Fluent
+import Models
 
 struct CreatePrompts: AsyncMigration {
     
