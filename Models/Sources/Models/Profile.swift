@@ -30,10 +30,15 @@ public final class Profile: Model, Content{
     @Field(key: "bio")
     public var bio: String
     
+    // 1 = male
+    // 2 = female
+    // 3 = other
     @Field(key: "gender")
     public var gender: Int
     
-    //put int codes and meanings here
+    // 1 = men
+    // 2 = women
+    // 3 = everyone
     @Field(key: "preference")
     public var preference: Int
     
@@ -43,6 +48,7 @@ public final class Profile: Model, Content{
     @Field(key: "max_age")
     public var maxAge: Int
     
+    // in km
     @Field(key: "max_distance")
     public var maxDistance: Int
     

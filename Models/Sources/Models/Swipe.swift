@@ -23,7 +23,9 @@ public final class Swipe: Model, Content{
     @Field(key: "prospect_id")
     public var prospectId: UUID
     
-    //indicates yes, no, or result of a wing
+    // 1 = like
+    // 2 = dislike
+    // 3 = like from wing
     @Field(key: "type")
     public var type: String //would we rather have integer codes?
     

@@ -24,6 +24,9 @@ public final class Wing: Model, Content{
     @Field(key: "prospect_id")
     public var prospectId: UUID
     
+    // 1 = pending
+    // 2 = liked, send to swipe table, keep record
+    // send to swipe table if disliked, delete record
     @Field(key: "status")
     public var status: Int
     

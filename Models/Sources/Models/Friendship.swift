@@ -21,6 +21,8 @@ public final class Friendship: Model, Content{
     @Field(key: "respondent_id")
     public var respondentId: UUID
     
+    // 1 = pending
+    // 2 = approved
     @Field(key: "status")
     public var status: Int
 

@@ -21,6 +21,8 @@ public final class Match: Model, Content{
     @Field(key: "user2_id")
     public var user2Id: UUID
     
+    // 1 = direct
+    // 2 = via wing
     @Field(key: "type")
     public var type: Int
     

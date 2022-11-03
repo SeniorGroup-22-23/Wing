@@ -20,6 +20,8 @@ public final class Message: Model, Content{
     @Field(key: "recipient_id")
     public var respondentId: UUID
     
+    // 1 = sent
+    // 2 = read
     @Field(key: "status")
     public var status: Int
     
