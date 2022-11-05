@@ -105,5 +105,10 @@ Insomnia is an application that allows developers to easily test RESTapis. We wi
 ### Installing Insomnia  
 1. Install Insomnia using Homebrew  
 `brew install --cask insomnia`  
- 
 
+## Importing the Models package
+The Models package contains the declarations for the entities that are stored in the database. These will allow us to create objects that can be easily passed between Swift and Postgres. You may run into this issue when you try to build: "Missing package product". If this happens to you follow these steps. 
+1. Make sure you do not have the Models package open in a window in Xcode.
+2. Go to the nav bar under Product -> Clear All Issues and Product -> Clean Build Folder
+3. Quit Xcode.
+4. Try again. 
