@@ -8,8 +8,8 @@
    2. [Create User](#createuser1)
    3. [Create Profile](#createprofile)
    4. [Add Photos](#addphotos)
-   5. [Get All Prompts](#getallprompts)
-   6. [Add Prompt Response to User Account](#addpromptsuser)
+   5. [Get All Prompts](#getallprompts) DONE
+   6. [Add Prompt Response to User Account](#addpromptsuser) DONE
 3. [Match](#matches)  
    1. [Get Prospects]
 5. [Settings](#settings)
