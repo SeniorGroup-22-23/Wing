@@ -131,14 +131,12 @@ The first 3 characters of the username the user would like to use
 (*NOTE:* Only usernames that match the first 3 characters are returned. Results listed in alphabetical order. If no usernames match the first 3 characters empty array is returned.)        
 200 OK
 ```json
-{ 
-  "usernames" : [
-      "jan",
-      "jane",
-      "jane13",
-      "jannieDoe13"
-  ]
-}
+[
+  "jan",
+  "jane",
+  "jane13",
+  "jannieDoe13"
+]
 ```
 
 #### Error Response: 
