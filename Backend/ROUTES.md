@@ -319,24 +319,22 @@ Multipart Form
 `GET`
 
 #### Success Response:
-201 Created
+200 OK
 ```json
-{
-  "prompts" : [
+  [
     {
       "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_text" : "What is your favorite holiday?" 
+      "promptText" : "What is your favorite holiday?" 
     },
     {
       "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_text" : "If you could pick one superpower, what would it be?"
+      "promptText" : "If you could pick one superpower, what would it be?"
     },
     {
       "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_text" : "Where in the world would you like to travel?"
+      "promptText" : "Where in the world would you like to travel?"
     }
   ]
-}
 ```
 
 #### Error Response:  
@@ -350,56 +348,36 @@ Multipart Form
 
 #### Example
 
+<img width="957" alt="Screen Shot 2022-11-08 at 2 53 44 PM" src="https://user-images.githubusercontent.com/80468156/200650968-9946f25f-b995-46b7-874e-59b10ddebfaa.png">
+
 ---
 
 
-### Add Prompts <a name="addprompts"></a>
+### Add Prompt <a name="addprompts"></a>
 
 #### URL:  
-`/prompts/:userID`
+`/prompts/user`
 
 #### Method: 
 `POST`
 
-#### URL Parameters:  
-###### :userID
-UUID           
-The userID associated with the profile you would like to add prompts too
-
 #### Request Body:  
 ```json
 {
-  "prompts" : [
-    {
-      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "response_text" : "Christmas, of course!"
-    },
-    {
-      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120003",
-      "response_text" : "Bali! I want to see the elephants."
-    },
-  ]
+  "userId" : "F104C4E8-3039-48B1-917C-D3227CAFEBCB",
+  "promptId" : "62EE0688-F322-43EB-8C48-A78CBA0918A6",
+  "responseText" : "Christmas, of course!"
 }
 ```
 
 #### Success Response:
-201 Created
+200 OK
 ```json
 {
-  "prompts" : [
-    {
-      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-      "response_text" : "Christmas, of course!"
-    },
-    {
-      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120003",
-      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-      "response_text" : "Bali! I want to see the elephants."
-    }
-  ]
+  "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+  "promptId" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+  "userId" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+  "responseText" : "Christmas, of course!"
 }
 ```
 
@@ -407,15 +385,16 @@ The userID associated with the profile you would like to add prompts too
 400 Bad Request
 ```json
 {
-  "error" : {
-    "message" : "Bad syntax",
-    "field" : ":userID",
-    "error" : "Invalid userID."
-  }
+  "error" : true,
+  "reason": "Value of type 'String' required for key 'responseText'."
 }
 ```
 
 #### Example
+
+<img width="957" alt="Screen Shot 2022-11-08 at 3 07 44 PM" src="https://user-images.githubusercontent.com/80468156/200653656-922eefcd-602d-4397-bb3d-f5835d962917.png">
+
+<img width="957" alt="Screen Shot 2022-11-08 at 3 08 08 PM" src="https://user-images.githubusercontent.com/80468156/200653675-b9d47198-f90d-4eaa-a981-6007f2a9f15f.png">
 
 ---
 
