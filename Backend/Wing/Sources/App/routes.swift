@@ -34,7 +34,7 @@ func routes(_ app: Application) throws {
             .all(\.$username) //returns username field from all matches
     }
     
-    //GET User by Phone - DONE
+    //GET User by Phone 
     app.get("user", "phone", ":phone", ":password") { req async throws -> User in
         let phoneNum = req.parameters.get("phone")!
         let password = req.parameters.get("password")!
@@ -48,7 +48,7 @@ func routes(_ app: Application) throws {
         return user
     }
     
-    //GET User by Email - DONE
+    //GET User by Email 
     app.get("user", "email", ":email", ":password") { req async throws -> User in
         let email = req.parameters.get("email")!
         let password = req.parameters.get("password")!
@@ -69,12 +69,12 @@ func routes(_ app: Application) throws {
             .map {user}
     }
     
-    //GET Prompts --DONE
+    //GET Prompts 
     app.get("prompts") { req async throws in
         try await Prompt.query(on: req.db).all()
     }
     
-    //POST Prompt Response to user account -- DONE
+    //POST Prompt Response to user account 
     app.post("prompts", "user"){ req -> EventLoopFuture<PromptResponse> in
         let promptResponse = try req.content.decode(PromptResponse.self)
         return promptResponse.create(on: req.db)
