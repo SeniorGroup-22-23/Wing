@@ -114,7 +114,7 @@ The password the user is trying to log in with
 #### Example
 <img width="1101" alt="Screen Shot 2022-11-08 at 5 33 56 PM" src="https://user-images.githubusercontent.com/80468156/200680729-519a2e7d-b2bd-487a-b86a-9f40a3dd2994.png">
 
-<img width="1101" alt="Screen Shot 2022-11-08 at 5 31 31 PM" src="https://user-images.githubusercontent.com/80468156/200680765-54b95ad2-15b3-422c-8148-795ce41f9eda.png">
+<img width="1101" alt="Screen Shot 2022-11-08 at 5 39 57 PM" src="https://user-images.githubusercontent.com/80468156/200681577-07f57fc5-eaa2-4f6d-8792-185fbc53e156.png">
 
 
 ---
