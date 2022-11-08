@@ -1,8 +1,8 @@
 # Wing API Endpoints 
   
 1. [Login](#login)
-   1. [Get User by Phone](#getuserphone)
-   2. [Get User by Email](#getuseremail)
+   1. [Get User by Phone](#getuserphone) DONE
+   2. [Get User by Email](#getuseremail) DONE
 2. [Create User Account](#createuser)
    1. [Get Usernames](#getusernames) 
    2. [Create User](#createuser1)
@@ -60,11 +60,15 @@ The password the user is trying to log in with
 404 Not Found
 ```json
 {
-  "error" : "No user record found."
+  "error" : true, 
+  "reason" : "No user record found."
 }
 ```
 
 #### Example
+<img width="1101" alt="Screen Shot 2022-11-08 at 5 33 30 PM" src="https://user-images.githubusercontent.com/80468156/200680686-3daa63c4-76ae-435a-aab9-a9f65894a2e6.png">
+
+<img width="1101" alt="Screen Shot 2022-11-08 at 5 33 05 PM" src="https://user-images.githubusercontent.com/80468156/200680636-0848c794-c328-40d0-9e07-3ce1b3f6c1d4.png">
 
 
 ---
@@ -102,11 +106,16 @@ The password the user is trying to log in with
 404 Not Found
 ```json
 {
-  "error" : "No user record found."
+  "error" : true, 
+  "reason" : "No user record found."
 }
 ```
 
 #### Example
+<img width="1101" alt="Screen Shot 2022-11-08 at 5 33 56 PM" src="https://user-images.githubusercontent.com/80468156/200680729-519a2e7d-b2bd-487a-b86a-9f40a3dd2994.png">
+
+<img width="1101" alt="Screen Shot 2022-11-08 at 5 31 31 PM" src="https://user-images.githubusercontent.com/80468156/200680765-54b95ad2-15b3-422c-8148-795ce41f9eda.png">
+
 
 ---
 
