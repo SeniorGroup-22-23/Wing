@@ -1,4 +1,9 @@
 # Wing
+![Backend](https://github.com/SeniorGroup-22-23/Wing/actions/workflows/swift-backend.yml/badge.svg)   
+![Models](https://github.com/SeniorGroup-22-23/Wing/actions/workflows/swift-models.yml/badge.svg)   
+
+* TODO add frontend CI
+
 
 what is wing
 

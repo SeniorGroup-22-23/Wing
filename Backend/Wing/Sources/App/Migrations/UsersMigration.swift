@@ -1,4 +1,5 @@
 import Fluent
+import Models
 
 struct CreateUsers: AsyncMigration {
     
@@ -14,8 +15,8 @@ struct CreateUsers: AsyncMigration {
             .id()
             .field("username", .string, .required)
             .field("password", .string, .required)
-            .field("name", .string, .required)
-            .field("age", .int, .required)
+            .field("phone", .string)
+            .field("email", .string)
             .create()
     }
 
