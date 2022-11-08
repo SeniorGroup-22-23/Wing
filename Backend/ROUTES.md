@@ -5,7 +5,7 @@
    2. [Get User by Email](#getuseremail) DONE
 2. [Create User Account](#createuser)
    1. [Get Usernames](#getusernames) 
-   2. [Create User](#createuser1)
+   2. [Create User](#createuser1) DONE
    3. [Create Profile](#createprofile)
    4. [Add Photos](#addphotos)
    5. [Get All Prompts](#getallprompts) DONE
@@ -180,7 +180,7 @@ The first 3 characters of the username the user would like to use
 ```
 
 #### Success Response:
-201 Created
+200 OK
 ```json
 { 
   "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
@@ -195,15 +195,18 @@ The first 3 characters of the username the user would like to use
 400 Bad Request
 ```json
 {
-  "error" : {
-    "message" : "Bad syntax",
-    "field" : "phone",
-    "error" : "Phone cannot contain characters."
-  }
+  "error" : true, 
+  "reason" : "An error message that describes missing field"
 }
 ```
+_Note: Phone or Email field may be empty, but must still be included in request body._    
+
 
 #### Example    
+
+<img width="1101" alt="Screen Shot 2022-11-08 at 5 50 55 PM" src="https://user-images.githubusercontent.com/80468156/200684347-3ed243ca-b772-4366-baa5-d39562faaa1b.png">
+
+<img width="1134" alt="Screen Shot 2022-11-08 at 5 52 20 PM" src="https://user-images.githubusercontent.com/80468156/200684363-5abac93d-2564-4c27-8354-3bf0c00c0da1.png">
 
 ---
 
