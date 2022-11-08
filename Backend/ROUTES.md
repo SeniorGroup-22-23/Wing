@@ -1,24 +1,24 @@
 # Wing API Endpoints 
   
 1. [Login](#login)
-   1. [Get User by Phone](#getuserphone) DONE
-   2. [Get User by Email](#getuseremail) DONE
+   1. [Get User by Phone](#getuserphone) 
+   2. [Get User by Email](#getuseremail) 
 2. [Create User Account](#createuser)
    1. [Get Usernames](#getusernames) 
-   2. [Create User](#createuser1) DONE
-   3. [Create Profile](#createprofile)
-   4. [Add Photos](#addphotos)
-   5. [Get All Prompts](#getallprompts) DONE
-   6. [Add Prompt Response to User Account](#addpromptsuser) DONE
+   2. [Create User](#createuser1) 
+   3. [Create Profile](#createprofile) TODO
+   4. [Add Photos](#addphotos) TODO
+   5. [Get All Prompts](#getallprompts)
+   6. [Add Prompt Response to User Account](#addpromptsuser)
 3. [Match](#matches)  
-   1. [Get Prospects]
+   1. [Get Prospects] TODO
 5. [Settings](#settings)
-   1. [Get Profile by UserID](#getprofile)
-   2. [Edit Profile]
-   3. [Get Photos by UserID](#getphotos)
-   4. [Edit Photos]
-   5. [Get Prompts by UserID](#getprompts)
-   6. [Edit Prompts]
+   1. [Get Profile by UserID](#getprofile) TODO
+   2. [Edit Profile] TODO
+   3. [Get Photos by UserID](#getphotos) TODO
+   4. [Edit Photos] TODO
+   5. [Get Prompts by UserID](#getprompts) TODO
+   6. [Edit Prompts] TODO
    
 
 ---
@@ -134,7 +134,9 @@ The password the user is trying to log in with
 #### URL Parameters:  
 ###### :usernameMatch
 String           
-The first 3 characters of the username the user would like to use
+The first 3 characters of the username the user would like to use     
+_Note: This is case sensitive (can be changed)_       
+
 
 #### Success Response:
 (*NOTE:* Only usernames that match the first 3 characters are returned. Results listed in alphabetical order. If no usernames match the first 3 characters empty array is returned.)        
@@ -158,6 +160,10 @@ The first 3 characters of the username the user would like to use
 ```
 
 #### Example    
+
+<img width="1134" alt="Screen Shot 2022-11-08 at 6 08 08 PM" src="https://user-images.githubusercontent.com/80468156/200686406-eb08f8bf-9ea4-4f69-87d1-c18d61f4707f.png">
+
+<img width="1134" alt="Screen Shot 2022-11-08 at 6 03 15 PM" src="https://user-images.githubusercontent.com/80468156/200686443-59003c61-132c-40c9-8bbb-87379d018627.png">
 
 ---
 
