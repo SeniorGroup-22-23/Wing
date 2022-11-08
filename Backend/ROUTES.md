@@ -8,8 +8,8 @@
    2. [Create User](#createuser1)
    3. [Create Profile](#createprofile)
    4. [Add Photos](#addphotos)
-   5. [Get Prompts](#getprompts)
-   6. [Add Prompts](#addprompts)
+   5. [Get All Prompts](#getallprompts)
+   6. [Add Prompt Response to User Account](#addpromptsuser)
 3. [Match](#matches)  
    1. [Get Prospects]
 5. [Settings](#settings)
@@ -310,7 +310,7 @@ Multipart Form
 ---
 
 
-### Get Prompts <a name="getprompts"></a>
+### Get All Prompts <a name="getallprompts"></a>
 
 #### URL:  
 `/prompts`
@@ -353,7 +353,7 @@ Multipart Form
 ---
 
 
-### Add Prompt <a name="addprompts"></a>
+### Add Prompt Response to User Account <a name="addpromptsuser"></a>
 
 #### URL:  
 `/prompts/user`
