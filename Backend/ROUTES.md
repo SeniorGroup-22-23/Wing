@@ -30,7 +30,7 @@
 ### Get User by Phone <a name="getuserphone"></a>
 
 #### URL:
-`/user/:phone/:password`
+`/user/phone/:phone/:password`
 
 #### Method:
 `GET`
@@ -72,7 +72,7 @@ The password the user is trying to log in with
 ### Get User by Email <a name="getuseremail"></a>
 
 #### URL:
-`/user/:email/:password`
+`/user/email/:email/:password`
 
 #### Method:
 `GET`
