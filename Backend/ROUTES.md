@@ -13,7 +13,7 @@
 3. [Match](#matches)  
    1. [Get Prospects] TODO
 5. [Settings](#settings)
-   1. [Edit User Account](#edituser) TODO
+   1. [Edit User Account](#edituser) 
    2. [Get Profile by UserID](#getprofile) TODO
    3. [Edit Profile] TODO
    4. [Get Photos by UserID](#getphotos) TODO
@@ -432,16 +432,18 @@ Multipart Form
 `/user`
 
 #### Method:
-`PATCH`
+`PUT`       
+_Note: Put requests require the entire object body to be passed in. If there is a user record that matches the given id, that record will be updated. For our use ONLY email, phone, and password will be updated. If there is no user record that matches given id - nothing will happen in database (still 200 OK)._
 
 
 #### Request Body:  
-_Note: Request body can be any combination of phone, email, password. Username cannot be changed. Must have userId in every patch body._
 The following request body will update the user record with the new phone number.     
 
 ```json
 {
-  "userId" : "F104C4E8-3039-48B1-917C-D3227CAFEBCB",
+  "id" : "F104C4E8-3039-48B1-917C-D3227CAFEBCB",
+  "username" : "AllieG",
+  "email": "",
   "phone"  : "5061234567" 
 }
 ```
@@ -451,29 +453,31 @@ The following request body will update the user record with the new phone number
 200 OK  
 ```json
 {
-  "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-  "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-  "name" : "Jane",
-  "birthdate" : "1998-04-23T18:25:43.511Z",
-  "occupation" : "Teacher" ,
-  "bio" : "Hey Everyone! I love the outdoors and my cats :)",
-  "gender" : 1,
-  "preference" : 0, 
-  "min_age" : 25,
-  "max_age" : 40, 
-  "max_distance" : 50
+  "id" : "F104C4E8-3039-48B1-917C-D3227CAFEBCB",
+  "username" : "AllieG",
+  "email": "",
+  "phone"  : "5061234567"
 }
 ```
 
 #### Error Response: 
-404 Not Found
+400 Bad Request       
+_Note: This will occur when a field is missing, or invalid UUID is given_
 ```json
 {
- "error" : "No profile found."
+ "error" : true, 
+ "reason" : "Value of type 'String' required for key 'email'."
 }
 ```
 
 #### Example
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 3 02 36 PM" src="https://user-images.githubusercontent.com/80468156/200919694-00ab571e-2af0-4f5b-b480-39921e7d4678.png">
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 3 02 57 PM" src="https://user-images.githubusercontent.com/80468156/200919949-9ef3b9b7-fa68-42c2-b077-0705c50f02b3.png">
+
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 3 03 20 PM" src="https://user-images.githubusercontent.com/80468156/200919723-8880c5a7-4174-4e5e-b9fe-5320b017c6c5.png">
 
 
 ---
