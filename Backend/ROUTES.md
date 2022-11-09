@@ -13,7 +13,7 @@
 3. [Match](#matches)  
    1. [Get Prospects] TODO
 5. [Settings](#settings)
-   1. [Edit User Account](#edituser) 
+   1. [Edit User Account](#edituser) TODO
    2. [Get Profile by UserID](#getprofile) TODO
    3. [Edit Profile] TODO
    4. [Get Photos by UserID](#getphotos) TODO
