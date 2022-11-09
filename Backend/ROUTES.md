@@ -13,12 +13,15 @@
 3. [Match](#matches)  
    1. [Get Prospects] TODO
 5. [Settings](#settings)
-   1. [Get Profile by UserID](#getprofile) TODO
-   2. [Edit Profile] TODO
-   3. [Get Photos by UserID](#getphotos) TODO
-   4. [Edit Photos] TODO
-   5. [Get Prompts by UserID](#getprompts) TODO
-   6. [Edit Prompts] TODO
+   1. [Edit User Account](#edituser) 
+   2. [Get Profile by UserID](#getprofile) TODO
+   3. [Edit Profile] TODO
+   4. [Get Photos by UserID](#getphotos) TODO
+   5. [Edit Photos] TODO
+   6. [Get Prompts by UserID](#getprompts)
+   7. [Get Prompt by ID](#getprompt) 
+   8. [Edit Prompts] TODO
+   9. [Delete Prompt Response](#deletepromptresponse)
    
 
 ---
@@ -423,6 +426,59 @@ Multipart Form
 ---
 
 
+### Edit User Account <a name="edituser"></a>
+
+#### URL:
+`/user`
+
+#### Method:
+`PATCH`
+
+
+#### Request Body:  
+_Note: Request body can be any combination of phone, email, password. Username cannot be changed. Must have userId in every patch body._
+The following request body will update the user record with the new phone number.     
+
+```json
+{
+  "userId" : "F104C4E8-3039-48B1-917C-D3227CAFEBCB",
+  "phone"  : "5061234567" 
+}
+```
+
+
+#### Success Response:
+200 OK  
+```json
+{
+  "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+  "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+  "name" : "Jane",
+  "birthdate" : "1998-04-23T18:25:43.511Z",
+  "occupation" : "Teacher" ,
+  "bio" : "Hey Everyone! I love the outdoors and my cats :)",
+  "gender" : 1,
+  "preference" : 0, 
+  "min_age" : 25,
+  "max_age" : 40, 
+  "max_distance" : 50
+}
+```
+
+#### Error Response: 
+404 Not Found
+```json
+{
+ "error" : "No profile found."
+}
+```
+
+#### Example
+
+
+---
+
+
 ### Get Profile by UserID <a name="getprofile"></a>
 
 #### URL:
@@ -524,23 +580,63 @@ UUID
 The userID associated with the profile you would like to retrieve
 
 #### Success Response:
+_Note: If the userID is invalid or no prompts have been answered, an empty array will be returned._    
+200 OK  
+```json
+[
+  {
+    "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+    "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+    "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+    "response_text" : "Christmas, of course!"
+  },
+  {
+    "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+    "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120003",
+    "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+    "response_text" : "Bali! I want to see the elephants."
+  }
+]
+```
+
+#### Error Response:    
+_Note: this endpoint should not result in error._   
+400 Bad Request      
+```json
+{
+ "error" : "Endpoint does not exist. "
+}
+```
+
+#### Example
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 20 20 PM" src="https://user-images.githubusercontent.com/80468156/200898682-8941281f-9bd5-4ece-a9db-3d3cb502965b.png">
+
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 20 06 PM" src="https://user-images.githubusercontent.com/80468156/200898630-84e437ef-d0f2-4307-81c0-335c95022ede.png">
+
+---
+
+
+### Get Prompt by ID <a name="getprompt"></a>
+
+#### URL:
+`/prompts/:promptId`
+
+#### Method:
+`GET`
+
+#### URL Parameters:
+###### :promptId 
+UUID           
+The promptID associated with the prompt you would like to retrieve
+
+#### Success Response:
 200 OK  
 ```json
 {
-   "prompts" : [
-    {
-      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-      "response_text" : "Christmas, of course!"
-    },
-    {
-      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120003",
-      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-      "response_text" : "Bali! I want to see the elephants."
-    }
-  ]
+   "promptText" : "Whats your favorite color?",
+   "id" : "3F4BDDFA-6E65-4302-82D1-1E05724B7C8A"
 }
 ```
 
@@ -548,11 +644,46 @@ The userID associated with the profile you would like to retrieve
 404 Not Found
 ```json
 {
- "error" : "No profile found."
+ "error" : true, 
+ "reason" : "No prompt record found."
 }
 ```
 
 #### Example
 
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 07 48 PM" src="https://user-images.githubusercontent.com/80468156/200896081-d7f808b5-ba49-47a5-bf77-f456385bb05c.png">
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 07 57 PM" src="https://user-images.githubusercontent.com/80468156/200896096-a35d03c4-7d53-42ef-bec3-8444798f0c7d.png">
+
 ---
 
+### Delete Prompt Response <a name="deletepromptresponse"></a>
+
+#### URL:
+`/promptResponse/:id`
+
+#### Method:
+`DELETE`
+
+#### URL Parameters:
+###### :id 
+UUID           
+The id associated with the prompt response record you would like to delete
+
+#### Success Response:
+202 Accepted  
+
+No return body, record has been deleted. 
+
+#### Error Response: 
+400 Bad Request
+
+No return body, this occurs when invalid UUID was supplied. 
+
+#### Example
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 52 12 PM" src="https://user-images.githubusercontent.com/80468156/200905045-c1a7d615-a512-4128-bbcb-371839fdb481.png">
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 54 14 PM" src="https://user-images.githubusercontent.com/80468156/200905086-830d8574-c32a-4fe5-9600-cc68573e8d65.png">
+
+---
