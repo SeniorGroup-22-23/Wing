@@ -15,7 +15,7 @@ struct CreatePhotos: AsyncMigration {
         try await database.schema("photos")
             .id()
             .field("user_id", .uuid, .required, .references("users", "id"))
-            .field("photo", .array(of: .data), .required)
+            .field("photo", .data, .required)
             .create()
     }
 

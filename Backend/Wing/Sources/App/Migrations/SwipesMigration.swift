@@ -16,7 +16,7 @@ struct CreateSwipes: AsyncMigration {
             .id()
             .field("swiper_id", .uuid, .required, .references("users", "id"))
             .field("prospect_id", .uuid, .required, .references("users", "id"))
-            .field("type", .int)
+            .field("type", .int8)
             .field("createed_at", .datetime)
             .create()
     }

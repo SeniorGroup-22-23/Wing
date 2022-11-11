@@ -16,7 +16,7 @@ struct CreateFriendships: AsyncMigration {
             .id()
             .field("requester_id", .uuid, .required, .references("users", "id"))
             .field("respondent_id", .uuid, .required, .references("users", "id"))
-            .field("status", .int, .required)
+            .field("status", .int8, .required)
             .create()
     }
 
