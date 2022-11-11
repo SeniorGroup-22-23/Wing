@@ -16,12 +16,12 @@ public final class Swipe: Model, Content{
     public var id: UUID?
     
     // user id referencing user that swiped on a profile
-    @Field(key: "swiper_id")
-    public var swiperId: UUID
+    @Field(key: "swiper")
+    public var swiper: UUID
     
     //user id referencing user that was viewed and acted on by swiper
-    @Field(key: "prospect_id")
-    public var prospectId: UUID
+    @Field(key: "prospect")
+    public var prospect: UUID
     
     // 1 = like
     // 2 = dislike
@@ -37,10 +37,10 @@ public final class Swipe: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, swiperId: UUID, prospectId: UUID, type: String, createdAt: Date){
+    public init(id: UUID? = nil, swiper: UUID, prospect: UUID, type: String, createdAt: Date){
         self.id = id
-        self.swiperId = swiperId
-        self.prospectId = prospectId
+        self.swiper = swiper
+        self.prospect = prospect
         self.type = type
         self.createdAt = createdAt //probably will change to get date/time of initialization
     }
