@@ -15,14 +15,14 @@ public final class Wing: Model, Content{
     @ID(key: .id)
     public var id: UUID?
     
-    @Field(key: "sender_id")
-    public var senderId: UUID
+    @Field(key: "sender")
+    public var sender: UUID
     
-    @Field(key: "recipient_id")
-    public var recipientId: UUID
+    @Field(key: "recipient")
+    public var recipient: UUID
     
-    @Field(key: "prospect_id")
-    public var prospectId: UUID
+    @Field(key: "prospect")
+    public var prospect: UUID
     
     // 1 = pending
     // 2 = liked, send to swipe table, keep record
@@ -34,12 +34,12 @@ public final class Wing: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, senderId: UUID, recipientId: UUID, prospectId: UUID, status: Int){
+    public init(id: UUID? = nil, sender: UUID, recipient: UUID, prospect: UUID, status: Int){
         
         self.id = id
-        self.senderId = senderId
-        self.recipientId = recipientId
-        self.prospectId = prospectId
+        self.sender = sender
+        self.recipient = recipient
+        self.prospect = prospect
         self.status = status
         
     }

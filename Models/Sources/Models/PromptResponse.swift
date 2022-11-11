@@ -18,12 +18,12 @@ public final class PromptResponse: Model, Content {
     public var id: UUID?
     
     //FK referencing user who responded to prompt
-    @Field(key: "user_id")
-    public var userId: UUID
+    @Field(key: "user")
+    public var user: UUID
     
     //FK referencing prompt being responded to
-    @Field(key: "prompt_id")
-    public var promptId: UUID
+    @Field(key: "prompt")
+    public var prompt: UUID
     
     //The textual string representing the response provided by the user
     @Field(key: "response_text")
@@ -33,10 +33,10 @@ public final class PromptResponse: Model, Content {
         
     }
     
-    public init(id: UUID? = nil, userId: UUID, promptId: UUID, responseText: String){
+    public init(id: UUID? = nil, user: UUID, prompt: UUID, responseText: String){
         self.id = id
-        self.userId = userId
-        self.promptId = promptId
+        self.user = user
+        self.prompt = prompt
         self.responseText = responseText
     }
 }

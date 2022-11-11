@@ -15,11 +15,11 @@ public final class Friendship: Model, Content{
     @ID(key: .id)
     public var id: UUID?
     
-    @Field(key: "requester_id")
-    public var requesterId: UUID
+    @Field(key: "requester")
+    public var requester: UUID
     
-    @Field(key: "respondent_id")
-    public var respondentId: UUID
+    @Field(key: "respondent")
+    public var respondent: UUID
     
     // 1 = pending
     // 2 = approved
@@ -31,10 +31,10 @@ public final class Friendship: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, requesterId: UUID, respondentId: UUID, status: Int){
+    public init(id: UUID? = nil, requester: UUID, respondent: UUID, status: Int){
         self.id = id
-        self.requesterId = requesterId
-        self.respondentId = respondentId
+        self.requester = requester
+        self.respondent = respondent
         self.status = status
 
         

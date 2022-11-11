@@ -15,8 +15,8 @@ public final class Profile: Model, Content{
     @ID(key: .id)
     public var id: UUID?
     
-    @Field(key: "user_id:")
-    public var userId: UUID
+    @Field(key: "user:")
+    public var user: UUID
     
     @Field(key: "name")
     public var name: String
@@ -57,11 +57,11 @@ public final class Profile: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, userId: UUID, name: String, birthdate: Date, bio: String, gender: Int,
+    public init(id: UUID? = nil, user: UUID, name: String, birthdate: Date, bio: String, gender: Int,
          preference: Int, minAge: Int, maxAge: Int, maxDistance: Int){
         
         self.id = id
-        self.userId = userId
+        self.user = user
         self.name = name
         self.birthdate = birthdate
         self.bio = bio
