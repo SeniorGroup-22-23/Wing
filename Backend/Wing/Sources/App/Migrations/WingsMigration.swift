@@ -14,9 +14,10 @@ struct CreateWings: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("wings")
             .id()
-            .field("sender", .uuid, .required, .references("users", "id"))
-            .field("recipient", .uuid, .required, .references("users", "id"))
-            .field("prospect", .uuid, .required, .references("users", "id"))
+            .field("sender_id", .uuid, .required, .references("users", "id"))
+            .field("recipient_id", .uuid, .required, .references("users", "id"))
+            .field("prospect_id", .uuid, .required, .references("users", "id"))
+            .field("status", .int8, .required)
             .create()
     }
 

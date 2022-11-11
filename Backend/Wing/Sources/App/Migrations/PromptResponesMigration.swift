@@ -14,8 +14,8 @@ struct CreatePromptResponses: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("prompt_responses")
             .id()
-            .field("user", .uuid, .required, .references("users", "id"))
-            .field("prompt", .uuid, .required, .references("prompts", "id"))
+            .field("user_id", .uuid, .required, .references("users", "id"))
+            .field("prompt_id", .uuid, .required, .references("prompts", "id"))
             .field("response_text", .string, .required)
             .create()
     }

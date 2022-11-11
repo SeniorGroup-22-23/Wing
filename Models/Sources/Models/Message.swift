@@ -14,11 +14,11 @@ public final class Message: Model, Content{
     @ID(key: .id)
     public var id: UUID?
     
-    @Field(key: "sender")
-    public var sender: UUID
+    @Field(key: "sender_id")
+    public var senderId: UUID
     
-    @Field(key: "recipient")
-    public var recipient: UUID
+    @Field(key: "recipient_id")
+    public var recipientId: UUID
     
     @Field(key: "content")
     public var content: String
@@ -37,11 +37,11 @@ public final class Message: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, sender: UUID, recipient: UUID, content: String, status: Int, sentAt: Date){
+    public init(id: UUID? = nil, senderId: UUID, recipientId: UUID, content: String, status: Int, sentAt: Date){
         
         self.id = id
-        self.sender = sender
-        self.recipient = recipient
+        self.senderId = senderId
+        self.recipientId = recipientId
         self.content = content
         self.status = status
         self.sentAt = sentAt

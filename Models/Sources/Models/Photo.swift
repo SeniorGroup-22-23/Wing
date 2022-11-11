@@ -15,8 +15,8 @@ public final class Photo: Model, Content{
     @ID(key: .id)
     public var id: UUID?
     
-    @Field(key: "user")
-    public var user: UUID
+    @Field(key: "user_id")
+    public var userId: UUID
     
     @Field(key: "photo")
     public var photo: [UInt8]
@@ -26,10 +26,10 @@ public final class Photo: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, user: UUID, photo: [UInt8]){
+    public init(id: UUID? = nil, userId: UUID, photo: [UInt8]){
         
         self.id = id
-        self.user = user
+        self.userId = userId
         self.photo = photo
         
     }

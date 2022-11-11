@@ -15,11 +15,11 @@ public final class Block: Model, Content{
     @ID(key: .id)
     public var id: UUID?
     
-    @Field(key: "blocked_user")
-    public var blockedUser: UUID
+    @Field(key: "blocked_user_id")
+    public var blockedUserId: UUID
     
-    @Field(key: "blocked_by")
-    public var blockedBy: UUID
+    @Field(key: "blocked_by_id")
+    public var blockedById: UUID
     
     @Field(key: "reported")
     public var reported: Bool
@@ -31,10 +31,10 @@ public final class Block: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, blockedUser: UUID, blockedBy: UUID, reported: Bool, issue: Int){
+    public init(id: UUID? = nil, blockedUserId: UUID, blockedById: UUID, reported: Bool, issue: Int){
         self.id  = id
-        self.blockedUser = blockedUser
-        self.blockedBy = blockedBy
+        self.blockedUserId = blockedUserId
+        self.blockedById = blockedById
         self.reported = reported
         self.issue = issue
     }
