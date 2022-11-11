@@ -14,8 +14,8 @@ struct CreatePhotos: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("photos")
             .id()
-            .field("user", .uuid, .required, .references("users", "id"))
-            .field("photo", .uint, .required)
+            .field("user_id", .uuid, .required, .references("users", "id"))
+            .field("photo", .array(of: .uint), .required)
             .create()
     }
 
