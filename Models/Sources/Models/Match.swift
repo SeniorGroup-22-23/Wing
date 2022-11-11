@@ -15,11 +15,11 @@ public final class Match: Model, Content{
     @ID(key: .id)
     public var id: UUID?
     
-    @Field(key: "first_user")
-    public var firstUser: UUID
+    @Field(key: "first_user_id")
+    public var firstUserId: UUID
     
-    @Field(key: "second_ser")
-    public var secondUser: UUID
+    @Field(key: "second_user_id")
+    public var secondUserId: UUID
     
     // 1 = direct
     // 2 = via wing
@@ -31,10 +31,10 @@ public final class Match: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, firstUser: UUID, secondUser: UUID, type: Int){
+    public init(id: UUID? = nil, firstUserId: UUID, secondUserId: UUID, type: Int){
         self.id = id
-        self.firstUser = firstUser
-        self.secondUser = secondUser
+        self.firstUserId = firstUserId
+        self.secondUserId = secondUserId
         self.type = type
         
     }
