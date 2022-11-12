@@ -5,52 +5,59 @@
 //  Created by Bryn Haines on 2022-10-15.
 //
 import SwiftUI
-let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
-let greenColor = Color(red:121/255, green:188/255, blue:154/255)
+import Foundation
 
-struct ContentView : View {
+let MainGreen = Color("MainGreen")
+
+struct LoginView : View {
     @State var username: String = ""
     @State var password: String = ""
     var body: some View {
         VStack {
             WhiteLogo()
             LoginText()
-            TextField("Email or phone number", text: $username)
+            EmailorPhoneText()
+            TextField("", text: $username)
                 .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(Color("DisableGrey"), lineWidth: 2)
+                )
                 .background(.white)
-                .cornerRadius(5.0)
-                .padding(.bottom, 20)
+                .padding(.bottom, 5)
                 .frame(width: 300)
-            SecureField("Password", text: $password)
+            PasswordText()
+            SecureField("", text: $password)
                 .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(Color("DisableGrey"), lineWidth: 2)
+                )
                 .background(.white)
-                .cornerRadius(5.0)
-                .padding(.bottom, 20)
+                .padding(.bottom, 40)
                 .frame(width: 300)
                 ForgotPasswordText()
             Button(action: {print("Button tapped")}) {
                     ButtonContent()
-                }
+            }
         }
-        .padding()
         .background(
         BackgroundLogo())
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LoginView()
     }
 }
 
 struct LoginText: View {
     var body: some View {
         Text("Log in")
-            .font(.custom("NotoSans",fixedSize:30))
-            .fontWeight(.bold)
+            .font(.custom(FontManager.KumbhSans.semiBold,fixedSize:30))
             .padding(.bottom, 20)
-            .offset(y:-30)
+            .offset(y:-10)
     }
 }
 
@@ -60,7 +67,7 @@ struct WhiteLogo: View {
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: 120, height: 120)
-            .offset( y: -150)
+            .offset( y: -130)
     }
 }
 
@@ -71,8 +78,9 @@ struct ButtonContent: View {
             .foregroundColor(.white)
             .padding()
             .frame(width: 220, height: 60)
-            .background(greenColor)
+            .background(MainGreen)
             .cornerRadius(15.0)
+            .offset(y:-10)
     }
 }
 
@@ -80,11 +88,10 @@ struct ForgotPasswordText: View {
     var body: some View {
         Text("[Forgot Password?](https://example.com)")
             .underline()
-            .font(.custom("NotoSans",fixedSize:14))
-            .fontWeight(.thin)
+            .font(.custom(FontManager.NotoSans.regular,fixedSize:15))
             .accentColor(Color.black)
             .padding(.bottom, 20)
-            .offset(y: 15)
+            .offset(y: -20)
             
             
     }
@@ -92,10 +99,29 @@ struct ForgotPasswordText: View {
 
 struct BackgroundLogo: View {
     var body: some View {
-        Image("BackgroundLogo")
+        Image("WhiteLogo")
             .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: 400, height: 400)
-            .offset(y:40)
+            .padding(.trailing)
+            .frame(width: 650, height: 675)
+            .offset(y:35)
+            .opacity(0.1)
+    }
+}
+
+struct EmailorPhoneText: View {
+    var body: some View {
+        Text("Email or phone number")
+            .font(.custom(FontManager.NotoSans.regular,fixedSize:17))
+            .padding(.trailing, 100)
+            .offset(y:8)
+    }
+}
+
+struct PasswordText: View {
+    var body: some View {
+        Text("Password")
+            .font(.custom(FontManager.NotoSans.regular,fixedSize:17))
+            .padding(.trailing, 215)
+            .offset(y:8)
     }
 }

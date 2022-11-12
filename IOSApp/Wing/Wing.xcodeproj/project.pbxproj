@@ -23,8 +23,12 @@
 		747DAED228FF7F85004FF768 /* NotoSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEBF28FF7F85004FF768 /* NotoSans-Light.ttf */; };
 		747DAEDB28FF7F85004FF768 /* NotoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */; };
 		747DAEDD28FF7F96004FF768 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DAEDC28FF7F96004FF768 /* FontManager.swift */; };
-		9926044F290B4F8B00CCACBD /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9926044E290B4F8B00CCACBD /* SignUp.swift */; };
+		9926044F290B4F8B00CCACBD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9926044E290B4F8B00CCACBD /* LoginView.swift */; };
 		99260453290B57F400CCACBD /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99260452290B57F400CCACBD /* HomePageView.swift */; };
+		99260455290C6F6200CCACBD /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99260454290C6F6100CCACBD /* MotherView.swift */; };
+		993BC08F290DA64C00B07915 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BC08E290DA64C00B07915 /* CreateAccountView.swift */; };
+		99CA1723290C73C00055C43D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CA1722290C73C00055C43D /* Helper.swift */; };
+		99CA1727290C76470055C43D /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CA1726290C76470055C43D /* ViewRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +69,12 @@
 		747DAEBF28FF7F85004FF768 /* NotoSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Light.ttf"; sourceTree = "<group>"; };
 		747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Italic.ttf"; sourceTree = "<group>"; };
 		747DAEDC28FF7F96004FF768 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
-		9926044E290B4F8B00CCACBD /* SignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		9926044E290B4F8B00CCACBD /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		99260452290B57F400CCACBD /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		99260454290C6F6100CCACBD /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
+		993BC08E290DA64C00B07915 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		99CA1722290C73C00055C43D /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		99CA1726290C76470055C43D /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +129,9 @@
 				741E079B28F9B94B001D6478 /* fonts */,
 				741E079728F9ADE5001D6478 /* views */,
 				02C71E7828EB8F1000447686 /* WingApp.swift */,
+				99260454290C6F6100CCACBD /* MotherView.swift */,
+				99CA1722290C73C00055C43D /* Helper.swift */,
+				99CA1726290C76470055C43D /* ViewRouter.swift */,
 				02C71E7C28EB8F1100447686 /* Assets.xcassets */,
 				02C71E7E28EB8F1100447686 /* Preview Content */,
 			);
@@ -155,8 +166,9 @@
 		741E079728F9ADE5001D6478 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				9926044E290B4F8B00CCACBD /* SignUp.swift */,
+				9926044E290B4F8B00CCACBD /* LoginView.swift */,
 				99260452290B57F400CCACBD /* HomePageView.swift */,
+				993BC08E290DA64C00B07915 /* CreateAccountView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -333,10 +345,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9926044F290B4F8B00CCACBD /* SignUp.swift in Sources */,
+				9926044F290B4F8B00CCACBD /* LoginView.swift in Sources */,
+				99CA1727290C76470055C43D /* ViewRouter.swift in Sources */,
 				747DAEDD28FF7F96004FF768 /* FontManager.swift in Sources */,
 				99260453290B57F400CCACBD /* HomePageView.swift in Sources */,
 				02C71E7928EB8F1000447686 /* WingApp.swift in Sources */,
+				99260455290C6F6200CCACBD /* MotherView.swift in Sources */,
+				993BC08F290DA64C00B07915 /* CreateAccountView.swift in Sources */,
+				99CA1723290C73C00055C43D /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
