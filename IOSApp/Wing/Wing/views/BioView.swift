@@ -34,7 +34,7 @@ struct BioView: View {
                     .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                     .padding(.leading, 90)
                 Spacer()
-                NavigationLink(destination: PromptView()) {
+                NavigationLink(destination: HomePageView()) {
                     Text("Next")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)
