@@ -13,12 +13,15 @@
 3. [Match](#matches)  
    1. [Get Prospects] TODO
 5. [Settings](#settings)
-   1. [Get Profile by UserID](#getprofile) TODO
-   2. [Edit Profile] TODO
-   3. [Get Photos by UserID](#getphotos) TODO
-   4. [Edit Photos] TODO
-   5. [Get Prompts by UserID](#getprompts) TODO
-   6. [Edit Prompts] TODO
+   1. [Edit User Account](#edituser) 
+   2. [Get Profile by UserID](#getprofile) TODO
+   3. [Edit Profile] TODO
+   4. [Get Photos by UserID](#getphotos) TODO
+   5. [Edit Photos] TODO
+   6. [Get Prompts by UserID](#getprompts)
+   7. [Get Prompt by ID](#getprompt) 
+   8. [Edit Prompts] TODO
+   9. [Delete Prompt Response](#deletepromptresponse)
    
 
 ---
@@ -423,6 +426,63 @@ Multipart Form
 ---
 
 
+### Edit User Account <a name="edituser"></a>
+
+#### URL:
+`/user`
+
+#### Method:
+`PUT`       
+_Note: Put requests require the entire object body to be passed in. If there is a user record that matches the given id, that record will be updated. For our use ONLY email, phone, and password will be updated. If there is no user record that matches given id - nothing will happen in database (still 200 OK)._
+
+
+#### Request Body:  
+The following request body will update the user record with the new phone number.     
+
+```json
+{
+  "id" : "F104C4E8-3039-48B1-917C-D3227CAFEBCB",
+  "username" : "AllieG",
+  "email": "",
+  "phone"  : "5061234567" 
+}
+```
+
+
+#### Success Response:
+200 OK  
+```json
+{
+  "id" : "F104C4E8-3039-48B1-917C-D3227CAFEBCB",
+  "username" : "AllieG",
+  "email": "",
+  "phone"  : "5061234567"
+}
+```
+
+#### Error Response: 
+400 Bad Request       
+_Note: This will occur when a field is missing, or invalid UUID is given_
+```json
+{
+ "error" : true, 
+ "reason" : "Value of type 'String' required for key 'email'."
+}
+```
+
+#### Example
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 3 02 36 PM" src="https://user-images.githubusercontent.com/80468156/200919694-00ab571e-2af0-4f5b-b480-39921e7d4678.png">
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 3 02 57 PM" src="https://user-images.githubusercontent.com/80468156/200919949-9ef3b9b7-fa68-42c2-b077-0705c50f02b3.png">
+
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 3 03 20 PM" src="https://user-images.githubusercontent.com/80468156/200919723-8880c5a7-4174-4e5e-b9fe-5320b017c6c5.png">
+
+
+---
+
+
 ### Get Profile by UserID <a name="getprofile"></a>
 
 #### URL:
@@ -524,23 +584,63 @@ UUID
 The userID associated with the profile you would like to retrieve
 
 #### Success Response:
+_Note: If the userID is invalid or no prompts have been answered, an empty array will be returned._    
+200 OK  
+```json
+[
+  {
+    "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+    "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+    "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+    "response_text" : "Christmas, of course!"
+  },
+  {
+    "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
+    "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120003",
+    "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
+    "response_text" : "Bali! I want to see the elephants."
+  }
+]
+```
+
+#### Error Response:    
+_Note: this endpoint should not result in error._   
+400 Bad Request      
+```json
+{
+ "error" : "Endpoint does not exist. "
+}
+```
+
+#### Example
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 20 20 PM" src="https://user-images.githubusercontent.com/80468156/200898682-8941281f-9bd5-4ece-a9db-3d3cb502965b.png">
+
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 20 06 PM" src="https://user-images.githubusercontent.com/80468156/200898630-84e437ef-d0f2-4307-81c0-335c95022ede.png">
+
+---
+
+
+### Get Prompt by ID <a name="getprompt"></a>
+
+#### URL:
+`/prompts/:promptId`
+
+#### Method:
+`GET`
+
+#### URL Parameters:
+###### :promptId 
+UUID           
+The promptID associated with the prompt you would like to retrieve
+
+#### Success Response:
 200 OK  
 ```json
 {
-   "prompts" : [
-    {
-      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-      "response_text" : "Christmas, of course!"
-    },
-    {
-      "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-      "prompt_id" : "273bbee2-5878-11ed-9b6a-0242ac120003",
-      "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-      "response_text" : "Bali! I want to see the elephants."
-    }
-  ]
+   "promptText" : "Whats your favorite color?",
+   "id" : "3F4BDDFA-6E65-4302-82D1-1E05724B7C8A"
 }
 ```
 
@@ -548,11 +648,47 @@ The userID associated with the profile you would like to retrieve
 404 Not Found
 ```json
 {
- "error" : "No profile found."
+ "error" : true, 
+ "reason" : "No prompt record found."
 }
 ```
 
 #### Example
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 07 48 PM" src="https://user-images.githubusercontent.com/80468156/200896081-d7f808b5-ba49-47a5-bf77-f456385bb05c.png">
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 07 57 PM" src="https://user-images.githubusercontent.com/80468156/200896096-a35d03c4-7d53-42ef-bec3-8444798f0c7d.png">
+
+---
+
+### Delete Prompt Response <a name="deletepromptresponse"></a>
+
+#### URL:
+`/promptResponse/:id`
+
+#### Method:
+`DELETE`
+
+#### URL Parameters:
+###### :id 
+UUID           
+The id associated with the prompt response record you would like to delete
+
+#### Success Response:
+202 Accepted  
+
+No return body, record has been deleted. 
+
+#### Error Response: 
+400 Bad Request
+
+No return body, this occurs when invalid UUID was supplied. 
+
+#### Example
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 52 12 PM" src="https://user-images.githubusercontent.com/80468156/200905045-c1a7d615-a512-4128-bbcb-371839fdb481.png">
+
+<img width="1134" alt="Screen Shot 2022-11-09 at 1 54 14 PM" src="https://user-images.githubusercontent.com/80468156/200905086-830d8574-c32a-4fe5-9600-cc68573e8d65.png">
 
 ---
 

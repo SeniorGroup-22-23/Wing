@@ -39,7 +39,7 @@ func routes(_ app: Application) throws {
             .all(\.$username) //returns username field from all matches
     }
     
-    //GET User by Phone
+    //GET User by Phone 
     app.get("user", "phone", ":phone", ":password") { req async throws -> User in
         let phoneNum = req.parameters.get("phone")!
         let password = req.parameters.get("password")!
@@ -53,7 +53,7 @@ func routes(_ app: Application) throws {
         return user
     }
     
-    //GET User by Email
+    //GET User by Email 
     app.get("user", "email", ":email", ":password") { req async throws -> User in
         let email = req.parameters.get("email")!
         let password = req.parameters.get("password")!
@@ -152,3 +152,4 @@ func routes(_ app: Application) throws {
     
     //try app.register(collection: TodoController()) XCODE generated
 }
+
