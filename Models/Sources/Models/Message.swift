@@ -28,8 +28,8 @@ public final class Message: Model, Content{
     @Field(key: "status")
     public var status: Int
     
-    @Field(key: "sent_at")
-    public var sentAt: Date
+    @Timestamp(key: "sent_at", on: .create)
+    public var sentAt: Date?
     
 
     
@@ -37,7 +37,7 @@ public final class Message: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, senderId: UUID, recipientId: UUID, content: String, status: Int, sentAt: Date){
+    public init(id: UUID? = nil, senderId: UUID, recipientId: UUID, content: String, status: Int, sentAt: Date? = nil){
         
         self.id = id
         self.senderId = senderId
