@@ -16,7 +16,8 @@ struct HomePageView: View {
                     .resizable()
                     .frame(width: 120.0, height: 120.0)
                 Text("Wing")
-                    .font(.custom(FontManager.KumbhSans.bold, size: 64.0))
+                    .fontWeight(.bold)
+                    .font(.custom("KumbhSans", size: 64.0))
             }
         }
     }
@@ -27,3 +28,4 @@ struct HomePageView_Previews: PreviewProvider {
         HomePageView()
     }
 }
+

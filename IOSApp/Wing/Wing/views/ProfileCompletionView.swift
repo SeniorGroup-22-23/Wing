@@ -1,0 +1,100 @@
+//
+//  ProfileCompletionView.swift
+//  Wing
+//
+//  Created by Ankita Menon on 23/10/2022.
+//
+
+import SwiftUI
+
+struct ProfileCompletionView: View {
+    @State private var password: String = ""
+    @State private var confirmPassword: String = ""
+    @State private var firstName: String = ""
+    @State private var birthday = Date()
+    @State private var gender = 1
+    @State private var contact: String = ""
+    
+    var body: some View {
+        ZStack {
+            Color("White")
+            VStack {
+                Image("WhiteLogo")
+                    .resizable()
+                    .frame(width: 120.0, height: 127.0)
+                    .offset(y:-50)
+                Text("Complete Your Profile")
+                    .font(.custom(FontManager.NotoSans.regular, size: 24.0))
+                    .offset(y: -65)
+                Text("Password")
+                    .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                    .frame(width: 300, alignment: .leading)
+                    .offset(y: -35)
+                SecureField("", text: $password)
+                    .frame(width:300.0, height: 48.0)
+                    .textFieldStyle(.roundedBorder)
+                    .offset(y: -35)
+                Text("Confirm password")
+                    .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                    .frame(width: 300, alignment: .leading)
+                    .offset(y: -35)
+                SecureField("", text: $confirmPassword)
+                    .frame(width:300.0, height: 48.0)
+                    .textFieldStyle(.roundedBorder)
+                    .offset(y: -35)
+                VStack {
+                    Text("First Name")
+                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                        .frame(width: 300, alignment: .leading)
+                        .offset(y: -35)
+                    TextField("", text: $firstName)
+                        .frame(width:300.0, height: 48.0)
+                        .textFieldStyle(.roundedBorder)
+                        .offset(y: -35)
+                    DatePicker(selection: $birthday, in: ...Date(), displayedComponents: .date) {
+                        Text("Birthday")
+                            .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                            .offset(x: 145, y: 0)
+                    }
+                    .offset(x: -100, y: -25)
+                    Text("Gender")
+                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                        .frame(width: 300, alignment: .leading)
+                        .offset(y: -20)
+                    Picker(selection: $gender, label: Text("Preference")) {
+                        Text("Male").tag(1)
+                        Text("Female").tag(2)
+                        Text("Other").tag(3)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .offset(y: -20)
+                    .frame(width: 300)
+                    Text("Additonal contact")
+                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                        .frame(width: 300, alignment: .leading)
+                        .offset(y: -15)
+                    TextField("", text: $contact)
+                        .frame(width:300.0, height: 48.0)
+                        .textFieldStyle(.roundedBorder)
+                        .offset(y: -20)
+                }
+                NavigationLink(destination: MatchPreferenceView()) {
+                    Text("Next")
+                        .frame(width: 231.0, height: 55.0)
+                        .foregroundColor(.white)
+                        .background(Color("MainGreen"))
+                        .cornerRadius(20)
+                        .font(.custom(FontManager.NotoSans.regular, size: 16.0))
+                }
+                .disabled(password != confirmPassword)
+            }
+        }
+    }
+}
+
+struct ProfileCompletionView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileCompletionView()
+    }
+}
+
