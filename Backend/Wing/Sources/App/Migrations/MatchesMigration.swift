@@ -16,7 +16,7 @@ struct CreateMatches: AsyncMigration {
             .id()
             .field("user1_id", .uuid, .required, .references("users", "id"))
             .field("user2_id", .uuid, .required, .references("users", "id"))
-            .field("type", .int8, .required)
+            .field("type", .int16, .required)
             .create()
     }
 

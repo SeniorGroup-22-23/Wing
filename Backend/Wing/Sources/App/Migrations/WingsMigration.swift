@@ -17,7 +17,7 @@ struct CreateWings: AsyncMigration {
             .field("sender_id", .uuid, .required, .references("users", "id"))
             .field("recipient_id", .uuid, .required, .references("users", "id"))
             .field("prospect_id", .uuid, .required, .references("users", "id"))
-            .field("status", .int8, .required)
+            .field("status", .int16, .required)
             .create()
     }
 

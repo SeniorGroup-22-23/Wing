@@ -24,19 +24,18 @@ public final class Friendship: Model, Content{
     // 1 = pending
     // 2 = approved
     @Field(key: "status")
-    public var status: Int
+    public var status: Int16
 
     
     public init(){
         
     }
     
-    public init(id: UUID? = nil, requesterId: UUID, respondentId: UUID, status: Int){
+    public init(id: UUID? = nil, requesterId: UUID, respondentId: UUID, status: Int16){
         self.id = id
         self.requesterId = requesterId
         self.respondentId = respondentId
         self.status = status
-
         
     }
 }
