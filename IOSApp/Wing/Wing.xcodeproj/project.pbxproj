@@ -24,7 +24,7 @@
 		747DAED228FF7F85004FF768 /* NotoSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEBF28FF7F85004FF768 /* NotoSans-Light.ttf */; };
 		747DAEDB28FF7F85004FF768 /* NotoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */; };
 		747DAEDD28FF7F96004FF768 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DAEDC28FF7F96004FF768 /* FontManager.swift */; };
-		749CDFD929246F8900AC1766 /* AddPhotosPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749CDFD829246F8900AC1766 /* AddPhotosPageView.swift */; };
+		749CDFDB29246FDB00AC1766 /* AddPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749CDFDA29246FDB00AC1766 /* AddPhotosView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +66,7 @@
 		747DAEBF28FF7F85004FF768 /* NotoSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Light.ttf"; sourceTree = "<group>"; };
 		747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Italic.ttf"; sourceTree = "<group>"; };
 		747DAEDC28FF7F96004FF768 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
-		749CDFD829246F8900AC1766 /* AddPhotosPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotosPageView.swift; sourceTree = "<group>"; };
+		749CDFDA29246FDB00AC1766 /* AddPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotosView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				747DAE9928FE0087004FF768 /* HomePageView.swift */,
-				749CDFD829246F8900AC1766 /* AddPhotosPageView.swift */,
+				749CDFDA29246FDB00AC1766 /* AddPhotosView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -333,10 +333,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				749CDFD929246F8900AC1766 /* AddPhotosPageView.swift in Sources */,
 				747DAE9A28FE0087004FF768 /* HomePageView.swift in Sources */,
 				747DAEDD28FF7F96004FF768 /* FontManager.swift in Sources */,
 				02C71E7928EB8F1000447686 /* WingApp.swift in Sources */,
+				749CDFDB29246FDB00AC1766 /* AddPhotosView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
