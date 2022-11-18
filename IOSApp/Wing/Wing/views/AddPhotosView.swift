@@ -15,6 +15,8 @@ struct PromptView: View {
     @State private var ans2: String = ""
     @State private var ans3: String = ""
     
+    @State private var numPhotos = 0
+    
     var body: some View {
         ZStack {
             Color("White")
@@ -30,10 +32,8 @@ struct PromptView: View {
                         .frame(alignment: .leading)
                 }
                 
-                Spacer()
-                
                 HStack {
-                    Text("* minimum of three photos")
+                    Text("\n* minimum of three photos")
                         .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
                         .foregroundColor(Color("BrightRed"))
                         .frame(maxWidth: 300.0, alignment: .leading)
@@ -41,15 +41,15 @@ struct PromptView: View {
                 
                 Spacer()
                 
-                ScrollView(.horizontal) {
+                var counter = 0
+                
+                ScrollView {
                     VStack {
-                        ForEach(0..<2) {_ in
-                            HStack(spacing: 20) {
-                                ForEach(0..<4) {
-                                    Text("Item \($0)")
-                                        .foregroundColor(.white)
-                                        .frame(width: 150, height: 200)
-                                        .background(Color("DisableGrey"))
+                        ForEach(0..<4) {_ in
+                            HStack(spacing: 10) {
+                                ForEach(0..<2) { i in
+                                    displayBlankPhoto(num: counter)
+                                    counter = counter + 1
                                 }
                             }
                         }
@@ -76,10 +76,18 @@ struct PromptView: View {
         }
     }
     
-    func displayPrompt (num : Int) -> Text {
+    func displayBlankPhoto (num : Int) -> Text {
+        if (num == numPhotos) {
+            return Text("+")
+                .foregroundColor(.white)
+                .frame(width: 160, height: 200)
+                .background(Color("DisableGrey")) as! Text
+        }
         
-        return Text("Prompt " + String(num))
-            .font(.custom(FontManager.NotoSans.regular, size : 16.0))
+        return Text("")
+            .foregroundColor(.white)
+            .frame(width: 160, height: 200)
+            .background(Color("DisableGrey")) as! Text
     }
 }
 
