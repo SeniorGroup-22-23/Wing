@@ -10,22 +10,11 @@ import SwiftUI
 @main
 struct WingApp: App{
     
-    @StateObject var viewRouter = ViewRouter()
-    
         var body: some Scene {
             WindowGroup {
-                MotherView(viewRouter: viewRouter)
+                HomePageView()
             }
         }
     
 }
 
-
-//@main
-//struct WingApp: App {
-//    var body: some Scene {
-//        WindowGroup {
-//            HomePageView()
-//        }
-//    }
-//}
