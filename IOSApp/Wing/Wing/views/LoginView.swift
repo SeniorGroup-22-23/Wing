@@ -6,18 +6,20 @@
 //
 import SwiftUI
 import Foundation
+import UIKit
 
 let MainGreen = Color("MainGreen")
 
 struct LoginView : View {
-    @State var username: String = ""
-    @State var password: String = ""
+    
+    @ObservedObject var viewModel = LoginModel()
+
     var body: some View {
         VStack {
             WhiteLogo()
             LoginText()
             EmailorPhoneText()
-            TextField("", text: $username)
+            TextField("", text: $viewModel.credential)
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 6)
@@ -27,7 +29,7 @@ struct LoginView : View {
                 .padding(.bottom, 5)
                 .frame(width: 300)
             PasswordText()
-            SecureField("", text: $password)
+            SecureField("", text: $viewModel.password)
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 6)
@@ -37,13 +39,23 @@ struct LoginView : View {
                 .padding(.bottom, 40)
                 .frame(width: 300)
                 ForgotPasswordText()
-            Button(action: {print("Button tapped")}) {
-                    ButtonContent()
-            }
+                Button(action: {
+                    Task{
+                        await loadUser()
+                    }
+                }) {
+                        ButtonContent()
+                }
         }
         .background(
         BackgroundLogo())
     }
+    
+    private func loadUser() async{
+            await viewModel.getUserbyPhone()
+            print(viewModel.response)
+    }
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
@@ -74,7 +86,7 @@ struct WhiteLogo: View {
 struct ButtonContent: View {
     var body: some View {
         Text("Sign in")
-            .font(.custom("NotoSans",fixedSize:18))
+            .font(.custom(FontManager.NotoSans.regular,fixedSize:18))
             .foregroundColor(.white)
             .padding()
             .frame(width: 220, height: 60)
