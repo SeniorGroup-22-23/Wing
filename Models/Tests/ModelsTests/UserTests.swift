@@ -9,15 +9,25 @@ import XCTest
 @testable import Models
 
 final class UserTests: XCTestCase {
-    func initilaizeUserTest() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
+    
+    func testInitUser() throws {
         
-        var testData: [String: String] = ["username":"testUser123", "password":"testPassword123!", "phone":"5062325003"]
-        let testUser = try decode(testData)
-        let testUser = User("testUser123", "testPassword123!", )
-        XCTAssertEqual(Models().text, "Hello, World!")
+        let user = User(id: nil, username: "janeDoe", password: "testPassword",
+                         phone: "5069871234", email: "janeDoe@hotmail.com")
+        
+        XCTAssertEqual(user.username, "janeDoe")
+        XCTAssert((user.username as Any) is String)
+        
+        XCTAssertEqual(user.password, "testPassword")
+        XCTAssert((user.password as Any) is String)
+        
+        XCTAssertEqual(user.phone, "5069871234")
+        XCTAssert((user.phone as Any) is String)
+        
+        XCTAssertEqual(user.email, "janeDoe@hotmail.com")
+        XCTAssert((user.email as Any) is String)
+        
+        XCTAssertNil(user.id)
     }
+    
 }
-
