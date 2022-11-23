@@ -57,13 +57,14 @@ public final class Profile: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, userId: UUID, name: String, birthdate: Date, bio: String, gender: Int16,
+    public init(id: UUID? = nil, userId: UUID, name: String, birthdate: Date, occupation: String, bio: String, gender: Int16,
          preference: Int16, minAge: Int16, maxAge: Int16, maxDistance: Int16){
         
         self.id = id
         self.userId = userId
         self.name = name
         self.birthdate = birthdate
+        self.occupation = occupation
         self.bio = bio
         self.gender = gender
         self.preference = preference
