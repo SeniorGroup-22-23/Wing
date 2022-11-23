@@ -19,11 +19,11 @@ struct CreateProfiles: AsyncMigration {
             .field("birthdate", .datetime)
             .field("occupation", .string)
             .field("bio", .string)
-            .field("gender", .int8)
-            .field("preference", .int8)
-            .field("min_age", .int8)
-            .field("max_age", .int8)
-            .field("max_distance", .int8)
+            .field("gender", .int16)
+            .field("preference", .int16)
+            .field("min_age", .int16)
+            .field("max_age", .int16)
+            .field("max_distance", .int16)
             .create()
     }
 

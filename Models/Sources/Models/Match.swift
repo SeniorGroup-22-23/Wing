@@ -24,14 +24,14 @@ public final class Match: Model, Content{
     // 1 = direct
     // 2 = via wing
     @Field(key: "type")
-    public var type: Int
+    public var type: Int16
     
     
     public init(){
         
     }
     
-    public init(id: UUID? = nil, firstUserId: UUID, secondUserId: UUID, type: Int){
+    public init(id: UUID? = nil, firstUserId: UUID, secondUserId: UUID, type: Int16){
         self.id = id
         self.firstUserId = firstUserId
         self.secondUserId = secondUserId

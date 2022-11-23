@@ -25,13 +25,13 @@ public final class Block: Model, Content{
     public var reported: Bool
     
     @Field(key: "issue")
-    public var issue: Int
+    public var issue: Int16
     
     public init(){
         
     }
     
-    public init(id: UUID? = nil, blockedUserId: UUID, blockedById: UUID, reported: Bool, issue: Int){
+    public init(id: UUID? = nil, blockedUserId: UUID, blockedById: UUID, reported: Bool, issue: Int16){
         self.id  = id
         self.blockedUserId = blockedUserId
         self.blockedById = blockedById
