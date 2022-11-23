@@ -40,13 +40,6 @@ In Xcode, go to Product>Test
 - **Blocked certificate when trying to push/pull from Xcode**                   
 There is a problem with certificates when using Xcode git controls on Eduroam. Not sure how to fix - but when off Eduroam git controls work just fine. Same issue with public internet connections.      
 
-- **Importing the Models package**            
-The Models package contains the declarations for the entities that are stored in the database. These will allow us to create objects that can be easily passed between Swift and Postgres. You may run into this issue when you try to build: "Missing package product". If this happens to you follow these steps. 
-  1. Make sure you do not have the Models package open in a window in Xcode.
-  2. Go to the nav bar under Product -> Clear All Issues and Product -> Clean Build Folder
-  3. Quit Xcode.
-  4. Try again. 
-
 
 # Installations   <a name="installation"></a>
 
