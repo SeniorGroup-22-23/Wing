@@ -22,6 +22,8 @@
    7. [Get Prompt by ID](#getprompt) 
    8. [Edit Prompts] TODO
    9. [Delete Prompt Response](#deletepromptresponse)
+6. [INTERNAL USE ONLY](#internal)
+    1. [Post Prompt](#postpromptinternal)
    
 
 ---
@@ -689,6 +691,51 @@ No return body, this occurs when invalid UUID was supplied.
 <img width="1134" alt="Screen Shot 2022-11-09 at 1 52 12 PM" src="https://user-images.githubusercontent.com/80468156/200905045-c1a7d615-a512-4128-bbcb-371839fdb481.png">
 
 <img width="1134" alt="Screen Shot 2022-11-09 at 1 54 14 PM" src="https://user-images.githubusercontent.com/80468156/200905086-830d8574-c32a-4fe5-9600-cc68573e8d65.png">
+
+---
+
+
+# Internal Use Only <a name="internal"></a>
+
+---
+### Post Prompt <a name="postpromptinternal"></a>
+
+#### URL:
+`/prompts`
+
+#### Method:
+`POST`
+
+#### Body: 
+``` json
+{
+	"promptText" : "What is your fav color?"
+}
+```
+
+#### Success Response:
+200 OK 
+``` json
+{
+	"id": "A8BD93F9-A385-452C-8DC4-B0FCD05023E5",
+	"promptText": "What is your fav color?"
+}
+```
+
+#### Error Response: 
+400 Bad Request
+``` json
+{
+	"error": true,
+	"reason": "Value of type 'String' required for key 'promptText'."
+}
+```
+
+#### Example
+
+<img width="1158" alt="Screen Shot 2022-11-23 at 10 18 19 AM" src="https://user-images.githubusercontent.com/80468156/203569463-c5c12313-e62e-4361-8783-74e2594f75e8.png">
+
+<img width="1158" alt="Screen Shot 2022-11-23 at 10 20 04 AM" src="https://user-images.githubusercontent.com/80468156/203569858-5466141b-6384-49bd-b39c-42ea409ada62.png">
 
 ---
 
