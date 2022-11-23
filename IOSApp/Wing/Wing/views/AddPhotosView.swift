@@ -7,49 +7,63 @@
 
 import SwiftUI
 
-struct PromptView: View {
-    @State private var prompt1 = 1
-    @State private var prompt2 = 1
-    @State private var prompt3 = 1
-    @State private var ans1: String = ""
-    @State private var ans2: String = ""
-    @State private var ans3: String = ""
-    
+struct AddPhotosView: View {
     @State private var numPhotos = 0
+    @State private var arr = [0,0,2,4,6]
+    @State private var showingImagePicker = false
+    
+    @State private var images = [Image?]()
+    @State private var inputImage: UIImage?
     
     var body: some View {
         ZStack {
             Color("White")
             
-            VStack {
-                Image("WhiteLogo")
-                    .resizable()
-                    .frame(width : 120.0, height : 127.0)
-                
-                HStack {
-                    Text("Upload photos of you for your profile")
-                        .font(.custom(FontManager.KumbhSans.semiBold, size: 24.0))
-                        .frame(alignment: .leading)
+            VStack{
+                VStack {
+                    loadLogo()
+                        .frame(width : 120.0, height : 127.0)
+                    
+                    HStack {
+                        loadUploadPhotosText()
+                    }
+                        .padding(.top, -20)
+                    
+                    HStack {
+                        loadMinimumPhotosText()
+                            .frame(maxWidth: 300.0, alignment: .leading)
+                    }
+                    
+                    HStack {
+                        loadResetPhotosBtn()
+                            .frame(maxWidth: 300.0, alignment: .leading)
+                    }
+                        .padding(.bottom, 10)
                 }
-                
-                HStack {
-                    Text("\n* minimum of three photos")
-                        .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
-                        .foregroundColor(Color("BrightRed"))
-                        .frame(maxWidth: 300.0, alignment: .leading)
-                }
-                
-                Spacer()
-                
-                var counter = 0
+                .padding(.top, -30)
                 
                 ScrollView {
-                    VStack {
-                        ForEach(0..<4) {_ in
-                            HStack(spacing: 10) {
-                                ForEach(0..<2) { i in
-                                    displayBlankPhoto(num: counter)
-                                    counter = counter + 1
+                    VStack(spacing : 10) {
+                        ForEach(1..<5) { i in
+                            HStack(spacing : 10) {
+                                ForEach(1..<3) { j in
+                                    Group {
+                                        if (arr[i] + j == numPhotos + 1) {
+                                            ZStack {
+                                                loadEmptyPhotoBox()
+                                                loadPlusSignText()
+                                            }
+                                                .onTapGesture {
+                                                    showingImagePicker = true
+                                                }
+                                                .onChange(of: inputImage) { _ in loadImage() }
+                                                .sheet(isPresented: $showingImagePicker) {
+                                                    ImagePicker(image: $inputImage)
+                                                }
+                                        } else {
+                                            loadEmptyPhotoBox()
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -58,41 +72,82 @@ struct PromptView: View {
                 
                 Spacer()
                 
-                Text("We suggest uploading clear photos of yourself for more matches.")
-                    .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
-                    .foregroundColor(Color("DisableGrey"))
-                    .frame(alignment: .center)
+                loadPhotoSuggesionText()
+                    .multilineTextAlignment(.center)
                 
                 NavigationLink(destination: HomePageView()) {
-                    Text("Done")
+                    loadDoneText()
                         .frame(width: 231.0, height: 55.0)
-                        .foregroundColor(.white)
                         .background(Color("MainGreen"))
                         .cornerRadius(20)
-                        .font(.custom("KumbhSans", size: 16.0))
                 }
             }
-                .frame(width: 400.0)
+            .frame(width: 400.0)
         }
     }
     
-    func displayBlankPhoto (num : Int) -> Text {
-        if (num == numPhotos) {
-            return Text("+")
-                .foregroundColor(.white)
-                .frame(width: 160, height: 200)
-                .background(Color("DisableGrey")) as! Text
-        }
-        
-        return Text("")
+    func loadLogo () -> Image {
+        return Image("WhiteLogo")
+                .resizable()
+    }
+
+    func loadUploadPhotosText () -> Text {
+        return Text("Upload photos of you for your profile")
+            .font(.custom(FontManager.KumbhSans.semiBold, size: 24.0))
+    }
+    
+    func loadMinimumPhotosText () -> Text {
+        return Text("\n* minimum of three photos")
+                .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
+                .foregroundColor(Color("BrightRed"))
+    }
+
+    func loadPhotoSuggesionText () -> Text {
+        return Text("We suggest uploading clear photos of yourself for more matches.")
+                .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
+                .foregroundColor(Color("DisableGrey"))
+    }
+    
+    func loadDoneText () -> Text {
+        Text("Done")
             .foregroundColor(.white)
-            .frame(width: 160, height: 200)
-            .background(Color("DisableGrey")) as! Text
+            .font(.custom("KumbhSans", size: 16.0))
+    }
+    
+    func loadPlusSignText () -> Text{
+        return Text("+")
+                .foregroundColor(Color("DarkGrey"))
+                .font(.custom(FontManager.NotoSans.bold, size: 100.0))
+    }
+    
+    func loadEmptyPhotoBox () -> some View {
+        return Rectangle()
+                .fill(Color("DisableGrey"))
+                .frame(width: 140, height: 175)
+                .cornerRadius(10)
+    }
+    
+    func loadResetPhotosBtn () -> some View {
+        return Button("Reset Photos") {
+            // TODO : reset all images to nothing
+        }
+            .frame(width: 120.0, height: 30.0)
+            .background(Color("DarkGrey"))
+            .cornerRadius(20)
+            .foregroundColor(.white)
+            .font(.custom("KumbhSans", size: 16.0))
+    }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        images[numPhotos] = Image(uiImage : inputImage)
+        
+        numPhotos += 1
     }
 }
 
-struct PromptView_Previews: PreviewProvider {
+struct AddPhotosView_Previews: PreviewProvider {
     static var previews: some View {
-        PromptView()
+        AddPhotosView()
     }
 }
