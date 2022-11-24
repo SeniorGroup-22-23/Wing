@@ -21,17 +21,14 @@ struct AddPhotosView: View {
             
             VStack{
                 VStack {
-                    loadLogo()
-                        .frame(width : 120.0, height : 127.0)
+                    LoadLogo()
                     
                     HStack {
-                        loadUploadPhotosText()
+                        LoadUploadPhotosText()
                     }
-                    .padding(.top, -20)
                     
                     HStack {
-                        loadMinimumPhotosText()
-                            .frame(maxWidth: 300.0, alignment: .leading)
+                        LoadMinimumPhotosText()
                     }
                         
                     HStack {
@@ -55,14 +52,14 @@ struct AddPhotosView: View {
                                                 .cornerRadius(10)
                                         } else if (index == numPhotos + 1) {
                                             ZStack {
-                                                loadEmptyPhotoBox()
-                                                loadPlusSignText()
+                                                LoadEmptyPhotoBox()
+                                                LoadPlusSignText()
                                             }
                                             .onTapGesture {
                                                 showingImagePicker = true
                                             }
                                         } else {
-                                            loadEmptyPhotoBox()
+                                            LoadEmptyPhotoBox()
                                         }
                                     }
                                 }
@@ -77,59 +74,14 @@ struct AddPhotosView: View {
                     
                 Spacer()
                     
-                loadPhotoSuggesionText()
-                    .multilineTextAlignment(.center)
+                LoadPhotoSuggesionText()
                     
                 NavigationLink(destination: BioView()) {
-                    loadNextText()
-                        .frame(width: 231.0, height: 55.0)
-                        .background(Color("MainGreen"))
-                        .cornerRadius(20)
+                    LoadNextText()
                 }
             }
                 .frame(width: 400.0)
         }
-    }
-    
-    func loadLogo () -> Image {
-        return Image("WhiteLogo")
-                .resizable()
-    }
-
-    func loadUploadPhotosText () -> Text {
-        return Text("Upload photos of you for your profile")
-            .font(.custom(FontManager.KumbhSans.semiBold, size: 24.0))
-    }
-    
-    func loadMinimumPhotosText () -> Text {
-        return Text("\n* minimum of three photos")
-                .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
-                .foregroundColor(Color("BrightRed"))
-    }
-
-    func loadPhotoSuggesionText () -> Text {
-        return Text("We suggest uploading clear photos of yourself for more matches.")
-                .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
-                .foregroundColor(Color("DisableGrey"))
-    }
-    
-    func loadNextText () -> Text {
-        Text("Next")
-            .foregroundColor(.white)
-            .font(.custom(FontManager.NotoSans.regular, size: 16.0))
-    }
-    
-    func loadPlusSignText () -> Text{
-        return Text("+")
-                .foregroundColor(Color("DarkGrey"))
-                .font(.custom(FontManager.NotoSans.bold, size: 100.0))
-    }
-    
-    func loadEmptyPhotoBox () -> some View {
-        return Rectangle()
-                .fill(Color("DisableGrey"))
-                .frame(width: 140, height: 175)
-                .cornerRadius(10)
     }
     
     func loadResetPhotosBtn () -> some View {
@@ -153,6 +105,68 @@ struct AddPhotosView: View {
         images[numPhotos] = Image(uiImage : inputImage)
         
         numPhotos += 1
+    }
+}
+
+struct LoadLogo : View {
+    var body : some View {
+        Image("WhiteLogo")
+            .resizable()
+            .frame(width : 120.0, height : 127.0)
+    }
+}
+
+struct LoadUploadPhotosText : View {
+    var body : some View {
+        Text("Upload photos of you for your profile")
+            .font(.custom(FontManager.KumbhSans.semiBold, size: 24.0))
+            .padding(.top, -20)
+    }
+}
+
+struct LoadMinimumPhotosText : View {
+    var body : some View {
+        Text("\n* minimum of three photos")
+            .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
+            .foregroundColor(Color("BrightRed"))
+            .frame(maxWidth: 300.0, alignment: .leading)
+    }
+}
+
+struct LoadPhotoSuggesionText : View {
+    var body : some View {
+        Text("We suggest uploading clear photos of yourself for more matches.")
+            .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
+            .foregroundColor(Color("DisableGrey"))
+            .multilineTextAlignment(.center)
+    }
+}
+
+struct LoadNextText : View {
+    var body : some View {
+        Text("Next")
+            .foregroundColor(.white)
+            .font(.custom(FontManager.NotoSans.regular, size: 16.0))
+            .frame(width: 231.0, height: 55.0)
+            .background(Color("MainGreen"))
+            .cornerRadius(20)
+    }
+}
+
+struct LoadPlusSignText : View {
+    var body : some View {
+        Text("+")
+            .foregroundColor(Color("DarkGrey"))
+            .font(.custom(FontManager.NotoSans.bold, size: 100.0))
+    }
+}
+
+struct LoadEmptyPhotoBox : View {
+    var body : some View {
+        Rectangle()
+            .fill(Color("DisableGrey"))
+            .frame(width: 140, height: 175)
+            .cornerRadius(10)
     }
 }
 
