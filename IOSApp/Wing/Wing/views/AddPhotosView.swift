@@ -80,7 +80,7 @@ struct AddPhotosView: View {
                 loadPhotoSuggesionText()
                     .multilineTextAlignment(.center)
                     
-                NavigationLink(destination: HomePageView()) {
+                NavigationLink(destination: BioView()) {
                     loadNextText()
                         .frame(width: 231.0, height: 55.0)
                         .background(Color("MainGreen"))
