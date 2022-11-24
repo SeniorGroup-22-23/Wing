@@ -18,11 +18,11 @@ struct HomePageView: View {
                     VStack{
                         GreenLogo()
                         WingFontImage()
-                        NavigationLink(destination: HomePageView()){
+                        NavigationLink(destination: CreateAccountView()){
                             CreateAccountButton()
                                 .cornerRadius(20.0)
                         }.offset(y:62)
-                        NavigationLink(destination: HomePageView()){
+                        NavigationLink(destination: LoginView()){
                             LoginButton()
                                 .cornerRadius(20.0)
                         }.offset(y:65)
