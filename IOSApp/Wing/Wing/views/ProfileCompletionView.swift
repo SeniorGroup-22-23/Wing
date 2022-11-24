@@ -16,9 +16,9 @@ struct ProfileCompletionView: View {
     @State private var contact: String = ""
     let AGE: Date = Calendar.current.date(byAdding: .year, value: -18, to: Date())!;
     
-    func validateValues(password: String, confirmPassword: String, birthday: Date) -> Bool {
+    func validateValues(password: String, confirmPassword: String, firstName: String, birthday: Date) -> Bool {
         if (password == confirmPassword && !confirmPassword.isEmpty){
-            if (birthday < AGE){
+            if (birthday < AGE && !firstName.isEmpty){
                 return true
             }
         }
@@ -36,41 +36,71 @@ struct ProfileCompletionView: View {
                 Text("Complete Your Profile")
                     .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                     .offset(y: -65)
-                Text("Password")
-                    .font(.custom(FontManager.NotoSans.regular, size: 15.0))
-                    .frame(width: 300, alignment: .leading)
-                    .offset(y: -35)
+                HStack {
+                    Text("*")
+                        .font(.custom(FontManager.NotoSans.regular, size : 15.0))
+                        .foregroundColor(Color("BrightRed"))
+                        .offset(x: 5, y: -32)
+                    Text("Password")
+                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                        .frame(width: 300, alignment: .leading)
+                        .offset(y: -35)
+                }
                 SecureField("", text: $password)
                     .frame(width:300.0, height: 48.0)
                     .textFieldStyle(.roundedBorder)
                     .offset(y: -35)
-                Text("Confirm password")
-                    .font(.custom(FontManager.NotoSans.regular, size: 15.0))
-                    .frame(width: 300, alignment: .leading)
-                    .offset(y: -35)
+                HStack {
+                    Text("*")
+                        .font(.custom(FontManager.NotoSans.regular, size : 15.0))
+                        .foregroundColor(Color("BrightRed"))
+                        .offset(x: 5, y: -32)
+                    Text("Confirm password")
+                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                        .frame(width: 300, alignment: .leading)
+                        .offset(y: -35)
+                }
                 SecureField("", text: $confirmPassword)
                     .frame(width:300.0, height: 48.0)
                     .textFieldStyle(.roundedBorder)
                     .offset(y: -35)
                 VStack {
-                    Text("First Name")
-                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
-                        .frame(width: 300, alignment: .leading)
-                        .offset(y: -35)
+                    HStack{
+                        Text("*")
+                            .font(.custom(FontManager.NotoSans.regular, size : 15.0))
+                            .foregroundColor(Color("BrightRed"))
+                            .offset(x: 5, y: -32)
+                        Text("First Name")
+                            .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                            .frame(width: 300, alignment: .leading)
+                            .offset(y: -35)
+                    }
                     TextField("", text: $firstName)
                         .frame(width:300.0, height: 48.0)
                         .textFieldStyle(.roundedBorder)
                         .offset(y: -35)
-                    DatePicker(selection: $birthday, in: ...Date(), displayedComponents: .date) {
-                        Text("Birthday")
-                            .font(.custom(FontManager.NotoSans.regular, size: 15.0))
-                            .offset(x: 145, y: 0)
+                    HStack {
+                        Text("*")
+                            .font(.custom(FontManager.NotoSans.regular, size : 15.0))
+                            .foregroundColor(Color("BrightRed"))
+                            .offset(x: 43, y: -25)
+                        DatePicker(selection: $birthday, in: ...Date(), displayedComponents: .date) {
+                            Text("Birthday")
+                                .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                                .offset(x: 140, y: 0)
+                        }
+                        .offset(x: -100, y: -25)
                     }
-                    .offset(x: -100, y: -25)
-                    Text("Gender")
-                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
-                        .frame(width: 300, alignment: .leading)
-                        .offset(y: -20)
+                    HStack{
+                        Text("*")
+                            .font(.custom(FontManager.NotoSans.regular, size : 15.0))
+                            .foregroundColor(Color("BrightRed"))
+                            .offset(x: 5, y: -19)
+                        Text("Gender")
+                            .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                            .frame(width: 300, alignment: .leading)
+                            .offset(y: -20)
+                    }
                     Picker(selection: $gender, label: Text("Preference")) {
                         Text("Male").tag(1)
                         Text("Female").tag(2)
@@ -92,11 +122,11 @@ struct ProfileCompletionView: View {
                     Text("Next")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)
-                        .background(!(validateValues(password: password, confirmPassword: confirmPassword, birthday: birthday)) ? Color("DarkGrey") : Color("MainGreen"))
+                        .background(!(validateValues(password: password, confirmPassword: confirmPassword, firstName: firstName, birthday: birthday)) ? Color("DarkGrey") : Color("MainGreen"))
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
-                .disabled(!validateValues(password: password, confirmPassword: confirmPassword, birthday: birthday))
+                .disabled(!validateValues(password: password, confirmPassword: confirmPassword, firstName: firstName, birthday: birthday))
             }
         }
     }
