@@ -69,7 +69,7 @@ struct PromptView: View {
                         .foregroundColor(.white)
                         .background(Color("MainGreen"))
                         .cornerRadius(20)
-                        .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
+                        .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
             }
                 .frame(width: 400.0)
