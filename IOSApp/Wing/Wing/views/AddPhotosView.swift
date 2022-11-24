@@ -116,7 +116,7 @@ struct AddPhotosView: View {
     func loadNextText () -> Text {
         Text("Next")
             .foregroundColor(.white)
-            .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
+            .font(.custom(FontManager.NotoSans.regular, size: 16.0))
     }
     
     func loadPlusSignText () -> Text{
