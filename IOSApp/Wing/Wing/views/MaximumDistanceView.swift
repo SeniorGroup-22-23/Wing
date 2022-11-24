@@ -6,8 +6,6 @@
 //
 import CoreLocation
 import CoreLocationUI
-import MapKit
-import Foundation
 import SwiftUI
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {

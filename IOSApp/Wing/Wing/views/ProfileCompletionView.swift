@@ -14,6 +14,16 @@ struct ProfileCompletionView: View {
     @State private var birthday = Date()
     @State private var gender = 1
     @State private var contact: String = ""
+    let AGE: Date = Calendar.current.date(byAdding: .year, value: -18, to: Date())!;
+    
+    func validateValues(password: String, confirmPassword: String, birthday: Date) -> Bool {
+        if (password == confirmPassword && !confirmPassword.isEmpty){
+            if (birthday < AGE){
+                return true
+            }
+        }
+        return false
+    }
     
     var body: some View {
         ZStack {
@@ -82,11 +92,11 @@ struct ProfileCompletionView: View {
                     Text("Next")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)
-                        .background(Color("MainGreen"))
+                        .background(!(validateValues(password: password, confirmPassword: confirmPassword, birthday: birthday)) ? Color("DarkGrey") : Color("MainGreen"))
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
-                .disabled(password != confirmPassword)
+                .disabled(!validateValues(password: password, confirmPassword: confirmPassword, birthday: birthday))
             }
         }
     }
