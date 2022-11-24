@@ -66,6 +66,9 @@
 		747DAEBF28FF7F85004FF768 /* NotoSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Light.ttf"; sourceTree = "<group>"; };
 		747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Italic.ttf"; sourceTree = "<group>"; };
 		747DAEDC28FF7F96004FF768 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		74D2DCDA2916C02600C26F96 /* PromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2DCD92916C02600C26F96 /* PromptView.swift */; };
+		749BDCEE292EAB31000DB411 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749BDCED292EAB31000DB411 /* ImagePicker.swift */; };
+		749CDFDB29246FDB00AC1766 /* AddPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749CDFDA29246FDB00AC1766 /* AddPhotosView.swift */; };
 		74D2DCD5291429B600C26F96 /* BioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
