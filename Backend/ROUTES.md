@@ -688,9 +688,10 @@ No return body, this occurs when invalid UUID was supplied.
 
 #### Example
 
-<img width="1134" alt="Screen Shot 2022-11-09 at 1 52 12 PM" src="https://user-images.githubusercontent.com/80468156/200905045-c1a7d615-a512-4128-bbcb-371839fdb481.png">
+<img width="1158" alt="Screen Shot 2022-11-24 at 10 25 14 AM" src="https://user-images.githubusercontent.com/80468156/203807632-8734b230-02eb-4e39-8966-89ec2433e001.png">
 
-<img width="1134" alt="Screen Shot 2022-11-09 at 1 54 14 PM" src="https://user-images.githubusercontent.com/80468156/200905086-830d8574-c32a-4fe5-9600-cc68573e8d65.png">
+<img width="1158" alt="Screen Shot 2022-11-24 at 10 25 25 AM" src="https://user-images.githubusercontent.com/80468156/203807652-6cfb69b5-3de4-4770-a370-7a85e137ec47.png">
+
 
 ---
 
