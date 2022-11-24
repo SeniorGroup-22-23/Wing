@@ -81,7 +81,7 @@ struct AddPhotosView: View {
                     .multilineTextAlignment(.center)
                     
                 NavigationLink(destination: HomePageView()) {
-                    loadDoneText()
+                    loadNextText()
                         .frame(width: 231.0, height: 55.0)
                         .background(Color("MainGreen"))
                         .cornerRadius(20)
@@ -113,10 +113,10 @@ struct AddPhotosView: View {
                 .foregroundColor(Color("DisableGrey"))
     }
     
-    func loadDoneText () -> Text {
-        Text("Done")
+    func loadNextText () -> Text {
+        Text("Next")
             .foregroundColor(.white)
-            .font(.custom("KumbhSans", size: 16.0))
+            .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
     }
     
     func loadPlusSignText () -> Text{
