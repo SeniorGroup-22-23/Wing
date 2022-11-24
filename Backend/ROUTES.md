@@ -22,6 +22,7 @@
    7. [Get Prompt by ID](#getprompt) 
    8. [Edit Prompt Response](#editpromptresponse)
    9. [Delete Prompt Response](#deletepromptresponse)
+   12. [Delete User] TODO (also delete all corresponding records in other tables)
 6. [INTERNAL USE ONLY](#internal)
     1. [Post Prompt](#postpromptinternal)
    
