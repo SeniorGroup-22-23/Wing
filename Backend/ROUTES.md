@@ -15,7 +15,7 @@
 5. [Settings](#settings)
    1. [Edit User Account](#edituser) 
    2. [Get Profile by UserID](#getprofile) TODO
-   3. [Edit Profile] TODO
+   3. [Edit Profile](#editprofile)
    4. [Get Photos by UserID](#getphotos) TODO
    5. [Edit Photos] TODO
    6. [Get Prompts by UserID](#getprompts)
@@ -489,6 +489,72 @@ _Note: This will occur when a field is missing, or invalid UUID is given_
 ---
 
 
+### Edit Profile <a name="editprofile"></a>
+
+#### URL:
+`/profile`
+
+#### Method:
+`PUT`       
+_Note: Put requests require the entire object body to be passed in. If there is a profile that matches the given id, that profile will be updated. The birthday field will not be updated under any circumstances._
+
+
+#### Request Body:     
+
+```json
+{
+  "id": "F5DBA633-EAFF-4A6C-9FE1-C8ADBC78A1C5",
+  "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
+  "name": "Janey",
+  "occupation": "Unemployed" ,
+  "birthdate": "2001-05-27T00:00:00Z",
+  "bio": "Hey Everyone! I love the outdoors and my cats :)",
+  "gender": 1,
+  "preference": 0, 
+  "minAge": 25,
+  "maxAge": 40, 
+  "maxDistance": 50
+}
+```
+
+
+#### Success Response:
+200 OK  
+```json
+{
+  "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
+  "maxAge": 40,
+  "gender": 1,
+  "id": "F5DBA633-EAFF-4A6C-9FE1-C8ADBC78A1C5",
+  "minAge": 25,
+  "bio": "Hey Everyone! I love the outdoors and my cats :)",
+  "maxDistance": 50,
+  "birthdate": "2001-05-27T00:00:00Z",
+  "occupation": "Unemployed",
+  "preference": 0,
+  "name": "Janey"
+}
+```
+
+#### Error Response: 
+400 Bad Request       
+_Note: This will occur when a field is missing, or invalid/nil UUID is given._
+```json
+{
+  "error": true,
+  "reason": "Illegal nil ID."
+}
+```
+
+#### Example
+
+<img width="1026" alt="Screen Shot 2022-11-24 at 11 03 01 AM" src="https://user-images.githubusercontent.com/80468156/203818754-16b56bca-a5d6-4597-8736-0731e49bfa13.png">
+
+<img width="1026" alt="Screen Shot 2022-11-24 at 11 14 20 AM" src="https://user-images.githubusercontent.com/80468156/203818812-3e4b2587-e604-47bc-9080-c54fb10985ba.png">
+
+
+---
+
 ### Get Profile by UserID <a name="getprofile"></a>
 
 #### URL:
@@ -506,17 +572,17 @@ The userID associated with the profile you would like to retrieve
 200 OK  
 ```json
 {
-  "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-  "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-  "name" : "Jane",
-  "birthdate" : "1998-04-23T18:25:43.511Z",
-  "occupation" : "Teacher" ,
-  "bio" : "Hey Everyone! I love the outdoors and my cats :)",
-  "gender" : 1,
-  "preference" : 0, 
-  "min_age" : 25,
-  "max_age" : 40, 
-  "max_distance" : 50
+  "gender": 1,
+  "maxAge": 40,
+  "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
+  "id": "710E4BAD-63E1-4C03-A76D-EB8DED59C7D6",
+  "bio": "Hey Everyone! I love the outdoors and my cats :)",
+  "minAge": 25,
+  "maxDistance": 50,
+  "occupation": "Teacher",
+  "birthdate": "2001-05-27T00:00:00Z",
+  "preference": 0,
+   "name": "Jane"
 }
 ```
 
@@ -524,11 +590,17 @@ The userID associated with the profile you would like to retrieve
 404 Not Found
 ```json
 {
- "error" : "No profile found."
+  "error": true,
+  "reason": "Illegal nil ID."
 }
 ```
 
 #### Example
+
+<img width="1112" alt="Screen Shot 2022-11-24 at 11 29 26 AM" src="https://user-images.githubusercontent.com/80468156/203821327-915943e3-d488-445f-bb54-9c8ef03975e6.png">
+
+<img width="1112" alt="Screen Shot 2022-11-24 at 11 29 12 AM" src="https://user-images.githubusercontent.com/80468156/203821340-508c69b2-c708-430a-89f3-7298d18d9093.png">
+
 
 ---
 
