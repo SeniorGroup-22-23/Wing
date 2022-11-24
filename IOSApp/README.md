@@ -66,9 +66,9 @@ If you're looking to add a logo, use a colour, font, or icon, you will be sourci
 
 You will need to use the Image() call. The basic syntax is:
 
-“`
+`
 Image("GreenLogo")
-“`
+`
 
 Replace the "GreenLogo" with whichever version of the logo that you are looking for (all of the names are in the Assets file so check there and use those names accordingly).
 
@@ -82,10 +82,10 @@ These .ttf files are stored under the fonts folder (you don't need to know this,
 
 To use a font, you can use the FontManager that has been set up for easy access:
 
-“`
+`
 Text("Wing")
   .font(.custom(FontManager.KumbhSans.bold, size: 64.0))
-“`
+`
 
 As you can see, you can use the .font() call after your Text object. Then, as the first parameter, use .custom() to let the application know that you'll be using your own font. Then in the .custom() parameter, use FontManager, you can either call KumbhSans or NotoSans, and there's a variety of different styles you can use. This ranges from semi-bold, italics, bold, regular, and so-on. Take a look at the FontManager file to see the options.
 
@@ -97,10 +97,10 @@ You can use these the same way that you would use the logo (see a couple section
 
 To use a colour from the Assets folder _(you should never use any colour that is NOT from the Assets file unless they are black and white)_, simply use the Color() call.
 
-“`
+`
 Text("ReadMe example")
   .foregroundColor(Color("BrightRed"))
-“`
+`
 
 
 
