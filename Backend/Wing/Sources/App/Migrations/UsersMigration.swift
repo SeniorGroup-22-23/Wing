@@ -1,4 +1,5 @@
 import Fluent
+import Models
 
 struct CreateUsers: AsyncMigration {
     
@@ -11,11 +12,16 @@ struct CreateUsers: AsyncMigration {
     
     func prepare(on database: Database) async throws {
         try await database.schema("users")
+        
+            .unique(on: "username", name: "no_dup_username")
+            .unique(on: "phone", name: "no_dup_phone")
+            .unique(on:"email", name: "no_dup_email")
+    
             .id()
             .field("username", .string, .required)
             .field("password", .string, .required)
-            .field("name", .string, .required)
-            .field("age", .int, .required)
+            .field("phone", .string)
+            .field("email", .string)
             .create()
     }
 
