@@ -20,7 +20,7 @@
    5. [Edit Photos] TODO
    6. [Get Prompts by UserID](#getprompts)
    7. [Get Prompt by ID](#getprompt) 
-   8. [Edit Prompts] TODO
+   8. [Edit Prompt Response](#editpromptresponse)
    9. [Delete Prompt Response](#deletepromptresponse)
 6. [INTERNAL USE ONLY](#internal)
     1. [Post Prompt](#postpromptinternal)
@@ -696,6 +696,62 @@ _Note: this endpoint should not result in error._
 
 
 <img width="1134" alt="Screen Shot 2022-11-09 at 1 20 06 PM" src="https://user-images.githubusercontent.com/80468156/200898630-84e437ef-d0f2-4307-81c0-335c95022ede.png">
+
+---
+
+
+### Edit Prompt Response <a name="editpromptresponse"></a>
+
+#### URL:
+`/promptResponse`
+
+#### Method:
+`PUT`       
+_Note: Put requests require the entire object body to be passed in. If there is a prompt response record that matches the given id, that record will be updated._
+
+
+#### Request Body:  
+The following request body will update the prompt response record with the new response text.     
+
+```json
+{
+  "id": "B709FC3D-1EED-4FF1-BDC3-D2FB91C8D1C3",
+  "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
+  "promptId" : "0DD6065E-A2E9-4BF8-8C34-12F9CE546F18",
+  "responseText": "Invisibility."
+}
+
+```
+
+
+#### Success Response:
+200 OK  
+```json
+{
+  "id": "B709FC3D-1EED-4FF1-BDC3-D2FB91C8D1C3",
+  "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
+  "promptId" : "0DD6065E-A2E9-4BF8-8C34-12F9CE546F18",
+  "responseText": "Invisibility."
+}
+```
+
+#### Error Response: 
+400 Bad Request       
+_Note: This will occur when a field is missing, or invalid UUID is given_
+```json
+{
+ "error" : true, 
+ "reason" : "Invalid nil ID."
+}
+```
+
+#### Example
+
+<img width="1178" alt="Screen Shot 2022-11-24 at 12 01 42 PM" src="https://user-images.githubusercontent.com/80468156/203827336-609c1191-3ef5-4db7-ab74-8d86b414cf18.png">
+
+<img width="1178" alt="Screen Shot 2022-11-24 at 12 01 49 PM" src="https://user-images.githubusercontent.com/80468156/203827362-f2e59995-e781-4630-a598-f2ee2c4ffe89.png">
+
+<img width="1334" alt="Screen Shot 2022-11-24 at 12 02 08 PM" src="https://user-images.githubusercontent.com/80468156/203827394-50969f32-95f5-420b-a60c-19185fa24011.png">
 
 ---
 
