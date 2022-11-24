@@ -25,6 +25,8 @@
 		747DAEDB28FF7F85004FF768 /* NotoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */; };
 		747DAEDD28FF7F96004FF768 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DAEDC28FF7F96004FF768 /* FontManager.swift */; };
 		74D2DCDA2916C02600C26F96 /* PromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2DCD92916C02600C26F96 /* PromptView.swift */; };
+749BDCEE292EAB31000DB411 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749BDCED292EAB31000DB411 /* ImagePicker.swift */; };
+		749CDFDB29246FDB00AC1766 /* AddPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749CDFDA29246FDB00AC1766 /* AddPhotosView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
