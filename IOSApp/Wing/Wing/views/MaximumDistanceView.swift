@@ -48,7 +48,7 @@ struct MaximumDistanceView: View {
                 Spacer()
                     .frame(height: 50)
                 Text("My maximum distance...(km)")
-                    .font(.custom(FontManager.NotoSans.regular, size: 24.0))
+                    .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                     .offset(y:50)
                 Picker(selection: $distSelected, label: Text("Distance")) {
                     ForEach(results, id: \.self) {  i in

@@ -21,7 +21,7 @@ struct UsernameView: View {
                 Spacer()
                     .frame(height: 100)
                 Text("Pick a Username")
-                    .font(.custom(FontManager.NotoSans.regular, size: 24.0))
+                    .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                     .padding()
                 Text("""
                      This will be public and will be used by your

@@ -34,7 +34,7 @@ struct ProfileCompletionView: View {
                     .frame(width: 120.0, height: 127.0)
                     .offset(y:-50)
                 Text("Complete Your Profile")
-                    .font(.custom(FontManager.NotoSans.regular, size: 24.0))
+                    .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                     .offset(y: -65)
                 Text("Password")
                     .font(.custom(FontManager.NotoSans.regular, size: 15.0))

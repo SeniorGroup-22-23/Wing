@@ -21,7 +21,7 @@ struct AgePreferenceView: View {
                     .offset(y:-30)
                 
                 Text("My age preference is...")
-                    .font(.custom(FontManager.NotoSans.regular, size: 24.0))
+                    .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                 HStack{
                     Text("Min")
                         .font(.custom(FontManager.NotoSans.regular, size: 20.0))

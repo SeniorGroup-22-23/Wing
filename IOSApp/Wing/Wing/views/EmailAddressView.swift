@@ -27,7 +27,7 @@ struct EmailAddressView: View {
                          What's your email
                          address?
                          """)
-                        .font(.custom(FontManager.KumbhSans.regular, size: 24.0))
+                        .font(.custom(FontManager.KumbhSans.semiBold, size: 24.0))
                         .multilineTextAlignment(.center)
                     Spacer()
                         .frame(height: 30)

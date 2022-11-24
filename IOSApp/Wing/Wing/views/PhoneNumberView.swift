@@ -45,7 +45,7 @@ struct PhoneNumberView: View {
                          What's your phone
                          number?
                          """)
-                        .font(.custom(FontManager.KumbhSans.regular, size: 24.0))
+                        .font(.custom(FontManager.KumbhSans.semiBold, size: 24.0))
                         .multilineTextAlignment(.center)
                         .offset()
                     Spacer()

@@ -21,7 +21,7 @@ struct MatchPreferenceView: View {
                 Spacer()
                     .frame(height: 50)
                 Text("I prefer to see...")
-                    .font(.custom(FontManager.NotoSans.regular, size: 24.0))
+                    .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                 Picker(selection: $selected, label: Text("Preference")) {
                     Text("Only men").tag(1)
                     Text("Only women").tag(2)

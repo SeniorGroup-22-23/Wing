@@ -21,7 +21,7 @@ struct ConfirmationCodeView: View {
                 Spacer()
                     .frame(height: 100)
                 Text("Confirmation Code")
-                    .font(.custom(FontManager.NotoSans.regular, size: 24.0))
+                    .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                     .padding()
                 Text("""
                      Enter the confirmation code that was
