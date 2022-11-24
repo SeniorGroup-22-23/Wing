@@ -27,17 +27,17 @@ public final class Swipe: Model, Content{
     // 2 = dislike
     // 3 = like from wing
     @Field(key: "type")
-    public var type: String //would we rather have integer codes?
+    public var type: Int16 //would we rather have integer codes?
     
     //datetime when swipe occured, used to clear old records
-    @Field(key: "created_at")
-    public var createdAt: Date // TBD
+    @Timestamp(key: "created_at", on: .create)
+    public var createdAt: Date? // TBD
     
     public init(){
         
     }
     
-    public init(id: UUID? = nil, swiperId: UUID, prospectId: UUID, type: String, createdAt: Date){
+    public init(id: UUID? = nil, swiperId: UUID, prospectId: UUID, type: Int16, createdAt: Date? = nil){
         self.id = id
         self.swiperId = swiperId
         self.prospectId = prospectId

@@ -15,18 +15,21 @@ public final class Message: Model, Content{
     public var id: UUID?
     
     @Field(key: "sender_id")
-    public var requesterId: UUID
+    public var senderId: UUID
     
     @Field(key: "recipient_id")
-    public var respondentId: UUID
+    public var recipientId: UUID
+    
+    @Field(key: "content")
+    public var content: String
     
     // 1 = sent
     // 2 = read
     @Field(key: "status")
-    public var status: Int
+    public var status: Int16
     
-    @Field(key: "sent_at")
-    public var sentAt: Date
+    @Timestamp(key: "sent_at", on: .create)
+    public var sentAt: Date?
     
 
     
@@ -34,11 +37,12 @@ public final class Message: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, sendId: UUID, recipientId: UUID, status: Int, sentAt: Date){
+    public init(id: UUID? = nil, senderId: UUID, recipientId: UUID, content: String, status: Int16, sentAt: Date? = nil){
         
         self.id = id
-        self.requesterId = requesterId
-        self.respondentId = respondentId
+        self.senderId = senderId
+        self.recipientId = recipientId
+        self.content = content
         self.status = status
         self.sentAt = sentAt
 

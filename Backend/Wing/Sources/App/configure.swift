@@ -18,6 +18,15 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateUsers())
     app.migrations.add(CreatePrompts())
     app.migrations.add(CreatePromptResponses())
+    app.migrations.add(CreatePhotos())
+    app.migrations.add(CreateProfiles())
+    app.migrations.add(CreateFriendships())
+    app.migrations.add(CreateWings())
+    app.migrations.add(CreateSwipes())
+    app.migrations.add(CreateMatches())
+    app.migrations.add(CreateMessages())
+    app.migrations.add(CreateBlocks())
+
     // register routes
     try routes(app)
 }
