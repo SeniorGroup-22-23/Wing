@@ -6,7 +6,7 @@
 2. [Create User Account](#createuser)
    1. [Get Usernames](#getusernames) 
    2. [Create User](#createuser1) 
-   3. [Create Profile](#createprofile) TODO
+   3. [Create Profile](#createprofile)
    4. [Add Photos](#addphotos) TODO
    5. [Get All Prompts](#getallprompts)
    6. [Add Prompt Response to User Account](#addpromptsuser)
@@ -14,7 +14,7 @@
    1. [Get Prospects] TODO
 5. [Settings](#settings)
    1. [Edit User Account](#edituser) 
-   2. [Get Profile by UserID](#getprofile) TODO
+   2. [Get Profile by UserID](#getprofile)
    3. [Edit Profile](#editprofile)
    4. [Get Photos by UserID](#getphotos) TODO
    5. [Edit Photos] TODO
