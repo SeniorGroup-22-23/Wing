@@ -10,7 +10,7 @@ import Fluent
 
 public final class Profile: Model, Content{
     
-    public static let schema = "profile"
+    public static let schema = "profiles"
     
     @ID(key: .id)
     public var id: UUID?
@@ -34,36 +34,37 @@ public final class Profile: Model, Content{
     // 2 = female
     // 3 = other
     @Field(key: "gender")
-    public var gender: Int
+    public var gender: Int16
     
     // 1 = men
     // 2 = women
     // 3 = everyone
     @Field(key: "preference")
-    public var preference: Int
+    public var preference: Int16
     
     @Field(key: "min_age")
-    public var minAge: Int
+    public var minAge: Int16
     
     @Field(key: "max_age")
-    public var maxAge: Int
+    public var maxAge: Int16
     
     // in km
     @Field(key: "max_distance")
-    public var maxDistance: Int
+    public var maxDistance: Int16
     
     
     public init(){
         
     }
     
-    public init(id: UUID? = nil, userId: UUID, name: String, birthdate: Date, bio: String, gender: Int,
-         preference: Int, minAge: Int, maxAge: Int, maxDistance: Int){
+    public init(id: UUID? = nil, userId: UUID, name: String, birthdate: Date, occupation: String, bio: String, gender: Int16,
+         preference: Int16, minAge: Int16, maxAge: Int16, maxDistance: Int16){
         
         self.id = id
         self.userId = userId
         self.name = name
         self.birthdate = birthdate
+        self.occupation = occupation
         self.bio = bio
         self.gender = gender
         self.preference = preference

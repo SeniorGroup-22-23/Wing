@@ -17,7 +17,7 @@ struct CreateBlocks: AsyncMigration {
             .field("blocked_user_id", .uuid, .required, .references("users", "id"))
             .field("blocked_by_id", .uuid, .required, .references("users", "id"))
             .field("reported", .bool, .required)
-            .field("issue", .int)
+            .field("issue", .int16)
             .create()
     }
 

@@ -28,13 +28,13 @@ public final class Wing: Model, Content{
     // 2 = liked, send to swipe table, keep record
     // send to swipe table if disliked, delete record
     @Field(key: "status")
-    public var status: Int
+    public var status: Int16
     
     public init(){
         
     }
     
-    public init(id: UUID? = nil, senderId: UUID, recipientId: UUID, prospectId: UUID, status: Int){
+    public init(id: UUID? = nil, senderId: UUID, recipientId: UUID, prospectId: UUID, status: Int16){
         
         self.id = id
         self.senderId = senderId
