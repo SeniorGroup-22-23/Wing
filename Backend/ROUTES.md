@@ -229,37 +229,39 @@ _Note: Phone or Email field may be empty, but must still be included in request 
 #### Method:
 `POST`
 
-#### Request Body:   
+#### Request Body:  
+_NOTE: User must be created before profile._          
 ```json
 {
-  "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-  "name" : "Jane",
-  "birthdate" : "1998-04-23T18:25:43.511Z",
-  "occupation" : "Teacher" ,
-  "bio" : "Hey Everyone! I love the outdoors and my cats :)",
-  "gender" : 1,
-  "preference" : 0, 
-  "min_age" : 25,
-  "max_age" : 40, 
-  "max_distance" : 50
+  "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
+  "name": "Jane",
+  "occupation": "Teacher" ,
+  "birthdate": "2001-05-27T00:00:00Z",
+  "bio": "Hey Everyone! I love the outdoors and my cats :)",
+  "gender": 1,
+  "preference": 0, 
+  "minAge": 25,
+  "maxAge": 40, 
+  "maxDistance": 50
 }
+
 ```
 
 #### Success Response:
-201 Created
+200 OK
 ```json
 {
-  "id" : "273bbee2-5878-11ed-9b6a-0242ac120002",
-  "user_id" : "345ccff2-5878-44bc-5c3d-0242ac120002",
-  "name" : "Jane",
-  "birthdate" : "1998-04-23T18:25:43.511Z",
-  "occupation" : "Teacher" ,
-  "bio" : "Hey Everyone! I love the outdoors and my cats :)",
-  "gender" : 1,
-  "preference" : 0, 
-  "min_age" : 25,
-  "max_age" : 40, 
-  "max_distance" : 50
+   "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
+   "minAge": 25,
+   "maxAge": 40,
+   "id": "7CD9800F-AE36-40B5-A0DA-B355014E09F2",
+   "bio": "Hey Everyone! I love the outdoors and my cats :)",
+   "gender": 1,
+   "maxDistance": 50,
+   "occupation": "Teacher",
+   "birthdate": "2001-05-27T00:00:00Z",
+   "preference": 0,
+   "name": "Jane"
 }
 ```
 
@@ -267,15 +269,17 @@ _Note: Phone or Email field may be empty, but must still be included in request 
 400 Bad Request
 ```json
 {
-  "error" : {
-    "message" : "Bad syntax",
-    "field" : "birthdate",
-    "error" : "Invalid birthdate."
-  }
+  "error": true,
+  "reason": "Value of type 'Int16' required for key 'maxDistance'."
 }
 ```
 
 #### Example  
+
+<img width="1281" alt="Screen Shot 2022-11-24 at 10 39 26 AM" src="https://user-images.githubusercontent.com/80468156/203811106-e4706487-4760-4ea1-b51a-94c78fb3a8e8.png">
+
+<img width="1281" alt="Screen Shot 2022-11-24 at 10 39 37 AM" src="https://user-images.githubusercontent.com/80468156/203811150-20cd137b-bb6f-4784-a69d-af1e7eb1920c.png">
+
 
 ---
 
