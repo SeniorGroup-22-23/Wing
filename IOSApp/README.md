@@ -46,19 +46,19 @@ To run your project and see the simulator (the siumulator is a simulation of an 
 
 ## Common Errors <a name="commonErrors"></a>
 
-###I can't see the preview
+### I can't see the preview
 
 You need to make sure that you have PreviewProvider setup for the view that you're trying to preview. It would look something like this at the end of your file (replace with your own view file name):
 
 <img width="396" alt="Screen Shot 2022-11-24 at 1 22 46 PM" src="https://user-images.githubusercontent.com/75460797/203839454-d6ef1b06-3f45-4cb7-9a09-e44adf79a27d.png">
 
-###I'm getting Git conflicts for the project.pbxproj file
+### I'm getting Git conflicts for the project.pbxproj file
 
 This is a common issue for XCode. Basically, we have not found a great work-around for this problem... (but if you have a solution, please feel free to edit this file and share with everyone!). You will have to manually go through the file and make sure that you're keeping both versions of the file (since most of the time, the issue is that it's trying to replace what's already in there with lines about your new file but you want to keep both). 
 
 ## Basic How-To-Use <a name="howToUse"></a>
 
-###How to use assets
+### How to use assets
 
 If you're looking to add a logo, use a colour, font, or icon, you will be sourcing these from the Assets file.
 
@@ -66,9 +66,9 @@ If you're looking to add a logo, use a colour, font, or icon, you will be sourci
 
 You will need to use the Image() call. The basic syntax is:
 
-'''
+“`
 Image("GreenLogo")
-'''
+“`
 
 Replace the "GreenLogo" with whichever version of the logo that you are looking for (all of the names are in the Assets file so check there and use those names accordingly).
 
@@ -82,10 +82,10 @@ These .ttf files are stored under the fonts folder (you don't need to know this,
 
 To use a font, you can use the FontManager that has been set up for easy access:
 
-'''
+“`
 Text("Wing")
   .font(.custom(FontManager.KumbhSans.bold, size: 64.0))
-'''
+“`
 
 As you can see, you can use the .font() call after your Text object. Then, as the first parameter, use .custom() to let the application know that you'll be using your own font. Then in the .custom() parameter, use FontManager, you can either call KumbhSans or NotoSans, and there's a variety of different styles you can use. This ranges from semi-bold, italics, bold, regular, and so-on. Take a look at the FontManager file to see the options.
 
@@ -97,10 +97,10 @@ You can use these the same way that you would use the logo (see a couple section
 
 To use a colour from the Assets folder _(you should never use any colour that is NOT from the Assets file unless they are black and white)_, simply use the Color() call.
 
-'''
+“`
 Text("ReadMe example")
   .foregroundColor(Color("BrightRed"))
-'''
+“`
 
 
 
