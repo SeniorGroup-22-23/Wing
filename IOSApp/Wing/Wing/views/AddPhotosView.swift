@@ -16,80 +16,78 @@ struct AddPhotosView: View {
     @State private var inputImage: UIImage?
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color("White")
-                
-                VStack{
-                    VStack {
-                        loadLogo()
-                            .frame(width : 120.0, height : 127.0)
-                        
-                        HStack {
-                            loadUploadPhotosText()
-                        }
-                        .padding(.top, -20)
-                        
-                        HStack {
-                            loadMinimumPhotosText()
-                                .frame(maxWidth: 300.0, alignment: .leading)
-                        }
-                        
-                        HStack {
-                            loadResetPhotosBtn()
-                                .frame(maxWidth: 300.0, alignment: .leading)
-                        }
-                        .padding(.bottom, 10)
+        ZStack {
+            Color("White")
+            
+            VStack{
+                VStack {
+                    loadLogo()
+                        .frame(width : 120.0, height : 127.0)
+                    
+                    HStack {
+                        loadUploadPhotosText()
                     }
+                    .padding(.top, -20)
+                    
+                    HStack {
+                        loadMinimumPhotosText()
+                            .frame(maxWidth: 300.0, alignment: .leading)
+                    }
+                        
+                    HStack {
+                        loadResetPhotosBtn()
+                            .frame(maxWidth: 300.0, alignment: .leading)
+                    }
+                        .padding(.bottom, 10)
+                }
                     .padding(.top, -30)
                     
-                    ScrollView {
-                        VStack(spacing : 10) {
-                            ForEach(1..<5) { i in
-                                HStack(spacing : 10) {
-                                    ForEach(1..<3) { j in
-                                        Group {
-                                            let index = arr[i] + j
-                                            if (index <= numPhotos) {
-                                                getImage(num: index)
-                                                    .frame(width: 140, height: 175)
-                                                    .cornerRadius(10)
-                                            } else if (index == numPhotos + 1) {
-                                                ZStack {
-                                                    loadEmptyPhotoBox()
-                                                    loadPlusSignText()
-                                                }
-                                                .onTapGesture {
-                                                    showingImagePicker = true
-                                                }
-                                            } else {
+                ScrollView {
+                    VStack(spacing : 10) {
+                        ForEach(1..<5) { i in
+                            HStack(spacing : 10) {
+                                ForEach(1..<3) { j in
+                                    Group {
+                                        let index = arr[i] + j
+                                        if (index <= numPhotos) {
+                                            getImage(num: index)
+                                                .frame(width: 140, height: 175)
+                                                .cornerRadius(10)
+                                        } else if (index == numPhotos + 1) {
+                                            ZStack {
                                                 loadEmptyPhotoBox()
+                                                loadPlusSignText()
                                             }
+                                            .onTapGesture {
+                                                showingImagePicker = true
+                                            }
+                                        } else {
+                                            loadEmptyPhotoBox()
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                        .onChange(of: inputImage) { _ in loadImage() }
-                        .sheet(isPresented: $showingImagePicker) {
-                            ImagePicker(image: $inputImage)
-                        }
-                    
-                    Spacer()
-                    
-                    loadPhotoSuggesionText()
-                        .multilineTextAlignment(.center)
-                    
-                    NavigationLink(destination: HomePageView()) {
-                        loadDoneText()
-                            .frame(width: 231.0, height: 55.0)
-                            .background(Color("MainGreen"))
-                            .cornerRadius(20)
-                    }
                 }
-                .frame(width: 400.0)
+                    .onChange(of: inputImage) { _ in loadImage() }
+                    .sheet(isPresented: $showingImagePicker) {
+                        ImagePicker(image: $inputImage)
+                    }
+                    
+                Spacer()
+                    
+                loadPhotoSuggesionText()
+                    .multilineTextAlignment(.center)
+                    
+                NavigationLink(destination: HomePageView()) {
+                    loadDoneText()
+                        .frame(width: 231.0, height: 55.0)
+                        .background(Color("MainGreen"))
+                        .cornerRadius(20)
+                }
             }
+                .frame(width: 400.0)
         }
     }
     

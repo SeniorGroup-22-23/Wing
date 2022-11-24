@@ -9,11 +9,9 @@ import SwiftUI
 
 @main
 struct WingApp: App{
-    
-        var body: some Scene {
-            WindowGroup {
-                HomePageView()
-            }
+    var body: some Scene {
+        WindowGroup {
+            HomePageView()
         }
     }
 }
