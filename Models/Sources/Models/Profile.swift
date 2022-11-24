@@ -15,7 +15,7 @@ public final class Profile: Model, Content{
     @ID(key: .id)
     public var id: UUID?
     
-    @Field(key: "user_id:")
+    @Field(key: "user_id")
     public var userId: UUID
     
     @Field(key: "name")
