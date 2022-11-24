@@ -102,6 +102,3 @@ struct TermsAndConditionsText: View {
             .accentColor(.white)
     }
 }
-
-
-
