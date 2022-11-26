@@ -13,7 +13,6 @@ struct EmailAddressView: View {
     @State private var emailIsValid: Bool = true
     
     var body: some View {
-        NavigationView{
             ZStack {
                 Color("White")
                 VStack {
@@ -59,7 +58,6 @@ struct EmailAddressView: View {
                 }
             }
         }
-    }
 }
 
 struct EmailAddressView_Previews: PreviewProvider {

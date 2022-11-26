@@ -31,7 +31,6 @@ struct PhoneNumberView: View {
     }
     
     var body: some View {
-        NavigationView{
             ZStack {
                 Color("White")
                 VStack {
@@ -76,7 +75,6 @@ struct PhoneNumberView: View {
                 }
             }
         }
-    }
 }
 
 struct PhoneNumberView_Previews: PreviewProvider {

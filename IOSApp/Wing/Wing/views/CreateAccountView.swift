@@ -13,23 +13,23 @@ let darkGreyColor = Color("Black30")
 struct CreateAccountView : View {
 
     var body: some View {
-        ZStack{
-            BackgroundLogo()
-                .offset(y:-40)
-            VStack {
-                CreateAccountText()
-                Button(action: {print("Button tapped")}) {
-                    SignUpWithEmailText()
-                    .cornerRadius(20.0)
+            ZStack{
+                BackgroundLogo()
+                    .offset(y:-40)
+                VStack {
+                    CreateAccountText()
+                    NavigationLink(destination: EmailAddressView()){
+                        SignUpWithEmailText()
+                            .cornerRadius(20.0)
+                    }
+                    .padding(.bottom, 17)
+                    NavigationLink(destination: PhoneNumberView()){
+                        SignUpWithPhoneText()
+                            .cornerRadius(20.0)
+                    }
+                    SubTextMods()
                 }
-                .padding(.bottom, 17)
-                Button(action: {print("Button tapped")}) {
-                    SignUpWithPhoneText()
-                    .cornerRadius(20.0)
-                }
-                SubTextMods()
             }
-        }
     }
 }
 
