@@ -34,7 +34,6 @@ struct CreateAccountView : View {
                     }
                     .simultaneousGesture(TapGesture().onEnded{
                         self.chosen_method.email_method = true
-                        let _ = print("EMAIL VALUE CHANGED TO TRUE")
                         
                     })
                     .padding(.bottom, 17)
@@ -44,7 +43,6 @@ struct CreateAccountView : View {
                     }
                     .simultaneousGesture(TapGesture().onEnded{
                         self.chosen_method.phone_method = true
-                        let _ = print("PHONE VALUE CHANGED TO TRUE")
                         
                     })
                     SubTextMods()
@@ -92,18 +90,20 @@ struct SubText: View {
     var body: some View {
         Text("Already have an account ? ")
         +
-        Text("[Log in](https://example.com)")
+        Text("Log in")
             .underline()
     }
 }
 
 struct SubTextMods: View {
     var body: some View {
-        SubText()
-            .font(.custom(FontManager.NotoSans.regular,fixedSize:16))
-            .foregroundColor(.black)
-            .accentColor(.black)
-            .padding(.top, 20)
-            .offset(y:13)
+        NavigationLink(destination: LoginView()){
+            SubText()
+                .font(.custom(FontManager.NotoSans.regular,fixedSize:16))
+                .foregroundColor(.black)
+                .accentColor(.black)
+                .padding(.top, 20)
+                .offset(y:13)
+        }
     }
 }

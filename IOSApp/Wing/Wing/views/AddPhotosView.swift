@@ -77,8 +77,14 @@ struct AddPhotosView: View {
                 LoadPhotoSuggesionText()
                     
                 NavigationLink(destination: BioView()) {
-                    LoadNextText()
+                    Text("Next")
+                        .foregroundColor(.white)
+                        .font(.custom(FontManager.NotoSans.regular, size: 16.0))
+                        .frame(width: 231.0, height: 55.0)
+                        .background((numPhotos < 3) ? Color("DarkGrey") : Color("MainGreen"))
+                        .cornerRadius(20)
                 }
+                .disabled(numPhotos < 3)
             }
                 .frame(width: 400.0)
         }
@@ -139,17 +145,6 @@ struct LoadPhotoSuggesionText : View {
             .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
             .foregroundColor(Color("DisableGrey"))
             .multilineTextAlignment(.center)
-    }
-}
-
-struct LoadNextText : View {
-    var body : some View {
-        Text("Next")
-            .foregroundColor(.white)
-            .font(.custom(FontManager.NotoSans.regular, size: 16.0))
-            .frame(width: 231.0, height: 55.0)
-            .background(Color("MainGreen"))
-            .cornerRadius(20)
     }
 }
 

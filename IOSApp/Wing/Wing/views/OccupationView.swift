@@ -28,7 +28,7 @@ struct OccupationView: View {
                     .frame(width:260.0, height: 48.0)
                     .textFieldStyle(.roundedBorder)
                 Spacer()
-                NavigationLink(destination: HomePageView()) {
+                NavigationLink(destination: AddPhotosView()) {
                     Text("Next")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)

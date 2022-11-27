@@ -67,10 +67,11 @@ struct PromptView: View {
                     Text("Done")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)
-                        .background(Color("MainGreen"))
+                        .background((ans1.isEmpty) ? Color("DarkGrey") : Color("MainGreen"))
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
+                .disabled(ans1.isEmpty)
             }
                 .frame(width: 400.0)
         }
