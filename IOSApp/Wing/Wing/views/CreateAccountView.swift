@@ -10,8 +10,18 @@ import Foundation
 
 let darkGreyColor = Color("Black30")
 
+class ChosenMethod: ObservableObject {
+    private init(){
+        
+    }
+    static let method = ChosenMethod()
+    @Published var email_method = false
+    @Published var phone_method = false
+}
+
 struct CreateAccountView : View {
 
+    @ObservedObject var chosen_method: ChosenMethod = .method
     var body: some View {
             ZStack{
                 BackgroundLogo()
@@ -22,11 +32,21 @@ struct CreateAccountView : View {
                         SignUpWithEmailText()
                             .cornerRadius(20.0)
                     }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        self.chosen_method.email_method = true
+                        let _ = print("EMAIL VALUE CHANGED TO TRUE")
+                        
+                    })
                     .padding(.bottom, 17)
                     NavigationLink(destination: PhoneNumberView()){
                         SignUpWithPhoneText()
                             .cornerRadius(20.0)
                     }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        self.chosen_method.phone_method = true
+                        let _ = print("PHONE VALUE CHANGED TO TRUE")
+                        
+                    })
                     SubTextMods()
                 }
             }

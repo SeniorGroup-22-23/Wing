@@ -34,6 +34,8 @@ struct UsernameView: View {
                 TextField("", text: $username)
                     .frame(width:300.0, height: 48.0)
                     .textFieldStyle(.roundedBorder)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled(true)
                 Spacer()
                     .frame(height: 30)
                 NavigationLink(destination: ProfileCompletionView()) {

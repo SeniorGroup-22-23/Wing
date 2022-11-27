@@ -15,6 +15,8 @@ struct ProfileCompletionView: View {
     @State private var gender = 1
     @State private var contact: String = ""
     let AGE: Date = Calendar.current.date(byAdding: .year, value: -18, to: Date())!;
+
+    @ObservedObject var chosen_method: ChosenMethod = .method
     
     func validateValues(password: String, confirmPassword: String, firstName: String, birthday: Date) -> Bool {
         if (password == confirmPassword && !confirmPassword.isEmpty){
@@ -79,6 +81,7 @@ struct ProfileCompletionView: View {
                         .frame(width:300.0, height: 48.0)
                         .textFieldStyle(.roundedBorder)
                         .offset(y: -35)
+                        .autocorrectionDisabled(true)
                     HStack {
                         Text("*")
                             .font(.custom(FontManager.NotoSans.regular, size : 15.0))
@@ -109,10 +112,18 @@ struct ProfileCompletionView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .offset(y: -20)
                     .frame(width: 300)
-                    Text("Additonal contact")
-                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
-                        .frame(width: 300, alignment: .leading)
-                        .offset(y: -15)
+                    if (chosen_method.email_method){
+                        Text("Phone number")
+                            .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                            .frame(width: 300, alignment: .leading)
+                            .offset(y: -15)
+                    }
+                    else {
+                        Text("Email")
+                            .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                            .frame(width: 300, alignment: .leading)
+                            .offset(y: -15)
+                    }
                     TextField("", text: $contact)
                         .frame(width:300.0, height: 48.0)
                         .textFieldStyle(.roundedBorder)
