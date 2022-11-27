@@ -49,10 +49,10 @@ The Models package contains the declarations for the entities that are stored in
   
 - **Migration error in vapor**
 
-Error:
-`warning: '--enable-test-discovery' option is deprecated; tests are automatically discovered on all platforms error: terminated(72): /usr/bin/xcrun --sdk macosx --find xctest output: xcrun: error: unable to find utility "xctest", not a developer tool or in PATH VaporToolbox/exec.swift:55: Fatal error: result 1 zsh: illegal hardware instruction vapor run migrate`
+  Error:
+  `warning: '--enable-test-discovery' option is deprecated; tests are automatically discovered on all platforms error: terminated(72): /usr/bin/xcrun --sdk macosx --find xctest output: xcrun: error: unable to find utility "xctest", not a developer tool or in PATH VaporToolbox/exec.swift:55: Fatal error: result 1 zsh: illegal hardware instruction vapor run migrate`
 
-To Fix: Xcode > Preferences and in the 'Locations' tab select Command Line tools
+  To Fix: Xcode > Preferences and in the 'Locations' tab select Command Line tools
 
 
 # Installations   <a name="installation"></a>
