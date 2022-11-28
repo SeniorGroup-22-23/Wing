@@ -15,6 +15,7 @@ final class ProfileTests: XCTestCase {
         let userId = UUID()
         let name = "Jane"
         let birthdate = Date()
+        let occupation = "Student"
         let bio = "Just your average software engineering student"
         let female = Int16(2)
         let men = Int16(1)
@@ -23,7 +24,7 @@ final class ProfileTests: XCTestCase {
         let maxDistance = Int16(45)
         
         
-        let profile = Profile(id: nil, userId: userId, name: name, birthdate: birthdate, bio: bio, gender: 2, preference: 1, minAge: minAge, maxAge: maxAge, maxDistance: maxDistance)
+        let profile = Profile(id: nil, userId: userId, name: name, birthdate: birthdate, occupation: occupation, bio: bio, gender: 2, preference: 1, minAge: minAge, maxAge: maxAge, maxDistance: maxDistance)
         
         XCTAssertNil(profile.id)
         
@@ -35,6 +36,9 @@ final class ProfileTests: XCTestCase {
         
         XCTAssertEqual(profile.birthdate, birthdate)
         XCTAssert((profile.birthdate as Any) is Date)
+        
+        XCTAssertEqual(profile.occupation, occupation)
+        XCTAssert((profile.occupation as Any) is String)
         
         XCTAssertEqual(profile.bio, bio)
         XCTAssert((profile.bio as Any) is String)

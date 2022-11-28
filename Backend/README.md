@@ -40,7 +40,6 @@ In Xcode, go to Product>Test
 - **Blocked certificate when trying to push/pull from Xcode**                   
 There is a problem with certificates when using Xcode git controls on Eduroam. Not sure how to fix - but when off Eduroam git controls work just fine. Same issue with public internet connections.      
 
-
 # Installations   <a name="installation"></a>
 
 ## Xcode    
