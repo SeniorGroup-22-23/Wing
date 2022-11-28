@@ -1,4 +1,4 @@
-# Wing API Endpoints 
+# User API Endpoints 
   
 1. [Login](#login)
    1. [Get User by Phone](#getuserphone) 
