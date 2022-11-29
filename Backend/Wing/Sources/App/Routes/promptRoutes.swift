@@ -35,7 +35,17 @@ func propmtRoutes(_ app: Application) throws {
     //POST Prompt Response to user account
     app.post("prompts", "user"){ req async throws -> PromptResponse in
         let promptResponse = try req.content.decode(PromptResponse.self)
-        try await promptResponse.create(on: req.db)
+        do {
+            try await promptResponse.create(on: req.db)
+        } catch {
+            if(error.localizedDescription.contains("prompt_responses_user_id_fkey")){
+                throw Error.notFoundwID("user", promptResponse.userId)
+            } else if (error.localizedDescription.contains("prompt_responses_prompt_id_fkey")){
+                throw Error.notFoundwID("prompt", promptResponse.promptId)
+            } else {
+                throw Abort(.internalServerError, reason: "Unable to create prompt response: \(error)")
+            }
+        }
         return promptResponse
     }
     

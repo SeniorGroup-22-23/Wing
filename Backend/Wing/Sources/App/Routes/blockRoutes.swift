@@ -12,10 +12,20 @@ import Models
 //Wing Block Routes 
 func blockRoutes(_ app: Application) throws {
     
-    //POST Block -- should we check if the user IDs exist? 
+    //POST Block
     app.post("block"){ req async throws -> Block in
         let block = try req.content.decode(Block.self)
-        try await block.create(on: req.db)
+        do {
+            try await block.create(on: req.db)
+        } catch {
+            if(error.localizedDescription.contains("blocks_blocked_user_id_fkey")){
+                throw Error.notFoundwID("user", block.blockedUserId)
+            } else if (error.localizedDescription.contains("blocks_blocked_by_id_fkey")){
+                throw Error.notFoundwID("user", block.blockedById)
+            } else {
+                throw Abort(.internalServerError, reason: "Unable to create block: \(error)")
+            }
+        }
         return block
     }
     

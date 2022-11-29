@@ -54,7 +54,19 @@ func userRoutes(_ app: Application) throws {
     //POST User
     app.post("user"){ req async throws -> User in
         let user = try req.content.decode(User.self)
-        try await user.create(on: req.db)
+        do {
+            try await user.create(on: req.db)
+        } catch {
+            if(error.localizedDescription.contains("no_dup_phone")){
+                throw Error.dupVal("phone", user.phone)
+            } else if (error.localizedDescription.contains("no_dup_email")){
+                throw Error.dupVal("email", user.email)
+            } else if (error.localizedDescription.contains("no_dup_username")){
+                throw Error.dupVal("username", user.username)
+            } else {
+                throw Abort(.internalServerError, reason: "Unable to create user: \(error)")
+            }
+        }
         return user
     }
     
@@ -88,7 +100,15 @@ func userRoutes(_ app: Application) throws {
     //POST Profile
     app.post("profile"){ req async throws -> Profile  in
         let profile = try req.content.decode(Profile.self)
-        try await profile.create(on: req.db)
+        do {
+            try await profile.create(on: req.db)
+        } catch {
+            if(error.localizedDescription.contains("profiles_user_id_fkey")){
+                throw Error.notFoundwID("user", profile.userId)
+            } else {
+                throw Abort(.internalServerError, reason: "Unable to create profile: \(error)")
+            }
+        }
         return profile
     }
     
