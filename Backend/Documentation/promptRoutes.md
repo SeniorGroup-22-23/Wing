@@ -82,6 +82,13 @@
 ```
 
 #### Error Response: 
+404 Not Found (for promptId or userId)
+```json 
+{
+  "error": true,
+  "reason": "No prompt record found with ID: 58DA9F30-54E0-40A9-B901-F5A45281E4C9."
+}
+```
 400 Bad Request
 ```json
 {
@@ -96,10 +103,11 @@
 
 <img width="957" alt="Screen Shot 2022-11-08 at 3 08 08 PM" src="https://user-images.githubusercontent.com/80468156/200653675-b9d47198-f90d-4eaa-a981-6007f2a9f15f.png">
 
----
+<img width="1105" alt="Screen Shot 2022-11-28 at 10 51 42 PM" src="https://user-images.githubusercontent.com/80468156/204427647-b45d42be-38f0-4ca0-a408-14552869b390.png">
 
 
 ---
+
 
 ### Get Prompts by UserID <a name="getprompts"></a>
 
