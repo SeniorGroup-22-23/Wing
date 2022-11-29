@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+class PhotoMethod: ObservableObject {
+    private init(){
+        
+    }
+    static let method = PhotoMethod()
+    @Published var photo_method = [Image?](repeating : nil, count : 8)
+}
+
 struct AddPhotosView: View {
     @State private var numPhotos = 0
     @State private var arr = [0,0,2,4,6]
@@ -14,6 +22,7 @@ struct AddPhotosView: View {
     
     @State private var images = [Image?](repeating : nil, count : 8)
     @State private var inputImage: UIImage?
+    @ObservedObject var photo_method: PhotoMethod = .method
     
     var body: some View {
         ZStack {
@@ -85,6 +94,10 @@ struct AddPhotosView: View {
                         .cornerRadius(20)
                 }
                 .disabled(numPhotos < 3)
+                .simultaneousGesture(TapGesture().onEnded{
+                    self.photo_method.photo_method = images
+                    
+                })
             }
                 .frame(width: 400.0)
         }

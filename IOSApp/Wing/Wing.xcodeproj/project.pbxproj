@@ -186,22 +186,8 @@
 		741E079728F9ADE5001D6478 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				747DAE9928FE0087004FF768 /* HomePageView.swift */,
-				999A4C7329300EC3000EA950 /* CreateAccountView.swift */,
-				999A4C7129300EB1000EA950 /* LoginView.swift */,
-				74D2DCD5291429B600C26F96 /* BioView.swift */,
-				74D2DCD92916C02600C26F96 /* PromptView.swift */,
-				749CDFDA29246FDB00AC1766 /* AddPhotosView.swift */,
 				749BDCED292EAB31000DB411 /* ImagePicker.swift */,
-				67971CD6292456B70088C6BD /* PhoneNumberView.swift */,
-				67971CD8292457F60088C6BD /* UsernameView.swift */,
-				67971CDA292458360088C6BD /* ProfileCompletionView.swift */,
-				67971CDC292458790088C6BD /* OccupationView.swift */,
-				67971CDE2924594A0088C6BD /* MaximumDistanceView.swift */,
-				67971CE02924598C0088C6BD /* MatchPreferenceView.swift */,
-				67971CE2292459BA0088C6BD /* EmailAddressView.swift */,
-				67971CE4292459E50088C6BD /* AgePreferenceView.swift */,
-				67971CE629245A1C0088C6BD /* ConfirmationCodeView.swift */,
+				7435053D2936A8850055DF9B /* login */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -214,6 +200,28 @@
 				747DAEDC28FF7F96004FF768 /* FontManager.swift */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		7435053D2936A8850055DF9B /* login */ = {
+			isa = PBXGroup;
+			children = (
+				747DAE9928FE0087004FF768 /* HomePageView.swift */,
+				999A4C7329300EC3000EA950 /* CreateAccountView.swift */,
+				999A4C7129300EB1000EA950 /* LoginView.swift */,
+				74D2DCD5291429B600C26F96 /* BioView.swift */,
+				74D2DCD92916C02600C26F96 /* PromptView.swift */,
+				749CDFDA29246FDB00AC1766 /* AddPhotosView.swift */,
+				67971CD6292456B70088C6BD /* PhoneNumberView.swift */,
+				67971CD8292457F60088C6BD /* UsernameView.swift */,
+				67971CDA292458360088C6BD /* ProfileCompletionView.swift */,
+				67971CDC292458790088C6BD /* OccupationView.swift */,
+				67971CDE2924594A0088C6BD /* MaximumDistanceView.swift */,
+				67971CE02924598C0088C6BD /* MatchPreferenceView.swift */,
+				67971CE2292459BA0088C6BD /* EmailAddressView.swift */,
+				67971CE4292459E50088C6BD /* AgePreferenceView.swift */,
+				67971CE629245A1C0088C6BD /* ConfirmationCodeView.swift */,
+			);
+			path = login;
 			sourceTree = "<group>";
 		};
 		747DAE9B28FF7F6C004FF768 /* Kumbh_Sans */ = {
