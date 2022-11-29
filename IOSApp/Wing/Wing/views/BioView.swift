@@ -8,8 +8,17 @@
 import SwiftUI
 import Combine
 
+class BioMethod: ObservableObject {
+    private init(){
+        
+    }
+    static let method = BioMethod()
+    @Published var bio_method = ""
+}
+
 struct BioView: View {
     @State private var bio: String = ""
+    @ObservedObject var bio_method: BioMethod = .method
     let textLimit = 150
 
     var body: some View {
@@ -42,6 +51,10 @@ struct BioView: View {
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
+                .simultaneousGesture(TapGesture().onEnded{
+                    self.bio_method.bio_method = bio
+                    
+                })
             }
         }
     }

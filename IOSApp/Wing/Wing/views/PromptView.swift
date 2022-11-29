@@ -8,33 +8,23 @@
 import SwiftUI
 
 struct PromptView: View {
-    @State private var prompt1 = 1
-    @State private var prompt2 = 1
-    @State private var prompt3 = 1
+    @State private var prompt1 = ""
+    @State private var prompt2 = ""
+    @State private var prompt3 = ""
     @State private var ans1: String = ""
     @State private var ans2: String = ""
     @State private var ans3: String = ""
+    
+    // FOR EMMA : you will have to load the actual prompts into this promptList variable
+    @State private var promptList = ["What's your favourite color?", "How many siblings do you have?"]
     
     var body: some View {
         ZStack {
             Color("White")
             
             VStack {
-                Image("WhiteLogo")
-                    .resizable()
-                    .frame(width : 120.0, height : 127.0)
-                
-                HStack {
-                    Text("Pick Your Prompts")
-                        .font(.custom(FontManager.KumbhSans.semiBold, size: 24.0))
-                        .frame(alignment: .leading)
-                }
-                
-                HStack {
-                    Text("Choose prompts to show on your profile.")
-                        .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
-                        .frame(alignment: .leading)
-                }
+                LoadWingImage()
+                LoadPromptHeadline()
                 
                 Spacer()
                 
@@ -48,28 +38,21 @@ struct PromptView: View {
                     Menu {
                         showPicker(num : i)
                     } label : {
-                        Text("What's your favourite food?")
-                            .frame(width: 260.0, height: 40.0)
+                        loadPromptText(num : i)
                             .font(.custom(FontManager.NotoSans.regular, size: 16.0))
-                            .foregroundColor(.black)
+                            .frame(width: 260.0, height: 40.0)
                             .overlay(
                                     RoundedRectangle(cornerRadius: 8)
                                         .stroke(Color("DisableGrey"))
                             )
                     }
-                    
                     showTextField(num : i)
                 }
                 
                 Spacer()
                 
                 NavigationLink(destination: HomePageView()) {
-                    Text("Done")
-                        .frame(width: 231.0, height: 55.0)
-                        .foregroundColor(.white)
-                        .background((ans1.isEmpty) ? Color("DarkGrey") : Color("MainGreen"))
-                        .cornerRadius(20)
-                        .font(.custom(FontManager.NotoSans.regular, size: 16.0))
+                    loadDoneBtn()
                 }
                 .disabled(ans1.isEmpty)
             }
@@ -78,6 +61,7 @@ struct PromptView: View {
     }
     
     func displayPrompt (num : Int) -> Text {
+        // if it's the first prompt, add the star so user knows it's required
         if (num == 1) {
             return Text("* ")
                 .font(.custom(FontManager.NotoSans.regular, size : 16.0))
@@ -91,23 +75,32 @@ struct PromptView: View {
     }
     
     func showPicker (num : Int) -> some View{
+        // NOTE for Emma:
+        // This is where you'd load the prompts
+        
         VStack {
             if (num == 1) {
-                Picker("", selection: $prompt1) {
-                    Text("Item 1").tag(1)
-                    Text("Item 2").tag(2)
+                // load the prompt selection in the prompt1 variable
+                Picker("firstPrompt", selection: $prompt1) {
+                    displayPromptList()
                 }
             } else if (num == 2) {
-                Picker("", selection: $prompt2) {
-                    Text("Item 1").tag(1)
-                    Text("Item 2").tag(2)
+                // load the prompt selection in the prompt2 variable
+                Picker("secondPrompt", selection: $prompt2) {
+                    displayPromptList()
                 }
             } else {
-                Picker("", selection: $prompt3) {
-                    Text("Item 1").tag(1)
-                    Text("Item 2").tag(2)
+                // load the prompt selection in the prompt3 variable
+                Picker("thirdPrompt", selection: $prompt3) {
+                    displayPromptList()
                 }
             }
+        }
+    }
+    
+    func displayPromptList () -> some View {
+        ForEach (promptList, id : \.self) { prompt in
+            Text(prompt)
         }
     }
     
@@ -126,6 +119,53 @@ struct PromptView: View {
                     .frame(width: 260.0, height: 48.0)
                     .textFieldStyle(.roundedBorder)
             }
+        }
+    }
+    
+    func loadDoneBtn () -> some View {
+        Text("Done")
+            .frame(width: 231.0, height: 55.0)
+            .foregroundColor(.white)
+            .background((ans1.isEmpty) ? Color("DarkGrey") : Color("MainGreen"))
+            .cornerRadius(20)
+            .font(.custom(FontManager.NotoSans.regular, size: 16.0))
+    }
+    
+    func loadPromptText (num : Int) -> Text {
+        if ((num == 1 && prompt1 == "") || (num == 2 && prompt2 == "") || (num == 3 && prompt3 == "")) {
+            return Text("Click to choose a prompt.")
+        }
+        
+        if (num == 1) {
+            return Text(prompt1)
+        } else if (num == 2) {
+            return Text(prompt2)
+        } else {
+            return Text(prompt3)
+        }
+    }
+}
+
+struct LoadWingImage : View {
+    var body : some View {
+        Image("WhiteLogo")
+            .resizable()
+            .frame(width : 120.0, height : 127.0)
+    }
+}
+
+struct LoadPromptHeadline : View {
+    var body : some View {
+        HStack {
+            Text("Pick Your Prompts")
+                .font(.custom(FontManager.KumbhSans.semiBold, size: 24.0))
+                .frame(alignment: .leading)
+        }
+        
+        HStack {
+            Text("Choose prompts to show on your profile.")
+                .font(.custom(FontManager.KumbhSans.regular, size: 16.0))
+                .frame(alignment: .leading)
         }
     }
 }
