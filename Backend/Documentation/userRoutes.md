@@ -181,6 +181,13 @@ _Note: This is case sensitive (can be changed)_
 ```
 
 #### Error Response: 
+500 Internal Server Error (for duplicate username, phone, email) 
+```json
+{
+	"error": true,
+	"reason": "Illegal username value: allieGriffin1."
+}
+```
 400 Bad Request
 ```json
 {
@@ -196,6 +203,9 @@ _Note: Phone or Email field may be empty, but must still be included in request 
 <img width="1101" alt="Screen Shot 2022-11-08 at 5 50 55 PM" src="https://user-images.githubusercontent.com/80468156/200684347-3ed243ca-b772-4366-baa5-d39562faaa1b.png">
 
 <img width="1134" alt="Screen Shot 2022-11-08 at 5 52 20 PM" src="https://user-images.githubusercontent.com/80468156/200684363-5abac93d-2564-4c27-8354-3bf0c00c0da1.png">
+
+<img width="1105" alt="Screen Shot 2022-11-28 at 10 48 59 PM" src="https://user-images.githubusercontent.com/80468156/204427163-98e553a9-3e39-40d8-a4af-089d558b10bb.png">
+
 
 ---
 
@@ -244,6 +254,13 @@ _NOTE: User must be created before profile._
 ```
 
 #### Error Response: 
+404 Not Found 
+```json
+{
+	"error": true,
+	"reason": "No user record found with ID: 5FA66D14-F1C2-43EF-B98D-789297C61B65."
+}
+```
 400 Bad Request
 ```json
 {
@@ -257,6 +274,9 @@ _NOTE: User must be created before profile._
 <img width="1281" alt="Screen Shot 2022-11-24 at 10 39 26 AM" src="https://user-images.githubusercontent.com/80468156/203811106-e4706487-4760-4ea1-b51a-94c78fb3a8e8.png">
 
 <img width="1281" alt="Screen Shot 2022-11-24 at 10 39 37 AM" src="https://user-images.githubusercontent.com/80468156/203811150-20cd137b-bb6f-4784-a69d-af1e7eb1920c.png">
+
+<img width="1105" alt="Screen Shot 2022-11-28 at 10 49 12 PM" src="https://user-images.githubusercontent.com/80468156/204427345-a9be6ddb-98ad-4f2c-a46f-1ba6a73de96e.png">
+
 
 ---
 
