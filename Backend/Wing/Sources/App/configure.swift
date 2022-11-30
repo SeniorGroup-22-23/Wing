@@ -28,5 +28,7 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateBlocks())
 
     // register routes
-    try routes(app)
+    try propmtRoutes(app)
+    try blockRoutes(app)
+    try userRoutes(app)
 }

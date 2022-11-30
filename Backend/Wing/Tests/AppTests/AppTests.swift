@@ -14,60 +14,42 @@ final class AppTests: XCTestCase {
     
     let prompt1 = Prompt(id: nil, promptText: "What is your favorite holiday?")
     let prompt2 = Prompt(id: nil, promptText: "How would you spend your ideal day?")
-    
-    
-    
+
+                    
     func testUsernameMatch() throws {
+        /*
         let app = Application(.testing)
+        
+        
         defer { app.shutdown() }
         try configure(app)
-        
-        //try user1.save(on: app.db).wait() //add user 1 to db
-        //try user2.save(on: app.db).wait() //add user 2 to db
-        
-       /* try app.test(.GET, "/usernames/jan", afterResponse: { response in
+
+        try user1.save(on: app.db).wait() //add user 1 to db
+        try user2.save(on: app.db).wait() //add user 2 to db
+        try app.test(.GET, "/usernames/jan", afterResponse: { response in
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body, ["janeDoe", "janeJones"])
-        })*/
+        })
+         */
     }
     
     func testGetUserbyPhone() throws {
-        let app = Application(.testing)
-        defer { app.shutdown() }
-        try configure(app)
-        
         //TODO
     }
     
     func testGetUserbyEmail() throws {
-        let app = Application(.testing)
-        defer { app.shutdown() }
-        try configure(app)
-        
         //TODO
     }
     
     func testPostUser() throws {
-        let app = Application(.testing)
-        defer { app.shutdown() }
-        try configure(app)
-        
         //TODO
     }
     
     func testGetPrompts() throws {
-        let app = Application(.testing)
-        defer { app.shutdown() }
-        try configure(app)
-        
         //TODO
     }
     
     func testPostPrompts() throws {
-        let app = Application(.testing)
-        defer { app.shutdown() }
-        try configure(app)
-        
         //TODO
     }
     
