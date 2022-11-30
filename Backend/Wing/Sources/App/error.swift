@@ -42,7 +42,6 @@ extension Error: AbortError {
             return .notFound
         case .notFoundwID:
             return .notFound
-            return .notFound
         case .promptNotFound:
             return .notFound
         case .profileNotFound:
