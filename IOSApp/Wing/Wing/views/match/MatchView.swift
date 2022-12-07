@@ -8,17 +8,27 @@
 import SwiftUI
 
 class PotentialMatch : ObservableObject {
-    @Published var name : String = ""
-    @Published var age : Int = 0
-    @Published var occupation : String = ""
-    @Published var bio : String = ""
-    @Published var prompts : [String] = ["", "", ""]
-    @Published var answers : [String] = ["", "", ""]
-    @Published var photos : [Image?] = [Image?](repeating : nil, count : 8)
+    @Published var name : String
+    @Published var age : Int
+    @Published var occupation : String
+    @Published var bio : String
+    @Published var prompts : [String]
+    @Published var answers : [String]
+    @Published var photos : [Image?]
+    
+    init(name : String, age : Int, occupation : String, bio : String, prompts : [String], answers : [String], photos : [Image?]) {
+        self.name = name
+        self.age = age
+        self.occupation = occupation
+        self.bio = bio
+        self.prompts = prompts
+        self.answers = answers
+        self.photos = photos
+    }
 }
 
 struct MatchView: View {
-    @StateObject var potentialMatch = PotentialMatch()
+    @StateObject var potentialMatch = PotentialMatch(name: "Nury Kim", age: 23, occupation: "Software Engineering", bio: "This is my bio! I am a student at UNB and I can't wait to use the Wing app. Woohoo!", prompts: ["What's your favourite sport?", "Who's your celeb crush?", ""], answers: ["Football. Can't wait for the superbowl!!", "Probably Brad Pitt..", ""], photos: [Image?](repeating : nil, count : 8))
     
     var body: some View {
         ZStack {
