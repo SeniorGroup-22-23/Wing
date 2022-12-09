@@ -1,10 +1,10 @@
 # On this Page 
-1. Running the backend locally
-2. Common Errors 
-3. Installation Instructions
+1. [Running the backend locally](#runLocally)
+2. [Common Errors](#commonErrors)
+3. [Installation Instructions](#installation)
 
 
-# Running the Backend Locally
+# Running the Backend Locally <a name="runLocally"></a>
 
 1. If you have not already - clone the Wing repo. You can do this from Xcode (after your Github account has been linked).  
 
@@ -36,12 +36,11 @@ In terminal, navigate to project directory and run `swift test`
 In Xcode, go to Product>Test      
 
 
-## Common Errors    
-- **Blocked certificate when trying to push/pull from Xcode** 
-There is a problem with certificates when using Xcode git controls on Eduroam. Not sure how to fix - but when off Eduroam git controls work just fine. Same issue with public internet connections. 
+## Common Errors  <a name="commonErrors"></a>
+- **Blocked certificate when trying to push/pull from Xcode**                   
+There is a problem with certificates when using Xcode git controls on Eduroam. Not sure how to fix - but when off Eduroam git controls work just fine. Same issue with public internet connections.      
 
-
-# Installations   
+# Installations   <a name="installation"></a>
 
 ## Xcode    
 Xcode is Apple's IDE. IT allows developpers to easily make iOS applications and add these applications to the app store. To ensure a uniform development experience we suggest you use Xcode to contribute. Ensure Xcode in installed before continuing.      
@@ -105,10 +104,3 @@ Insomnia is an application that allows developers to easily test RESTapis. We wi
 ### Installing Insomnia  
 1. Install Insomnia using Homebrew  
 `brew install --cask insomnia`  
-
-## Importing the Models package
-The Models package contains the declarations for the entities that are stored in the database. These will allow us to create objects that can be easily passed between Swift and Postgres. You may run into this issue when you try to build: "Missing package product". If this happens to you follow these steps. 
-1. Make sure you do not have the Models package open in a window in Xcode.
-2. Go to the nav bar under Product -> Clear All Issues and Product -> Clean Build Folder
-3. Quit Xcode.
-4. Try again. 

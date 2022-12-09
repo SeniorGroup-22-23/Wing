@@ -1,2 +1,0 @@
-# Wing API Routes 
-
