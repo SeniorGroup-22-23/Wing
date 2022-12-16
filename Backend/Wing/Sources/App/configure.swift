@@ -20,6 +20,7 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreatePromptResponses())
     app.migrations.add(CreatePhotos())
     app.migrations.add(CreateProfiles())
+    app.migrations.add(CreateProfilePreviews())
     app.migrations.add(CreateFriendships())
     app.migrations.add(CreateWings())
     app.migrations.add(CreateSwipes())
@@ -27,6 +28,9 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateMessages())
     app.migrations.add(CreateBlocks())
 
+    // run SQL shell script
+    
+    
     // register routes
     try propmtRoutes(app)
     try blockRoutes(app)
