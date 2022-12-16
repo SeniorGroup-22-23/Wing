@@ -28,7 +28,7 @@ class PotentialMatch : ObservableObject {
 }
 
 struct MatchView: View {
-    @StateObject var potentialMatch = PotentialMatch(name: "Nury Kim", age: 23, occupation: "Software Engineering", bio: "This is my bio! I am a student at UNB and I can't wait to use the Wing app. Woohoo!", prompts: ["What's your favourite sport?", "Who's your celeb crush?", ""], answers: ["Football. Can't wait for the superbowl!!", "Probably Brad Pitt..", ""], photos: [Image?](repeating : nil, count : 8))
+    @StateObject var potentialMatch = PotentialMatch(name: "Nury", age: 23, occupation: "Software Engineering", bio: "This is my bio! I am a student at UNB and I can't wait to use the Wing app. Woohoo!", prompts: ["What's your favourite sport?", "Who's your celeb crush?", ""], answers: ["Football. Can't wait for the superbowl!!", "Probably Brad Pitt..", ""], photos: [Image?](repeating : nil, count : 8))
     
     var body: some View {
         ZStack {
