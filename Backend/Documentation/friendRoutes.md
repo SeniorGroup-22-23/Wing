@@ -75,7 +75,8 @@ _NOTE: Edit is done based on friendship record ID ("id"). Only the status of the
 }
 ```
 
-#### Success Response:     
+#### Success Response:      
+_NOTE: If status is set to 3 and record is found, that record will be deleted. 200 OK response means "Deleted Successfully"._       
 200 OK 
 ```json
 {
@@ -102,6 +103,7 @@ _Note: No error will occur if invalid (not empty) id is provided - will still re
 
 <img width="996" alt="Screen Shot 2022-12-08 at 4 23 22 PM" src="https://user-images.githubusercontent.com/80468156/206560064-cfb257b3-0092-4a35-864f-53b4ea5ab185.png">
 
+<img width="996" alt="Screenshot 2022-12-21 at 12 42 09 PM" src="https://user-images.githubusercontent.com/80468156/208958325-78e24624-2788-4aec-835d-c9244695f78c.png">
 
 ---
 
