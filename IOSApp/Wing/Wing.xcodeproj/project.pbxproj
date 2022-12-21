@@ -65,6 +65,7 @@
 		747DAEBF28FF7F85004FF768 /* NotoSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Light.ttf"; sourceTree = "<group>"; };
 		747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Italic.ttf"; sourceTree = "<group>"; };
 		747DAEDC28FF7F96004FF768 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		BCAD3F702935406100E9135F /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Models; path = ../../Models; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +96,7 @@
 		02C71E6C28EB8F1000447686 = {
 			isa = PBXGroup;
 			children = (
+				BCAD3F6F2935406100E9135F /* Packages */,
 				02C71E7728EB8F1000447686 /* Wing */,
 				02C71E8828EB8F1100447686 /* WingTests */,
 				02C71E9228EB8F1100447686 /* WingUITests */,
@@ -189,6 +191,14 @@
 				747DAEC828FF7F85004FF768 /* NotoSans-Italic.ttf */,
 			);
 			path = Noto_Sans;
+			sourceTree = "<group>";
+		};
+		BCAD3F6F2935406100E9135F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				BCAD3F702935406100E9135F /* Models */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
