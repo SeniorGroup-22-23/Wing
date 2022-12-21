@@ -33,6 +33,7 @@ final class ProfileTests: XCTestCase {
         
         XCTAssertEqual(profile.name, name)
         XCTAssert((profile.name as Any) is String)
+
         
         XCTAssertEqual(profile.birthdate, birthdate)
         XCTAssert((profile.birthdate as Any) is Date)

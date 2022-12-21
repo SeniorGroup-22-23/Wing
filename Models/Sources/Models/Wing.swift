@@ -26,7 +26,7 @@ public final class Wing: Model, Content{
     
     // 1 = pending
     // 2 = liked, send to swipe table, keep record
-    // send to swipe table if disliked, delete record
+    // 3 = dislike, send to swipe table, delete record
     @Field(key: "status")
     public var status: Int16
     
