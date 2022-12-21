@@ -36,4 +36,5 @@ public func configure(_ app: Application) throws {
     try blockRoutes(app)
     try userRoutes(app)
     try friendRoutes(app)
+    try profilePreviewRoutes(app)
 }

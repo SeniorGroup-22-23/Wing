@@ -21,15 +21,21 @@ func friendRoutes(_ app: Application) throws {
     
     
     app.put("friend"){ req async throws -> Friendship in
-        //add logic to check if status is a 3, if so run delete instead of update
         let friendship = try req.content.decode(Friendship.self)
         guard friendship.id != nil else {
             throw Error.nilId
         }
-        try await Friendship.query(on: req.db)
-            .set(\.$status, to : friendship.status) //update status of friendship (pending, approved)
-            .filter(\.$id == friendship.id!)
-            .update()
+        //add logic to check if status is a 3, if so run delete instead of update
+        if friendship.status == 3 {
+            try await Friendship.query(on: req.db)
+                .filter(\.$id == UUID(friendship.id!.uuidString.lowercased())!)
+                .delete()
+        } else {
+            try await Friendship.query(on: req.db)
+                .set(\.$status, to : friendship.status) //update status of friendship (pending, approved)
+                .filter(\.$id == UUID(friendship.id!.uuidString.lowercased())!)
+                .update()
+        }
         return friendship
     }
     

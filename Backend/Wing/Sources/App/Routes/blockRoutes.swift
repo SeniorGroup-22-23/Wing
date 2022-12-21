@@ -34,14 +34,14 @@ func blockRoutes(_ app: Application) throws {
         let block = try req.content.decode(Block.self)
         try await Block.query(on: req.db)
             .set(\.$reported, to : block.reported)
-            .filter(\.$id == block.id!)
+            .filter(\.$id == UUID(block.id!.uuidString.lowercased())!)
             .update()
         return block
     }
     
     //GET Block Records by blockedById
     app.get("block", ":blockedById") { req async throws -> [Block] in
-        guard let blockedById = UUID(uuidString: req.parameters.get("blockedById")!)
+        guard let blockedById = UUID(uuidString: req.parameters.get("blockedById")!.lowercased())
         else {
              throw Error.nilId
         }

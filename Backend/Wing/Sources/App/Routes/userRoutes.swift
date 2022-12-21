@@ -77,14 +77,14 @@ func userRoutes(_ app: Application) throws {
             .set(\.$phone, to : user.phone)
             .set(\.$email, to : user.email)
             .set(\.$password, to : user.password)
-            .filter(\.$id == user.id!)
+            .filter(\.$id == UUID(user.id!.uuidString.lowercased())!)
             .update()
         return user
     }
     
     //GET Profile by UserId
     app.get("profile", ":userId") {req async throws -> Profile in
-        guard let userId = UUID(uuidString: req.parameters.get("userId")!)
+        guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
              throw Error.nilId
         }
@@ -127,7 +127,7 @@ func userRoutes(_ app: Application) throws {
             .set(\.$minAge, to : profile.minAge)
             .set(\.$maxAge, to : profile.maxAge)
             .set(\.$maxDistance, to : profile.maxDistance)
-            .filter(\.$id == profile.id!)
+            .filter(\.$id == UUID(profile.id!.uuidString.lowercased())!)
             .update()
         return profile
     }
