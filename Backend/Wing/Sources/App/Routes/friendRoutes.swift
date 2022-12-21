@@ -21,6 +21,7 @@ func friendRoutes(_ app: Application) throws {
     
     
     app.put("friend"){ req async throws -> Friendship in
+        //add logic to check if status is a 3, if so run delete instead of update
         let friendship = try req.content.decode(Friendship.self)
         guard friendship.id != nil else {
             throw Error.nilId
