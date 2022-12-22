@@ -14,7 +14,7 @@ func matchRoutes(_ app: Application) throws {
     decoder.dateDecodingStrategy = .iso8601
     
     //Create Swipe Record
-    //returns true if match was found , false otherwise 
+    //returns true if match was found, false otherwise 
     app.post("swipe"){ req async throws -> Bool in
         let temp = try req.content.decode(Swipe.self)
         let lowerSId = UUID(String(temp.swiperId).lowercased())!
@@ -47,6 +47,8 @@ func matchRoutes(_ app: Application) throws {
                     matchRecord = Match(firstUserId: lowerSId, secondUserId: lowerPId, type: 1) //direct
                 }
                 try await matchRecord.create(on: req.db)
+                
+                //TODO Remove this?
                 try await Swipe.query(on: req.db)
                     .filter(\.$id == lowerId)
                     .delete()
@@ -75,6 +77,23 @@ func matchRoutes(_ app: Application) throws {
     }
     
     //unmatch given both user IDs
+    app.post("unmatch",":id1",":id2"){ req async throws -> Response in
+        //delete match record
+        let id1 = UUID(req.parameters.get("id1")!.lowercased())
+        let id2 = UUID(req.parameters.get("id2")!.lowercased())
+        
+        try await Match.query(on: req.db)
+            .filter(\.$first_user_id == id1)
+            .filter(\.$second_user_id == id2)
+            .delete()
+        
+        try await Match.query(on: req.db)
+            .filter(\.$first_user_id == id2)
+            .filter(\.$second_user_id == id1)
+            .delete()
+        
+        return Response(status: .accepted)
+    }
     
     //get all prospects profileIDs
     
