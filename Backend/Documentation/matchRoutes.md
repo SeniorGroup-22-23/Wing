@@ -2,6 +2,7 @@
 
 1. [Create Swipe Record](#createswipe)
 2. [Get Prospects](#getprospects)
+3. [Unmatch](#unmatch)
 
 ---
 
@@ -87,5 +88,44 @@ _Note: If invalid ID is provided or there is no profile associated userId 404 Er
 
 
 <img width="1115" alt="Screenshot 2022-12-28 at 7 35 30 PM" src="https://user-images.githubusercontent.com/80468156/209885080-901a8e20-5eb9-45a7-80ad-f42a62800419.png">
+
+---
+
+### Unmatch <a name="unmatch"></a>        
+#### URL:  
+`/unmatch/:userId1/:userId2`
+
+#### Method: 
+`POST`
+
+#### Parameters: 
+###### :userId1
+The Id of the first user invloved in the unmatch. 
+
+###### :userId2
+The Id of the second user invloved in the unmatch. 
+
+
+#### Success Response:     
+This endpoint deletes any match record that exists between the two provided users.      
+_Note: If no match record found no error will be returned._        
+202 Accepted
+```json
+{
+}
+```
+
+#### Error Response: 
+_Note: If invalid ID is provided for either parameter error will occur._      
+404 Not Found
+```json
+{
+        "error": true,
+	"reason": "Illegal nil ID."
+}
+```
+
+#### Example
+
 
 ---
