@@ -455,7 +455,7 @@ The userID associated with the profile you would like to retrieve
 ### Get Profile by ID <a name="getprofileID"></a>
 
 #### URL:
-`/profileId/:profileID`
+`/profileId/:profileId`
 
 #### Method:
 `GET`
