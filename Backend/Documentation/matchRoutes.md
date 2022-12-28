@@ -1,11 +1,11 @@
 # Match API Endpoints 
 
-1. [Create Swipe Record](#createSwipe)
+1. [Create Swipe Record](#createswipe)
+2. [Get Prospects](#getprospects)
 
 ---
 
-### Create Swipe Record <a name="createSwipe"></a>      
-TODO.   
+### Create Swipe Record <a name="createswipe"></a>        
 #### URL:  
 `/swipe`
 
@@ -48,5 +48,44 @@ TODO.
 
 <img width="943" alt="Screenshot 2022-12-22 at 3 08 50 PM" src="https://user-images.githubusercontent.com/80468156/209209015-252173a6-c208-4400-9518-4769100870a1.png">
 
+---
+
+### Get Prospects <a name="getprospects"></a>        
+#### URL:  
+`/prospects/:userId`
+
+#### Method: 
+`GET`
+
+#### Parameters: 
+###### :userId
+The ID of the user you would like to retrieve prospects for 
+
+#### Success Response: 
+This endpoint returns an array of profile IDs, each profile ID corresponds to a prospect for the user.      
+_Note: If no prospects are found an empty array will be returned._        
+200 OK
+```json
+[
+	"26CB9351-40D0-4805-973B-CA3A7A49278D"
+]
+```
+
+#### Error Response: 
+_Note: If invalid ID is provided or there is no profile associated userId 404 Error will be returned._      
+404 Not Found
+```json
+{
+        "error": true,
+	"reason": "Illegal nil ID."
+}
+```
+
+#### Example
+
+<img width="1115" alt="Screenshot 2022-12-28 at 7 39 36 PM" src="https://user-images.githubusercontent.com/80468156/209885235-aa2a4c36-a60f-44e1-be64-b3ae9e4b0fb6.png">
+
+
+<img width="1115" alt="Screenshot 2022-12-28 at 7 35 30 PM" src="https://user-images.githubusercontent.com/80468156/209885080-901a8e20-5eb9-45a7-80ad-f42a62800419.png">
 
 ---

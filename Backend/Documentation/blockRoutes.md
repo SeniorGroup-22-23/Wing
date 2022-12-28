@@ -2,8 +2,8 @@
   
 
 1. [Block User](#block) 
-2. [Get Block Records by BlockedById (User ID)](#getBlock) 
-1. [Edit Block Record](#editBlock) 
+2. [Get Block Records by BlockedById (User ID)](#getblock) 
+1. [Edit Block Record](#editblock) 
 
 ---
 
@@ -56,7 +56,7 @@
 
 ---
 
-### Get Blocked Records by BlockedById <a name="getBlock"></a>
+### Get Blocked Records by BlockedById <a name="getblock"></a>
 
 #### URL:
 `/block/:blockedById`
@@ -126,7 +126,7 @@ _NOTE: If no blocked records exist for the provided ID, an empty array will be r
 
 ---
 
-### Edit Block Record <a name="editBlock"></a>
+### Edit Block Record <a name="editblock"></a>
 
 #### URL:   
 `/block`
