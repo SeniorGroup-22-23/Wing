@@ -8,7 +8,7 @@
 3. [Create Profile](#createprofile)
 1. [Edit User Account](#edituser) 
 2. [Get Profile by UserID](#getprofile)
-3. [Get Profile by ProfileID](#getprofileID)
+3. [Get Profile by ID](#getprofileID)
 4. [Edit Profile](#editprofile)
 12. [Delete User] TODO (also delete all corresponding records in other tables)
    
@@ -452,7 +452,7 @@ The userID associated with the profile you would like to retrieve
 
 ---
 
-### Get Profile by ProfileID <a name="getprofileID"></a>
+### Get Profile by ID <a name="getprofileID"></a>
 
 #### URL:
 `/profileId/:profileID`
