@@ -9,6 +9,9 @@ import FluentPostgresDriver
 import Vapor
 import Models
 
+extension UUID: Content{}
+let userCalendar = Calendar.current
+
 func matchRoutes(_ app: Application) throws {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .iso8601
@@ -77,25 +80,86 @@ func matchRoutes(_ app: Application) throws {
     }
     
     //unmatch given both user IDs
+    //TODO: TEST and Document
     app.post("unmatch",":id1",":id2"){ req async throws -> Response in
         //delete match record
         let id1 = UUID(req.parameters.get("id1")!.lowercased())
         let id2 = UUID(req.parameters.get("id2")!.lowercased())
         
-        try await Match.query(on: req.db)
-            .filter(\.$first_user_id == id1)
-            .filter(\.$second_user_id == id2)
-            .delete()
-        
-        try await Match.query(on: req.db)
-            .filter(\.$first_user_id == id2)
-            .filter(\.$second_user_id == id1)
-            .delete()
-        
+        do {
+            try await Match.query(on: req.db)
+                .filter(\.$firstUserId == id1!)
+                .filter(\.$secondUserId == id2!)
+                .delete()
+            
+            try await Match.query(on: req.db)
+                .filter(\.$firstUserId == id2!)
+                .filter(\.$secondUserId == id1!)
+                .delete()
+        } catch {
+            throw Error.nilId
+        }
         return Response(status: .accepted)
     }
     
+    
     //get all prospects profileIDs
+    //TODO: TEST and document
+    app.get("prospects", ":userId"){ req async throws -> [UUID] in
+        guard let userId = UUID(req.parameters.get("userId")!.lowercased())
+        else {
+            throw Error.nilId
+        }
+        
+        //get profile of current user
+        guard let profile = try await Profile.query(on: req.db)
+            .filter(\.$userId == userId)
+            .first() //Will throw error if no User is found
+        else {
+            throw Error.profileNotFound
+        }
+        
+        //get invalid userIDs
+        var invalids = [userId]
+        invalids += try await Swipe.query(on: req.db) //currently in swipes
+            .filter(\.$swiperId == userId)
+            .all(\.$prospectId)
+        
+        invalids += try await Block.query(on: req.db) //currently in blocks
+            .filter(\.$blockedById == userId)
+            .all(\.$blockedUserId)
+        
+        invalids += try await Match.query(on: req.db) //currently in matches as user 1
+            .filter(\.$firstUserId == userId)
+            .all(\.$secondUserId)
+        
+        invalids += try await Match.query(on: req.db) //currently in matches as user 2
+            .filter(\.$secondUserId == userId)
+            .all(\.$firstUserId)
+        
+        let prospects: [UUID]
+        let maxBirthdate = userCalendar.date(byAdding: .year, value: -Int(profile.minAge), to: Date())!
+        let minBirthdate = userCalendar.date(byAdding: .year, value: -Int(profile.maxAge), to: Date())!
+        
+        if(profile.preference == 3){
+            //do not check gender in req
+            prospects = try await Profile.query(on: req.db) //TODO: add location filter
+                .filter(\.$userId !~ invalids)
+                .filter(\.$birthdate <= maxBirthdate)
+                .filter(\.$birthdate >= minBirthdate)
+                .all(\.$id)
+            
+        } else {
+            prospects = try await Profile.query(on: req.db) //TODO: add location filter
+                .filter(\.$userId !~ invalids)
+                .filter(\.$gender == profile.preference)
+                .filter(\.$birthdate <= maxBirthdate)
+                .filter(\.$birthdate >= minBirthdate)
+                .all(\.$id)
+        }
+        
+        return prospects //returns empty array if no prospects
+    }
     
     
     
