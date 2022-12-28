@@ -83,7 +83,7 @@ func userRoutes(_ app: Application) throws {
     }
     
     //GET Profile by UserId
-    app.get("profile", ":userId") {req async throws -> Profile in
+    app.get("profile", ":userId") { req async throws -> Profile in
         guard let userId = UUID(uuidString: req.parameters.get("userId")!)
         else {
              throw Error.nilId
@@ -129,6 +129,21 @@ func userRoutes(_ app: Application) throws {
             .set(\.$maxDistance, to : profile.maxDistance)
             .filter(\.$id == profile.id!)
             .update()
+        return profile
+    }
+    
+    //GET profile by profile ID
+    app.get("profileId", ":profileId") { req async throws -> Profile in
+        guard let profileId = UUID(uuidString: req.parameters.get("profileId")!.lowercased())
+        else {
+             throw Error.nilId
+        }
+        guard let profile = try await Profile.query(on: req.db)
+            .filter(\.$id == profileId)
+            .first() //Will throw error if no User is found
+        else {
+            throw Error.profileNotFound
+        }
         return profile
     }
 }
