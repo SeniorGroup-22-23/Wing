@@ -83,8 +83,9 @@ _Note: If invalid ID is provided or there is no profile associated userId 404 Er
 
 #### Example
 
+<img width="1115" alt="Screenshot 2022-12-28 at 7 39 36 PM" src="https://user-images.githubusercontent.com/80468156/209885235-aa2a4c36-a60f-44e1-be64-b3ae9e4b0fb6.png">
+
+
 <img width="1115" alt="Screenshot 2022-12-28 at 7 35 30 PM" src="https://user-images.githubusercontent.com/80468156/209885080-901a8e20-5eb9-45a7-80ad-f42a62800419.png">
-
-
 
 ---
