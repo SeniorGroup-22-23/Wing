@@ -52,13 +52,19 @@ public final class Profile: Model, Content{
     @Field(key: "max_distance")
     public var maxDistance: Int16
     
+    @Field(key: "curr_latitude")
+    public var currLatitude: Float
+    
+    @Field(key: "curr_longitude")
+    public var currLongitude: Float
+    
     
     public init(){
         
     }
     
     public init(id: UUID? = nil, userId: UUID, name: String, birthdate: Date, occupation: String, bio: String, gender: Int16,
-         preference: Int16, minAge: Int16, maxAge: Int16, maxDistance: Int16){
+                preference: Int16, minAge: Int16, maxAge: Int16, maxDistance: Int16, currLatitude: Float, currLongitude: Float){
         
         self.id = id
         self.userId = userId
@@ -71,6 +77,8 @@ public final class Profile: Model, Content{
         self.minAge = minAge
         self.maxAge = maxAge
         self.maxDistance = maxDistance
+        self.currLatitude = currLatitude
+        self.currLongitude = currLongitude
         
     }
     
