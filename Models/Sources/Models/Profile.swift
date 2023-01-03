@@ -53,10 +53,10 @@ public final class Profile: Model, Content{
     public var maxDistance: Int16
     
     @Field(key: "curr_latitude")
-    public var currLatitude: Float
+    public var currLatitude: Double
     
     @Field(key: "curr_longitude")
-    public var currLongitude: Float
+    public var currLongitude: Double
     
     
     public init(){
@@ -64,7 +64,7 @@ public final class Profile: Model, Content{
     }
     
     public init(id: UUID? = nil, userId: UUID, name: String, birthdate: Date, occupation: String, bio: String, gender: Int16,
-                preference: Int16, minAge: Int16, maxAge: Int16, maxDistance: Int16, currLatitude: Float, currLongitude: Float){
+                preference: Int16, minAge: Int16, maxAge: Int16, maxDistance: Int16, currLatitude: Double, currLongitude: Double){
         
         self.id = id
         self.userId = userId
