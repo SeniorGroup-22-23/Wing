@@ -8,7 +8,8 @@
 3. [Create Profile](#createprofile)
 1. [Edit User Account](#edituser) 
 2. [Get Profile by UserID](#getprofile)
-3. [Edit Profile](#editprofile)
+3. [Get Profile by ID](#getprofileid)
+4. [Edit Profile](#editprofile)
 12. [Delete User] TODO (also delete all corresponding records in other tables)
    
 
@@ -448,3 +449,52 @@ The userID associated with the profile you would like to retrieve
 <img width="1112" alt="Screen Shot 2022-11-24 at 11 29 26 AM" src="https://user-images.githubusercontent.com/80468156/203821327-915943e3-d488-445f-bb54-9c8ef03975e6.png">
 
 <img width="1112" alt="Screen Shot 2022-11-24 at 11 29 12 AM" src="https://user-images.githubusercontent.com/80468156/203821340-508c69b2-c708-430a-89f3-7298d18d9093.png">
+
+---
+
+### Get Profile by ID <a name="getprofileid"></a>
+
+#### URL:
+`/profileId/:profileId`
+
+#### Method:
+`GET`
+
+#### URL Parameters:
+###### :profileID  
+UUID           
+The ID associated with the profile you would like to retrieve
+
+#### Success Response:
+200 OK  
+```json
+{
+  "gender": 1,
+  "maxAge": 40,
+  "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
+  "id": "710E4BAD-63E1-4C03-A76D-EB8DED59C7D6",
+  "bio": "Hey Everyone! I love the outdoors and my cats :)",
+  "minAge": 25,
+  "maxDistance": 50,
+  "occupation": "Teacher",
+  "birthdate": "2001-05-27T00:00:00Z",
+  "preference": 0,
+   "name": "Jane"
+}
+```
+
+#### Error Response: 
+404 Not Found
+```json
+{
+  "error": true,
+  "reason": "Illegal nil ID."
+}
+```
+
+#### Example
+
+<img width="943" alt="Screenshot 2022-12-28 at 6 00 57 PM" src="https://user-images.githubusercontent.com/80468156/209876888-c640abf0-eaf1-4bcb-a61f-66fb62f33fc1.png">
+
+<img width="1115" alt="Screenshot 2022-12-28 at 6 01 07 PM" src="https://user-images.githubusercontent.com/80468156/209876899-2ff117dc-9a70-4f2c-ae0a-9cb26ca0bd68.png">
+

@@ -35,4 +35,5 @@ public func configure(_ app: Application) throws {
     try propmtRoutes(app)
     try blockRoutes(app)
     try userRoutes(app)
+    try matchRoutes(app)
 }
