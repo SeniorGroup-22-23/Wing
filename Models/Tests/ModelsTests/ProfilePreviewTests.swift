@@ -16,7 +16,7 @@ final class ProfilePreviewTests: XCTestCase {
         let userId = UUID()
         let username = "jjetta"
         let name = "Joey"
-        let primaryPhoto: [UInt8] = [2,3,5]
+        let primaryPhoto: Data = Data()
 
         
         
@@ -34,7 +34,7 @@ final class ProfilePreviewTests: XCTestCase {
         XCTAssert((profilePreview.name as Any) is String)
         
         XCTAssertEqual(profilePreview.primaryPhoto, primaryPhoto)
-        XCTAssert((profilePreview.primaryPhoto as Any) is [UInt8])
+        XCTAssert((profilePreview.primaryPhoto as Any) is Data)
 
         
         
