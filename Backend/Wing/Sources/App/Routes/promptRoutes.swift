@@ -12,7 +12,7 @@ func propmtRoutes(_ app: Application) throws {
     
     //GET Prompt by Prompt ID
     app.get("prompt", ":promptId") { req async throws -> Prompt in
-        let promptId = UUID(uuidString: req.parameters.get("promptId")!)!
+        let promptId = UUID(uuidString: req.parameters.get("promptId")!.lowercased())!
         guard let prompt = try await Prompt.query(on: req.db)
             .filter(\.$id == promptId)
             .first()
@@ -25,7 +25,7 @@ func propmtRoutes(_ app: Application) throws {
     
     //GET Prompts by UserID (all prompt responses by user ID)
     app.get("prompts", ":userId") { req async throws -> [PromptResponse] in
-        let userId = UUID(uuidString: req.parameters.get("userId")!)!
+        let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())!
         let prompts = try await PromptResponse.query(on: req.db)
             .filter(\.$userId == userId)
             .all()
@@ -64,6 +64,7 @@ func propmtRoutes(_ app: Application) throws {
         }
         try await PromptResponse.query(on: req.db)
             .set(\.$responseText, to : promptRes.responseText)
+            .filter(\.$id == UUID(promptRes.id!.uuidString.lowercased())!)
             .update()
         return promptRes
     }
@@ -71,7 +72,7 @@ func propmtRoutes(_ app: Application) throws {
     
     //DELETE Prompt Response (remove prompt from user)
     app.delete("promptResponse", ":id"){ req async throws -> Response in
-       guard let id = UUID(uuidString: req.parameters.get("id")!)
+        guard let id = UUID(uuidString: req.parameters.get("id")!.lowercased())
         else {
            return Response(status: .badRequest)
        }

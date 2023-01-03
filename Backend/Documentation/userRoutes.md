@@ -9,7 +9,7 @@
 1. [Edit User Account](#edituser) 
 2. [Get Profile by UserID](#getprofile)
 3. [Edit Profile](#editprofile)
-12. [Delete User] TODO (also delete all corresponding records in other tables)
+12. [Delete User] TODO (just delete from user table, triggers do the rest)
    
 
 
