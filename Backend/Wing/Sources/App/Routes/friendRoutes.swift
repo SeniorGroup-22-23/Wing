@@ -25,8 +25,7 @@ func friendRoutes(_ app: Application) throws {
         guard friendship.id != nil else {
             throw Error.nilId
         }
-        //add logic to check if status is a 3, if so run delete instead of update
-        if friendship.status == 3 {
+        if friendship.status == 3 { //friend request declined, delete friend record
             try await Friendship.query(on: req.db)
                 .filter(\.$id == UUID(friendship.id!.uuidString.lowercased())!)
                 .delete()
@@ -40,10 +39,11 @@ func friendRoutes(_ app: Application) throws {
     }
     
     app.get("friends", ":userId"){ req async throws -> [UUID] in
-        guard let userId = UUID(uuidString: req.parameters.get("userId")!)
+        guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
              throw Error.nilId
         }
+        
         let friends1 = try await Friendship.query(on: req.db) //get any friends where userId was respondent & accepted
             .filter(\.$respondentId == userId)
             .filter(\.$status == 2)
@@ -54,40 +54,41 @@ func friendRoutes(_ app: Application) throws {
             .filter(\.$status == 2)
             .all(\.$respondentId)
         
-        //query to find all profilePreviews for UUIDs?
+        let friends = friends1 + friends2
+        
+        let profilePreviews = try await ProfilePreview.query(on: req.db)
+            .filter(\.$userId ~~ friends) //userId in friends
+            .all(\.$id)
             
-        return friends1 + friends2
+        return profilePreviews
     }
     
-    
+    //TODO: Fix return values here 
     app.get("friendRequests", ":userId"){ req async throws -> [Friendship] in
-        guard let userId = UUID(uuidString: req.parameters.get("userId")!)
+        guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
              throw Error.nilId
         }
-        let requests = try await Friendship.query(on: req.db)
+        let requests = try await Friendship.query(on: req.db) //get requester userIds
             .filter(\.$respondentId == userId)
             .filter(\.$status == 1)
             .all()
         
+        var profilePreviews = [ProfilePreview?]()
+        for request in requests {
+            profilePreviews.append(try await ProfilePreview.query(on: req.db)
+                .filter(\.$userId == request.requesterId)
+                .first())
+        }
+        
+        print(requests)
+        print(profilePreviews)
         //query to find all friend profiles that match UUID requesterId
         //make new local structure that is friednship, profile preview
         //return array [[friendship, profilePreview], [friendship, profilePreview], ....]
             
         return requests //need to return whole struct to allow for updates (need friendship Id)
     }
-    
-    
-    app.get("friend", ":username"){ req async throws -> UUID in
-        let usernameMatch = req.parameters.get("username")! //! forces decode to string, if empty no error
-        let users = try await User.query(on: req.db) //instead I would like to query profilePreview here
-            .filter(\.$username == usernameMatch)
-            .all(\.$id) //returns username field from all matches
-        if(users.isEmpty){
-            throw Error.userNotFound
-        }
-        return users[0] //instead return profilePreview (better for display)
-    }
-    
-    
+
+
 }

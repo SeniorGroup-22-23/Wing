@@ -12,11 +12,9 @@ import Models
 
 func profilePreviewRoutes(_ app: Application) throws {
     
-    
     // create a new JSON decoder that uses unix-timestamp dates
     
     app.post("profilePreview"){ req async throws -> ProfilePreview in
-       
         let preview = try req.content.decode(ProfilePreview.self)
         try await preview.create(on: req.db)
         return preview
@@ -37,23 +35,29 @@ func profilePreviewRoutes(_ app: Application) throws {
         return preview
     }
     
-
-    //THIS IS A TEMP ROUTE FOR TESTING BYTEA IN POSTGRES
-    // ****** TO BE DELETED *************
-    
-    
-    
-    app.get("profilePreview", ":username") {req async throws -> ProfilePreview in
-        let username = req.parameters.get("username")!
-        guard let preview = try await ProfilePreview.query(on: req.db)
-            .filter(\.$username == username)
-            .first() //Will throw error if no User is found
+    app.get("profilePreview", ":id"){ req async throws -> ProfilePreview in
+        guard let id = UUID(uuidString: req.parameters.get("id")!.lowercased())
         else {
-            throw Error.profileNotFound
+             throw Error.nilId
         }
-        return preview
+        guard let profile = try await ProfilePreview.query(on: req.db) //get any friends where userId was requester & respondent accepted
+            .filter(\.$id == id)
+            .first()
+        else {
+            throw Error.notFoundwID("Profile Preview", id)
+        }
+        return profile
     }
     
-    //******** END OF SECTION TO DELETE *********
+    app.get("profile", "preview", ":username"){ req async throws -> ProfilePreview in
+        let usernameMatch = req.parameters.get("username")! //! forces decode to string, if empty no error
+        let profilePreview = try await ProfilePreview.query(on: req.db)
+            .filter(\.$username == usernameMatch)
+            .all()
+        if(profilePreview.isEmpty){
+            throw Error.userNotFound
+        }
+        return profilePreview[0]
+    }
     
 }
