@@ -19,14 +19,14 @@ public final class Photo: Model, Content{
     public var userId: UUID
     
     @Field(key: "photo")
-    public var photo: [UInt8]
+    public var photo: Data
    
     
     public init(){
         
     }
     
-    public init(id: UUID? = nil, userId: UUID, photo: [UInt8]){
+    public init(id: UUID? = nil, userId: UUID, photo: Data){
         
         self.id = id
         self.userId = userId

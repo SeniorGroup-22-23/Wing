@@ -22,9 +22,11 @@ final class ProfileTests: XCTestCase {
         let minAge = Int16(20)
         let maxAge = Int16(26)
         let maxDistance = Int16(45)
+        let currLatitude = Double(16.6)
+        let currLongitude = Double(17.7)
         
         
-        let profile = Profile(id: nil, userId: userId, name: name, birthdate: birthdate, occupation: occupation, bio: bio, gender: 2, preference: 1, minAge: minAge, maxAge: maxAge, maxDistance: maxDistance)
+        let profile = Profile(id: nil, userId: userId, name: name, birthdate: birthdate, occupation: occupation, bio: bio, gender: 2, preference: 1, minAge: minAge, maxAge: maxAge, maxDistance: maxDistance, currLatitude: currLatitude, currLongitude: currLongitude)
         
         XCTAssertNil(profile.id)
         
@@ -58,8 +60,13 @@ final class ProfileTests: XCTestCase {
         
         XCTAssertEqual(profile.maxDistance, maxDistance)
         XCTAssert((profile.maxDistance as Any) is Int16)
-
         
+        XCTAssertEqual(profile.currLatitude, currLatitude)
+        XCTAssert((profile.currLatitude as Any) is Double)
+        
+        XCTAssertEqual(profile.currLongitude, currLongitude)
+        XCTAssert((profile.currLongitude as Any) is Double)
+    
         
     }
     

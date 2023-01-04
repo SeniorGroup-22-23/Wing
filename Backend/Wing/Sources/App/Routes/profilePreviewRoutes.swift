@@ -12,7 +12,11 @@ import Models
 
 func profilePreviewRoutes(_ app: Application) throws {
     
+    
+    // create a new JSON decoder that uses unix-timestamp dates
+    
     app.post("profilePreview"){ req async throws -> ProfilePreview in
+       
         let preview = try req.content.decode(ProfilePreview.self)
         try await preview.create(on: req.db)
         return preview
@@ -32,5 +36,24 @@ func profilePreviewRoutes(_ app: Application) throws {
 
         return preview
     }
+    
+
+    //THIS IS A TEMP ROUTE FOR TESTING BYTEA IN POSTGRES
+    // ****** TO BE DELETED *************
+    
+    
+    
+    app.get("profilePreview", ":username") {req async throws -> ProfilePreview in
+        let username = req.parameters.get("username")!
+        guard let preview = try await ProfilePreview.query(on: req.db)
+            .filter(\.$username == username)
+            .first() //Will throw error if no User is found
+        else {
+            throw Error.profileNotFound
+        }
+        return preview
+    }
+    
+    //******** END OF SECTION TO DELETE *********
     
 }
