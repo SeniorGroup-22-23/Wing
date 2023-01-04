@@ -54,7 +54,7 @@ func friendRoutes(_ app: Application) throws {
             .filter(\.$status == 2)
             .all(\.$respondentId)
         
-        //query to find all friend profiles for UUID?
+        //query to find all profilePreviews for UUIDs?
             
         return friends1 + friends2
     }
@@ -71,7 +71,8 @@ func friendRoutes(_ app: Application) throws {
             .all()
         
         //query to find all friend profiles that match UUID requesterId
-        //return array [[friendship, friendProfile], [friendship, friendProfile], ....]
+        //make new local structure that is friednship, profile preview
+        //return array [[friendship, profilePreview], [friendship, profilePreview], ....]
             
         return requests //need to return whole struct to allow for updates (need friendship Id)
     }
@@ -79,13 +80,13 @@ func friendRoutes(_ app: Application) throws {
     
     app.get("friend", ":username"){ req async throws -> UUID in
         let usernameMatch = req.parameters.get("username")! //! forces decode to string, if empty no error
-        let users = try await User.query(on: req.db) //instead I would like to query friendProfile here
+        let users = try await User.query(on: req.db) //instead I would like to query profilePreview here
             .filter(\.$username == usernameMatch)
             .all(\.$id) //returns username field from all matches
         if(users.isEmpty){
             throw Error.userNotFound
         }
-        return users[0] //instead return friendProfile (better for display)
+        return users[0] //instead return profilePreview (better for display)
     }
     
     
