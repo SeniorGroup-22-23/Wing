@@ -1,12 +1,12 @@
 # Profile Preview API Endpoints 
   
 
-1. [Create Profile Preview](#createPreview) 
-2. [Edit Profile Preview](#editPreview) 
+1. [Create Profile Preview](#createpreview) 
+2. [Edit Profile Preview](#editpreview) 
 
 ---
 
-### Create Profile Preview<a name="createPreview"></a>
+### Create Profile Preview<a name="createpreview"></a>
 
 #### URL:
 `/profilePreview`
@@ -50,7 +50,7 @@
 
 ---
 
-### Edit Profile Preview<a name="editPreview"></a>
+### Edit Profile Preview<a name="editpreview"></a>
 
 #### URL:
 `/profilePreview`
