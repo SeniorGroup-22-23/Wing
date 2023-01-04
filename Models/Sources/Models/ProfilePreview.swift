@@ -33,12 +33,12 @@ public final class ProfilePreview: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, userId: UUID, username: String, name: String, primaryPhoto: String){
+    public init(id: UUID? = nil, userId: UUID, username: String, name: String, primaryPhoto: Data){
         self.id = id
         self.userId = userId
         self.username = username
         self.name = name
-        self.primaryPhoto = Data(primaryPhoto.utf8)
+        self.primaryPhoto = primaryPhoto
     }
     
 }
