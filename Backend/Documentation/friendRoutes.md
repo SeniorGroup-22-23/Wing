@@ -5,7 +5,6 @@
 2. [Edit Friendship](#editfriendship) 
 1. [Get Friends](#getfriends) 
 2. [Get Friend Requests](#getfriendrequests)
-3. [Get Friend by Username](#getfriendusername)
 
 ---
 
@@ -143,30 +142,6 @@ TODO
 ###### :userId
 UUID   
 User ID of the user whos friend requests you would like to retrieve (pending friend requests where userId == respondentId). 
-
-#### Success Response:       
-TODO
-
-#### Error Response:            
-TODO
-
-#### Example    
-TODO
-
----
-
-### Get Friend by Username <a name="getfriendusername"></a>
-
-#### URL:   
-`/friend/:username`
-
-#### Method:
-`GET` 
-
-#### URL Parameters:
-###### :username
-String   
-Username (exact match only) of the friend you would like to retrieve. 
 
 #### Success Response:       
 TODO
