@@ -1,5 +1,5 @@
 //
-// loginRoutes.swift
+//  userRoutes.swift
 //  User/Profile Routes 
 //
 //  Created by Allie Griffin on 2022-11-27.
@@ -77,14 +77,14 @@ func userRoutes(_ app: Application) throws {
             .set(\.$phone, to : user.phone)
             .set(\.$email, to : user.email)
             .set(\.$password, to : user.password)
-            .filter(\.$id == user.id!)
+            .filter(\.$id == UUID(user.id!.uuidString.lowercased())!)
             .update()
         return user
     }
     
     //GET Profile by UserId
-    app.get("profile", ":userId") { req async throws -> Profile in
-        guard let userId = UUID(uuidString: req.parameters.get("userId")!)
+    app.get("profile", ":userId") {req async throws -> Profile in
+        guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
              throw Error.nilId
         }
@@ -129,7 +129,7 @@ func userRoutes(_ app: Application) throws {
             .set(\.$maxDistance, to : profile.maxDistance)
             .set(\.$currLongitude, to: profile.currLongitude)
             .set(\.$currLatitude, to: profile.currLatitude)
-            .filter(\.$id == profile.id!)
+            .filter(\.$id == UUID(profile.id!.uuidString.lowercased())!)
             .update()
         return profile
     }

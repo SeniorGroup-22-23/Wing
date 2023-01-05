@@ -9,7 +9,6 @@ import FluentPostgresDriver
 import Vapor
 import Models
 
-extension UUID: Content{}
 let userCalendar = Calendar.current
 
 func matchRoutes(_ app: Application) throws {

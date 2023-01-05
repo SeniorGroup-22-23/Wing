@@ -25,7 +25,7 @@ public final class ProfilePreview: Model, Content{
     public var name: String
     
     @Field(key: "primary_photo")
-    public var primaryPhoto: [UInt8]
+    public var primaryPhoto: Data
     
 
     
@@ -33,7 +33,7 @@ public final class ProfilePreview: Model, Content{
         
     }
     
-    public init(id: UUID? = nil, userId: UUID, username: String, name: String, primaryPhoto: [UInt8]){
+    public init(id: UUID? = nil, userId: UUID, username: String, name: String, primaryPhoto: Data){
         self.id = id
         self.userId = userId
         self.username = username
