@@ -12,7 +12,7 @@ let MainGreen = Color("MainGreen")
 
 struct LoginView : View {
     
-    @ObservedObject var viewModel = LoginModel()
+    @ObservedObject var viewModel = LoginViewModel()
 
     var body: some View {
         VStack {
@@ -45,7 +45,7 @@ struct LoginView : View {
                 ForgotPasswordText()
                 Button(action: {
                     Task{
-                        await loadUser()
+                        await viewModel.getUserbyPhone()
                     }
                 }) {
                         ButtonContent()
@@ -54,12 +54,6 @@ struct LoginView : View {
         .background(
         BackgroundLogo())
     }
-    
-    private func loadUser() async{
-            await viewModel.getUserbyPhone()
-            print(viewModel.response)
-    }
-    
 }
 
 struct LoginView_Previews: PreviewProvider {

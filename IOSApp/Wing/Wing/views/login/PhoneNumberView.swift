@@ -11,6 +11,8 @@ struct PhoneNumberView: View {
     
     @State private var ext: String = ""
     @State private var number: String = ""
+    @ObservedObject var viewModel: SignupViewModel = .method
+    
     
     func validateNumber(value: String) -> Bool {
         let phonePattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
@@ -52,10 +54,10 @@ struct PhoneNumberView: View {
                     HStack{
                         Text("ext.")
                             .font(.custom(FontManager.NotoSans.regular, size: 13.0))
-                        TextField("+1", text: $ext)
+                        TextField("+1", text: $viewModel.ext)
                             .frame(width:81.0, height: 48.0)
                             .textFieldStyle(.roundedBorder)
-                        TextField("123-456-7890", text: $number)
+                        TextField("123-456-7890", text: $viewModel.number)
                             .frame(width:213.0, height: 48.0)
                             .textFieldStyle(.roundedBorder)
                     }
@@ -65,11 +67,11 @@ struct PhoneNumberView: View {
                         Text("Next")
                             .frame(width: 231.0, height: 55.0)
                             .foregroundColor(.white)
-                            .background((!(self.validateExt(value: ext)) || !(self.validateNumber(value: number))) ? Color("DarkGrey") : Color("MainGreen"))
+                            .background((!(self.validateExt(value: viewModel.ext)) || !(self.validateNumber(value: viewModel.number))) ? Color("DarkGrey") : Color("MainGreen"))
                             .cornerRadius(20)
                             .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                     }
-                    .disabled(!(self.validateExt(value: ext)) || !(self.validateNumber(value: number)))
+                    .disabled(!(self.validateExt(value: viewModel.ext)) || !(self.validateNumber(value: viewModel.number)))
                         
                     Spacer()
                 }

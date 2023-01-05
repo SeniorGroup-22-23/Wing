@@ -18,6 +18,8 @@ struct PromptView: View {
     // FOR EMMA : you will have to load the actual prompts into this promptList variable
     @State private var promptList = ["What's your favourite color?", "How many siblings do you have?"]
     
+    @ObservedObject var viewModel = SignupViewModel()
+    
     var body: some View {
         ZStack {
             Color("White")
@@ -51,10 +53,17 @@ struct PromptView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: HomePageView()) {
+                Button(action: {
+                    Task{
+                        await viewModel.setUser()
+                    }
+                }) {
                     loadDoneBtn()
                 }
-                .disabled(ans1.isEmpty)
+//                NavigationLink(destination: HomePageView()) {
+//                    loadDoneBtn()
+//                }
+//                .disabled(ans1.isEmpty)
             }
                 .frame(width: 400.0)
         }

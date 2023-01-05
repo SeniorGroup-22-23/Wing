@@ -17,6 +17,7 @@ struct ProfileCompletionView: View {
     let AGE: Date = Calendar.current.date(byAdding: .year, value: -18, to: Date())!;
 
     @ObservedObject var chosen_method: ChosenMethod = .method
+    @ObservedObject var viewModel: SignupViewModel = .method
     
     func validateValues(password: String, confirmPassword: String, firstName: String, birthday: Date) -> Bool {
         if (password == confirmPassword && !confirmPassword.isEmpty){
@@ -48,7 +49,7 @@ struct ProfileCompletionView: View {
                         .frame(width: 300, alignment: .leading)
                         .offset(y: -35)
                 }
-                SecureField("", text: $password)
+                SecureField("", text: $viewModel.password)
                     .frame(width:300.0, height: 48.0)
                     .textFieldStyle(.roundedBorder)
                     .offset(y: -35)
@@ -117,27 +118,31 @@ struct ProfileCompletionView: View {
                             .font(.custom(FontManager.NotoSans.regular, size: 15.0))
                             .frame(width: 300, alignment: .leading)
                             .offset(y: -15)
+                        TextField("", text: $viewModel.number)
+                            .frame(width:300.0, height: 48.0)
+                            .textFieldStyle(.roundedBorder)
+                            .offset(y: -20)
                     }
                     else {
                         Text("Email")
                             .font(.custom(FontManager.NotoSans.regular, size: 15.0))
                             .frame(width: 300, alignment: .leading)
                             .offset(y: -15)
+                        TextField("", text: $viewModel.email)
+                            .frame(width:300.0, height: 48.0)
+                            .textFieldStyle(.roundedBorder)
+                            .offset(y: -20)
                     }
-                    TextField("", text: $contact)
-                        .frame(width:300.0, height: 48.0)
-                        .textFieldStyle(.roundedBorder)
-                        .offset(y: -20)
                 }
                 NavigationLink(destination: MatchPreferenceView()) {
                     Text("Next")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)
-                        .background(!(validateValues(password: password, confirmPassword: confirmPassword, firstName: firstName, birthday: birthday)) ? Color("DarkGrey") : Color("MainGreen"))
+                        .background(!(validateValues(password: viewModel.password, confirmPassword: confirmPassword, firstName: firstName, birthday: birthday)) ? Color("DarkGrey") : Color("MainGreen"))
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
-                .disabled(!validateValues(password: password, confirmPassword: confirmPassword, firstName: firstName, birthday: birthday))
+                .disabled(!validateValues(password: viewModel.password, confirmPassword: confirmPassword, firstName: firstName, birthday: birthday))
             }
         }
     }

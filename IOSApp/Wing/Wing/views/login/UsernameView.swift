@@ -9,7 +9,8 @@ import SwiftUI
 
 struct UsernameView: View {
     @State private var username: String = ""
-    
+    @ObservedObject var viewModel: SignupViewModel = .method
+   
     var body: some View {
         ZStack {
             Color("White")
@@ -31,22 +32,34 @@ struct UsernameView: View {
                     .multilineTextAlignment(.center)
                 Spacer()
                     .frame(height: 30)
-                TextField("", text: $username)
+                TextField("", text: $viewModel.username)
                     .frame(width:300.0, height: 48.0)
                     .textFieldStyle(.roundedBorder)
                     .autocapitalization(.none)
                     .autocorrectionDisabled(true)
-                Spacer()
-                    .frame(height: 30)
+                    .onChange(of: viewModel.username){ newValue in
+                        Task {
+                            await viewModel.getUsernames(username: newValue)
+                        }
+                    }
+                if viewModel.isTaken {
+                    Text("username already taken")
+                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                        .foregroundColor(.red)
+                }
+                else{
+                    Spacer()
+                        .frame(height: 30)
+                }
                 NavigationLink(destination: ProfileCompletionView()) {
                     Text("Next")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)
-                        .background((username.isEmpty) ? Color("DarkGrey") : Color("MainGreen"))
+                        .background((viewModel.username.isEmpty || viewModel.isTaken) ? Color("DarkGrey") : Color("MainGreen"))
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
-                .disabled(username.isEmpty)
+                .disabled(viewModel.username.isEmpty || viewModel.isTaken)
                 Spacer()
             }
         }

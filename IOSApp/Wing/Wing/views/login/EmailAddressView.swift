@@ -11,6 +11,7 @@ struct EmailAddressView: View {
     
     @State private var email: String = ""
     @State private var emailIsValid: Bool = true
+    @ObservedObject var viewModel: SignupViewModel = .method
     
     var body: some View {
             ZStack {
@@ -30,12 +31,12 @@ struct EmailAddressView: View {
                         .multilineTextAlignment(.center)
                     Spacer()
                         .frame(height: 30)
-                    TextField("", text: $email)
+                    TextField("", text: $viewModel.email)
                         .frame(width:300.0, height: 48.0)
                         .textFieldStyle(.roundedBorder)
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
-                        .onChange(of: email) { newValue in if(newValue.range(of:"^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$", options: .regularExpression) != nil) {
+                        .onChange(of: viewModel.email) { newValue in if(newValue.range(of:"^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$", options: .regularExpression) != nil) {
                             self.emailIsValid = true
                         }
                             else {
@@ -49,11 +50,11 @@ struct EmailAddressView: View {
                         Text("Next")
                             .frame(width: 231.0, height: 55.0)
                             .foregroundColor(.white)
-                            .background((!emailIsValid || email.isEmpty) ? Color("DarkGrey") : Color("MainGreen"))
+                            .background((!emailIsValid || viewModel.email.isEmpty) ? Color("DarkGrey") : Color("MainGreen"))
                             .cornerRadius(20)
                             .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                     }
-                    .disabled(!emailIsValid || email.isEmpty)
+                    .disabled(!emailIsValid || viewModel.email.isEmpty)
                     Spacer()
                 }
             }
