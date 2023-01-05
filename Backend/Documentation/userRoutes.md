@@ -6,7 +6,7 @@
 1. [Get Usernames](#getusernames) 
 2. [Create User](#createuser1) 
 3. [Create Profile](#createprofile)
-1. [Edit User Account](#edituser) 
+1. [Edit User](#edituser) 
 2. [Get Profile by UserID](#getprofile)
 3. [Get Profile by ID](#getprofileid)
 4. [Edit Profile](#editprofile)
@@ -222,16 +222,18 @@ _Note: Phone or Email field may be empty, but must still be included in request 
 _NOTE: User must be created before profile._          
 ```json
 {
-  "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
-  "name": "Jane",
-  "occupation": "Teacher" ,
-  "birthdate": "2001-05-27T00:00:00Z",
-  "bio": "Hey Everyone! I love the outdoors and my cats :)",
-  "gender": 1,
-  "preference": 0, 
-  "minAge": 25,
-  "maxAge": 40, 
-  "maxDistance": 50
+	"occupation": "Bartender",
+	"maxDistance": 50,
+	"currLongitude": 1.8575757,
+	"maxAge": 40,
+	"birthdate": "1991-05-27T00:00:00Z",
+	"userId": "DC730399-E21C-4BA4-8248-3E7A8753947B",
+	"minAge": 20,
+	"bio": "Hi my name is Jane!",
+	"preference": 1,
+	"currLatitude": 1000.93939393,
+	"gender": 2,
+	"name": "Jane"
 }
 
 ```
@@ -240,17 +242,19 @@ _NOTE: User must be created before profile._
 200 OK
 ```json
 {
-   "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
-   "minAge": 25,
-   "maxAge": 40,
-   "id": "7CD9800F-AE36-40B5-A0DA-B355014E09F2",
-   "bio": "Hey Everyone! I love the outdoors and my cats :)",
-   "gender": 1,
-   "maxDistance": 50,
-   "occupation": "Teacher",
-   "birthdate": "2001-05-27T00:00:00Z",
-   "preference": 0,
-   "name": "Jane"
+	"id": "93968C3A-6CB6-4053-9EEE-6202EFB6A5CB",
+	"occupation": "Bartender",
+	"maxDistance": 50,
+	"currLongitude": 1.8575756999999999,
+	"preference": 1,
+	"bio": "Hi my name is Jane!",
+	"userId": "DC730399-E21C-4BA4-8248-3E7A8753947B",
+	"minAge": 20,
+	"birthdate": "1991-05-27T00:00:00Z",
+	"maxAge": 40,
+	"currLatitude": 1000.9393939300001,
+	"gender": 2,
+	"name": "Jane"
 }
 ```
 
@@ -272,16 +276,15 @@ _NOTE: User must be created before profile._
 
 #### Example  
 
-<img width="1281" alt="Screen Shot 2022-11-24 at 10 39 26 AM" src="https://user-images.githubusercontent.com/80468156/203811106-e4706487-4760-4ea1-b51a-94c78fb3a8e8.png">
+<img width="1093" alt="Screenshot 2023-01-05 at 10 56 55 AM" src="https://user-images.githubusercontent.com/80468156/210811493-df2b8f50-71c0-4898-b0e8-07e73640f559.png">
 
 <img width="1281" alt="Screen Shot 2022-11-24 at 10 39 37 AM" src="https://user-images.githubusercontent.com/80468156/203811150-20cd137b-bb6f-4784-a69d-af1e7eb1920c.png">
 
 <img width="1105" alt="Screen Shot 2022-11-28 at 10 49 12 PM" src="https://user-images.githubusercontent.com/80468156/204427345-a9be6ddb-98ad-4f2c-a46f-1ba6a73de96e.png">
 
-
 ---
 
-### Edit User Account <a name="edituser"></a>
+### Edit User <a name="edituser"></a>
 
 #### URL:
 `/user`
@@ -345,24 +348,24 @@ _Note: This will occur when a field is missing, or invalid UUID is given_
 
 #### Method:
 `PUT`       
-_Note: Put requests require the entire object body to be passed in. If there is a profile that matches the given id, that profile will be updated. The birthday field will not be updated under any circumstances._
-
 
 #### Request Body:     
-
+_Note: Put requests require the entire object body to be passed in. If there is a profile that matches the given id, that profile will be updated. The birthday, id, userId fields, will not be updated under any circumstances._      
 ```json
 {
-  "id": "F5DBA633-EAFF-4A6C-9FE1-C8ADBC78A1C5",
-  "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
-  "name": "Janey",
-  "occupation": "Unemployed" ,
-  "birthdate": "2001-05-27T00:00:00Z",
-  "bio": "Hey Everyone! I love the outdoors and my cats :)",
-  "gender": 1,
-  "preference": 0, 
-  "minAge": 25,
-  "maxAge": 40, 
-  "maxDistance": 50
+	"id": "93968C3A-6CB6-4053-9EEE-6202EFB6A5CB",
+	"occupation": "Bartender",
+	"maxDistance": 50,
+	"currLongitude": 1.8575757,
+	"maxAge": 40,
+	"birthdate": "1991-05-27T00:00:00Z",
+	"userId": "DC730399-E21C-4BA4-8248-3E7A8753947B",
+	"minAge": 20,
+	"bio": "Hi my name is Jane!",
+	"preference": 1,
+	"currLatitude": 1000.93939393,
+	"gender": 2,
+	"name": "Jane"
 }
 ```
 
@@ -371,17 +374,19 @@ _Note: Put requests require the entire object body to be passed in. If there is 
 200 OK  
 ```json
 {
-  "userId": "695C8249-10B1-4CD3-BE98-E1400B1823B3",
-  "maxAge": 40,
-  "gender": 1,
-  "id": "F5DBA633-EAFF-4A6C-9FE1-C8ADBC78A1C5",
-  "minAge": 25,
-  "bio": "Hey Everyone! I love the outdoors and my cats :)",
-  "maxDistance": 50,
-  "birthdate": "2001-05-27T00:00:00Z",
-  "occupation": "Unemployed",
-  "preference": 0,
-  "name": "Janey"
+	"id": "93968C3A-6CB6-4053-9EEE-6202EFB6A5CB",
+	"occupation": "Bartender",
+	"maxDistance": 50,
+	"currLongitude": 1.8575756999999999,
+	"preference": 1,
+	"bio": "Hi my name is Jane!",
+	"userId": "DC730399-E21C-4BA4-8248-3E7A8753947B",
+	"minAge": 20,
+	"birthdate": "1991-05-27T00:00:00Z",
+	"maxAge": 40,
+	"currLatitude": 1000.9393939300001,
+	"gender": 2,
+	"name": "Jane"
 }
 ```
 
@@ -397,7 +402,8 @@ _Note: This will occur when a field is missing, or invalid/nil UUID is given._
 
 #### Example
 
-<img width="1026" alt="Screen Shot 2022-11-24 at 11 03 01 AM" src="https://user-images.githubusercontent.com/80468156/203818754-16b56bca-a5d6-4597-8736-0731e49bfa13.png">
+<img width="1093" alt="Screenshot 2023-01-05 at 11 00 59 AM" src="https://user-images.githubusercontent.com/80468156/210812029-9a4a2887-1edb-4989-8287-f5a76bed27ce.png">
+
 
 <img width="1026" alt="Screen Shot 2022-11-24 at 11 14 20 AM" src="https://user-images.githubusercontent.com/80468156/203818812-3e4b2587-e604-47bc-9080-c54fb10985ba.png">
 
