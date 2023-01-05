@@ -24,6 +24,8 @@ struct CreateProfiles: AsyncMigration {
             .field("min_age", .int16)
             .field("max_age", .int16)
             .field("max_distance", .int16)
+            .field("curr_latitude", .double)
+            .field("curr_longitude", .double)
             .create()
     }
 
