@@ -127,8 +127,25 @@ func userRoutes(_ app: Application) throws {
             .set(\.$minAge, to : profile.minAge)
             .set(\.$maxAge, to : profile.maxAge)
             .set(\.$maxDistance, to : profile.maxDistance)
+            .set(\.$currLongitude, to: profile.currLongitude)
+            .set(\.$currLatitude, to: profile.currLatitude)
             .filter(\.$id == UUID(profile.id!.uuidString.lowercased())!)
             .update()
+        return profile
+    }
+    
+    //GET profile by profile ID
+    app.get("profileId", ":profileId") { req async throws -> Profile in
+        guard let profileId = UUID(uuidString: req.parameters.get("profileId")!.lowercased())
+        else {
+             throw Error.nilId
+        }
+        guard let profile = try await Profile.query(on: req.db)
+            .filter(\.$id == profileId)
+            .first() //Will throw error if no User is found
+        else {
+            throw Error.profileNotFound
+        }
         return profile
     }
 }

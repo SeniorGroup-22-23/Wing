@@ -13,9 +13,9 @@ The frontend structure is divided into three parts (top level):
 
 <img width="234" alt="Screen Shot 2022-11-24 at 1 07 22 PM" src="https://user-images.githubusercontent.com/75460797/203837269-d6ab09f1-2877-433f-80ed-34ee6c7c44a7.png">
 
-If you open up the Wing folder structure, you will find the **_Assets File_**. This is your GO-TO file for all components related to the Figma (design). Logos, colours, and icons, are all stored there for you to easily reference. This also allows for consistency throughout the application (more on how to use this in the **"Basic How-to-Use" ** section.
+If you open up the Wing folder structure, you will find the **_Assets File_**. This is your GO-TO file for all components related to the Figma (design). Logos, colours, and icons, are all stored there for you to easily reference. This also allows for consistency throughout the application (more on how to use this in the **Basic How-to-Use** section).
 
-All of the views in the app are stored in the **_views_** folder. You can pretty much assume that one view file is equivalent to one frame in the Figma folder (so if you see a file called "LoginView", it probably contains the view needed to represent the log in page in the Figma.
+All of the views in the app are stored in the **_views_** folder. You can pretty much assume that one view file is equivalent to one frame in the Figma folder (so if you see a file called "LoginView", it probably contains the view needed to represent the log in page in the Figma).
 
 The views are separated into six different categories within the **_views_** folder. This includes the four separate segments of the application:
 - Login/Create account flow
@@ -30,7 +30,7 @@ You will be able to see these six different categories clearly divided in the Fi
 ## Running the FrontEnd Locally <a name="runLocally"></a>
 
 1. First, make sure that your Github account is connected to XCode (http://irenebosque.com/how-to-xcode-and-github/)
-2. Open XCode and click 'open a project or file'. Then navigate to your where you set up your Wing repo locally. You'll have to go into Wing/IOSApp and open the project from there to get to the frontend. 
+2. Open XCode and click 'open a project or file'. Then navigate to your where you set up your Wing repo locally. You'll have to go into Wing/IOSApp and open Wing folder from there to get to the frontend. 
 
 <img width="806" alt="Screen Shot 2022-11-24 at 1 02 42 PM" src="https://user-images.githubusercontent.com/75460797/203836556-89ce615e-ac68-4b18-8fc9-9784094d0a3a.png">
 

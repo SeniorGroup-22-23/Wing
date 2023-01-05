@@ -27,6 +27,7 @@ final class ProfileTests: XCTestCase {
         
         
         let profile = Profile(id: nil, userId: userId, name: name, birthdate: birthdate, occupation: occupation, bio: bio, gender: 2, preference: 1, minAge: minAge, maxAge: maxAge, maxDistance: maxDistance, currLatitude: currLatitude, currLongitude: currLongitude)
+
         
         XCTAssertNil(profile.id)
         
