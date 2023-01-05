@@ -13,7 +13,7 @@ The frontend structure is divided into three parts (top level):
 
 <img width="234" alt="Screen Shot 2022-11-24 at 1 07 22 PM" src="https://user-images.githubusercontent.com/75460797/203837269-d6ab09f1-2877-433f-80ed-34ee6c7c44a7.png">
 
-If you open up the Wing folder structure, you will find the **_Assets File_**. This is your GO-TO file for all components related to the Figma (design). Logos, colours, and icons, are all stored there for you to easily reference. This also allows for consistency throughout the application (more on how to use this in the **Basic How-to-Use** section.
+If you open up the Wing folder structure, you will find the **_Assets File_**. This is your GO-TO file for all components related to the Figma (design). Logos, colours, and icons, are all stored there for you to easily reference. This also allows for consistency throughout the application (more on how to use this in the **Basic How-to-Use** section).
 
 All of the views in the app are stored in the **_views_** folder. You can pretty much assume that one view file is equivalent to one frame in the Figma folder (so if you see a file called "LoginView", it probably contains the view needed to represent the log in page in the Figma.
 
