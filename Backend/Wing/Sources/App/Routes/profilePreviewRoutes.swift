@@ -16,7 +16,15 @@ func profilePreviewRoutes(_ app: Application) throws {
     
     app.post("profilePreview"){ req async throws -> ProfilePreview in
         let preview = try req.content.decode(ProfilePreview.self)
-        try await preview.create(on: req.db)
+        do{
+            try await preview.create(on: req.db)
+        } catch {
+            if(error.localizedDescription.contains("profile_previews_user_id_fkey")){
+                throw Error.notFoundwID("user", preview.userId)
+            } else {
+                throw Abort(.internalServerError, reason: "Unable to create profile: \(error)")
+            }
+        }
         return preview
     }
     
@@ -35,7 +43,7 @@ func profilePreviewRoutes(_ app: Application) throws {
         return preview
     }
     
-    app.get("profilePreview", ":id"){ req async throws -> ProfilePreview in
+    app.get("profilePreview", "id", ":id"){ req async throws -> ProfilePreview in
         guard let id = UUID(uuidString: req.parameters.get("id")!.lowercased())
         else {
              throw Error.nilId
@@ -49,7 +57,7 @@ func profilePreviewRoutes(_ app: Application) throws {
         return profile
     }
     
-    app.get("profile", "preview", ":username"){ req async throws -> ProfilePreview in
+    app.get("profilePreview", "username", ":username"){ req async throws -> ProfilePreview in
         let usernameMatch = req.parameters.get("username")! //! forces decode to string, if empty no error
         let profilePreview = try await ProfilePreview.query(on: req.db)
             .filter(\.$username == usernameMatch)
@@ -59,5 +67,21 @@ func profilePreviewRoutes(_ app: Application) throws {
         }
         return profilePreview[0]
     }
+    
+    app.get("profilePreview", "userId", ":userId"){ req async throws -> ProfilePreview in
+        guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
+        else {
+             throw Error.nilId
+        }
+        guard let profile = try await ProfilePreview.query(on: req.db) //get any friends where userId was requester & respondent accepted
+            .filter(\.$userId == userId)
+            .first()
+        else {
+            throw Error.notFoundwID("Profile Preview", userId)
+        }
+        return profile
+    }
+    
+    
     
 }

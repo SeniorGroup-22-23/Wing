@@ -63,7 +63,6 @@ func friendRoutes(_ app: Application) throws {
         return profilePreviews
     }
     
-    //TODO: Fix return values here 
     app.get("friendRequests", ":userId"){ req async throws -> [Friendship] in
         guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
@@ -73,22 +72,7 @@ func friendRoutes(_ app: Application) throws {
             .filter(\.$respondentId == userId)
             .filter(\.$status == 1)
             .all()
-        
-        var profilePreviews = [ProfilePreview?]()
-        for request in requests {
-            profilePreviews.append(try await ProfilePreview.query(on: req.db)
-                .filter(\.$userId == request.requesterId)
-                .first())
-        }
-        
-        print(requests)
-        print(profilePreviews)
-        //query to find all friend profiles that match UUID requesterId
-        //make new local structure that is friednship, profile preview
-        //return array [[friendship, profilePreview], [friendship, profilePreview], ....]
             
         return requests //need to return whole struct to allow for updates (need friendship Id)
     }
-
-
 }
