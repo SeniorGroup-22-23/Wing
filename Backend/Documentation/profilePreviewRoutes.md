@@ -3,9 +3,9 @@
 
 1. [Create Profile Preview](#createpreview) 
 2. [Edit Profile Preview](#editpreview) 
-3. [Get Profile Preview by ID](#getprevid)
-4. [Get Profile Preview by Username](#getprevusername)
-5. [Get Profile Preview by UserID](#getprevuserid)
+3. [Get Profile Preview by ID](#getid)
+4. [Get Profile Preview by Username](#getusername)
+5. [Get Profile Preview by UserID](#getuserid)
 
 ---
 
@@ -108,7 +108,7 @@ _NOTE: If no profile preview record exists for the provided ID, 200 OK response 
 
 ---
 
-### Get Profile Preview by ID<a name="#getprevid"></a>
+### Get Profile Preview by ID<a name="#getid"></a>
 
 #### URL:
 `/profilePreview/id/:id`
@@ -151,7 +151,7 @@ The ID of the profile preview you would like to retreive.
 
 ---
 
-### Get Profile Preview by Username<a name="#getprevusername"></a>
+### Get Profile Preview by Username<a name="#getusername"></a>
 
 #### URL:
 `/profilePreview/username/:username`
@@ -194,7 +194,7 @@ Username on the profile preview you would like to retrieve.
 
 ---
 
-### Get Profile Preview by UserID<a name="#getprevuserid"></a>
+### Get Profile Preview by UserID<a name="#getid"></a>
 
 #### URL:
 `/profilePreview/userId/:userid`
