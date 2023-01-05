@@ -15,7 +15,7 @@ The frontend structure is divided into three parts (top level):
 
 If you open up the Wing folder structure, you will find the **_Assets File_**. This is your GO-TO file for all components related to the Figma (design). Logos, colours, and icons, are all stored there for you to easily reference. This also allows for consistency throughout the application (more on how to use this in the **Basic How-to-Use** section).
 
-All of the views in the app are stored in the **_views_** folder. You can pretty much assume that one view file is equivalent to one frame in the Figma folder (so if you see a file called "LoginView", it probably contains the view needed to represent the log in page in the Figma.
+All of the views in the app are stored in the **_views_** folder. You can pretty much assume that one view file is equivalent to one frame in the Figma folder (so if you see a file called "LoginView", it probably contains the view needed to represent the log in page in the Figma).
 
 The views are separated into six different categories within the **_views_** folder. This includes the four separate segments of the application:
 - Login/Create account flow
