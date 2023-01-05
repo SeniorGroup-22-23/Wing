@@ -15,7 +15,17 @@ func friendRoutes(_ app: Application) throws {
     
     app.post("friend"){ req async throws -> Friendship in
         let friendship = try req.content.decode(Friendship.self)
-        try await friendship.create(on: req.db)
+        do {
+            try await friendship.create(on: req.db)
+        } catch {
+            if(error.localizedDescription.contains("friendships_requester_id_fkey")){
+                throw Error.notFoundwID("user", friendship.requesterId)
+            } else if(error.localizedDescription.contains("friendships_respondent_id_fkey")){
+                throw Error.notFoundwID("user", friendship.respondentId)
+            } else {
+                throw Abort(.internalServerError, reason: "Unable to create friendship: \(error)")
+            }
+        }
         return friendship
     }
     
@@ -55,10 +65,13 @@ func friendRoutes(_ app: Application) throws {
             .all(\.$respondentId)
         
         let friends = friends1 + friends2
+        var profilePreviews = [UUID]()
         
-        let profilePreviews = try await ProfilePreview.query(on: req.db)
-            .filter(\.$userId ~~ friends) //userId in friends
-            .all(\.$id)
+        if(!friends.isEmpty){
+            profilePreviews = try await ProfilePreview.query(on: req.db)
+                .filter(\.$userId ~~ friends) //userId in friends
+                .all(\.$id)
+        }
             
         return profilePreviews
     }
@@ -68,7 +81,7 @@ func friendRoutes(_ app: Application) throws {
         else {
              throw Error.nilId
         }
-        let requests = try await Friendship.query(on: req.db) //get requester userIds
+        let requests = try await Friendship.query(on: req.db)
             .filter(\.$respondentId == userId)
             .filter(\.$status == 1)
             .all()
