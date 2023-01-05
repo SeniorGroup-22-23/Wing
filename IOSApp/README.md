@@ -30,7 +30,7 @@ You will be able to see these six different categories clearly divided in the Fi
 ## Running the FrontEnd Locally <a name="runLocally"></a>
 
 1. First, make sure that your Github account is connected to XCode (http://irenebosque.com/how-to-xcode-and-github/)
-2. Open XCode and click 'open a project or file'. Then navigate to your where you set up your Wing repo locally. You'll have to go into Wing/IOSApp and open the project from there to get to the frontend. 
+2. Open XCode and click 'open a project or file'. Then navigate to your where you set up your Wing repo locally. You'll have to go into Wing/IOSApp and open Wing folder from there to get to the frontend. 
 
 <img width="806" alt="Screen Shot 2022-11-24 at 1 02 42 PM" src="https://user-images.githubusercontent.com/75460797/203836556-89ce615e-ac68-4b18-8fc9-9784094d0a3a.png">
 
