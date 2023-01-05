@@ -37,13 +37,12 @@ _NOTE: Refer to Models package for status meanings._
 }
 ```
 
-#### Error Response: 
-_NOTE: There is no FK constraint on Friends table - UUIDs of users that do not exist will still result in 200 OK._      
-400 Bad Request
+#### Error Response:     
+400 Bad Request or 404 Not Found (if userId does not exist in users table)
 ```json
 {
 	"error": true,
-	"reason": "Value of type 'Int16' required for key 'status'."
+	"reason": "No user record found with ID: 7318E3CF-624A-4646-97EF-2253FAE1BD5F."
 }
 ```
 
@@ -52,6 +51,8 @@ _NOTE: There is no FK constraint on Friends table - UUIDs of users that do not e
 <img width="996" alt="Screen Shot 2022-12-08 at 4 15 41 PM" src="https://user-images.githubusercontent.com/80468156/206559117-5b2c4886-b5b0-4a83-bba1-ee467a00ec0b.png">
 
 <img width="996" alt="Screen Shot 2022-12-08 at 4 16 30 PM" src="https://user-images.githubusercontent.com/80468156/206559147-5f2713d5-ef64-4ea4-b793-deb96f69c4d5.png">
+
+<img width="1088" alt="Screenshot 2023-01-05 at 4 16 09 PM" src="https://user-images.githubusercontent.com/80468156/210872053-3f327def-d836-4a67-8ede-fc224873b816.png">
 
 ---
 
@@ -107,6 +108,7 @@ _Note: No error will occur if invalid (not empty) id is provided - will still re
 ---
 
 ### Get Friends <a name="getfriends"></a>
+Returns an array of profilePreview Ids corresponding to the current users friends. Follow this endpoint with calls to "Get Profile Preview by ID" to render and display friends.     
 
 #### URL:   
 `/friends/:userId`
@@ -119,18 +121,36 @@ _Note: No error will occur if invalid (not empty) id is provided - will still re
 UUID   
 User ID of the user whos friends you would like to retrieve. 
 
-#### Success Response:       
-TODO
+#### Success Response:   
+_Note: If no friends are found empty array is returned._   
+200 OK
+```json
+[
+	"38DB8EA1-8E57-4B8E-BB3D-84248FE888DF"
+]
+```
 
-#### Error Response:            
-TODO
+#### Error Response:  
+404 Not Found (invalid UUID format)
+```json
+{
+	"error": true,
+	"reason": "Illegal nil ID."
+}
+```
 
 #### Example    
-TODO
+
+<img width="1088" alt="Screenshot 2023-01-05 at 4 23 46 PM" src="https://user-images.githubusercontent.com/80468156/210873200-3cc3815b-7380-4af6-b075-a270cf8dca79.png">
+
+<img width="1088" alt="Screenshot 2023-01-05 at 4 23 54 PM" src="https://user-images.githubusercontent.com/80468156/210873211-2c252b73-cee5-4219-9187-a6e366abf445.png">
+
+<img width="1088" alt="Screenshot 2023-01-05 at 4 24 01 PM" src="https://user-images.githubusercontent.com/80468156/210873227-371d409c-4e09-45dd-a0a0-6f7b084edf26.png">
 
 ---
 
 ### Get Friend Requests <a name="getfriendrequests"></a>
+Returns an array of Friendship objects. To render and display friend requests, follow this enpoint with calls to "Get Profile Preview by User Id", passing in the requester's userId.      
 
 #### URL:   
 `/friendRequests/:userId`
@@ -143,13 +163,38 @@ TODO
 UUID   
 User ID of the user whos friend requests you would like to retrieve (pending friend requests where userId == respondentId). 
 
-#### Success Response:       
-TODO
+#### Success Response:   
+200 OK
+```json
+[
+	{
+		"status": 1,
+		"id": "A27AEB2A-4E84-439F-8108-79A84A7FA7FD",
+		"respondentId": "CF2AFC12-47C4-4DB5-860E-89890FBCB013",
+		"requesterId": "DC730399-E21C-4BA4-8248-3E7A8753947B"
+	},
+	{
+		"status": 1,
+		"id": "A682E044-CFA2-45F9-A99E-79F54BDBCD44",
+		"respondentId": "CF2AFC12-47C4-4DB5-860E-89890FBCB013",
+		"requesterId": "DC730399-E21C-4BA4-8248-3E7A8753947B"
+	}
+]
+```
 
-#### Error Response:            
-TODO
+#### Error Response:  
+404 Not Found (invalid UUID format)
+```json
+{
+	"error": true,
+	"reason": "Illegal nil ID."
+}
+```
 
 #### Example    
-TODO
+
+<img width="1088" alt="Screenshot 2023-01-05 at 4 28 56 PM" src="https://user-images.githubusercontent.com/80468156/210874297-427417a8-f3f2-4dc3-ad0f-81a7c6b03c4c.png">
+
+<img width="1088" alt="Screenshot 2023-01-05 at 4 29 14 PM" src="https://user-images.githubusercontent.com/80468156/210874313-113adb6f-9a3c-4706-8c58-1d4e499ddf42.png">
 
 ---

@@ -125,11 +125,11 @@ The ID of the profile preview you would like to retreive.
 200 OK
 ```json 
 {
-	"username": "BobtheBuilder",
-	"id": "C9ABB634-8878-43CC-814E-9BCAC21F0517",
+	"username": "JaneDoe",
+	"id": "105BCFF7-E520-4C32-8DC6-42453F1C4B7D",
 	"primaryPhoto": "VGVzdFBob3Rv",
-	"name": "Bobby",
-	"userId": "0206D2A4-5450-457C-BA71-71F9D90E8B3B"
+	"userId": "DC730399-E21C-4BA4-8248-3E7A8753947B",
+	"name": "Jane"
 }
 ```
 
@@ -144,10 +144,9 @@ The ID of the profile preview you would like to retreive.
 
 #### Example
 
-<img width="1078" alt="Screenshot 2023-01-04 at 4 44 08 PM" src="https://user-images.githubusercontent.com/80468156/210646635-eb8def6b-0168-43a4-a255-b01615b9e012.png">
+<img width="1088" alt="Screenshot 2023-01-05 at 4 09 35 PM" src="https://user-images.githubusercontent.com/80468156/210870839-868031c7-633c-4075-956f-855705e6d59a.png">
 
-<img width="1093" alt="Screenshot 2023-01-04 at 4 45 19 PM" src="https://user-images.githubusercontent.com/80468156/210646643-cee1de3c-06c5-4e26-8604-cabeb82d7258.png">
-
+<img width="1088" alt="Screenshot 2023-01-05 at 4 09 23 PM" src="https://user-images.githubusercontent.com/80468156/210870850-a1a824b5-06f9-4686-a108-246407e14522.png">
 
 ---
 
@@ -168,11 +167,11 @@ Username on the profile preview you would like to retrieve.
 200 OK
 ```json 
 {
-	"username": "seanBean",
-	"id": "A2E1DFCC-E4BB-4477-A8B7-49F8D467F91F",
+	"username": "JaneDoe",
+	"id": "105BCFF7-E520-4C32-8DC6-42453F1C4B7D",
 	"primaryPhoto": "VGVzdFBob3Rv",
-	"name": "Sean",
-	"userId": "E7237406-2A79-4D0D-A4D5-805E7CF57575"
+	"name": "Jane",
+	"userId": "DC730399-E21C-4BA4-8248-3E7A8753947B"
 }
 ```
 
@@ -187,9 +186,9 @@ Username on the profile preview you would like to retrieve.
 
 #### Example
 
-<img width="1093" alt="Screenshot 2023-01-04 at 4 48 47 PM" src="https://user-images.githubusercontent.com/80468156/210647307-21197368-8d3f-4aa7-adab-c7ebcb216157.png">
+<img width="1088" alt="Screenshot 2023-01-05 at 4 10 32 PM" src="https://user-images.githubusercontent.com/80468156/210870998-f024b4ce-bc4b-4b66-96f4-e2a7485e4a89.png">
 
-<img width="1093" alt="Screenshot 2023-01-04 at 4 49 13 PM" src="https://user-images.githubusercontent.com/80468156/210647318-2506c39f-bb7a-4452-8758-2887174f6f17.png">
+<img width="1088" alt="Screenshot 2023-01-05 at 4 10 40 PM" src="https://user-images.githubusercontent.com/80468156/210871015-b6ea4b0b-45a9-40f1-984d-021cf0c119fb.png">
 
 
 ---
@@ -211,11 +210,11 @@ The ID of the user whose profile preview you would like to retreive.
 200 OK
 ```json 
 {
-	"username": "BobtheBuilder",
-	"id": "C9ABB634-8878-43CC-814E-9BCAC21F0517",
+	"username": "JaneDoe",
+	"id": "105BCFF7-E520-4C32-8DC6-42453F1C4B7D",
 	"primaryPhoto": "VGVzdFBob3Rv",
-	"name": "Bobby",
-	"userId": "0206D2A4-5450-457C-BA71-71F9D90E8B3B"
+	"name": "Jane",
+	"userId": "DC730399-E21C-4BA4-8248-3E7A8753947B"
 }
 ```
 
@@ -224,11 +223,13 @@ The ID of the user whose profile preview you would like to retreive.
 ```json
 {
 	"error": true,
-	"reason": "No Profile Preview record found with ID: 0206D2A4-5450-457C-BA71-71F9D90E8B3B."
+	"reason": "No Profile Preview record found with ID: DC730399-E21C-4BA4-8248-3E7A8753947D."
 }
 ```
 
 #### Example
 
-See get profile preview by id. 
+<img width="1088" alt="Screenshot 2023-01-05 at 4 11 21 PM" src="https://user-images.githubusercontent.com/80468156/210871205-1eb6b73e-3e77-48fa-b515-b42c329635a7.png">
+
+<img width="1088" alt="Screenshot 2023-01-05 at 4 11 31 PM" src="https://user-images.githubusercontent.com/80468156/210871218-9ad127a9-0e34-434f-88ae-b70f84a28fc2.png">
 
