@@ -5,6 +5,7 @@
 2. [Edit Profile Preview](#editpreview) 
 3. [Get Profile Preview by ID](#getprevid)
 4. [Get Profile Preview by Username](#getprevusername)
+5. [Get Profile Preview by UserID](#getprevuserid)
 
 ---
 
@@ -107,10 +108,10 @@ _NOTE: If no profile preview record exists for the provided ID, 200 OK response 
 
 ---
 
-### Get Profile Preview by ID <a name="#getprevid"></a>
+### Get Profile Preview by ID<a name="#getprevid"></a>
 
 #### URL:
-`/profilePreview/:id`
+`/profilePreview/id/:id`
 
 #### Method:
 `GET`
@@ -150,10 +151,10 @@ The ID of the profile preview you would like to retreive.
 
 ---
 
-### Get Profile Preview by Username <a name="#getprevusername"></a>
+### Get Profile Preview by Username<a name="#getprevusername"></a>
 
 #### URL:
-`/profile/preview/:username`
+`/profilePreview/username/:username`
 
 #### Method:
 `GET`
@@ -193,4 +194,41 @@ Username on the profile preview you would like to retrieve.
 
 ---
 
+### Get Profile Preview by UserID<a name="#getprevuserid"></a>
+
+#### URL:
+`/profilePreview/userId/:userid`
+
+#### Method:
+`GET`
+
+#### URL Parameters:
+##### :userid
+UUID        
+The ID of the user whose profile preview you would like to retreive. 
+
+#### Success Response:
+200 OK
+```json 
+{
+	"username": "BobtheBuilder",
+	"id": "C9ABB634-8878-43CC-814E-9BCAC21F0517",
+	"primaryPhoto": "VGVzdFBob3Rv",
+	"name": "Bobby",
+	"userId": "0206D2A4-5450-457C-BA71-71F9D90E8B3B"
+}
+```
+
+#### Error Response: 
+404 Not Found (not user found with given userId) or 400 Bad Request (invalid UUID form)
+```json
+{
+	"error": true,
+	"reason": "No Profile Preview record found with ID: 0206D2A4-5450-457C-BA71-71F9D90E8B3B."
+}
+```
+
+#### Example
+
+See get profile preview by id. 
 
