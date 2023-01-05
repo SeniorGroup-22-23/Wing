@@ -127,6 +127,8 @@ func userRoutes(_ app: Application) throws {
             .set(\.$minAge, to : profile.minAge)
             .set(\.$maxAge, to : profile.maxAge)
             .set(\.$maxDistance, to : profile.maxDistance)
+            .set(\.$currLongitude, to: profile.currLongitude)
+            .set(\.$currLatitude, to: profile.currLatitude)
             .filter(\.$id == profile.id!)
             .update()
         return profile
