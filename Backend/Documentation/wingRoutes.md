@@ -58,6 +58,7 @@ _NOTE: Refer to Models package for status meanings._
 ---
 
 ### Get Wings <a name="getwings"></a>
+This endpoint will be followed by calls to "Get profilePreview by UserId" to retreive the sender's profile preview and the prospects profile preview for display.     
 
 #### URL:
 `/wings/:userId`
