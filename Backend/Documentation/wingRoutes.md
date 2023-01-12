@@ -3,6 +3,7 @@
 
 1. [Create Wing](#createwing) 
 2. [Get Wings](#getwings)
+3. [Put Wing](#putwing)
 
 ---
 
@@ -112,3 +113,52 @@ _Note: If not wings are associated with given id, empty array is returned._
 
 
 ---
+
+
+### Put Wing <a name="putwing"></a>
+This endpoint is used to update a Wing, when the recipient has either liked or disliked a prospects profile. Returns true if match is made, false otherwise. 
+
+![Put Wing](https://user-images.githubusercontent.com/80468156/212144067-7d044fed-b52d-4544-a715-0870b58512d5.jpeg)
+
+#### URL:
+`/wing`
+
+#### Method:
+`PUT`
+
+#### Request Body:
+_Note: Check Models package for meaning associated with status/type._       
+```json
+{
+	"recipientId": "CF2AFC12-47C4-4DB5-860E-89890FBCB013",
+	"id": "9816C632-A45B-4A3E-B607-F90B6A4E6204",
+	"status": 2,
+	"senderId": "78887CD7-43CC-492E-8165-3803642256E8",
+	"prospectId": "C5BC8B9D-0B55-4125-B825-41D1DB97BF7A"
+}
+```
+
+#### Success Response:      
+200 OK
+```json 
+true
+```
+
+#### Error Response:     
+404 Not Found (if no user exists with given id) OR 400 Bad Request
+```json
+{
+   "error": true,
+   "reason": "No user record found with ID: C5BC8B9D-0B55-4125-B825-41D1DB97BF7C."	
+}
+```
+
+#### Example
+
+<img width="1289" alt="Screenshot 2023-01-12 at 11 56 10 AM" src="https://user-images.githubusercontent.com/80468156/212144351-5e323341-b9f8-4a19-82cd-0e0dd29164bc.png">
+
+<img width="1130" alt="Screenshot 2023-01-12 at 2 04 32 PM" src="https://user-images.githubusercontent.com/80468156/212144616-68075821-b2c6-4f00-b55d-dea5c84be8cd.png">
+
+
+<img width="1289" alt="Screenshot 2023-01-12 at 11 56 26 AM" src="https://user-images.githubusercontent.com/80468156/212144373-88f792d7-8b5b-465a-991c-9dbbb02228e5.png">
+
