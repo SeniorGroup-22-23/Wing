@@ -37,7 +37,7 @@ struct CreateAccountView : View {
                         
                     })
                     .padding(.bottom, 17)
-                    NavigationLink(destination: PromptView()){
+                    NavigationLink(destination: PhoneNumberView()){
                         SignUpWithPhoneText()
                             .cornerRadius(20.0)
                     }
