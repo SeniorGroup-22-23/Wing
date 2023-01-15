@@ -10,12 +10,12 @@ import Foundation
 struct Swipe: Codable{
 
     var id: UUID?
-    var swiperId: UUID
-    var prospectId: UUID
-    var type: Int16 //would we rather have integer codes?
-    var createdAt: Date? // TBD
+    var swiperId: UUID?
+    var prospectId: UUID?
+    var type: Int16?
+    var createdAt: Date?
 
-    init(id: UUID? = nil, swiperId: UUID, prospectId: UUID, type: Int16, createdAt: Date? = nil){
+    init(id: UUID? = nil, swiperId: UUID? = nil, prospectId: UUID? = nil, type: Int16? = nil, createdAt: Date? = nil){
         self.id = id
         self.swiperId = swiperId
         self.prospectId = prospectId

@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct MatchPreferenceView: View {
-    @State private var selected = 1
+    
+    @ObservedObject var viewModel: SignupViewModel = .method
     
     var body: some View {
         ZStack {
-            Color("White")
+            Color(.white)
             VStack {
                 Image("WhiteLogo")
                     .resizable()
@@ -22,7 +23,7 @@ struct MatchPreferenceView: View {
                     .frame(height: 50)
                 Text("I prefer to see...")
                     .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
-                Picker(selection: $selected, label: Text("Preference")) {
+                Picker(selection: $viewModel.preference, label: Text("Preference")) {
                     Text("Only men").tag(1)
                     Text("Only women").tag(2)
                     Text("Everyone").tag(3)

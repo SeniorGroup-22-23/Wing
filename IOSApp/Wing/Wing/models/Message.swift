@@ -10,13 +10,13 @@ import Foundation
 struct Message: Codable{
 
     var id: UUID?
-    var senderId: UUID
-    var recipientId: UUID
-    var content: String
-    var status: Int16
+    var senderId: UUID?
+    var recipientId: UUID?
+    var content: String?
+    var status: Int16?
     var sentAt: Date?
     
-    init(id: UUID? = nil, senderId: UUID, recipientId: UUID, content: String, status: Int16, sentAt: Date? = nil){
+    init(id: UUID? = nil, senderId: UUID? = nil, recipientId: UUID? = nil, content: String? = nil, status: Int16? = nil, sentAt: Date? = nil){
         
         self.id = id
         self.senderId = senderId

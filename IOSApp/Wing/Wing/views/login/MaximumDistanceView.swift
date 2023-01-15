@@ -34,12 +34,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
 struct MaximumDistanceView: View {
     @StateObject var locationManager = LocationManager()
-    @State private var distSelected = 1
     let results = [1, 5, 10, 20, 30, 40, 50, 100, 150, 200, 250]
+    
+    @ObservedObject var viewModel: SignupViewModel = .method
     
     var body: some View {
         ZStack {
-            Color("White")
+            Color(.white)
             VStack {
                 Image("WhiteLogo")
                     .resizable()
@@ -50,7 +51,7 @@ struct MaximumDistanceView: View {
                 Text("My maximum distance...(km)")
                     .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                     .offset(y:50)
-                Picker(selection: $distSelected, label: Text("Distance")) {
+                Picker(selection: $viewModel.maxDistance, label: Text("Distance")) {
                     ForEach(results, id: \.self) {  i in
                         Text("\(i)")
                     }

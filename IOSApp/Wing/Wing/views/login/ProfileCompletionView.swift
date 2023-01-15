@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct ProfileCompletionView: View {
-    @State private var password: String = ""
+
     @State private var confirmPassword: String = ""
-    @State private var firstName: String = ""
-    @State private var birthday = Date()
-    @State private var gender = 1
-    @State private var contact: String = ""
     let AGE: Date = Calendar.current.date(byAdding: .year, value: -18, to: Date())!;
 
     @ObservedObject var chosen_method: ChosenMethod = .method
@@ -30,7 +26,7 @@ struct ProfileCompletionView: View {
     
     var body: some View {
         ZStack {
-            Color("White")
+            Color(.white)
             VStack {
                 Image("WhiteLogo")
                     .resizable()
@@ -78,7 +74,7 @@ struct ProfileCompletionView: View {
                             .frame(width: 300, alignment: .leading)
                             .offset(y: -35)
                     }
-                    TextField("", text: $firstName)
+                    TextField("", text: $viewModel.name)
                         .frame(width:300.0, height: 48.0)
                         .textFieldStyle(.roundedBorder)
                         .offset(y: -35)
@@ -88,7 +84,7 @@ struct ProfileCompletionView: View {
                             .font(.custom(FontManager.NotoSans.regular, size : 15.0))
                             .foregroundColor(Color("BrightRed"))
                             .offset(x: 43, y: -25)
-                        DatePicker(selection: $birthday, in: ...Date(), displayedComponents: .date) {
+                        DatePicker(selection: $viewModel.birthdate, in: ...Date(), displayedComponents: .date) {
                             Text("Birthday")
                                 .font(.custom(FontManager.NotoSans.regular, size: 15.0))
                                 .offset(x: 140, y: 0)
@@ -105,7 +101,7 @@ struct ProfileCompletionView: View {
                             .frame(width: 300, alignment: .leading)
                             .offset(y: -20)
                     }
-                    Picker(selection: $gender, label: Text("Preference")) {
+                    Picker(selection: $viewModel.gender, label: Text("Preference")) {
                         Text("Male").tag(1)
                         Text("Female").tag(2)
                         Text("Other").tag(3)
@@ -138,11 +134,11 @@ struct ProfileCompletionView: View {
                     Text("Next")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)
-                        .background(!(validateValues(password: viewModel.password, confirmPassword: confirmPassword, firstName: firstName, birthday: birthday)) ? Color("DarkGrey") : Color("MainGreen"))
+                        .background(!(validateValues(password: viewModel.password, confirmPassword: confirmPassword, firstName: viewModel.name, birthday: viewModel.birthdate)) ? Color("DarkGrey") : Color("MainGreen"))
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
-                .disabled(!validateValues(password: viewModel.password, confirmPassword: confirmPassword, firstName: firstName, birthday: birthday))
+                .disabled(!validateValues(password: viewModel.password, confirmPassword: confirmPassword, firstName: viewModel.name, birthday: viewModel.birthdate))
             }
         }
     }

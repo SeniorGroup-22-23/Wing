@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct OccupationView: View {
-    @State private var occupation: String = ""
+    
+    @ObservedObject var viewModel: SignupViewModel = .method
     
     var body: some View {
         ZStack {
-            Color("White")
+            Color(.white)
             VStack {
                 Image("WhiteLogo")
                     .resizable()
@@ -24,7 +25,7 @@ struct OccupationView: View {
                     .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                 Spacer()
                     .frame(height: 35)
-                TextField("", text: $occupation)
+                TextField("", text: $viewModel.occupation)
                     .frame(width:260.0, height: 48.0)
                     .textFieldStyle(.roundedBorder)
                 Spacer()

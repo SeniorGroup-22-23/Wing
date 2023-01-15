@@ -17,13 +17,15 @@ class BioMethod: ObservableObject {
 }
 
 struct BioView: View {
-    @State private var bio: String = ""
+    
     @ObservedObject var bio_method: BioMethod = .method
+    @ObservedObject var viewModel: SignupViewModel = .method
+    
     let textLimit = 150
 
     var body: some View {
         ZStack {
-            Color("White")
+            Color(.white)
             VStack {
                 Image("WhiteLogo")
                     .resizable()
@@ -34,11 +36,11 @@ struct BioView: View {
                 Text("Tell us about yourself... write a short bio")
                     .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                     .frame(width: 320)
-                TextEditor(text: $bio)
+                TextEditor(text: $viewModel.bio)
                     .frame(width:218.0, height: 144.0)
                     .textFieldStyle(PlainTextFieldStyle())
                     .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("DisableGrey")))
-                    .onReceive(Just(bio)) { _ in limitText(textLimit) }
+                    .onReceive(Just(viewModel.bio)) { _ in limitText(textLimit) }
                 Text("150 character limit")
                     .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                     .padding(.leading, 90)
@@ -52,7 +54,7 @@ struct BioView: View {
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
                 .simultaneousGesture(TapGesture().onEnded{
-                    self.bio_method.bio_method = bio
+                    self.bio_method.bio_method = viewModel.bio
                     
                 })
             }
@@ -60,8 +62,8 @@ struct BioView: View {
     }
     
     func limitText(_ upper: Int) {
-            if bio.count > upper {
-                bio = String(bio.prefix(upper))
+            if viewModel.bio.count > upper {
+                viewModel.bio = String(viewModel.bio.prefix(upper))
             }
     }
 }

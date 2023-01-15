@@ -12,8 +12,8 @@ let MainGreen = Color("MainGreen")
 
 struct LoginView : View {
     
-    @ObservedObject var viewModel = LoginViewModel()
-
+    @ObservedObject var viewModel: LoginViewModel = .method
+    
     var body: some View {
         VStack {
             WhiteLogo()
@@ -42,18 +42,30 @@ struct LoginView : View {
                 .background(.white)
                 .padding(.bottom, 40)
                 .frame(width: 300)
-                ForgotPasswordText()
-                Button(action: {
-                    Task{
-                        await viewModel.getUserbyPhone()
+            ForgotPasswordText()
+            NavigationLink(
+                destination : {
+                VStack{
+                    if viewModel.isValid {
+                        HomePageView().navigationBarBackButtonHidden(true)
                     }
-                }) {
-                        ButtonContent()
+                    else{
+                        BioView()
+                    }
                 }
+            }()) {
+                ButtonContent()
+            }
+            .simultaneousGesture(TapGesture().onEnded{
+                Task{
+                    try await viewModel.getUserbyPhone()
+                }
+            })
         }
         .background(
-        BackgroundLogo())
+            BackgroundLogo())
     }
+
 }
 
 struct LoginView_Previews: PreviewProvider {

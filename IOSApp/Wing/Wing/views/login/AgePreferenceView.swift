@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct AgePreferenceView: View {
-    @State private var min = 0
-    @State private var max = 0
+    
+    @ObservedObject var viewModel: SignupViewModel = .method
     
     var body: some View {
         ZStack {
-            Color("White")
+            Color(.white)
             VStack {
                 Image("WhiteLogo")
                     .resizable()
@@ -27,7 +27,7 @@ struct AgePreferenceView: View {
                         .font(.custom(FontManager.NotoSans.regular, size: 20.0))
                         .frame(width: 100)
 
-                    Picker(selection: $min, label: Text("Min age")) {
+                    Picker(selection: $viewModel.minAge, label: Text("Min age")) {
                         ForEach(18 ..< 90) {  i in
                             Text("\(i)")
                         }
@@ -45,7 +45,7 @@ struct AgePreferenceView: View {
                         .font(.custom(FontManager.NotoSans.regular, size: 20.0))
                         .frame(width: 100)
                         .offset(y:-40)
-                    Picker(selection: $max, label: Text("Max age")) {
+                    Picker(selection: $viewModel.maxAge, label: Text("Max age")) {
                         ForEach(18 ..< 90) {  j in
                             Text("\(j)")
                         }

@@ -10,20 +10,19 @@ import Foundation
 struct Profile: Codable{
     
     var id: UUID?
-    var userId: UUID
-    var name: String
-    var birthdate: Date
-    var occupation: String
-    var bio: String
-    var gender: Int16
-    var preference: Int16
-    var minAge: Int16
-    var maxAge: Int16
-    var maxDistance: Int16
+    var userId: UUID?
+    var name: String?
+    var birthdate: Date?
+    var occupation: String?
+    var bio: String?
+    var gender: Int16?
+    var preference: Int16?
+    var minAge: Int16?
+    var maxAge: Int16?
+    var maxDistance: Int16?
     
     
-    init(id: UUID? = nil, userId: UUID, name: String, birthdate: Date, occupation: String, bio: String, gender: Int16,
-         preference: Int16, minAge: Int16, maxAge: Int16, maxDistance: Int16){
+    init(id: UUID? = nil, userId: UUID? = nil, name: String? = nil, birthdate: Date? = nil, occupation: String? = nil, bio: String? = nil, gender: Int16? = nil, preference: Int16? = nil, minAge: Int16? = nil, maxAge: Int16? = nil, maxDistance: Int16? = nil){
         
         self.id = id
         self.userId = userId

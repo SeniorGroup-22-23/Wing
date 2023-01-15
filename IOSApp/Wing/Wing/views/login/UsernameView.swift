@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct UsernameView: View {
-    @State private var username: String = ""
+
     @ObservedObject var viewModel: SignupViewModel = .method
    
     var body: some View {
         ZStack {
-            Color("White")
+            Color(.white)
             VStack {
                 Image("WhiteLogo")
                     .resizable()
@@ -39,7 +39,7 @@ struct UsernameView: View {
                     .autocorrectionDisabled(true)
                     .onChange(of: viewModel.username){ newValue in
                         Task {
-                            await viewModel.getUsernames(username: newValue)
+                            try await viewModel.getUsernames(username: newValue)
                         }
                     }
                 if viewModel.isTaken {

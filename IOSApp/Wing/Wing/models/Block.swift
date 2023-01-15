@@ -10,12 +10,12 @@ import Foundation
 struct Block: Codable{
     
     var id: UUID?
-    var blockedUserId: UUID
-    var blockedById: UUID
-    var reported: Bool
-    var issue: Int16
+    var blockedUserId: UUID?
+    var blockedById: UUID?
+    var reported: Bool?
+    var issue: Int16?
     
-    init(id: UUID? = nil, blockedUserId: UUID, blockedById: UUID, reported: Bool, issue: Int16){
+    init(id: UUID? = nil, blockedUserId: UUID? = nil, blockedById: UUID? = nil, reported: Bool? = nil, issue: Int16? = nil){
         self.id  = id
         self.blockedUserId = blockedUserId
         self.blockedById = blockedById

@@ -9,10 +9,7 @@ import SwiftUI
 
 struct PhoneNumberView: View {
     
-    @State private var ext: String = ""
-    @State private var number: String = ""
     @ObservedObject var viewModel: SignupViewModel = .method
-    
     
     func validateNumber(value: String) -> Bool {
         let phonePattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
@@ -34,7 +31,7 @@ struct PhoneNumberView: View {
     
     var body: some View {
             ZStack {
-                Color("White")
+                Color(.white)
                 VStack {
                     Image("WhiteLogo")
                         .resizable()

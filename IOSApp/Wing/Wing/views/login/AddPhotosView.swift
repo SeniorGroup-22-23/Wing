@@ -26,8 +26,7 @@ struct AddPhotosView: View {
     
     var body: some View {
         ZStack {
-            Color("White")
-            
+            Color(.white)
             VStack{
                 VStack {
                     LoadLogo()

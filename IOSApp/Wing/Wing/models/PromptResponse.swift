@@ -10,11 +10,11 @@ import Foundation
 struct PromptResponse: Codable {
  
     var id: UUID?
-    var userId: UUID
-    var promptId: UUID
-    var responseText: String
+    var userId: UUID?
+    var promptId: UUID?
+    var responseText: String?
     
-    init(id: UUID? = nil, userId: UUID, promptId: UUID, responseText: String){
+    init(id: UUID? = nil, userId: UUID? = nil, promptId: UUID? = nil, responseText: String? = nil){
         self.id = id
         self.userId = userId
         self.promptId = promptId

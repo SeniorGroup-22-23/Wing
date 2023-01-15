@@ -9,13 +9,12 @@ import SwiftUI
 
 struct EmailAddressView: View {
     
-    @State private var email: String = ""
     @State private var emailIsValid: Bool = true
     @ObservedObject var viewModel: SignupViewModel = .method
     
     var body: some View {
             ZStack {
-                Color("White")
+                Color(.white)
                 VStack {
                     Image("WhiteLogo")
                         .resizable()

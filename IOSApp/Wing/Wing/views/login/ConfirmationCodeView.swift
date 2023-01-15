@@ -12,7 +12,7 @@ struct ConfirmationCodeView: View {
     
     var body: some View {
         ZStack {
-            Color("White")
+            Color(.white)
             VStack {
                 Image("WhiteLogo")
                     .resizable()

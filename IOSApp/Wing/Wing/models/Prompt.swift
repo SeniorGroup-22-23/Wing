@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Prompt: Codable{
+struct Prompt: Codable, Hashable{
 
     var id: UUID?
-    var promptText: String
+    var promptText: String?
 
-    init(id: UUID? = nil, promptText: String){
+    init(id: UUID? = nil, promptText: String? = nil){
         self.id = id
         self.promptText = promptText
     }
