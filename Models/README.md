@@ -31,7 +31,7 @@ You may run into this issue when you try to build: "Missing package product". If
   3. Quit Xcode.
   4. Try again. 
 
-# Description of Entities
+# Descriptions of Entities
 
 ## User
 The User model stores the data necessary to keep track of a user for login purposes. The id generated in this object is used to relate a user to all other entities. 
@@ -61,6 +61,19 @@ The Profile model stores all the data of a particular User relevant to display a
 | min_age | the minimum age of the potential prospects a User would like to view. Can be altered after account creation. | Int16 |
 | max_age | the maximum age of the potential prospects a User would like to view. Can be altered after account creation. | Int16 |
 | max_distance | the maximum distance of the potential prospects a User would like to view. Can be altered after account creation | Int16 |
+| curr_latitude | the current latitude of the User | Double |
+|curr_longitude | the current longitude of the User | Double |
+
+## Profile Preview
+The Profile Preview model contains minimal data about a particular User that will be used to display a preview of this User's profile. For example, in the friendship and messaging views. 
+| Attribute | Description | Type |
+|:---------:|:-----------:|:----:|
+| id | used to reference a specific ProfilePreview | UUID |
+| user_id | reference to the specific User who the profile belongs to | UUID |
+| username | used to be displayed to friends | String |
+| name | name to be displayed on the Application | String |
+| primary_photo | photo used as when a preview of the profile is displayed | Data |
+
 
 ## Prompt
 The Prompt model contains textual prompts available to users to respond to when building their profiles. These will be generated internally. 
@@ -78,7 +91,7 @@ The Prompt Response model is an associative entity that stores all responses to 
 |:---------:|:-----------:|:----:|
 | id | used to reference a specific Prompt | UUID |
 | user_id | reference to the specific User who responded to a particular prompt | UUID |
-|prompt_id | reference to the specific Prompt the particular User responded to | UUID |
+| prompt_id | reference to the specific Prompt the particular User responded to | UUID |
 | response_text | the textual response entered by the User to be displayed on their Profile | String |
 
 ## Photo
@@ -87,7 +100,7 @@ The Photo model stores the binary data of a photo file to be displayed by a part
 |:---------:|:-----------:|:----:|
 | id | used to reference a specific Photo | UUID |
 | uesr_id | reference to a specific User who uplaoded the photo | UUID |
-| photo | the binary data of a photo | \[Int8\] |
+| photo | the binary data of a photo | Data |
 | index | an integer indicating the rank of the photo to determine the order it should be displayed on a user's profile | Int16 |
 
 
@@ -99,7 +112,7 @@ The Swipe model stores the response of a particular User to a prospect, whether 
 | id | used to reference a specific Swipe | UUID |
 | swiper_id | a reference to a specific User who swiped on the profile of another User | UUID |
 | prospect_id | a reference to the User whose profile the swiper swiped on | UUID |
-| type | an integer indicating if the swiper, liked, disliked, or like the prospect via wing | Int16 |
+| type | an integer indicating if the swiper, liked (1), disliked (2), or like the prospect via wing (3). | Int16 |
 | created_at | a timestamp indicating when the swipe occured used for deleting expired records | Date |
 
 
@@ -112,7 +125,7 @@ The Match model is used to store two users who have been matched together and wh
 | id | used to reference a specific Match | UUID |
 | first_user_id | a reference to one of two User members of the match | UUID |
 | second_user_id | a reference to one of two User members of the match | UUID |
-| type | an integer indicating if the match was direct between users or via a wing | Int16 |
+| type | an integer indicating if the match was direct (1) between users or via a wing (2) | Int16 |
 
 
 
@@ -124,7 +137,7 @@ The Friendship model stores two users who are friends. A single record exists fo
 | id | used to reference a specific Friendship | UUID |
 | requester_id | a reference to the User who requested the friendship | UUID |
 | respondent_id | a reference to the User who received a request for friendship | UUID |
-| status | an integer indicating if the request for the friendship is pending or accepted | Int16 |
+| status | an integer indicating if the request for the friendship is pending (1), accepted (2), or declined (3) | Int16 |
 
 
 ## Wing
@@ -136,7 +149,7 @@ The Wing model stores an instance when a user sends a friend the profile of a po
 | sender_id | a reference to the User who sent a profile to a friend | UUID |
 | recipient_id | a reference to the User who received a profile for a prospect from a friend | UUID |
 | prospect_id | a reference to the User whose profile the sender winged to the recipient | UUID |
-| status | an integer indicating if the wing is waiting for a response from the recipient or if the recipient has liked the prospect | Int16 |
+| status | an integer indicating if the wing is waiting for a response from the recipient (1), if the recipient has liked the prospect (2), or if the recipient has disliked the prospect (3) | Int16 |
 
 
 ## Message
@@ -148,7 +161,7 @@ The Message model stores a reference to a User who is a sender and a User who is
 | sender_id | a reference to the User who sent a message | UUID |
 | recipient_id | a reference to the User who received a message | UUID |
 | content | the contents of the message | String |
-| status | an integer indicating if the message has been sent to the recipient or if they have read the message | Int16 |
+| status | an integer indicating if the message has been sent to the recipient (1) or if they have read the message (2) | Int16 |
 | sent_at | a timestamp indicating when the message was sent | Date |
 
 
