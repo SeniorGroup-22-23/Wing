@@ -29,6 +29,7 @@ class PotentialMatch : ObservableObject {
 
 class showBlock: ObservableObject {
     @Published var blockAlert = false
+    @Published var bothAlert = false
     @Published var reportAlert = false
 }
 
@@ -45,7 +46,11 @@ struct MatchView: View {
                 .ignoresSafeArea()
             VStack {
                 HeaderTab()
-                
+                if ($showingBlockAlert.bothAlert.wrappedValue == true && $showingBlockAlert.blockAlert.wrappedValue == false){
+                    let _ = self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                        ReportPopUpView(showingBlockAlert: showingBlockAlert)
+                    }
+                }
                 VStack {
                     LoadNextUser()
                     
@@ -56,29 +61,15 @@ struct MatchView: View {
                         .padding(.leading)
                     }
                 }
-                .onLongPressGesture {
-                    self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
-                        ModalPopUpView(showingBlockAlert: showingBlockAlert)
-                                }
-                }
-                .alert(isPresented:$showingBlockAlert.blockAlert) {
-                    Alert(
-                        title: Text("Block this user?"),
-                        message: Text("We want to ensure a safe and supportive user experience at Wing. Block any user that you would not like to see on the app."),
-                        primaryButton: .destructive(Text("Block")) {
-                            print("Blocking...")
-                        },
-                        secondaryButton: .cancel()
-                    )
-                }
-                .alert(isPresented:$showingBlockAlert.reportAlert) {
-                    Alert(
-                        title: Text("Your report has been submitted and will be reviewed."),
-                        message: Text("Thank you for keeping Wing safe."),
-                        dismissButton: .default(Text("OK"))
-                    )
-                }
-                .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
+                .simultaneousGesture(
+                    LongPressGesture()
+                        .onEnded { _ in
+                            self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                                ModalPopUpView(showingBlockAlert: showingBlockAlert)
+                                        }
+                        }
+                )
+                .highPriorityGesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
                     .onEnded({ value in
                         let horizontalAmount = value.translation.width
                         let verticalAmount = value.translation.height
@@ -95,6 +86,30 @@ struct MatchView: View {
                     })
                 )
                 .environmentObject(potentialMatch)
+                HStack{
+                    Text("")
+                        .alert(isPresented:$showingBlockAlert.blockAlert) {
+                            Alert(
+                                title: Text("Block this user?"),
+                                message: Text("We want to ensure a safe and supportive user experience at Wing. Block any user that you would not like to see on the app."),
+                                primaryButton: .destructive(Text("Block")) {
+                                    $showingBlockAlert.blockAlert.wrappedValue = false
+                                    print("Blocking...")
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
+                        .hidden()
+                    Text("")
+                        .alert(isPresented:$showingBlockAlert.reportAlert) {
+                            Alert(
+                                title: Text("Your report has been submitted and will be reviewed."),
+                                message: Text("Thank you for keeping Wing safe."),
+                                dismissButton: .default(Text("OK"))
+                            )
+                        }
+                        .hidden()
+                }
                 
                 FooterTab()
             }

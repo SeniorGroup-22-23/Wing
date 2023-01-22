@@ -2,7 +2,7 @@
 //  PopUpView.swift
 //  Wing
 //
-//  Created by Ankita Menon on 22/01/2023.
+//  Created by Ankita Menon on 05/01/2023.
 //
 
 import SwiftUI
@@ -41,7 +41,6 @@ extension UIViewController {
 
 struct ModalPopUpView: View {
     
-    @State var value = 0.0
     @ObservedObject var showingBlockAlert: showBlock
     @Environment(\.viewController) private var viewControllerHolder: UIViewController?
     var body: some View {
@@ -64,7 +63,8 @@ struct ModalPopUpView: View {
             Spacer()
                 .frame(width: 300, height: 25)
             Button(action: {
-                //
+                showingBlockAlert.bothAlert = true
+                self.viewControllerHolder?.dismiss(animated: true, completion: nil)
             }) {
                 Text("Block and Report")
             }
@@ -79,6 +79,9 @@ struct ModalPopUpView: View {
                 .offset(y: 15)
             Button(action: {
                 self.viewControllerHolder?.dismiss(animated: true, completion: nil)
+                showingBlockAlert.blockAlert = false
+                showingBlockAlert.bothAlert = false
+                
             }) {
                 Text("Cancel")
             }.foregroundColor(.black).padding(20)
@@ -89,8 +92,117 @@ struct ModalPopUpView: View {
     }
 }
 
+struct Buttons : View {
+    @ObservedObject var showingBlockAlert: showBlock
+    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
+    var body : some View {
+        VStack{
+            Button(action: {
+                showingBlockAlert.reportAlert = true
+                showingBlockAlert.bothAlert = false
+                self.viewControllerHolder?.dismiss(animated: true, completion: nil)
+            }) {
+                Text("Fake profile")
+            }
+            .foregroundColor(.white)
+            .padding(.horizontal, 80)
+            .padding(.vertical, 12)
+            .background(Color("MainGreen"))
+            .cornerRadius(10)
+            Button(action: {
+                showingBlockAlert.reportAlert = true
+                showingBlockAlert.bothAlert = false
+                self.viewControllerHolder?.dismiss(animated: true, completion: nil)
+            }) {
+                Text("Innappropriate profile details")
+            }
+            .foregroundColor(.white)
+            .padding(.horizontal, 15)
+            .padding(.vertical, 12)
+            .background(Color("MainGreen"))
+            .cornerRadius(10)
+            Button(action: {
+                showingBlockAlert.reportAlert = true
+                showingBlockAlert.bothAlert = false
+                self.viewControllerHolder?.dismiss(animated: true, completion: nil)
+            }) {
+                Text("Harassment or bullying")
+            }
+            .foregroundColor(.white)
+            .padding(.horizontal, 35)
+            .padding(.vertical, 12)
+            .background(Color("MainGreen"))
+            .cornerRadius(10)
+            Button(action: {
+                showingBlockAlert.reportAlert = true
+                showingBlockAlert.bothAlert = false
+                self.viewControllerHolder?.dismiss(animated: true, completion: nil)
+            }) {
+                Text("Unwanted sexual messages")
+            }
+            .foregroundColor(.white)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 12)
+            .background(Color("MainGreen"))
+            .cornerRadius(10)
+            Button(action: {
+                showingBlockAlert.reportAlert = true
+                showingBlockAlert.bothAlert = false
+                self.viewControllerHolder?.dismiss(animated: true, completion: nil)
+            }) {
+                Text("Scam")
+            }
+            .foregroundColor(.white)
+            .padding(.horizontal, 105)
+            .padding(.vertical, 12)
+            .background(Color("MainGreen"))
+            .cornerRadius(10)
+            Button(action: {
+                showingBlockAlert.reportAlert = true
+                showingBlockAlert.bothAlert = false
+                self.viewControllerHolder?.dismiss(animated: true, completion: nil)
+            }) {
+                Text("Underaged person")
+            }
+            .foregroundColor(.white)
+            .padding(.horizontal, 55)
+            .padding(.vertical, 12)
+            .background(Color("MainGreen"))
+            .cornerRadius(10)
+        }
+    }
+}
+
+struct ReportPopUpView: View {
+    
+    @ObservedObject var showingBlockAlert: showBlock
+    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
+    var body: some View {
+        
+        VStack(alignment: .center) {
+            Text("Report and Block")
+                .font(.custom(FontManager.NotoSans.semiBold, size : 24.0))
+                .padding(15)
+            Text("Select the reason that best fits you")
+            Buttons(showingBlockAlert: showingBlockAlert)
+            Spacer()
+                .frame(width: 300, height: 10)
+            Button(action: {
+                self.viewControllerHolder?.dismiss(animated: true, completion: nil)
+                showingBlockAlert.blockAlert = false
+                showingBlockAlert.bothAlert = false
+            }) {
+                Text("Cancel")
+            }.foregroundColor(.black).padding(20)
+            
+        }.background(.white.opacity(0.8)).clipShape(RoundedRectangle(cornerRadius: 10))
+            .shadow(radius: 3)
+    }
+}
+
 struct PopUpView_Previews: PreviewProvider {
     static var previews: some View {
-        ModalPopUpView(showingBlockAlert: showBlock() )
+        //ModalPopUpView(showingBlockAlert: showBlock())
+        ReportPopUpView(showingBlockAlert: showBlock())
     }
 }
