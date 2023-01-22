@@ -27,7 +27,16 @@ class PotentialMatch : ObservableObject {
     }
 }
 
+class showBlock: ObservableObject {
+    @Published var blockAlert = false
+    @Published var reportAlert = false
+}
+
 struct MatchView: View {
+    @StateObject var showingBlockAlert = showBlock()
+    
+    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
+    
     @StateObject var potentialMatch = PotentialMatch(name: "Nury", age: 23, occupation: "Software Engineering", bio: "This is my bio! I am a student at UNB and I can't wait to use the Wing app. Woohoo!", prompts: ["What's your favourite sport?", "Who's your celeb crush?", ""], answers: ["Football. Can't wait for the superbowl!!", "Probably Brad Pitt..", ""], photos: [Image?](repeating : nil, count : 8))
     
     var body: some View {
@@ -46,6 +55,28 @@ struct MatchView: View {
                         }
                         .padding(.leading)
                     }
+                }
+                .onLongPressGesture {
+                    self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                        ModalPopUpView(showingBlockAlert: showingBlockAlert)
+                                }
+                }
+                .alert(isPresented:$showingBlockAlert.blockAlert) {
+                    Alert(
+                        title: Text("Block this user?"),
+                        message: Text("We want to ensure a safe and supportive user experience at Wing. Block any user that you would not like to see on the app."),
+                        primaryButton: .destructive(Text("Block")) {
+                            print("Blocking...")
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
+                .alert(isPresented:$showingBlockAlert.reportAlert) {
+                    Alert(
+                        title: Text("Your report has been submitted and will be reviewed."),
+                        message: Text("Thank you for keeping Wing safe."),
+                        dismissButton: .default(Text("OK"))
+                    )
                 }
                 .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
                     .onEnded({ value in
