@@ -23,6 +23,7 @@ public final class Friendship: Model, Content{
     
     // 1 = pending
     // 2 = approved
+    // 3 = declined
     @Field(key: "status")
     public var status: Int16
 

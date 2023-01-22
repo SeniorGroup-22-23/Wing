@@ -12,7 +12,7 @@ let MainGreen = Color("MainGreen")
 
 struct LoginView : View {
     
-    @ObservedObject var viewModel: LoginViewModel = .method
+    @ObservedObject var viewModel: SignupViewModel = .method
     
     var body: some View {
         VStack {
@@ -58,7 +58,13 @@ struct LoginView : View {
             }
             .simultaneousGesture(TapGesture().onEnded{
                 Task{
-                    try await viewModel.getUserbyPhone()
+                    if(viewModel.credential.contains("@")){
+                        try await viewModel.getUserbyEmail()
+                    }
+                    else{
+                        try await viewModel.getUserbyPhone()
+                    }
+                    
                 }
             })
         }

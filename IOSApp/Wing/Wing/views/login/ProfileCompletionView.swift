@@ -59,7 +59,7 @@ struct ProfileCompletionView: View {
                         .frame(width: 300, alignment: .leading)
                         .offset(y: -35)
                 }
-                SecureField("", text: $confirmPassword)
+                SecureField("", text: $viewModel.confirmPassword)
                     .frame(width:300.0, height: 48.0)
                     .textFieldStyle(.roundedBorder)
                     .offset(y: -35)
@@ -102,9 +102,9 @@ struct ProfileCompletionView: View {
                             .offset(y: -20)
                     }
                     Picker(selection: $viewModel.gender, label: Text("Preference")) {
-                        Text("Male").tag(1)
-                        Text("Female").tag(2)
-                        Text("Other").tag(3)
+                        Text("Male").tag(Int16(1))
+                        Text("Female").tag(Int16(2))
+                        Text("Other").tag(Int16(3))
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .offset(y: -20)
@@ -134,11 +134,11 @@ struct ProfileCompletionView: View {
                     Text("Next")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)
-                        .background(!(validateValues(password: viewModel.password, confirmPassword: confirmPassword, firstName: viewModel.name, birthday: viewModel.birthdate)) ? Color("DarkGrey") : Color("MainGreen"))
+                        .background(!(validateValues(password: viewModel.password, confirmPassword: viewModel.confirmPassword, firstName: viewModel.name, birthday: viewModel.birthdate)) ? Color("DarkGrey") : Color("MainGreen"))
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
-                .disabled(!validateValues(password: viewModel.password, confirmPassword: confirmPassword, firstName: viewModel.name, birthday: viewModel.birthdate))
+                .disabled(!validateValues(password: viewModel.password, confirmPassword: viewModel.confirmPassword, firstName: viewModel.name, birthday: viewModel.birthdate))
             }
         }
     }

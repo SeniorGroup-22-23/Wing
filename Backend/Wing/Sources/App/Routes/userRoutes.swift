@@ -1,45 +1,16 @@
+//
+//  userRoutes.swift
+//  User/Profile Routes 
+//
+//  Created by Allie Griffin on 2022-11-27.
+//
+
 import FluentPostgresDriver
 import Vapor
 import Models
 
-//Wrap Abort Error to Generate Custom HTTP Errors
-enum Error {
-    case userNotFound
-    case promptNotFound
-    case profileNotFound
-    case nilId
-}
-
-extension Error: AbortError {
-    var reason: String {
-        switch self {
-        case .userNotFound:
-            return "No user record found."
-        case .promptNotFound:
-            return "No prompt record found."
-        case .profileNotFound:
-            return "No profile found."
-        case .nilId:
-            return "Illegal nil ID."
-        }
-    }
-    var status: HTTPStatus {
-        switch self {
-        case .userNotFound:
-            return .notFound
-        case .promptNotFound:
-            return .notFound
-        case .profileNotFound:
-            return .notFound
-        case .nilId:
-            return .notFound
-        }
-    }
-}
-
 //Wing Routes
-func routes(_ app: Application) throws {
-    
+func userRoutes(_ app: Application) throws {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .iso8601
     
@@ -83,7 +54,19 @@ func routes(_ app: Application) throws {
     //POST User
     app.post("user"){ req async throws -> User in
         let user = try req.content.decode(User.self)
-        try await user.create(on: req.db)
+        do {
+            try await user.create(on: req.db)
+        } catch {
+            if(error.localizedDescription.contains("no_dup_phone")){
+                throw Error.dupVal("phone", user.phone)
+            } else if (error.localizedDescription.contains("no_dup_email")){
+                throw Error.dupVal("email", user.email)
+            } else if (error.localizedDescription.contains("no_dup_username")){
+                throw Error.dupVal("username", user.username)
+            } else {
+                throw Abort(.internalServerError, reason: "Unable to create user: \(error)")
+            }
+        }
         return user
     }
     
@@ -94,14 +77,14 @@ func routes(_ app: Application) throws {
             .set(\.$phone, to : user.phone)
             .set(\.$email, to : user.email)
             .set(\.$password, to : user.password)
-            .filter(\.$id == user.id!)
+            .filter(\.$id == UUID(user.id!.uuidString.lowercased())!)
             .update()
         return user
     }
     
     //GET Profile by UserId
     app.get("profile", ":userId") {req async throws -> Profile in
-        guard let userId = UUID(uuidString: req.parameters.get("userId")!)
+        guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
              throw Error.nilId
         }
@@ -117,7 +100,15 @@ func routes(_ app: Application) throws {
     //POST Profile
     app.post("profile"){ req async throws -> Profile  in
         let profile = try req.content.decode(Profile.self)
-        try await profile.create(on: req.db)
+        do {
+            try await profile.create(on: req.db)
+        } catch {
+            if(error.localizedDescription.contains("profiles_user_id_fkey")){
+                throw Error.notFoundwID("user", profile.userId)
+            } else {
+                throw Abort(.internalServerError, reason: "Unable to create profile: \(error)")
+            }
+        }
         return profile
     }
     
@@ -136,80 +127,25 @@ func routes(_ app: Application) throws {
             .set(\.$minAge, to : profile.minAge)
             .set(\.$maxAge, to : profile.maxAge)
             .set(\.$maxDistance, to : profile.maxDistance)
-            .filter(\.$id == profile.id!)
+            .set(\.$currLongitude, to: profile.currLongitude)
+            .set(\.$currLatitude, to: profile.currLatitude)
+            .filter(\.$id == UUID(profile.id!.uuidString.lowercased())!)
             .update()
         return profile
     }
     
-    
-    
-    //GET Prompts
-    app.get("prompts") { req async throws in
-        try await Prompt.query(on: req.db).all()
-    }
-    
-    //GET Prompt by Prompt ID
-    app.get("prompt", ":promptId") { req async throws -> Prompt in
-        let promptId = UUID(uuidString: req.parameters.get("promptId")!)!
-        guard let prompt = try await Prompt.query(on: req.db)
-            .filter(\.$id == promptId)
-            .first()
+    //GET profile by profile ID
+    app.get("profileId", ":profileId") { req async throws -> Profile in
+        guard let profileId = UUID(uuidString: req.parameters.get("profileId")!.lowercased())
         else {
-            throw Error.promptNotFound
+             throw Error.nilId
         }
-        
-        return prompt
-    }
-    
-    //GET Prompts by UserID (all prompt responses by user ID)
-    app.get("prompts", ":userId") { req async throws -> [PromptResponse] in
-        let userId = UUID(uuidString: req.parameters.get("userId")!)!
-        let prompts = try await PromptResponse.query(on: req.db)
-            .filter(\.$userId == userId)
-            .all()
-        return prompts
-    }
-    
-    //POST Prompt Response to user account
-    app.post("prompts", "user"){ req async throws -> PromptResponse in
-        let promptResponse = try req.content.decode(PromptResponse.self)
-        try await promptResponse.create(on: req.db)
-        return promptResponse
-    }
-    
-    //POST Prompt - Internal only!
-    app.post("prompts") { req async throws in
-        let prompt = try req.content.decode(Prompt.self)
-        try await prompt.create(on: req.db)
-        return prompt
-    }
-    
-    //PUT Prompt Response (edit text response)
-    app.put("promptResponse"){ req async throws -> PromptResponse in
-        let promptRes = try req.content.decode(PromptResponse.self)
-        guard promptRes.id != nil else {
-            throw Error.nilId
-        }
-        try await PromptResponse.query(on: req.db)
-            .set(\.$responseText, to : promptRes.responseText)
-            .update()
-        return promptRes
-    }
-    
-    
-    //DELETE Prompt Response (remove prompt from user)
-    app.delete("promptResponse", ":id"){ req async throws -> Response in
-       guard let id = UUID(uuidString: req.parameters.get("id")!)
+        guard let profile = try await Profile.query(on: req.db)
+            .filter(\.$id == profileId)
+            .first() //Will throw error if no User is found
         else {
-           return Response(status: .badRequest)
-       }
-        try await PromptResponse.query(on: req.db)
-            .filter(\.$id == id)
-            .delete()
-        return Response(status: .accepted)
+            throw Error.profileNotFound
+        }
+        return profile
     }
-    
-    
-    //try app.register(collection: TodoController()) XCODE generated
 }
-

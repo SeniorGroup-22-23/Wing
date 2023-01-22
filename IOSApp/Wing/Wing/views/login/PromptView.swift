@@ -45,13 +45,14 @@ struct PromptView: View {
                 
                 Spacer()
 
-                NavigationLink(destination: HomePageView()) {
+                NavigationLink(destination: HomePageView().navigationBarBackButtonHidden(true)) {
                     loadDoneBtn()
                 }
                 .simultaneousGesture(TapGesture().onEnded{
                     Task{
                         try await viewModel.setUser()
                         try await viewModel.setProfile()
+                        try await viewModel.setProfilePreview()
                         try await viewModel.setPromptResponse()
                         if(!viewModel.ans2.isEmpty){
                             try await viewModel.setPromptResponse(n: 2)

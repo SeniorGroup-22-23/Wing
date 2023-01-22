@@ -55,11 +55,11 @@ struct UsernameView: View {
                     Text("Next")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)
-                        .background((viewModel.username.isEmpty || viewModel.isTaken) ? Color("DarkGrey") : Color("MainGreen"))
+                        .background((viewModel.username.count < 3 || viewModel.isTaken) ? Color("DarkGrey") : Color("MainGreen"))
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
-                .disabled(viewModel.username.isEmpty || viewModel.isTaken)
+                .disabled(viewModel.username.count < 3 || viewModel.isTaken)
                 Spacer()
             }
         }

@@ -69,6 +69,11 @@ struct PhoneNumberView: View {
                             .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                     }
                     .disabled(!(self.validateExt(value: viewModel.ext)) || !(self.validateNumber(value: viewModel.number)))
+                    .simultaneousGesture(TapGesture().onEnded{
+                        Task{
+                                
+                        }
+                    })
                         
                     Spacer()
                 }

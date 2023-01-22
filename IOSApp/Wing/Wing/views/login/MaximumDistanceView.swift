@@ -19,11 +19,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     func requestLocation() {
         manager.requestLocation()
-        print("Requesting location")
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.first?.coordinate
-                
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // Error handling
@@ -34,7 +32,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
 struct MaximumDistanceView: View {
     @StateObject var locationManager = LocationManager()
-    let results = [1, 5, 10, 20, 30, 40, 50, 100, 150, 200, 250]
+    let results: [Int16] = [1, 5, 10, 20, 30, 40, 50, 100, 150, 200, 250]
     
     @ObservedObject var viewModel: SignupViewModel = .method
     
@@ -53,7 +51,7 @@ struct MaximumDistanceView: View {
                     .offset(y:50)
                 Picker(selection: $viewModel.maxDistance, label: Text("Distance")) {
                     ForEach(results, id: \.self) {  i in
-                        Text("\(i)")
+                        Text("\(i)").tag(i)
                     }
                 }
                     .pickerStyle(WheelPickerStyle())
@@ -62,8 +60,11 @@ struct MaximumDistanceView: View {
                 Spacer()
                 if let location = locationManager.location {
                     Text("Your location: \(location.latitude), \(location.longitude)")
+                        .task{
+                            viewModel.currLatitude = location.latitude
+                            viewModel.currLongitude = location.longitude
+                        }
                 }
-
                 LocationButton {
                     locationManager.requestLocation()
                 }

@@ -28,7 +28,7 @@ struct AgePreferenceView: View {
                         .frame(width: 100)
 
                     Picker(selection: $viewModel.minAge, label: Text("Min age")) {
-                        ForEach(18 ..< 90) {  i in
+                        ForEach(Int16(18) ..< Int16(90), id: \.self) {  i in
                             Text("\(i)")
                         }
                         Text("90+")
@@ -46,7 +46,7 @@ struct AgePreferenceView: View {
                         .frame(width: 100)
                         .offset(y:-40)
                     Picker(selection: $viewModel.maxAge, label: Text("Max age")) {
-                        ForEach(18 ..< 90) {  j in
+                        ForEach(Int16(18) ..< Int16(90), id: \.self) {  j in
                             Text("\(j)")
                         }
                         Text("90+")

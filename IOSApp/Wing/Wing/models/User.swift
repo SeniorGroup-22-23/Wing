@@ -22,7 +22,6 @@ struct User: Codable{
         self.password = password
         self.phone = phone
         self.email = email
-
     }
 }
 

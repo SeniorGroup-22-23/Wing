@@ -20,9 +20,11 @@ struct Profile: Codable{
     var minAge: Int16?
     var maxAge: Int16?
     var maxDistance: Int16?
+    var currLatitude: Double?
+    var currLongitude: Double?
     
     
-    init(id: UUID? = nil, userId: UUID? = nil, name: String? = nil, birthdate: Date? = nil, occupation: String? = nil, bio: String? = nil, gender: Int16? = nil, preference: Int16? = nil, minAge: Int16? = nil, maxAge: Int16? = nil, maxDistance: Int16? = nil){
+    init(id: UUID? = nil, userId: UUID? = nil, name: String? = nil, birthdate: Date? = nil, occupation: String? = nil, bio: String? = nil, gender: Int16? = nil, preference: Int16? = nil, minAge: Int16? = nil, maxAge: Int16? = nil, maxDistance: Int16? = nil, currLatitude: Double? = nil, currLongitude: Double? = nil){
         
         self.id = id
         self.userId = userId
@@ -35,5 +37,8 @@ struct Profile: Codable{
         self.minAge = minAge
         self.maxAge = maxAge
         self.maxDistance = maxDistance
+        self.currLatitude = currLatitude
+        self.currLongitude = currLongitude
+        
     }
 }

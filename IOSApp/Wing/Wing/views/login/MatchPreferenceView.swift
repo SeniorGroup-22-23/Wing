@@ -24,9 +24,9 @@ struct MatchPreferenceView: View {
                 Text("I prefer to see...")
                     .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))
                 Picker(selection: $viewModel.preference, label: Text("Preference")) {
-                    Text("Only men").tag(1)
-                    Text("Only women").tag(2)
-                    Text("Everyone").tag(3)
+                    Text("Only men").tag(Int16(1))
+                    Text("Only women").tag(Int16(2))
+                    Text("Everyone").tag(Int16(3))
                 }
                     .pickerStyle(WheelPickerStyle())
                     .offset(y: -30)
