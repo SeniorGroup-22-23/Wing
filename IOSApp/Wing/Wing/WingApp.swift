@@ -8,10 +8,11 @@
 import SwiftUI
 
 @main
-struct WingApp: App {
+struct WingApp: App{
     var body: some Scene {
         WindowGroup {
             HomePageView()
         }
     }
 }
+
