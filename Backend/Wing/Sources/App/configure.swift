@@ -31,8 +31,6 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateMessages())
     app.migrations.add(CreateBlocks())
 
-    // run SQL shell script
-    
     
     // register routes
     try propmtRoutes(app)
