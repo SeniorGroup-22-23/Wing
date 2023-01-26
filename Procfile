@@ -1,1 +1,1 @@
-web: sh -c 'cd ./Backend/Wing && Wing 0.0.0.0 $PORT'
+web: sh -c 'cd ./Backend/Wing && Run serve --env production --hostname 0.0.0.0 --port $PORT'
