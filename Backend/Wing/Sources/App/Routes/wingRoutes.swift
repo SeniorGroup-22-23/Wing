@@ -12,7 +12,7 @@ import Models
 
 func wingRoutes(_ app: Application) throws {
     
-    app.post("hello"){ req in
+    app.get("hello"){ req async throws -> String in
         return "Hello! This test worked."
     }
     
