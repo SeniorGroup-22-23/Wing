@@ -12,6 +12,10 @@ import Models
 
 func wingRoutes(_ app: Application) throws {
     
+    app.post("hello"){ req in
+        return "Hello! This test worked."
+    }
+    
     app.post("wing"){ req async throws -> Wing in
         let wing = try req.content.decode(Wing.self)
         wing.prospectId = UUID(String(wing.prospectId).lowercased())!
