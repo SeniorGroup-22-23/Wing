@@ -2,17 +2,20 @@ import Fluent
 import FluentPostgresDriver
 import Vapor
 
+extension Environment {
+    static var databaseURL: URL {
+        guard let urlString = Environment.get("DATABASE_URL"), let url = URL(string: urlString) else {
+                    fatalError("DATABASE_URL not configured")
+                }
+                return url
+    }
+}
+
 // configures your application
 public func configure(_ app: Application) throws {
 
-    //Add database configuration
-    //All default setup on local host 
-    app.databases.use(.postgres(
-        hostname: "localhost",
-        username: "postgres",
-        password: "",
-        database: "postgres"
-    ), as: .psql)
+    //Add database configuration, fro production uses 
+    try app.databases.use(.postgres(url: Environment.databaseURL), as: .psql)
 
     //Migrations to run
     app.migrations.add(CreateUsers())
