@@ -14,9 +14,16 @@ extension Environment {
 // configures your application
 public func configure(_ app: Application) throws {
 
-    //Add database configuration, fro production uses 
+    //Add database configuration, for production uses
+    var postgresconfig = PostgresConfiguration(url: Environment.get("DATABASE_URL")!)
+    postgresconfig?.tlsConfiguration = .makeClientConfiguration()
+    postgresconfig?.tlsConfiguration?.certificateVerification = .none
+    
     try app.databases.use(.postgres(url: Environment.databaseURL), as: .psql)
 
+    
+
+    
     //Migrations to run
     app.migrations.add(CreateUsers())
     app.migrations.add(CreatePrompts())
