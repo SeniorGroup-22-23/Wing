@@ -2,6 +2,7 @@ import Fluent
 import FluentPostgresDriver
 import Vapor
 
+
 extension Environment {
     static var databaseURL: URL {
         guard let urlString = Environment.get("DATABASE_URL"), let url = URL(string: urlString) else {
@@ -9,20 +10,27 @@ extension Environment {
                 }
                 return url
     }
+    
+    
 }
+
 
 // configures your application
 public func configure(_ app: Application) throws {
 
     //Add database configuration, for production uses
-    var postgresconfig = PostgresConfiguration(url: Environment.get("DATABASE_URL")!)
-    postgresconfig?.tlsConfiguration = .makeClientConfiguration()
-    postgresconfig?.tlsConfiguration?.certificateVerification = .none
-    
-    try app.databases.use(.postgres(url: Environment.databaseURL), as: .psql)
 
     
+    if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
+        postgresConfig.tlsConfiguration = .makeClientConfiguration()
+        postgresConfig.tlsConfiguration?.certificateVerification = .none
+        app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
+    } else {
+        fatalError("DATABASE URL not configured")
+    }
+    
 
+    //try app.databases.use(.postgres(url: Environment.databaseURL), as: .psql)
     
     //Migrations to run
     app.migrations.add(CreateUsers())
