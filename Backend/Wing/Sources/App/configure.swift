@@ -2,31 +2,22 @@ import Fluent
 import FluentPostgresDriver
 import Vapor
 
-
-extension Environment {
-    static var databaseURL: URL {
-        guard let urlString = Environment.get("DATABASE_URL"), let url = URL(string: urlString) else {
-                    fatalError("DATABASE_URL not configured")
-                }
-                return url
-    }
-    
-    
-}
-
-
 // configures your application
 public func configure(_ app: Application) throws {
 
-    //Add database configuration, for production uses
-
-    
+    //Try to run in prod, if not set up avail try locally 
     if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
         postgresConfig.tlsConfiguration = .makeClientConfiguration()
         postgresConfig.tlsConfiguration?.certificateVerification = .none
         app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
+        
     } else {
-        fatalError("DATABASE URL not configured")
+        app.databases.use(.postgres(
+                hostname: "localhost",
+                username: "postgres",
+                password: "",
+                database: "postgres"
+            ), as: .psql)
     }
     
 
