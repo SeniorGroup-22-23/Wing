@@ -11,7 +11,7 @@ import XCTest
 
 final class PhotoTests: XCTestCase {
     
-    func testInitProfilePreview() throws {
+    func testInitPhoto() throws {
         
         let userId = UUID()
         let photoData = Data()
