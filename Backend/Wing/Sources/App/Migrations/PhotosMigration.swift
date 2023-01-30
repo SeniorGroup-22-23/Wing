@@ -16,6 +16,7 @@ struct CreatePhotos: AsyncMigration {
             .id()
             .field("user_id", .uuid, .required, .references("users", "id"))
             .field("photo", .data, .required)
+            .field("index", .int16, .required)
             .create()
     }
 
