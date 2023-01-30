@@ -14,10 +14,12 @@ struct CreatePhotos: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("photos")
             .id()
-            .field("user_id", .uuid, .required, .references("users", "id"))
+            .foreignKey("user_id", references: "users", "id")
+            //.field("user_id", .uuid, .required, .references("users", "id"))
             .field("photo", .data, .required)
             .field("index", .int16, .required)
             .create()
+            
     }
 
     func revert(on database: Database) async throws {

@@ -14,8 +14,10 @@ struct CreateFriendships: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("friendships")
             .id()
-            .field("requester_id", .uuid, .required, .references("users", "id"))
-            .field("respondent_id", .uuid, .required, .references("users", "id"))
+            .foreignKey("requester_id", references: "users", "id")
+            .foreignKey("respondent_id", references: "users", "id")
+            //.field("requester_id", .uuid, .required, .references("users", "id"))
+            //.field("respondent_id", .uuid, .required, .references("users", "id"))
             .field("status", .int16, .required)
             .create()
     }

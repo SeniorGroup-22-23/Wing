@@ -14,7 +14,8 @@ struct CreateProfiles: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("profiles")
             .id()
-            .field("user_id", .uuid, .required, .references("users", "id"))
+            .foreignKey("user_id", references: "users", "id")
+            //.field("user_id", .uuid, .required, .references("users", "id"))
             .field("name", .string)
             .field("birthdate", .datetime)
             .field("occupation", .string)

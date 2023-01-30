@@ -14,8 +14,10 @@ struct CreateSwipes: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("swipes")
             .id()
-            .field("swiper_id", .uuid, .required, .references("users", "id"))
-            .field("prospect_id", .uuid, .required, .references("users", "id"))
+            .foreignKey("swiper_id", references: "users", "id")
+            .foreignKey("prospect_id", references: "users", "id")
+            //.field("swiper_id", .uuid, .required, .references("users", "id"))
+            //.field("prospect_id", .uuid, .required, .references("users", "id"))
             .field("type", .int16)
             .field("created_at", .datetime)
             .create()

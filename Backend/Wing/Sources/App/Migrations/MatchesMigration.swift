@@ -14,8 +14,10 @@ struct CreateMatches: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("matches")
             .id()
-            .field("first_user_id", .uuid, .required, .references("users", "id"))
-            .field("second_user_id", .uuid, .required, .references("users", "id"))
+            .foreignKey("first_user_id", references: "users", "id")
+            .foreignKey("second_user_id", references: "users", "id")
+            //.field("first_user_id", .uuid, .required, .references("users", "id"))
+            //.field("second_user_id", .uuid, .required, .references("users", "id"))
             .field("type", .int16, .required)
             .create()
     }

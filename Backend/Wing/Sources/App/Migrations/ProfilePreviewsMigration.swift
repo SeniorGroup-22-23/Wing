@@ -14,7 +14,8 @@ struct CreateProfilePreviews: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("profile_previews")
             .id()
-            .field("user_id", .uuid, .required, .references("users", "id"))
+            .foreignKey("user_id", references: "users", "id")
+            //.field("user_id", .uuid, .required, .references("users", "id"))
             .field("username", .string)
             .field("name", .string)
             .field("primary_photo", .data)
