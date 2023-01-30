@@ -55,6 +55,15 @@
       }
     },
     {
+      "identity" : "models",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SeniorGroup-22-23/Models",
+      "state" : {
+        "revision" : "aca7e520985799262b2cb1c0e76d6bdb44d428ec",
+        "version" : "1.0.1"
+      }
+    },
+    {
       "identity" : "multipart-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/multipart-kit.git",
