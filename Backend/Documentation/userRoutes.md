@@ -164,7 +164,7 @@ _Note: This is case sensitive (can be changed)_
 {
   "username" : "janeDoe123", 
   "password" : "Password1", 
-  "phone" : "506 1234567"
+  "phone" : "506 1234567",
   "email" : "jane@hotmail.com" 
 }
 ```
