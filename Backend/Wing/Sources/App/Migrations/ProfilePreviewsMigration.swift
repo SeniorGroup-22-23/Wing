@@ -14,11 +14,13 @@ struct CreateProfilePreviews: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("profile_previews")
             .id()
-            .foreignKey("user_id", references: "users", "id")
-            //.field("user_id", .uuid, .required, .references("users", "id"))
+            .field("user_id", .uuid, .required)
             .field("username", .string)
             .field("name", .string)
             .field("primary_photo", .data)
+        
+            .foreignKey("user_id", references: "users", "id", onDelete: .cascade)
+        
             .create()
     }
 

@@ -13,13 +13,17 @@ struct CreateMatches: AsyncMigration {
     
     func prepare(on database: Database) async throws {
         try await database.schema("matches")
+        
             .id()
-            .foreignKey("first_user_id", references: "users", "id")
-            .foreignKey("second_user_id", references: "users", "id")
-            //.field("first_user_id", .uuid, .required, .references("users", "id"))
-            //.field("second_user_id", .uuid, .required, .references("users", "id"))
+            .field("first_user_id", .uuid, .required)
+            .field("second_user_id", .uuid, .required)
             .field("type", .int16, .required)
+        
+            .foreignKey("first_user_id", references: "users", "id", onDelete: .cascade)
+            .foreignKey("second_user_id", references: "users", "id", onDelete: .cascade)
+        
             .create()
+            
     }
 
     func revert(on database: Database) async throws {

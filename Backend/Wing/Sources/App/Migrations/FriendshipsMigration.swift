@@ -13,12 +13,15 @@ struct CreateFriendships: AsyncMigration {
     
     func prepare(on database: Database) async throws {
         try await database.schema("friendships")
+        
             .id()
-            .foreignKey("requester_id", references: "users", "id")
-            .foreignKey("respondent_id", references: "users", "id")
-            //.field("requester_id", .uuid, .required, .references("users", "id"))
-            //.field("respondent_id", .uuid, .required, .references("users", "id"))
+            .field("requester_id", .uuid, .required)
+            .field("respondent_id", .uuid, .required)
             .field("status", .int16, .required)
+        
+            .foreignKey("requester_id", references: "users", "id", onDelete: .cascade)
+            .foreignKey("respondent_id", references: "users", "id", onDelete: .cascade)
+        
             .create()
     }
 
