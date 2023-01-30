@@ -19,9 +19,7 @@ struct CreateUsers: AsyncMigration {
             .field("email", .string)
         
             .unique(on: "username", name: "no_dup_username")
-            .unique(on: "phone", name: "no_dup_phone")
-            .unique(on:"email", name: "no_dup_email")
-    
+
             .create()
     }
 
