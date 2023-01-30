@@ -15,7 +15,7 @@ struct CreatePromptResponses: AsyncMigration {
         try await database.schema("prompt_responses")
             .id()
             .field("user_id", .uuid, .required)
-            .field("prompt_id", .uuid, .required, .references("prompts", "id"))
+            .field("prompt_id", .uuid, .required)
             .field("response_text", .string, .required)
         
             .foreignKey("user_id", references: "users", "id", onDelete: .cascade)
