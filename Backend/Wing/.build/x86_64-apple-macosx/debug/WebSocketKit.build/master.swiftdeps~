@@ -1,0 +1,12 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "de9ed712713c277ffbc1017e0f2031ec3793c4a2d253fc73b78d0bb3c40bd625"
+build_start_time: [1669056316, 940510988]
+build_end_time: [1669056331, 86886882]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/websocket-kit/Sources/WebSocketKit/Concurrency/WebSocket+Concurrency.swift": [1669055739, 741627454]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/websocket-kit/Sources/WebSocketKit/Exports.swift": [1669055739, 742094755]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/websocket-kit/Sources/WebSocketKit/HTTPInitialRequestHandler.swift": [1669055739, 742461442]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/websocket-kit/Sources/WebSocketKit/WebSocket+Connect.swift": [1669055739, 742911338]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/websocket-kit/Sources/WebSocketKit/WebSocket.swift": [1669055739, 743410587]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/websocket-kit/Sources/WebSocketKit/WebSocketClient.swift": [1669055739, 744929313]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/websocket-kit/Sources/WebSocketKit/WebSocketHandler.swift": [1669055739, 747098445]

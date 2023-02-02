@@ -1,0 +1,15 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "1699ff31766c3e46f8fc5faa2249a4a89c3514e343da6b6c51d49177d0b7f593"
+build_start_time: [1673821048, 739470005]
+build_end_time: [1673821053, 28275012]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent-kit/Sources/FluentSQL/DatabaseQuery+SQL.swift": [1669055748, 717163085]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent-kit/Sources/FluentSQL/DatabaseSchema+SQL.swift": [1669055748, 717493057]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent-kit/Sources/FluentSQL/Exports.swift": [1669055748, 717774629]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent-kit/Sources/FluentSQL/SQLDatabase+Model+Concurrency.swift": [1669055748, 718062877]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent-kit/Sources/FluentSQL/SQLDatabase+Model.swift": [1669055748, 718327522]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent-kit/Sources/FluentSQL/SQLJSONColumnPath.swift": [1669055748, 718586444]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent-kit/Sources/FluentSQL/SQLQualifiedTable.swift": [1669055748, 718865156]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent-kit/Sources/FluentSQL/SQLQueryConverter.swift": [1669055748, 719248056]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent-kit/Sources/FluentSQL/SQLSchemaConverter.swift": [1669055748, 727237939]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent-kit/Sources/FluentSQL/Utilities.swift": [1669055748, 728417873]

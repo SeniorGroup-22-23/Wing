@@ -1,0 +1,17 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "31d3330a61fad4cb8af1f0d27129acb672833bb74b6851c7d8700fedd36e0235"
+build_start_time: [1669056456, 832066059]
+build_end_time: [1669056473, 279295921]
+inputs:
+  "/Users/brynhaines/Wing/Models/Sources/Models/Block.swift": [1669042321, 449775218]
+  "/Users/brynhaines/Wing/Models/Sources/Models/Friendship.swift": [1669042321, 450274944]
+  "/Users/brynhaines/Wing/Models/Sources/Models/Match.swift": [1669042321, 455076932]
+  "/Users/brynhaines/Wing/Models/Sources/Models/Message.swift": [1669042321, 456871032]
+  "/Users/brynhaines/Wing/Models/Sources/Models/Models.swift": [1669042321, 457487821]
+  "/Users/brynhaines/Wing/Models/Sources/Models/Photo.swift": [1669042321, 457910060]
+  "/Users/brynhaines/Wing/Models/Sources/Models/Profile.swift": [1669042321, 458302497]
+  "/Users/brynhaines/Wing/Models/Sources/Models/Prompt.swift": [1669042321, 472157955]
+  "/Users/brynhaines/Wing/Models/Sources/Models/PromptResponse.swift": [1669042321, 472652435]
+  "/Users/brynhaines/Wing/Models/Sources/Models/Swipe.swift": [1669042321, 479828834]
+  "/Users/brynhaines/Wing/Models/Sources/Models/User.swift": [1669042321, 481661796]
+  "/Users/brynhaines/Wing/Models/Sources/Models/Wing.swift": [1669042321, 483448505]

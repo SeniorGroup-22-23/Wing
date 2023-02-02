@@ -111,13 +111,19 @@ struct ProfileCompletionView: View {
                     .frame(width: 300)
                     if (chosen_method.email_method){
                         Text("Phone number")
-                            .font(.custom(FontManager.NotoSans.regular, size: 15.0))
-                            .frame(width: 300, alignment: .leading)
-                            .offset(y: -15)
-                        TextField("", text: $viewModel.number)
-                            .frame(width:300.0, height: 48.0)
-                            .textFieldStyle(.roundedBorder)
-                            .offset(y: -20)
+                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                        .frame(width: 300, alignment: .leading)
+                        .offset(y: -15)
+                        HStack{
+                            Text("ext.")
+                                .font(.custom(FontManager.NotoSans.regular, size: 13.0))
+                            TextField("+1", text: $viewModel.ext)
+                                .frame(width:40.0, height: 48.0)
+                                .textFieldStyle(.roundedBorder)
+                            TextField("123-456-7890", text: $viewModel.number)
+                                .frame(width:222.0, height: 48.0)
+                                .textFieldStyle(.roundedBorder)
+                        }.offset(y: -20)
                     }
                     else {
                         Text("Email")
@@ -134,11 +140,11 @@ struct ProfileCompletionView: View {
                     Text("Next")
                         .frame(width: 231.0, height: 55.0)
                         .foregroundColor(.white)
-                        .background(!(validateValues(password: viewModel.password, confirmPassword: viewModel.confirmPassword, firstName: viewModel.name, birthday: viewModel.birthdate)) ? Color("DarkGrey") : Color("MainGreen"))
+                        .background(!(validateValues(password: viewModel.password, confirmPassword: viewModel.confirmPassword, firstName: viewModel.name, birthday: viewModel.birthdate)) || !(validateExt(value: viewModel.ext)) || !(validateNumber(value: viewModel.number)) ? Color("DarkGrey") : Color("MainGreen"))
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
-                .disabled(!validateValues(password: viewModel.password, confirmPassword: viewModel.confirmPassword, firstName: viewModel.name, birthday: viewModel.birthdate))
+                .disabled(!validateValues(password: viewModel.password, confirmPassword: viewModel.confirmPassword, firstName: viewModel.name, birthday: viewModel.birthdate) || !(validateExt(value: viewModel.ext)) || !(validateNumber(value: viewModel.number)))
             }
         }
     }

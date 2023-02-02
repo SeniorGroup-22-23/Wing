@@ -49,6 +49,8 @@ class SignupViewModel: ObservableObject{
     @Published var isValid: Bool = false
     @Published var credential: String = ""
     
+    @Published var imagesData = [Data?](repeating : nil, count : 8)
+    
     @Published var profilePreview: ProfilePreview = ProfilePreview()
     
     var baseURL = "http://127.0.0.1:8080"
@@ -78,10 +80,7 @@ class SignupViewModel: ObservableObject{
                 for name in decodedUsers{
                     if(name == username){
                         self.isTaken = true
-
-                    }
-                    else{
-                        self.isTaken = false
+                        return
                     }
                 }
             }
@@ -182,7 +181,9 @@ class SignupViewModel: ObservableObject{
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let profilePreview = ProfilePreview(userId: self.user.id, username: self.username, name: self.name, primaryPhoto: Data())
+        let profilePreview = ProfilePreview(userId: self.user.id, username: self.username, name: self.name, primaryPhoto: self.imagesData[0])
+        
+        print(profilePreview)
 
         urlRequest.httpBody = try? encoder.encode(profilePreview)
         

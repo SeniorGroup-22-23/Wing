@@ -1,0 +1,17 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "fb0d78670cdab8609b27298e5bc2acf00f379022c0ef8b3c4e8abe107750e469"
+build_start_time: [1673821116, 386300086]
+build_end_time: [1673821123, 546700000]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/ConnectionPool+Postgres.swift": [1669055756, 713696479]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/Deprecations/PostgresDataDecoder+JSONDecoder.swift"
+  : [1669055756, 714465141]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/Exports.swift": [1669055756, 714816093]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/PostgresClient+SQL.swift": [1669055756, 715188026]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/PostgresColumnType.swift": [1669055756, 715726613]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/PostgresConfiguration.swift": [1669055756, 716099262]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/PostgresConnectionSource.swift": [1669055756, 716506004]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/PostgresDataDecoder.swift": [1669055756, 716849803]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/PostgresDataEncoder.swift": [1669055756, 717196941]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/PostgresDialect.swift": [1669055756, 717502117]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/postgres-kit/Sources/PostgresKit/PostgresRow+SQL.swift": [1669055756, 717785358]

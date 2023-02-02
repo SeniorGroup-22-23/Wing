@@ -42,10 +42,9 @@ struct EmailAddressView: View {
                                 self.emailIsValid = false
                             }
                         }
-                        //.foregroundColor(emailIsValid ? Color.green : Color.red)
                     Spacer()
                         .frame(height: 30)
-                    NavigationLink(destination: ConfirmationCodeView()) {
+                    NavigationLink(destination: UsernameView()) {
                         Text("Next")
                             .frame(width: 231.0, height: 55.0)
                             .foregroundColor(.white)

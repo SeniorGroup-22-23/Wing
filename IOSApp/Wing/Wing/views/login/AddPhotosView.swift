@@ -21,8 +21,10 @@ struct AddPhotosView: View {
     @State private var showingImagePicker = false
     
     @State private var images = [Image?](repeating : nil, count : 8)
+
     @State private var inputImage: UIImage?
     @ObservedObject var photo_method: PhotoMethod = .method
+    @ObservedObject var viewModel: SignupViewModel = .method
     
     var body: some View {
         ZStack {
@@ -121,7 +123,8 @@ struct AddPhotosView: View {
     func loadImage() {
         guard let inputImage = inputImage else { return }
         images[numPhotos] = Image(uiImage : inputImage)
-        
+        viewModel.imagesData[numPhotos] = inputImage.jpegData(compressionQuality: 0.0)
+    
         numPhotos += 1
     }
 }

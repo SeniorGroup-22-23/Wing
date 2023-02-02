@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "7c2db8a28d372d8c67ab889241f724b4c7a9d39c540a79e8fcfd88796973d81e"
+build_start_time: [1669055845, 694679021]
+build_end_time: [1669055846, 389991044]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-collections/Sources/Collections/Collections.swift": [1669055766, 320981264]

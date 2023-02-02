@@ -1,0 +1,19 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "9dee2ee88721c678464e742dbbe98961df1e3556ae1aad2f70498335a99d2b65"
+build_start_time: [1669056159, 699491977]
+build_end_time: [1669056179, 534489154]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/DebugInboundEventsHandler.swift": [1669055732, 1898765]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/DebugOutboundEventsHandler.swift": [1669055732, 2223968]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/FixedLengthFrameDecoder.swift": [1669055732, 3616333]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/JSONRPCFraming+ContentLengthHeader.swift": [1669055732, 4267692]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/JSONRPCFraming.swift": [1669055732, 4598140]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/LengthFieldBasedFrameDecoder.swift": [1669055732, 4888057]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/LengthFieldPrepender.swift": [1669055732, 5231380]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/LineBasedFrameDecoder.swift": [1669055732, 5555152]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/NIOExtrasError.swift": [1669055732, 6071329]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/NIOLengthFieldBitLength.swift": [1669055732, 6454944]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/PCAPRingBuffer.swift": [1669055732, 6847858]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/QuiescingHelper.swift": [1669055732, 7298469]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/RequestResponseHandler.swift": [1669055732, 7675647]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOExtras/WritePCAPHandler.swift": [1669055732, 8421421]

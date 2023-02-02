@@ -1,0 +1,137 @@
+{
+  "": {
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/master.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Controllers/TodoController.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Controllers/TodoController.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Controllers/TodoController.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Controllers/TodoController~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Controllers/TodoController.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/BlocksMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/BlocksMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/BlocksMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/BlocksMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/BlocksMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/FriendshipsMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/FriendshipsMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/FriendshipsMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/FriendshipsMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/FriendshipsMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/MatchesMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/MatchesMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/MatchesMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/MatchesMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/MatchesMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/MessagesMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/MessagesMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/MessagesMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/MessagesMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/MessagesMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/PhotosMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PhotosMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PhotosMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PhotosMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PhotosMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/ProfilePreviewsMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/ProfilePreviewsMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/ProfilePreviewsMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/ProfilePreviewsMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/ProfilePreviewsMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/ProfilesMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/ProfilesMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/ProfilesMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/ProfilesMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/ProfilesMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/PromptResponesMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PromptResponesMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PromptResponesMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PromptResponesMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PromptResponesMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/PromptsMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PromptsMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PromptsMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PromptsMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/PromptsMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/SwipesMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/SwipesMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/SwipesMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/SwipesMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/SwipesMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/UsersMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/UsersMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/UsersMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/UsersMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/UsersMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/WingsMigration.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/WingsMigration.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/WingsMigration.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/WingsMigration~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Migrations/WingsMigration.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Routes/blockRoutes.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/blockRoutes.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/blockRoutes.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/blockRoutes~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/blockRoutes.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Routes/friendRoutes.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/friendRoutes.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/friendRoutes.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/friendRoutes~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/friendRoutes.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Routes/matchRoutes.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/matchRoutes.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/matchRoutes.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/matchRoutes~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/matchRoutes.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Routes/profilePreviewRoutes.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/profilePreviewRoutes.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/profilePreviewRoutes.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/profilePreviewRoutes~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/profilePreviewRoutes.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Routes/promptRoutes.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/promptRoutes.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/promptRoutes.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/promptRoutes~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/promptRoutes.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Routes/userRoutes.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/userRoutes.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/userRoutes.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/userRoutes~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/userRoutes.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Routes/wingRoutes.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/wingRoutes.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/wingRoutes.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/wingRoutes~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/Routes/wingRoutes.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/configure.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/configure.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/configure.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/configure~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/configure.swiftdeps"
+  },
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/error.swift": {
+    "dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/error.d",
+    "object": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/error.swift.o",
+    "swiftmodule": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/error~partial.swiftmodule",
+    "swift-dependencies": "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/App.build/error.swiftdeps"
+  }
+}

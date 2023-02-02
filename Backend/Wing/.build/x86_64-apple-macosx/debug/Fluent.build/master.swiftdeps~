@@ -1,0 +1,22 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "771613efb1595d548e05edb229f0b53ad3ca12a9d948e08e502a425da56a5c97"
+build_start_time: [1669056450, 221622943]
+build_end_time: [1669056456, 537060976]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/Concurrency/FluentProvider+Concurrency.swift": [1669055737, 299019813]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/Concurrency/ModelCredentialsAuthenticatable+Concurrency.swift"
+  : [1669055737, 299374103]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/Concurrency/Pagination+Concurrency.swift": [1669055737, 299651622]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/Concurrency/Sessions+Concurrency.swift": [1669055737, 299969673]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/Exports.swift": [1669055737, 300340175]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/Fluent+Cache.swift": [1669055737, 300664901]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/Fluent+History.swift": [1669055737, 301215410]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/Fluent+Paginate.swift": [1669055737, 301535367]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/Fluent+Pagination.swift": [1669055737, 301922321]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/Fluent+Sessions.swift": [1669055737, 302262783]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/FluentProvider.swift": [1669055737, 302641391]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/MigrateCommand.swift": [1669055737, 303046226]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/ModelAuthenticatable.swift": [1669055737, 303474664]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/ModelCredentialsAuthenticatable.swift": [1669055737, 304112911]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/ModelTokenAuthenticatable.swift": [1669055737, 304434299]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/fluent/Sources/Fluent/PageLimit.swift": [1669055737, 304735898]

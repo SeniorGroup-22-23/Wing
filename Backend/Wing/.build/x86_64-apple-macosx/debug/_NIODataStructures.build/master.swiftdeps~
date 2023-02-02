@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "7da79c076a92775edbe3ee7a453844072a5bdc7711ccf6fbd47ab6ab9808e347"
+build_start_time: [1669055800, 558747053]
+build_end_time: [1669055821, 633118152]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/_NIODataStructures/Heap.swift": [1669055753, 313416242]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/_NIODataStructures/PriorityQueue.swift": [1669055753, 313825845]

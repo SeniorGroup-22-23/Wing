@@ -10,24 +10,7 @@ import SwiftUI
 struct PhoneNumberView: View {
     
     @ObservedObject var viewModel: SignupViewModel = .method
-    
-    func validateNumber(value: String) -> Bool {
-        let phonePattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
-        let result = value.range(
-            of: phonePattern,
-            options: .regularExpression
-        )
-        return result != nil
-    }
-    
-    func validateExt(value: String) -> Bool {
-        let pattern = #"^(\+?\d{1,3}|\d{1,4})$"#
-        let result = value.range(
-            of: pattern,
-            options: .regularExpression
-        )
-        return result != nil
-    }
+
     
     var body: some View {
             ZStack {
@@ -60,25 +43,38 @@ struct PhoneNumberView: View {
                     }
                     Spacer()
                         .frame(height: 30)
-                    NavigationLink(destination: ConfirmationCodeView()) {
+                    NavigationLink(destination: UsernameView()) {
                         Text("Next")
                             .frame(width: 231.0, height: 55.0)
                             .foregroundColor(.white)
-                            .background((!(self.validateExt(value: viewModel.ext)) || !(self.validateNumber(value: viewModel.number))) ? Color("DarkGrey") : Color("MainGreen"))
+                            .background((!(validateExt(value: viewModel.ext)) || !(validateNumber(value: viewModel.number))) ? Color("DarkGrey") : Color("MainGreen"))
                             .cornerRadius(20)
                             .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                     }
-                    .disabled(!(self.validateExt(value: viewModel.ext)) || !(self.validateNumber(value: viewModel.number)))
-                    .simultaneousGesture(TapGesture().onEnded{
-                        Task{
-                                
-                        }
-                    })
+                    .disabled(!(validateExt(value: viewModel.ext)) || !(validateNumber(value: viewModel.number)))
                         
                     Spacer()
                 }
             }
         }
+}
+
+func validateNumber(value: String) -> Bool {
+    let phonePattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
+    let result = value.range(
+        of: phonePattern,
+        options: .regularExpression
+    )
+    return result != nil
+}
+
+func validateExt(value: String) -> Bool {
+    let pattern = #"^(\+?\d{1,3}|\d{1,4})$"#
+    let result = value.range(
+        of: pattern,
+        options: .regularExpression
+    )
+    return result != nil
 }
 
 struct PhoneNumberView_Previews: PreviewProvider {

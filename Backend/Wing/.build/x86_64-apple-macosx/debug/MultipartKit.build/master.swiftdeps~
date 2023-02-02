@@ -1,0 +1,33 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "039f9af8aeeddb6dc11f946b2c3d25031d6cfa5f9c2e4f4e5286716ab024aedb"
+build_start_time: [1669056205, 220068931]
+build_end_time: [1669056219, 610226154]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/BasicCodingKey.swift": [1669055736, 481427192]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/Deprecated/MultipartError.swift": [1669055736, 482074260]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/Exports.swift": [1669055736, 482701539]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataDecoder/FormDataDecoder.Decoder.swift"
+  : [1669055736, 483450412]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataDecoder/FormDataDecoder.KeyedContainer.swift"
+  : [1669055736, 483787298]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataDecoder/FormDataDecoder.SingleValueContainer.swift"
+  : [1669055736, 484112501]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataDecoder/FormDataDecoder.UnkeyedContainer.swift"
+  : [1669055736, 484555244]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataDecoder/FormDataDecoder.swift": [1669055736, 484943151]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/FormDataEncoder.Encoder.swift"
+  : [1669055736, 485434532]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/FormDataEncoder.KeyedContainer.swift"
+  : [1669055736, 486124038]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/FormDataEncoder.SingleValueContainer.swift"
+  : [1669055736, 486443042]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/FormDataEncoder.UnkeyedContainer.swift"
+  : [1669055736, 486719608]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/FormDataEncoder.swift": [1669055736, 487183094]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/Storage.swift": [1669055736, 487523555]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/MultipartFormData.swift": [1669055736, 489329338]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/MultipartParser.swift": [1669055736, 489863395]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/MultipartPart.swift": [1669055736, 490278959]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/MultipartPartConvertible.swift": [1669055736, 490588665]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/MultipartSerializer.swift": [1669055736, 490900039]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/multipart-kit/Sources/MultipartKit/Utilities.swift": [1669055736, 491181373]

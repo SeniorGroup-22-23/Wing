@@ -1,0 +1,19 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "acfdba2a7ec1c3e469846d9b4e5eb582b27a68a4766c7927de7611de437ee798"
+build_start_time: [1669056473, 598493099]
+build_end_time: [1669056477, 529211044]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Controllers/TodoController.swift": [1669042321, 338666677]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/BlocksMigration.swift": [1669042321, 339379310]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/FriendshipsMigration.swift": [1669042321, 339805603]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/MatchesMigration.swift": [1669042321, 340211868]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/MessagesMigration.swift": [1669042321, 340702056]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/PhotosMigration.swift": [1669042321, 341186046]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/ProfilesMigration.swift": [1669042321, 341617345]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/PromptResponesMigration.swift": [1669042321, 342106819]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/PromptsMigration.swift": [1669042321, 342610359]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/SwipesMigration.swift": [1669042321, 343109130]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/UsersMigration.swift": [1669042321, 343572616]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/Migrations/WingsMigration.swift": [1669042321, 344105720]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/configure.swift": [1669042321, 338048934]
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/App/routes.swift": [1669042321, 344759941]

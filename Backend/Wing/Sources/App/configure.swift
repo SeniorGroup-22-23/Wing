@@ -13,6 +13,8 @@ public func configure(_ app: Application) throws {
         password: "",
         database: "postgres"
     ), as: .psql)
+    
+    app.routes.defaultMaxBodySize = "500kb"
 
     //Migrations to run
     app.migrations.add(CreateUsers())

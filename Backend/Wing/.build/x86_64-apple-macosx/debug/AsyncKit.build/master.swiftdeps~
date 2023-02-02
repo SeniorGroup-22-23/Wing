@@ -1,0 +1,30 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "08ac81fe0b36a22b8e264334e01e5141c7ea512c0ee31fb12359bb3769a39deb"
+build_start_time: [1669056162, 227539062]
+build_end_time: [1669056238, 511698007]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/ConnectionPool/ConnectionPoolError.swift": [1669055733, 58880090]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/ConnectionPool/ConnectionPoolItem.swift": [1669055733, 59772014]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/ConnectionPool/ConnectionPoolSource.swift": [1669055733, 60147285]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/ConnectionPool/EventLoopConnectionPool.swift": [1669055733, 60622215]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/ConnectionPool/EventLoopGroupConnectionPool.swift"
+  : [1669055733, 60990810]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoop/EventLoop+Concurrency.swift": [1669055733, 64857006]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoop/EventLoop+Flatten.swift": [1669055733, 66949129]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoop/EventLoop+Future.swift": [1669055733, 67349672]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoop/EventLoopGroup+Concurrency.swift": [1669055733, 67692279]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoop/EventLoopGroup+Throwing.swift": [1669055733, 68009376]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Collection+Flatten.swift": [1669055733, 69214105]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/EventLoopFutureQueue+Sequence.swift"
+  : [1669055733, 75043678]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/EventLoopFutureQueue.swift": [1669055733, 75969219]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Collection.swift": [1669055733, 76423645]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Conjunctions.swift": [1669055733, 92960834]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Miscellaneous.swift": [1669055733, 93382596]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Nonempty.swift": [1669055733, 93662977]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Optional.swift": [1669055733, 93953609]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Transform.swift": [1669055733, 94231605]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Try.swift": [1669055733, 94521522]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/FutureOperators.swift": [1669055733, 94832897]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Optional+StrictMap.swift": [1669055733, 95118522]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-kit/Sources/AsyncKit/Exports.swift": [1669055733, 95396518]
