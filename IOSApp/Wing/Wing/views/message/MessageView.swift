@@ -23,7 +23,7 @@ let matches: [Match] = [
 
 let sortedMatches = matches.sorted{$0.new && !$1.new }
 
-let replies: [Match] = [
+let numbers: [Match] = [
     Match(name: "Mike", photo: "", new: false),
     Match(name: "Colin", photo: "", new: true),
     Match(name: "Kathy", photo: "", new: false),
@@ -31,17 +31,8 @@ let replies: [Match] = [
     Match(name: "Hannah", photo: "", new: true)
 ]
 
-let sortedReplies = replies.sorted{$0.new && !$1.new }
+let sortedNumbers = numbers.sorted{$0.new && !$1.new }
 
-let requests: [Match] = [
-    Match(name: "Mike", photo: "", new: false),
-    Match(name: "Colin", photo: "", new: true),
-    Match(name: "Kathy", photo: "", new: false),
-    Match(name: "Jake", photo: "", new: false),
-    Match(name: "Hannah", photo: "", new: true)
-]
-
-let sortedRequests = requests.sorted{$0.new && !$1.new }
 
 struct MessageView: View {
     var body: some View {
@@ -55,8 +46,7 @@ struct MessageView: View {
                 LoadMatchesBox() // this section shows matches
                     .frame(height: 250)
                     .offset(y: -50)
-                LoadRepliesBox() // this section shows replies
-                LoadRequestsBox() // this section shows phone requests
+                LoadNumbersBox() // this section shows replies
                 FooterTab() // wing symbol, match symbol, and messages symbol
                     .frame(width: 300)
             }
@@ -64,9 +54,9 @@ struct MessageView: View {
     }
 }
 
-struct RepliesText: View {
+struct PhoneBookText: View {
     var body: some View {
-        Text("Replies")
+        Text("Phone Book")
             .foregroundColor(.white)
             .font(.custom(FontManager.NotoSans.semiBold, size: 28.0))
     }
@@ -80,13 +70,6 @@ struct MatchesText: View {
     }
 }
 
-struct RequestsText: View {
-    var body: some View {
-        Text("Requests")
-            .foregroundColor(.white)
-            .font(.custom(FontManager.NotoSans.semiBold, size: 28.0))
-    }
-}
 
 struct LoadNoMatchesText : View {
     var body : some View {
@@ -173,85 +156,43 @@ struct LoadMatchProfiles : View {
     }
 }
 
-struct LoadRepliesBox : View {
+struct LoadNumbersBox : View {
     var body : some View {
         ZStack{
+            Rectangle()
+                .fill(Color(.white).opacity(0.7))
+                .frame(width: 337, height: 120)
+                .cornerRadius(10)
             VStack{
-                RepliesText()
+                PhoneBookText()
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.trailing, 20.0)
-                if ((replies.count) == 0){
+                if ((numbers.count) == 0){
                    Spacer()
                 }
                 else{
-                    LoadRepliesProfiles()
+                    LoadNumberProfiles()
                 }
             }
         }
     }
 }
 
-struct LoadRepliesProfiles : View {
+struct LoadNumberProfiles : View {
     var body : some View {
         ScrollView(.horizontal){
            LazyHStack{
-                ForEach(sortedReplies, id:\.name) { reply in
+                ForEach(sortedNumbers, id:\.name) { number in
                     VStack{
                         Circle()
                             .fill(.white)
                             .frame(width: 60, height: 60)
                             .padding(.horizontal, 20)
                         HStack{
-                            Text(reply.name)
+                            Text(number.name)
                                 .font(.custom(FontManager.NotoSans.semiBold, size: 20.0))
                                 .foregroundColor(Color("DarkGreen"))
-                            if (reply.new == true){
-                                Circle()
-                                    .fill(Color("BrightBlue"))
-                                    .frame(width: 15, height: 15)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .frame(width: 310, height: 110)
-    }
-}
-
-struct LoadRequestsBox : View {
-    var body : some View {
-        ZStack{
-            VStack{
-                RequestsText()
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding(.trailing, 20.0)
-                if ((requests.count) == 0){
-                   Spacer()
-                }
-                else{
-                    LoadRequestsProfiles()
-                }
-            }
-        }
-    }
-}
-
-struct LoadRequestsProfiles : View {
-    var body : some View {
-        ScrollView(.horizontal){
-           LazyHStack{
-                ForEach(sortedRequests, id:\.name) { request in
-                    VStack{
-                        Circle()
-                            .fill(.white)
-                            .frame(width: 60, height: 60)
-                            .padding(.horizontal, 20)
-                        HStack{
-                            Text(request.name)
-                                .font(.custom(FontManager.NotoSans.semiBold, size: 20.0))
-                                .foregroundColor(Color("DarkGreen"))
-                            if (request.new == true){
+                            if (number.new == true){
                                 Circle()
                                     .fill(Color("BrightBlue"))
                                     .frame(width: 15, height: 15)

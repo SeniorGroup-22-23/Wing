@@ -13,8 +13,8 @@
 		02C71E8A28EB8F1100447686 /* WingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C71E8928EB8F1100447686 /* WingTests.swift */; };
 		02C71E9428EB8F1100447686 /* WingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C71E9328EB8F1100447686 /* WingUITests.swift */; };
 		02C71E9628EB8F1100447686 /* WingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C71E9528EB8F1100447686 /* WingUITestsLaunchTests.swift */; };
-		67CBA288298719FB00267586 /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBA287298719FB00267586 /* RequestsView.swift */; };
 		67EBB4A62987021C00BE7260 /* RepliesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EBB4A52987021C00BE7260 /* RepliesView.swift */; };
+		67F1F6A92991B6D400185E51 /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F1F6A82991B6D400185E51 /* SendView.swift */; };
 		747DAE9A28FE0087004FF768 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DAE9928FE0087004FF768 /* HomePageView.swift */; };
 		747DAEAB28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAE9F28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf */; };
 		747DAEAD28FF7F6C004FF768 /* KumbhSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEA128FF7F6C004FF768 /* KumbhSans-Bold.ttf */; };
@@ -64,8 +64,8 @@
 		02C71E8F28EB8F1100447686 /* WingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02C71E9328EB8F1100447686 /* WingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingUITests.swift; sourceTree = "<group>"; };
 		02C71E9528EB8F1100447686 /* WingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		67CBA287298719FB00267586 /* RequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsView.swift; sourceTree = "<group>"; };
 		67EBB4A52987021C00BE7260 /* RepliesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepliesView.swift; sourceTree = "<group>"; };
+		67F1F6A82991B6D400185E51 /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		741E07A028F9B9E1001D6478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		747DAE9928FE0087004FF768 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		747DAE9F28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KumbhSans-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 			children = (
 				7493834A29771BA700A258A3 /* MessageView.swift */,
 				67EBB4A52987021C00BE7260 /* RepliesView.swift */,
-				67CBA287298719FB00267586 /* RequestsView.swift */,
+				67F1F6A82991B6D400185E51 /* SendView.swift */,
 			);
 			path = message;
 			sourceTree = "<group>";
@@ -373,9 +373,9 @@
 				7493834329771B6C00A258A3 /* FooterTab.swift in Sources */,
 				747DAE9A28FE0087004FF768 /* HomePageView.swift in Sources */,
 				747DAEDD28FF7F96004FF768 /* FontManager.swift in Sources */,
-				67CBA288298719FB00267586 /* RequestsView.swift in Sources */,
 				7493833F29771B5100A258A3 /* HeaderTab.swift in Sources */,
 				02C71E7928EB8F1000447686 /* WingApp.swift in Sources */,
+				67F1F6A92991B6D400185E51 /* SendView.swift in Sources */,
 				67EBB4A62987021C00BE7260 /* RepliesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

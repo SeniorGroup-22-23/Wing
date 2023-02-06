@@ -1,15 +1,13 @@
 //
-//  RepliesView.swift
+//  SendView.swift
 //  Wing
 //
-//  Created by Ankita Menon on 29/01/2023.
+//  Created by Ankita Menon on 06/02/2023.
 //
 
 import SwiftUI
 
-let number = "+1 (506) 123-1234"
-
-struct RepliesView: View {
+struct SendView: View {
     var body: some View {
         ZStack {
             Color("MainGreen")
@@ -18,8 +16,8 @@ struct RepliesView: View {
             VStack {
                 HeaderTab() // wing symbol and settings button
                     .frame(width: 380)
-                LoadReplyBox()
-                    .offset(y: -70)
+                LoadSendBox()
+                    .offset(y: -80)
                 FooterTab() // wing symbol, match symbol, and messages symbol
                     .frame(width: 300)
             }
@@ -27,7 +25,7 @@ struct RepliesView: View {
     }
 }
 
-struct LoadReplyBox : View {
+struct LoadSendBox : View {
     @State private var daysRemaining = 3
     var body : some View {
         VStack{
@@ -38,17 +36,8 @@ struct LoadReplyBox : View {
             Text("Barbara")
                 .font(.custom(FontManager.NotoSans.semiBold, size: 30.0))
                 .foregroundColor(Color("DarkGreen"))
-            Text("sent you a phone number")
-                .font(.custom(FontManager.NotoSans.regular, size: 15.0))
-                .foregroundColor(Color("DarkGreen"))
-            Text(number)
-                .font(.custom(FontManager.NotoSans.semiBold, size: 25.0))
-                .foregroundColor(Color(.white))
-                .frame(width: 310, height: 70)
-                .background(Rectangle().fill(Color("DarkGreen").opacity(0.3)).shadow(radius: 10))
-                .cornerRadius(10)
-            Spacer()
-                .frame(height: 15)
+            
+                
             Button("Send Your Phone Number"){
                 //send phone number
             }
@@ -65,8 +54,8 @@ struct LoadReplyBox : View {
     }
 }
 
-struct RepliesView_Previews: PreviewProvider {
+struct SendView_Previews: PreviewProvider {
     static var previews: some View {
-        RepliesView()
+        SendView()
     }
 }
