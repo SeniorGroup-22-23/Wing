@@ -43,12 +43,13 @@ struct MessageView: View {
             VStack {
                 HeaderTab() // wing symbol and settings button
                     .frame(width: 380)
+                    .offset(y: 50)
                 LoadMatchesBox() // this section shows matches
-                    .frame(height: 250)
-                    .offset(y: -50)
                 LoadNumbersBox() // this section shows replies
+                    .offset(y: -60)
                 FooterTab() // wing symbol, match symbol, and messages symbol
                     .frame(width: 300)
+                    .offset(y: -40)
             }
         }
     }
@@ -103,12 +104,13 @@ struct LoadMatchesBox : View {
                 MatchesText()
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.trailing, 20.0)
-                    .offset(y: 50)
                 if ((matches.count) == 0){
                     Spacer()
                         .frame(height: 150)
                     LoadNoMatchesText()
                         .background(BackgroundLogo())
+                    Spacer()
+                        .frame(height: 300)
                 }
                 else{
                     LoadMatchProfiles()
@@ -119,13 +121,15 @@ struct LoadMatchesBox : View {
 }
 
 let layout = [
-    GridItem(.adaptive(minimum: 100)),
+    GridItem(.flexible()),
+    GridItem(.flexible()),
+    GridItem(.flexible()),
 ]
 
 struct LoadMatchProfiles : View {
     var body : some View {
         ScrollView(.horizontal){
-            LazyHGrid(rows: layout){
+            LazyHGrid(rows: layout, spacing: 65){
                 ForEach(sortedMatches, id:\.name) { match in
                     VStack{
                         if (match.new == true){
@@ -142,7 +146,7 @@ struct LoadMatchProfiles : View {
                         }
                         Circle()
                             .fill(.white)
-                            .frame(width: 60, height: 60)
+                            .frame(width: 80, height: 80)
                             .padding(.horizontal, 20)
                         Text(match.name)
                             .font(.custom(FontManager.NotoSans.semiBold, size: 20.0))
@@ -151,27 +155,32 @@ struct LoadMatchProfiles : View {
                 }
             }
         }
-        .frame(width: 310, height: 280)
-        .offset(y: 20)
+        .frame(width: 300, height: 480)
+        .offset(y: -40)
     }
 }
 
 struct LoadNumbersBox : View {
     var body : some View {
         ZStack{
-            Rectangle()
-                .fill(Color(.white).opacity(0.7))
-                .frame(width: 337, height: 120)
-                .cornerRadius(10)
             VStack{
                 PhoneBookText()
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.trailing, 20.0)
                 if ((numbers.count) == 0){
-                   Spacer()
+                    Spacer()
+                        .frame(height: 100)
                 }
                 else{
-                    LoadNumberProfiles()
+                    ZStack{
+                        Rectangle()
+                            .fill(Color(.white).opacity(0.7))
+                            .frame(width: 337, height: 120)
+                            .cornerRadius(10)
+                            .offset(y: -10)
+                        LoadNumberProfiles()
+                    }
+                    
                 }
             }
         }
