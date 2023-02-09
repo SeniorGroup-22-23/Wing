@@ -2,54 +2,55 @@
 //  MessageView.swift
 //  Wing
 //
-//  Created by Nury Kim on 2023-01-17.
+//  Created by Ankita Menon on 2023-01-28.
 //
 
 import SwiftUI
 
-struct Match {
+struct Match: Hashable {
+    let id: Int
     let name: String
     let photo: String
-    let new: Bool
+    var new: Bool
+    let number: String
+    var numberSent: Bool
 }
 
-let matches: [Match] = [
-    Match(name: "Mike", photo: "", new: false),
-    Match(name: "Colin", photo: "", new: true),
-    Match(name: "Kathy", photo: "", new: false),
-    Match(name: "Jake", photo: "", new: false),
-    Match(name: "Hannah", photo: "", new: true)
+//TODO: to be replaced later with real profiles from the database
+var profiles: [Match] = [
+    Match(id: 1, name: "Mike", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: true),
+    Match(id: 2, name: "Colin", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: false),
+    Match(id: 3, name: "Kathy", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: false),
+    Match(id: 4, name: "Jake", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: true),
+    Match(id: 5, name: "Hannah", photo: "", new: true, number: "+1 (876) 123-1234", numberSent: false),
+    Match(id: 6, name: "Sarah", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: false),
+    Match(id: 7, name: "Nina", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: true),
+    Match(id: 8, name: "Josh", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: true),
+    Match(id: 9, name: "Drake", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: false),
+    Match(id: 10, name: "Kylie", photo: "", new: false, number: "+1 (886) 123-1234", numberSent: false)
 ]
 
-let sortedMatches = matches.sorted{$0.new && !$1.new }
-
-let numbers: [Match] = [
-    Match(name: "Mike", photo: "", new: false),
-    Match(name: "Colin", photo: "", new: true),
-    Match(name: "Kathy", photo: "", new: false),
-    Match(name: "Jake", photo: "", new: false),
-    Match(name: "Hannah", photo: "", new: true)
-]
-
-let sortedNumbers = numbers.sorted{$0.new && !$1.new }
-
+//Filters the profiles array into two diffferent arrays
+var matches = profiles.filter { $0.numberSent == false }
+var numbers = profiles.filter { $0.numberSent == true }
 
 struct MessageView: View {
     var body: some View {
-        ZStack {
-            Color("MainGreen")
-                .ignoresSafeArea()
-            
-            VStack {
-                HeaderTab() // wing symbol and settings button
-                    .frame(width: 380)
-                    .offset(y: 50)
-                LoadMatchesBox() // this section shows matches
-                LoadNumbersBox() // this section shows replies
-                    .offset(y: -60)
-                FooterTab() // wing symbol, match symbol, and messages symbol
-                    .frame(width: 300)
-                    .offset(y: -40)
+        NavigationView {
+            ZStack {
+                Color("MainGreen")
+                    .ignoresSafeArea()
+                VStack {
+                    HeaderTab() // wing symbol and settings button
+                        .frame(width: 380)
+                        .offset(y: 50)
+                    LoadMatchesBox() // this section shows matches
+                    LoadNumbersBox() // this section shows replies
+                        .offset(y: -60)
+                    FooterTab() // wing symbol, match symbol, and messages symbol
+                        .frame(width: 300)
+                        .offset(y: -40)
+                }
             }
         }
     }
@@ -127,31 +128,38 @@ let layout = [
 ]
 
 struct LoadMatchProfiles : View {
+    @State private var selectedMatch: Match?
+    @State var sortedMatches = matches.sorted{$0.new && !$1.new }
+    
     var body : some View {
         ScrollView(.horizontal){
             LazyHGrid(rows: layout, spacing: 65){
-                ForEach(sortedMatches, id:\.name) { match in
-                    VStack{
-                        if (match.new == true){
-                            Text("New!")
-                                .font(.custom(FontManager.NotoSans.semiBold, size: 15.0))
-                                .offset(y: 10)
-                                .foregroundColor(Color(red: 1, green: 0.8, blue: 0.2))
-                            
+                ForEach(0..<sortedMatches.count, id:\.self) { match in
+                    NavigationLink(destination: RepliesView(numberChosen: $sortedMatches[match]), tag: sortedMatches[match], selection: $selectedMatch) {
+                        VStack{
+                            if (sortedMatches[match].new == true){
+                                Text("New!")
+                                    .font(.custom(FontManager.NotoSans.semiBold, size: 15.0))
+                                    .offset(y: 10)
+                                    .foregroundColor(Color(red: 1, green: 0.8, blue: 0.2))
+                            }
+                            else{
+                                Text("")
+                                    .font(.custom(FontManager.NotoSans.semiBold, size: 15.0))
+                                    .padding(.vertical, 5)
+                            }
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 80, height: 80)
+                                .padding(.horizontal, 20)
+                            Text(sortedMatches[match].name)
+                                .font(.custom(FontManager.NotoSans.semiBold, size: 20.0))
+                                .foregroundColor(Color("DarkGreen"))
                         }
-                        else{
-                            Text("")
-                                .font(.custom(FontManager.NotoSans.semiBold, size: 15.0))
-                                .padding(.vertical, 5)
-                        }
-                        Circle()
-                            .fill(.white)
-                            .frame(width: 80, height: 80)
-                            .padding(.horizontal, 20)
-                        Text(match.name)
-                            .font(.custom(FontManager.NotoSans.semiBold, size: 20.0))
-                            .foregroundColor(Color("DarkGreen"))
                     }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        sortedMatches = sortedMatches.sorted{$0.new && !$1.new } //resorts the list
+                    })
                 }
             }
         }
@@ -188,26 +196,34 @@ struct LoadNumbersBox : View {
 }
 
 struct LoadNumberProfiles : View {
+    @State private var selectedNumber: Match?
+    @State var sortedNumbers = numbers.sorted{$0.new && !$1.new }
+    
     var body : some View {
         ScrollView(.horizontal){
-           LazyHStack{
-                ForEach(sortedNumbers, id:\.name) { number in
-                    VStack{
-                        Circle()
-                            .fill(.white)
-                            .frame(width: 60, height: 60)
-                            .padding(.horizontal, 20)
-                        HStack{
-                            Text(number.name)
-                                .font(.custom(FontManager.NotoSans.semiBold, size: 20.0))
-                                .foregroundColor(Color("DarkGreen"))
-                            if (number.new == true){
-                                Circle()
-                                    .fill(Color("BrightBlue"))
-                                    .frame(width: 15, height: 15)
+            LazyHStack{
+                ForEach(0..<sortedNumbers.count, id: \.self){ number in
+                    NavigationLink(destination: RepliesView(numberChosen: $sortedNumbers[number]), tag: sortedNumbers[number], selection: $selectedNumber) {
+                        VStack{
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 60, height: 60)
+                                .padding(.horizontal, 20)
+                            HStack{
+                                Text(sortedNumbers[number].name)
+                                    .font(.custom(FontManager.NotoSans.semiBold, size: 20.0))
+                                    .foregroundColor(Color("DarkGreen"))
+                                if (sortedNumbers[number].new == true){
+                                    Circle()
+                                        .fill(Color("BrightBlue"))
+                                        .frame(width: 15, height: 15)
+                                }
                             }
                         }
                     }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        sortedNumbers = sortedNumbers.sorted{$0.new && !$1.new } //resorts the list
+                    })
                 }
             }
         }
