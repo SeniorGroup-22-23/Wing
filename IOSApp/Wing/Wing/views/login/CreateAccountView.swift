@@ -22,6 +22,9 @@ class ChosenMethod: ObservableObject {
 struct CreateAccountView : View {
 
     @ObservedObject var chosen_method: ChosenMethod = .method
+    
+    @ObservedObject var viewModel: SignupViewModel = .method
+    
     var body: some View {
             ZStack{
                 BackgroundLogo()
@@ -33,7 +36,7 @@ struct CreateAccountView : View {
                             .cornerRadius(20.0)
                     }
                     .simultaneousGesture(TapGesture().onEnded{
-                        self.chosen_method.email_method = true
+                        viewModel.email_method = true
                         
                     })
                     .padding(.bottom, 17)
@@ -42,10 +45,15 @@ struct CreateAccountView : View {
                             .cornerRadius(20.0)
                     }
                     .simultaneousGesture(TapGesture().onEnded{
-                        self.chosen_method.phone_method = true
+                        viewModel.phone_method = true
                         
                     })
                     SubTextMods()
+                }
+            }
+            .onAppear{
+                Task{
+                    viewModel.setMethod()
                 }
             }
     }

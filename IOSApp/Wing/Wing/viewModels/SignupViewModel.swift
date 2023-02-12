@@ -12,7 +12,7 @@ import SwiftUI
 
 class SignupViewModel: ObservableObject{
     
-    static var method = SignupViewModel()
+    static var method : SignupViewModel = SignupViewModel()
 
     @Published var isTaken: Bool = false
     
@@ -51,7 +51,12 @@ class SignupViewModel: ObservableObject{
     
     @Published var imagesData = [Data?](repeating : nil, count : 8)
     
+    @Published var checkTaken: Bool = true
+    
     @Published var profilePreview: ProfilePreview = ProfilePreview()
+    
+    @Published var email_method = false
+    @Published var phone_method = false
     
     var baseURL = "http://127.0.0.1:8080"
     let encoder = JSONEncoder()
@@ -60,6 +65,11 @@ class SignupViewModel: ObservableObject{
     init(){
         encoder.dateEncodingStrategy = .iso8601
         decoder.dateDecodingStrategy = .iso8601
+    }
+    
+    func setMethod(){
+        SignupViewModel.method = SignupViewModel()
+        print("HI")
     }
     
     func getUsernames(username: String) async throws{
@@ -239,6 +249,52 @@ class SignupViewModel: ObservableObject{
         }
         else{
             print("user prompt response \(httpResponse.statusCode) error")
+            throw URLError(.badServerResponse)
+        }
+    }
+    
+    func checkPhone() async throws{
+        
+        let url = URL(string: baseURL + "/check/phone/\(self.ext + self.number)")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data,response) = try await URLSession.shared.data(for: urlRequest)
+      
+        guard let httpResponse = response as? HTTPURLResponse else { return }
+
+        if(httpResponse.statusCode == 200){
+            let check = try JSONDecoder().decode(Bool.self, from: data)
+            DispatchQueue.main.async {
+                self.checkTaken = check
+            }
+        }
+        else{
+            print("usernames \(httpResponse.statusCode) error")
+            throw URLError(.badServerResponse)
+        }
+    }
+    
+    func checkEmail() async throws{
+        
+        let url = URL(string: baseURL + "/check/email/\(self.email)")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data,response) = try await URLSession.shared.data(for: urlRequest)
+      
+        guard let httpResponse = response as? HTTPURLResponse else { return }
+        
+        if(httpResponse.statusCode == 200){
+            let check = try JSONDecoder().decode(Bool.self, from: data)
+            DispatchQueue.main.async {
+                self.checkTaken = check
+            }
+        }
+        else{
+            print("usernames \(httpResponse.statusCode) error")
             throw URLError(.badServerResponse)
         }
     }

@@ -9,8 +9,15 @@ import SwiftUI
 
 struct EmailAddressView: View {
     
-    @State private var emailIsValid: Bool = true
+    @State private var emailIsValid: Bool = false
     @ObservedObject var viewModel: SignupViewModel = .method
+    
+    func checkEmail() async throws{
+        if(emailIsValid){
+            try await viewModel.checkEmail()
+        }
+    }
+
     
     var body: some View {
             ZStack {
@@ -37,22 +44,32 @@ struct EmailAddressView: View {
                         .autocapitalization(.none)
                         .onChange(of: viewModel.email) { newValue in if(newValue.range(of:"^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$", options: .regularExpression) != nil) {
                             self.emailIsValid = true
+                            Task{
+                                try await checkEmail()
+                            }
                         }
                             else {
                                 self.emailIsValid = false
                             }
                         }
-                    Spacer()
-                        .frame(height: 30)
+                    if (!viewModel.checkTaken && self.emailIsValid) {
+                        Text("This email is already associated with an account!")
+                            .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                            .foregroundColor(.red)
+                    }
+                    else{
+                        Spacer()
+                            .frame(height: 30)
+                    }
                     NavigationLink(destination: UsernameView()) {
                         Text("Next")
                             .frame(width: 231.0, height: 55.0)
                             .foregroundColor(.white)
-                            .background((!emailIsValid || viewModel.email.isEmpty) ? Color("DarkGrey") : Color("MainGreen"))
+                            .background((!emailIsValid || viewModel.email.isEmpty || !viewModel.checkTaken) ? Color("DarkGrey") : Color("MainGreen"))
                             .cornerRadius(20)
                             .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                     }
-                    .disabled(!emailIsValid || viewModel.email.isEmpty)
+                    .disabled(!emailIsValid || viewModel.email.isEmpty || !viewModel.checkTaken)
                     Spacer()
                 }
             }

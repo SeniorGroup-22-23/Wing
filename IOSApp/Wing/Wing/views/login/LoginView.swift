@@ -13,6 +13,7 @@ let MainGreen = Color("MainGreen")
 struct LoginView : View {
     
     @ObservedObject var viewModel: SignupViewModel = .method
+    @State private var selection: Bool = false
     
     var body: some View {
         VStack {
@@ -43,19 +44,10 @@ struct LoginView : View {
                 .padding(.bottom, 40)
                 .frame(width: 300)
             ForgotPasswordText()
-            NavigationLink(
-                destination : {
-                VStack{
-                    if viewModel.isValid {
-                        HomePageView().navigationBarBackButtonHidden(true)
-                    }
-                    else{
-                        BioView()
-                    }
-                }
-            }()) {
+            NavigationLink(destination : HomePageView().navigationBarBackButtonHidden(true)){
                 ButtonContent()
             }
+            .disabled(!viewModel.isValid)
             .simultaneousGesture(TapGesture().onEnded{
                 Task{
                     if(viewModel.credential.contains("@")){
