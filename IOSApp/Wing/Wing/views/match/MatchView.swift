@@ -62,6 +62,15 @@ struct MatchView: View {
                     }
                 }
                 .simultaneousGesture(
+                    TapGesture(count: 2)
+                        .onEnded { _ in
+                            //Double Tap gesture
+                            self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                                WingPopUpView()
+                                        }
+                        }
+                )
+                .simultaneousGesture(
                     LongPressGesture()
                         .onEnded { _ in
                             self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {

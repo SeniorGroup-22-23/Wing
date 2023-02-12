@@ -200,10 +200,7 @@ struct ModalPopUpView: View {
 
 struct WingPopUpView: View {
     
-    //@ObservedObject var showingBlockAlert: showBlock
-    
     @Environment(\.viewController) private var viewControllerHolder: UIViewController?
-    
     @StateObject var selectedFriend = SelectedFriend()
     
     var body: some View {
@@ -227,8 +224,6 @@ struct WingPopUpView: View {
                 Button(action: {
                     self.viewControllerHolder?.dismiss(animated: true, completion: nil)
                     self.selectedFriend.reset()
-                    //showingBlockAlert.blockAlert = false
-                    //showingBlockAlert.bothAlert = false
                     
                 }) {
                     Text("Cancel")
@@ -243,8 +238,7 @@ struct WingPopUpView: View {
                 
                 Button(action: {
                     self.viewControllerHolder?.dismiss(animated: true, completion: nil)
-                    //showingBlockAlert.blockAlert = false
-                    //showingBlockAlert.bothAlert = false
+                    //Write code to send friend the profile
                     
                 }) {
                     Text("Send")
