@@ -16,12 +16,12 @@ struct CreateBlocks: AsyncMigration {
         
             .id()
             .field("blocked_user_id", .uuid, .required)
-            .field("blocked_by_user", .uuid, .required)
+            .field("blocked_by_id", .uuid, .required)
             .field("reported", .bool, .required)
             .field("issue", .int16)
             
             .foreignKey("blocked_user_id", references: "users", "id", onDelete: .cascade)
-            .foreignKey("blocked_by_user", references: "users", "id", onDelete: .cascade)
+            .foreignKey("blocked_by_id", references: "users", "id", onDelete: .cascade)
         
             .create()
     }
