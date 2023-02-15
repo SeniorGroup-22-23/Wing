@@ -166,7 +166,7 @@ func matchRoutes(_ app: Application) throws {
                 .first()
             
             let prospectLocation = CLLocation(latitude: profile!.currLatitude, longitude: profile!.currLongitude)
-            let distancekm = userLocation.distance(from: prospectLocation) / 1000.00
+            let distancekm = userLocation.distance(from: prospectLocation) / 1000.00 //.distance returns in meters 
             
             if(Int(distancekm) <= swiperProfile.maxDistance){
                 prospectsInRange.append(prospect)
