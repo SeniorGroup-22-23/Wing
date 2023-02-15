@@ -142,7 +142,7 @@ func matchRoutes(_ app: Application) throws {
         var prospectsInRange: [UUID] = []
         let maxBirthdate = userCalendar.date(byAdding: .year, value: -Int(swiperProfile.minAge), to: Date())!
         let minBirthdate = userCalendar.date(byAdding: .year, value: -Int(swiperProfile.maxAge), to: Date())!
-        let userLocation = CLLocation(latitude: swiperProfile.currLongitude, longitude: swiperProfile.currLongitude)
+        let userLocation = CLLocation(latitude: swiperProfile.currLatitude, longitude: swiperProfile.currLongitude)
         
         if(swiperProfile.preference == 3){ //do not check gender in req (pref == any)
             prospects = try await Profile.query(on: req.db)
@@ -160,9 +160,6 @@ func matchRoutes(_ app: Application) throws {
  
         }
         
-        print("Prospects: ")
-        print(prospects)
-        
         for prospect in prospects {
             let profile = try await Profile.query(on: req.db)
                 .filter(\.$id == prospect)
@@ -170,8 +167,6 @@ func matchRoutes(_ app: Application) throws {
             
             let prospectLocation = CLLocation(latitude: profile!.currLatitude, longitude: profile!.currLongitude)
             let distancekm = userLocation.distance(from: prospectLocation) / 1000.00
-            print("Distance in km")
-            print(distancekm)
             
             if(Int(distancekm) <= swiperProfile.maxDistance){
                 prospectsInRange.append(prospect)
