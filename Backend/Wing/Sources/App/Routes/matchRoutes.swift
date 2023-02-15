@@ -8,6 +8,7 @@
 import FluentPostgresDriver
 import Vapor
 import Models
+import CoreLocation
 
 let userCalendar = Calendar.current
 
@@ -138,8 +139,10 @@ func matchRoutes(_ app: Application) throws {
             .all(\.$firstUserId)
         
         let prospects: [UUID] //initially empty array
+        var prospectsInRange: [UUID] = []
         let maxBirthdate = userCalendar.date(byAdding: .year, value: -Int(swiperProfile.minAge), to: Date())!
         let minBirthdate = userCalendar.date(byAdding: .year, value: -Int(swiperProfile.maxAge), to: Date())!
+        let userLocation = CLLocation(latitude: swiperProfile.currLongitude, longitude: swiperProfile.currLongitude)
         
         if(swiperProfile.preference == 3){ //do not check gender in req (pref == any)
             prospects = try await Profile.query(on: req.db)
@@ -147,8 +150,6 @@ func matchRoutes(_ app: Application) throws {
                 .filter(\.$birthdate <= maxBirthdate)
                 .filter(\.$birthdate >= minBirthdate)
                 .all(\.$id)
-               //TODO: add location filter
-            
         } else {
             prospects = try await Profile.query(on: req.db)
                 .filter(\.$userId !~ invalids)
@@ -156,10 +157,28 @@ func matchRoutes(_ app: Application) throws {
                 .filter(\.$birthdate <= maxBirthdate)
                 .filter(\.$birthdate >= minBirthdate)
                 .all(\.$id)
-               //TODO: add location filter
+ 
         }
         
-        return prospects //returns empty array if no prospects
+        print("Prospects: ")
+        print(prospects)
+        
+        for prospect in prospects {
+            let profile = try await Profile.query(on: req.db)
+                .filter(\.$id == prospect)
+                .first()
+            
+            let prospectLocation = CLLocation(latitude: profile!.currLatitude, longitude: profile!.currLongitude)
+            let distancekm = userLocation.distance(from: prospectLocation) / 1000.00
+            print("Distance in km")
+            print(distancekm)
+            
+            if(Int(distancekm) <= swiperProfile.maxDistance){
+                prospectsInRange.append(prospect)
+            }
+        }
+        
+        return prospectsInRange //returns empty array if no prospects
     }
     
     
