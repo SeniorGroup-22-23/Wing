@@ -28,7 +28,10 @@ class MatchViewModel: ObservableObject{
     
     // getting info about the next profile to load to swipe on
     @Published var prospectID: [UUID] = []
-    @Published var prospectProfile: [Profile] = []
+    @Published var prospectProfile: Profile = Profile()
+    
+    @Published var promptResponses: [PromptResponse] = []
+    @Published var prompt: Prompt = Prompt()
 
     var baseURL = "http://127.0.0.1:8080"
     let encoder = JSONEncoder()
@@ -39,8 +42,56 @@ class MatchViewModel: ObservableObject{
         decoder.dateDecodingStrategy = .iso8601
     }
     
+    func setUser(userID : UUID) {
+        self.primaryUserId = userID
+    }
+    
+    func getPromptResponses(prospectID : UUID) async throws {
+        let url = URL(string: baseURL + "/prompts/\(prospectID)")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data,response) = try await URLSession.shared.data(for: urlRequest)
+      
+        guard let httpResponse = response as? HTTPURLResponse else { return }
+        
+        if(httpResponse.statusCode == 200){
+            let decodedUsers = try JSONDecoder().decode([PromptResponse].self, from: data)
+            DispatchQueue.main.async {
+                self.promptResponses = decodedUsers
+            }
+        }
+        else{
+            print("prompts \(httpResponse.statusCode) error")
+            throw URLError(.badServerResponse)
+        }
+    }
+
+    func getPrompt(promptID : UUID) async throws {
+        let url = URL(string: baseURL + "/prompts/\(promptID)")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data,response) = try await URLSession.shared.data(for: urlRequest)
+      
+        guard let httpResponse = response as? HTTPURLResponse else { return }
+        
+        if(httpResponse.statusCode == 200){
+            let decodedUsers = try JSONDecoder().decode(Prompt.self, from: data)
+            DispatchQueue.main.async {
+                self.prompt = decodedUsers
+            }
+        }
+        else{
+            print("prompts \(httpResponse.statusCode) error")
+            throw URLError(.badServerResponse)
+        }
+    }
+    
     func getProspects() async throws {
-        let url = URL(string: baseURL + "/prospects/\(primaryUserId)")!
+        let url = URL(string: baseURL + "/prospects/\(self.primaryUserId)")!
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -71,17 +122,22 @@ class MatchViewModel: ObservableObject{
       
         guard let httpResponse = response as? HTTPURLResponse else { return }
         
-        
         if(httpResponse.statusCode == 200){
-            let decodedUsers = try JSONDecoder().decode([Profile].self, from: data)
+            let decodedUser = try JSONDecoder().decode(Profile.self, from: data)
             DispatchQueue.main.async {
-                self.prospectProfile = decodedUsers
+                self.prospectProfile = decodedUser
             }
+            
         }
         else{
             print("prospects \(httpResponse.statusCode) error")
             throw URLError(.badServerResponse)
         }
+
+    }
+    
+    func getProspectProfile(prospectID : UUID) -> Profile {
+        return self.prospectProfile
     }
     
     func loadProspectPhotos(prospectID : UUID) async throws {

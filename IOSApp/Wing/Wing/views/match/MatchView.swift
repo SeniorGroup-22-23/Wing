@@ -61,13 +61,18 @@ struct MatchView: View {
                             if abs(verticalAmount) > abs(horizontalAmount) {
                                 print(verticalAmount < 0 ? "up swipe" : "down swipe")
                                 
-                                potentialMatch.name = "Sally"
-                                potentialMatch.age = 32
-                                potentialMatch.occupation = "Registered Nurse"
-                                potentialMatch.bio = "Hey this is my bio!"
-                                potentialMatch.prompts = ["What's your dream job?", "What's your favourite holiday?", "What's your favourite animal?"]
-                                potentialMatch.answers = ["artist", "I love all of them but my favourite would have to be Halloween #spooky", "dogsss"]
-                                potentialMatch.wing = true
+                                Task {
+                                    let tempNewProspect = await getProspect()
+                                    
+                                    potentialMatch.name = tempNewProspect?.name ?? ""
+                                    potentialMatch.age = tempNewProspect?.age ?? -1
+                                    potentialMatch.occupation = tempNewProspect?.occupation ?? ""
+                                    potentialMatch.bio = tempNewProspect?.bio ?? ""
+                                    potentialMatch.prompts = tempNewProspect?.prompts ?? ["", "", ""]
+                                    potentialMatch.answers = tempNewProspect?.answers ?? ["", "", ""]
+                                    potentialMatch.photos = tempNewProspect?.photos ?? [Image?](repeating : nil, count : 8)
+                                    potentialMatch.wing = tempNewProspect?.wing ?? false
+                                }
                             }
                         })
                     )
@@ -79,10 +84,30 @@ struct MatchView: View {
                 
                 FooterTab()
             }
-            
-        }
+            .onAppear {
+                Task {
+                    if let unwrappedID = signupViewModel.user.id {
+                        matchViewModel.setUser(userID: unwrappedID)
+                    }
+                    try await matchViewModel.getProspects()
+                }
+            }
+        }.navigationBarBackButtonHidden(true)
     }
-
+    
+    func getProspect() async -> PotentialMatch? {
+        let idList = matchViewModel.prospectID
+        
+        do {
+            try await matchViewModel.loadProspectProfile(prospectID : idList[0])
+        } catch {
+            print("Can't load prospect profile. Error: \(error)")
+        }
+        
+        let profile = matchViewModel.prospectProfile
+        
+        return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: ["prompt 1", "prompt 2", ""], answers: ["answer 1", "answer 2", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
+    }
 }
 
 struct LoadNextUser : View {
@@ -214,4 +239,8 @@ struct MatchView_Previews: PreviewProvider {
     static var previews: some View {
         MatchView()
     }
+}
+
+extension Date {
+    var age: Int { Calendar.current.dateComponents([.year], from: self, to: Date()).year! }
 }

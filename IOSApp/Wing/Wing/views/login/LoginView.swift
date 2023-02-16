@@ -47,10 +47,10 @@ struct LoginView : View {
                 destination : {
                 VStack{
                     if viewModel.isValid {
-                        HomePageView().navigationBarBackButtonHidden(true)
+                        MatchView().navigationBarBackButtonHidden(true)
                     }
                     else{
-                        BioView()
+                        HomePageView()
                     }
                 }
             }()) {

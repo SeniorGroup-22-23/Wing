@@ -291,6 +291,8 @@ class SignupViewModel: ObservableObject{
                 self.isValid = true
             }
         }
+        
+        print(self.user)
 //        else{
 //            throw URLError(.badServerResponse)
 //
