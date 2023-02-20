@@ -1,9 +1,13 @@
 import Fluent
 import FluentPostgresDriver
 import Vapor
+import JWT
 
 // configures your application
 public func configure(_ app: Application) throws {
+    
+    //app.jwt.signers.use(.hs256(key: Environment.get("KEY")!))
+    app.jwt.signers.use(.hs256(key: "wing-key-2023")) //select jwt algorithm and key 
 
     //Try to run in prod, if not set up avail try locally 
     if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {

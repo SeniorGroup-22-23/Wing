@@ -8,12 +8,14 @@
 import FluentPostgresDriver
 import Vapor
 import Models
+import JWT
 
 //Wing Block Routes 
 func blockRoutes(_ app: Application) throws {
     
     //POST Block
     app.post("block"){ req async throws -> Block in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let block = try req.content.decode(Block.self)
         do {
             try await block.create(on: req.db)
@@ -31,6 +33,7 @@ func blockRoutes(_ app: Application) throws {
     
     //PUT Block (update block record)
     app.put("block"){ req async throws -> Block in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let block = try req.content.decode(Block.self)
         try await Block.query(on: req.db)
             .set(\.$reported, to : block.reported)
@@ -41,6 +44,7 @@ func blockRoutes(_ app: Application) throws {
     
     //GET Block Records by blockedById
     app.get("block", ":blockedById") { req async throws -> [Block] in
+        try req.jwt.verify(as: WingJWTPayload .self)
         guard let blockedById = UUID(uuidString: req.parameters.get("blockedById")!.lowercased())
         else {
              throw Error.nilId

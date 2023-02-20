@@ -8,12 +8,14 @@
 import FluentPostgresDriver
 import Vapor
 import Models
+import JWT
 
 extension UUID: Content{}
 
 func friendRoutes(_ app: Application) throws {
     
     app.post("friend"){ req async throws -> Friendship in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let friendship = try req.content.decode(Friendship.self)
         do {
             try await friendship.create(on: req.db)
@@ -31,6 +33,7 @@ func friendRoutes(_ app: Application) throws {
     
     
     app.put("friend"){ req async throws -> Friendship in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let friendship = try req.content.decode(Friendship.self)
         guard friendship.id != nil else {
             throw Error.nilId
@@ -49,6 +52,7 @@ func friendRoutes(_ app: Application) throws {
     }
     
     app.get("friends", ":userId"){ req async throws -> [UUID] in
+        try req.jwt.verify(as: WingJWTPayload .self)
         guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
              throw Error.nilId
@@ -77,6 +81,7 @@ func friendRoutes(_ app: Application) throws {
     }
     
     app.get("friendRequests", ":userId"){ req async throws -> [Friendship] in
+        try req.jwt.verify(as: WingJWTPayload .self)
         guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
              throw Error.nilId

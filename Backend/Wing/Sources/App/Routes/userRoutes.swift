@@ -8,6 +8,7 @@
 import FluentPostgresDriver
 import Vapor
 import Models
+import JWT
 
 //Wing Routes
 func userRoutes(_ app: Application) throws {
@@ -16,6 +17,7 @@ func userRoutes(_ app: Application) throws {
     
     //GET Users with phone (check for unique)
     app.get("check", "phone", ":phone") { req async throws -> Bool in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let phone = req.parameters.get("phone")!
         guard let _ = try await User.query(on: req.db)
             .filter(\.$phone == phone)
@@ -28,6 +30,7 @@ func userRoutes(_ app: Application) throws {
     
     //GET Users with email (check for unqiue)
     app.get("check", "email", ":email") { req async throws -> Bool in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let email = req.parameters.get("email")!
         guard let _ = try await User.query(on: req.db)
             .filter(\.$email == email)
@@ -40,6 +43,7 @@ func userRoutes(_ app: Application) throws {
     
     //GET Usernames
     app.get("usernames", ":usernameMatch") {  req async throws -> [String] in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let charMatch = req.parameters.get("usernameMatch")! //! forces decode to string, if empty no error
         return try await User.query(on: req.db)
             .filter(\.$username =~ charMatch)
@@ -49,6 +53,7 @@ func userRoutes(_ app: Application) throws {
     
     //GET User by Phone
     app.get("user", "phone", ":phone", ":password") { req async throws -> User in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let phoneNum = req.parameters.get("phone")!
         let password = req.parameters.get("password")!
         guard let user = try await User.query(on: req.db)
@@ -63,6 +68,7 @@ func userRoutes(_ app: Application) throws {
     
     //GET User by Email
     app.get("user", "email", ":email", ":password") { req async throws -> User in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let email = req.parameters.get("email")!
         let password = req.parameters.get("password")!
         guard let user = try await User.query(on: req.db)
@@ -77,6 +83,7 @@ func userRoutes(_ app: Application) throws {
     
     //POST User
     app.post("user"){ req async throws -> User in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let user = try req.content.decode(User.self)
         do {
             try await user.create(on: req.db)
@@ -96,6 +103,7 @@ func userRoutes(_ app: Application) throws {
     
     //PUT User (update user account)
     app.put("user"){ req async throws -> User in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let user = try req.content.decode(User.self)
         try await User.query(on: req.db)
             .set(\.$phone, to : user.phone)
@@ -108,6 +116,7 @@ func userRoutes(_ app: Application) throws {
     
     //GET Profile by UserId
     app.get("profile", ":userId") {req async throws -> Profile in
+        try req.jwt.verify(as: WingJWTPayload .self)
         guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
              throw Error.nilId
@@ -123,6 +132,7 @@ func userRoutes(_ app: Application) throws {
     
     //POST Profile
     app.post("profile"){ req async throws -> Profile  in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let profile = try req.content.decode(Profile.self)
         do {
             try await profile.create(on: req.db)
@@ -138,6 +148,7 @@ func userRoutes(_ app: Application) throws {
     
     //PUT Profile
     app.put("profile"){ req async throws -> Profile in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let profile = try req.content.decode(Profile.self)
         guard profile.id != nil else {
             throw Error.nilId
@@ -160,6 +171,7 @@ func userRoutes(_ app: Application) throws {
     
     //GET profile by profile ID
     app.get("profileId", ":profileId") { req async throws -> Profile in
+        try req.jwt.verify(as: WingJWTPayload .self)
         guard let profileId = UUID(uuidString: req.parameters.get("profileId")!.lowercased())
         else {
              throw Error.nilId

@@ -8,6 +8,7 @@
 import FluentPostgresDriver
 import Vapor
 import Models
+import JWT
 
 
 func profilePreviewRoutes(_ app: Application) throws {
@@ -15,6 +16,7 @@ func profilePreviewRoutes(_ app: Application) throws {
     // create a new JSON decoder that uses unix-timestamp dates
     
     app.post("profilePreview"){ req async throws -> ProfilePreview in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let preview = try req.content.decode(ProfilePreview.self)
         do{
             try await preview.create(on: req.db)
@@ -29,6 +31,7 @@ func profilePreviewRoutes(_ app: Application) throws {
     }
     
     app.put("profilePreview"){ req async throws -> ProfilePreview in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let preview = try req.content.decode(ProfilePreview.self)
         guard preview.id != nil else {
             throw Error.nilId
@@ -44,6 +47,7 @@ func profilePreviewRoutes(_ app: Application) throws {
     }
     
     app.get("profilePreview", "id", ":id"){ req async throws -> ProfilePreview in
+        try req.jwt.verify(as: WingJWTPayload .self)
         guard let id = UUID(uuidString: req.parameters.get("id")!.lowercased())
         else {
              throw Error.nilId
@@ -58,6 +62,7 @@ func profilePreviewRoutes(_ app: Application) throws {
     }
     
     app.get("profilePreview", "username", ":username"){ req async throws -> ProfilePreview in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let usernameMatch = req.parameters.get("username")! //! forces decode to string, if empty no error
         let profilePreview = try await ProfilePreview.query(on: req.db)
             .filter(\.$username == usernameMatch)
@@ -69,6 +74,7 @@ func profilePreviewRoutes(_ app: Application) throws {
     }
     
     app.get("profilePreview", "userId", ":userId"){ req async throws -> ProfilePreview in
+        try req.jwt.verify(as: WingJWTPayload .self)
         guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
              throw Error.nilId

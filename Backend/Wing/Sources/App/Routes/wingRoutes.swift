@@ -8,11 +8,13 @@
 import FluentPostgresDriver
 import Vapor
 import Models
+import JWT
 
 
 func wingRoutes(_ app: Application) throws {
     
     app.post("wing"){ req async throws -> Wing in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let wing = try req.content.decode(Wing.self)
         wing.prospectId = UUID(String(wing.prospectId).lowercased())!
         wing.senderId = UUID(String(wing.senderId).lowercased())!
@@ -35,6 +37,7 @@ func wingRoutes(_ app: Application) throws {
     
     
     app.get("wings", ":userId"){ req async throws -> [Wing] in
+        try req.jwt.verify(as: WingJWTPayload .self)
         guard let userId = UUID(req.parameters.get("userId")!.lowercased())
         else {
             throw Error.nilId
@@ -50,6 +53,7 @@ func wingRoutes(_ app: Application) throws {
     //Use when recipient accepts or declines wing 
     //Returns true if match is made, false otherwise
     app.put("wing"){ req async throws -> Bool in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let wing = try req.content.decode(Wing.self)
         let lowerRId = UUID(String(wing.recipientId).lowercased())!
         let lowerPId = UUID(String(wing.prospectId).lowercased())!

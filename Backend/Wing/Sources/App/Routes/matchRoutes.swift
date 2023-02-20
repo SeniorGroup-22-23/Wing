@@ -9,6 +9,7 @@ import FluentPostgresDriver
 import Vapor
 import Models
 import CoreLocation
+import JWT
 
 let userCalendar = Calendar.current
 
@@ -18,6 +19,7 @@ func matchRoutes(_ app: Application) throws {
     
     //Create Swipe Record
     app.post("swipe"){ req async throws -> Bool in
+        try req.jwt.verify(as: WingJWTPayload .self)
         let currRecord = try req.content.decode(Swipe.self)
         let lowerSId = UUID(String(currRecord.swiperId).lowercased())!
         let lowerPId = UUID(String(currRecord.prospectId).lowercased())!
@@ -80,6 +82,7 @@ func matchRoutes(_ app: Application) throws {
     
     //unmatch given both user IDs
     app.post("unmatch",":id1",":id2"){ req async throws -> Response in
+        try req.jwt.verify(as: WingJWTPayload .self)
         //delete match record
         guard let id1 = UUID(req.parameters.get("id1")!.lowercased())
         else{
@@ -107,6 +110,7 @@ func matchRoutes(_ app: Application) throws {
     
     //get all prospects profileIDs
     app.get("prospects", ":userId"){ req async throws -> [UUID] in
+        try req.jwt.verify(as: WingJWTPayload .self)
         guard let userId = UUID(req.parameters.get("userId")!.lowercased())
         else {
             throw Error.nilId
