@@ -32,7 +32,7 @@ class PotentialMatch : ObservableObject {
 struct MatchView: View {
     @ObservedObject var signupViewModel: SignupViewModel = .method
     @ObservedObject var matchViewModel: MatchViewModel = .method
-    @StateObject var potentialMatch = PotentialMatch(name: "Nury", age: 23, occupation: "Software Engineering", bio: "This is my bio! I am a student at UNB and I can't wait to use the Wing app. Woohoo!", prompts: ["What's your favourite sport?", "Who's your celeb crush?", ""], answers: ["Football. Can't wait for the superbowl!!", "Probably Brad Pitt..", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
+    @StateObject var potentialMatch = PotentialMatch(name: "", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
     
     var body: some View {
         ZStack {
@@ -40,7 +40,6 @@ struct MatchView: View {
                 .ignoresSafeArea()
             VStack {
                 HeaderTab()
-                
                 ScrollViewReader { value in
                     VStack {
                         LoadNextUser()
@@ -96,17 +95,55 @@ struct MatchView: View {
     }
     
     func getProspect() async -> PotentialMatch? {
-        let idList = matchViewModel.prospectID
+        let idList = self.matchViewModel.prospectID
         
+        var firstPrompt = ""
+        var secondPrompt = ""
+        var thirdPrompt = ""
+        
+        var firstResponse = ""
+        var secondResponse = ""
+        var thirdResponse = ""
+        
+        // First get the profile of the prospect to show
         do {
-            try await matchViewModel.loadProspectProfile(prospectID : idList[0])
+            try await self.matchViewModel.loadProspectProfile(prospectID : idList[0])
         } catch {
             print("Can't load prospect profile. Error: \(error)")
         }
         
-        let profile = matchViewModel.prospectProfile
+        // Then get the prompt responses of the prospect
+        do {
+            try await self.matchViewModel.getPromptResponses(prospectID: self.matchViewModel.prospectProfile.userId!)
+            let promptResponses = self.matchViewModel.promptResponses
+            
+            if (promptResponses.count >= 1) {
+                try await self.matchViewModel.getPrompt(promptID: promptResponses[0].promptId!)
+                
+                firstPrompt = self.matchViewModel.prompt.promptText ?? ""
+                firstResponse = promptResponses[0].responseText ?? ""
+            }
+            
+            if (promptResponses.count >= 2) {
+                try await self.matchViewModel.getPrompt(promptID: promptResponses[1].promptId!)
+                
+                secondPrompt = self.matchViewModel.prompt.promptText ?? ""
+                secondResponse = promptResponses[1].responseText ?? ""
+            }
+            
+            if (promptResponses.count == 3) {
+                try await self.matchViewModel.getPrompt(promptID: promptResponses[2].promptId!)
+                
+                thirdPrompt = self.matchViewModel.prompt.promptText ?? ""
+                thirdResponse = promptResponses[2].responseText ?? ""
+            }
+        } catch {
+            print("Can't get user's prompts. Error: \(error)")
+        }
         
-        return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: ["prompt 1", "prompt 2", ""], answers: ["answer 1", "answer 2", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
+        let profile = self.matchViewModel.prospectProfile
+        
+        return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: [firstPrompt, secondPrompt, thirdPrompt], answers: [firstResponse, secondResponse, thirdResponse], photos: [Image?](repeating : nil, count : 8), wing: false)
     }
 }
 
@@ -121,7 +158,7 @@ struct LoadNextUser : View {
                     .offset(x : 15)
                 Text(user.occupation)
                     .font(.custom(FontManager.NotoSans.regular, size : 15.0))
-                    .offset(x: 40)
+                    .offset(x: 30)
             }
             Spacer()
             Spacer()

@@ -69,7 +69,7 @@ class MatchViewModel: ObservableObject{
     }
 
     func getPrompt(promptID : UUID) async throws {
-        let url = URL(string: baseURL + "/prompts/\(promptID)")!
+        let url = URL(string: baseURL + "/prompt/\(promptID)")!
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -78,10 +78,11 @@ class MatchViewModel: ObservableObject{
       
         guard let httpResponse = response as? HTTPURLResponse else { return }
         
+        
         if(httpResponse.statusCode == 200){
-            let decodedUsers = try JSONDecoder().decode(Prompt.self, from: data)
+            let decodedPrompt = try JSONDecoder().decode(Prompt.self, from: data)
             DispatchQueue.main.async {
-                self.prompt = decodedUsers
+                self.prompt = decodedPrompt
             }
         }
         else{
@@ -123,7 +124,7 @@ class MatchViewModel: ObservableObject{
         guard let httpResponse = response as? HTTPURLResponse else { return }
         
         if(httpResponse.statusCode == 200){
-            let decodedUser = try JSONDecoder().decode(Profile.self, from: data)
+            let decodedUser = try decoder.decode(Profile.self, from: data)
             DispatchQueue.main.async {
                 self.prospectProfile = decodedUser
             }
@@ -135,11 +136,7 @@ class MatchViewModel: ObservableObject{
         }
 
     }
-    
-    func getProspectProfile(prospectID : UUID) -> Profile {
-        return self.prospectProfile
-    }
-    
+
     func loadProspectPhotos(prospectID : UUID) async throws {
         
     }
