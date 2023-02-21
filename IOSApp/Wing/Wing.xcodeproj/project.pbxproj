@@ -47,6 +47,9 @@
 		7498AE8529803FF500FB3638 /* HeaderTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7498AE8229803FF500FB3638 /* HeaderTab.swift */; };
 		749BDCEE292EAB31000DB411 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749BDCED292EAB31000DB411 /* ImagePicker.swift */; };
 		749CDFDB29246FDB00AC1766 /* AddPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749CDFDA29246FDB00AC1766 /* AddPhotosView.swift */; };
+		74C9938329A55B570068B532 /* NoProspectsMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9938229A55B570068B532 /* NoProspectsMatchView.swift */; };
+		74C9938429A55B570068B532 /* NoProspectsMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9938229A55B570068B532 /* NoProspectsMatchView.swift */; };
+		74C9938529A55B570068B532 /* NoProspectsMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9938229A55B570068B532 /* NoProspectsMatchView.swift */; };
 		74D2DCD6291429B600C26F96 /* BioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2DCD5291429B600C26F96 /* BioView.swift */; };
 		74D2DCDA2916C02600C26F96 /* PromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2DCD92916C02600C26F96 /* PromptView.swift */; };
 		9937E6A6295A77D100F30F18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937E6A5295A77D100F30F18 /* User.swift */; };
@@ -117,6 +120,7 @@
 		7498AE8229803FF500FB3638 /* HeaderTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTab.swift; sourceTree = "<group>"; };
 		749BDCED292EAB31000DB411 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		749CDFDA29246FDB00AC1766 /* AddPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotosView.swift; sourceTree = "<group>"; };
+		74C9938229A55B570068B532 /* NoProspectsMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoProspectsMatchView.swift; sourceTree = "<group>"; };
 		74D2DCD5291429B600C26F96 /* BioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioView.swift; sourceTree = "<group>"; };
 		74D2DCD92916C02600C26F96 /* PromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptView.swift; sourceTree = "<group>"; };
 		9930101329342AA900E01652 /* Wing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wing.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				7498AE7A29803F8500FB3638 /* MatchView.swift */,
+				74C9938229A55B570068B532 /* NoProspectsMatchView.swift */,
 			);
 			path = match;
 			sourceTree = "<group>";
@@ -493,6 +498,7 @@
 				67971CE729245A1C0088C6BD /* ConfirmationCodeView.swift in Sources */,
 				994385F129665488009B4452 /* Friendship.swift in Sources */,
 				999A4C7429300EC3000EA950 /* CreateAccountView.swift in Sources */,
+				74C9938329A55B570068B532 /* NoProspectsMatchView.swift in Sources */,
 				994385FF29665523009B4452 /* Wing.swift in Sources */,
 				9937E6AA295E0BC400F30F18 /* SignupViewModel.swift in Sources */,
 				994385F329665495009B4452 /* Match.swift in Sources */,
@@ -511,6 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7498AE8029803FDA00FB3638 /* FooterTab.swift in Sources */,
+				74C9938429A55B570068B532 /* NoProspectsMatchView.swift in Sources */,
 				7498AE7329803F5D00FB3638 /* MatchViewModel.swift in Sources */,
 				7498AE7C29803F8500FB3638 /* MatchView.swift in Sources */,
 				7498AE8429803FF500FB3638 /* HeaderTab.swift in Sources */,
@@ -524,6 +531,7 @@
 			files = (
 				7498AE8529803FF500FB3638 /* HeaderTab.swift in Sources */,
 				7498AE8129803FDA00FB3638 /* FooterTab.swift in Sources */,
+				74C9938529A55B570068B532 /* NoProspectsMatchView.swift in Sources */,
 				02C71E9428EB8F1100447686 /* WingUITests.swift in Sources */,
 				7498AE7429803F5D00FB3638 /* MatchViewModel.swift in Sources */,
 				7498AE7D29803F8500FB3638 /* MatchView.swift in Sources */,

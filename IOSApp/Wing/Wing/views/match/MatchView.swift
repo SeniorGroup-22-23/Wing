@@ -30,9 +30,10 @@ class PotentialMatch : ObservableObject {
 }
 
 struct MatchView: View {
+    @State private var numProspects = 0
     @ObservedObject var signupViewModel: SignupViewModel = .method
     @ObservedObject var matchViewModel: MatchViewModel = .method
-    @StateObject var potentialMatch = PotentialMatch(name: "", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
+    @StateObject var potentialMatch = PotentialMatch(name: "tester", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
     
     var body: some View {
         ZStack {
@@ -40,6 +41,7 @@ struct MatchView: View {
                 .ignoresSafeArea()
             VStack {
                 HeaderTab()
+                
                 ScrollViewReader { value in
                     VStack {
                         LoadNextUser()
@@ -51,7 +53,6 @@ struct MatchView: View {
                             .padding(.leading)
                             .padding(.trailing)
                         }
-                    
                     }
                     .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
                         .onEnded({ value in
@@ -79,7 +80,8 @@ struct MatchView: View {
                         value.scrollTo(0, anchor: .trailing)
                     }
                 }
-                .environmentObject(potentialMatch)
+                
+                CheckNoProspects()
                 
                 FooterTab()
             }
@@ -91,7 +93,9 @@ struct MatchView: View {
                     try await matchViewModel.getProspects()
                 }
             }
+            .environmentObject(potentialMatch)
         }.navigationBarBackButtonHidden(true)
+        
     }
     
     func getProspect() async -> PotentialMatch? {
@@ -105,45 +109,50 @@ struct MatchView: View {
         var secondResponse = ""
         var thirdResponse = ""
         
-        // First get the profile of the prospect to show
-        do {
-            try await self.matchViewModel.loadProspectProfile(prospectID : idList[0])
-        } catch {
-            print("Can't load prospect profile. Error: \(error)")
+        if (numProspects < idList.count) {
+            // First get the profile of the prospect to show
+            do {
+                try await self.matchViewModel.loadProspectProfile(prospectID : idList[numProspects])
+                numProspects += 1
+            } catch {
+                print("Can't load prospect profile. Error: \(error)")
+            }
+            
+            // Then get the prompt responses of the prospect
+            do {
+                try await self.matchViewModel.getPromptResponses(prospectID: self.matchViewModel.prospectProfile.userId!)
+                let promptResponses = self.matchViewModel.promptResponses
+                
+                if (promptResponses.count >= 1) {
+                    try await self.matchViewModel.getPrompt(promptID: promptResponses[0].promptId!)
+                    
+                    firstPrompt = self.matchViewModel.prompt.promptText ?? ""
+                    firstResponse = promptResponses[0].responseText ?? ""
+                }
+                
+                if (promptResponses.count >= 2) {
+                    try await self.matchViewModel.getPrompt(promptID: promptResponses[1].promptId!)
+                    
+                    secondPrompt = self.matchViewModel.prompt.promptText ?? ""
+                    secondResponse = promptResponses[1].responseText ?? ""
+                }
+                
+                if (promptResponses.count == 3) {
+                    try await self.matchViewModel.getPrompt(promptID: promptResponses[2].promptId!)
+                    
+                    thirdPrompt = self.matchViewModel.prompt.promptText ?? ""
+                    thirdResponse = promptResponses[2].responseText ?? ""
+                }
+            } catch {
+                print("Can't get user's prompts. Error: \(error)")
+            }
+            
+            let profile = self.matchViewModel.prospectProfile
+            
+            return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: [firstPrompt, secondPrompt, thirdPrompt], answers: [firstResponse, secondResponse, thirdResponse], photos: [Image?](repeating : nil, count : 8), wing: false)
         }
         
-        // Then get the prompt responses of the prospect
-        do {
-            try await self.matchViewModel.getPromptResponses(prospectID: self.matchViewModel.prospectProfile.userId!)
-            let promptResponses = self.matchViewModel.promptResponses
-            
-            if (promptResponses.count >= 1) {
-                try await self.matchViewModel.getPrompt(promptID: promptResponses[0].promptId!)
-                
-                firstPrompt = self.matchViewModel.prompt.promptText ?? ""
-                firstResponse = promptResponses[0].responseText ?? ""
-            }
-            
-            if (promptResponses.count >= 2) {
-                try await self.matchViewModel.getPrompt(promptID: promptResponses[1].promptId!)
-                
-                secondPrompt = self.matchViewModel.prompt.promptText ?? ""
-                secondResponse = promptResponses[1].responseText ?? ""
-            }
-            
-            if (promptResponses.count == 3) {
-                try await self.matchViewModel.getPrompt(promptID: promptResponses[2].promptId!)
-                
-                thirdPrompt = self.matchViewModel.prompt.promptText ?? ""
-                thirdResponse = promptResponses[2].responseText ?? ""
-            }
-        } catch {
-            print("Can't get user's prompts. Error: \(error)")
-        }
-        
-        let profile = self.matchViewModel.prospectProfile
-        
-        return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: [firstPrompt, secondPrompt, thirdPrompt], answers: [firstResponse, secondResponse, thirdResponse], photos: [Image?](repeating : nil, count : 8), wing: false)
+        return PotentialMatch(name: "", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
     }
 }
 
@@ -151,26 +160,38 @@ struct LoadNextUser : View {
     @EnvironmentObject var user : PotentialMatch
     
     var body : some View {
-        HStack {
-            VStack {
-                (Text(user.name) + Text(", ") + Text(String(user.age)))
-                    .font(.custom(FontManager.NotoSans.semiBold, size : 28.0))
-                    .offset(x : 15)
-                Text(user.occupation)
-                    .font(.custom(FontManager.NotoSans.regular, size : 15.0))
-                    .offset(x: 30)
+        if (user.name != "") {
+            HStack {
+                VStack {
+                    (Text(user.name) + Text(", ") + Text(String(user.age)))
+                        .font(.custom(FontManager.NotoSans.semiBold, size : 28.0))
+                        .offset(x : 15)
+                    Text(user.occupation)
+                        .font(.custom(FontManager.NotoSans.regular, size : 15.0))
+                        .offset(x: 30)
+                }
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                
+                if (user.wing) {
+                    Image("WingMatchBadge")
+                        .resizable()
+                        .frame(width: 75.0, height: 75.0)
+                }
+                Spacer()
             }
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            
-            if (user.wing) {
-                Image("WingMatchBadge")
-                    .resizable()
-                    .frame(width: 75.0, height: 75.0)
-            }
-            Spacer()
+        }
+    }
+}
+
+struct CheckNoProspects : View {
+    @EnvironmentObject var user : PotentialMatch
+    
+    var body : some View {
+        if (user.name == "") {
+            NoProspectsMatchView()
         }
     }
 }
@@ -179,46 +200,55 @@ struct LoadSlides : View {
     @EnvironmentObject var user : PotentialMatch
     
     var body : some View {
-        fullImage(image: user.photos[0])
-            .id(0)
-        
-        if (user.bio == "") {
-            fullImage(image: user.photos[1])
-        } else {
-            VStack {
-                splitText(prompt: "", ans: user.bio)
-                splitImage(image: user.photos[1])
+        if (user.name != "") {
+            fullImage(image: user.photos[0])
+                .id(0)
+            if (user.bio == "") {
+                fullImage(image: user.photos[1])
+            } else {
+                VStack {
+                    splitText(prompt: "", ans: user.bio)
+                    splitImage(image: user.photos[1])
+                }
             }
-        }
-
-        ForEach (0..<3) { i in
-            if (user.photos[i+2] == nil) {
-                if (user.prompts[i] != "" && user.answers[i] != "") {
-                    if (i % 2 == 0) {
-                        VStack {
-                            splitImage(image: user.photos[i+2])
-                            splitText(prompt: user.prompts[i], ans: user.answers[i])
+            
+            ForEach (0..<3) { i in
+                if (user.photos[i+2] == nil) {
+                    if (user.prompts[i] != "" && user.answers[i] != "") {
+                        if (i % 2 == 0) {
+                            imageTop(num: i)
+                        } else {
+                            imageBtm(num: i)
                         }
                     } else {
-                        VStack {
-                            splitText(prompt: user.prompts[i], ans: user.answers[i])
-                            splitImage(image: user.photos[i+2])
-                        }
+                        fullImage(image: user.photos[i+2])
                     }
                 } else {
-                    fullImage(image: user.photos[i+2])
+                    if (user.prompts[i] != "" && user.answers[i] != "") {
+                        fullText(prompt: user.prompts[i], ans: user.answers[i])
+                    }
                 }
-            } else {
-                if (user.prompts[i] != "" && user.answers[i] != "") {
-                    fullText(prompt: user.prompts[i], ans: user.answers[i])
+            }
+            
+            ForEach (5..<8) { i in
+                if (user.photos[i] == nil) {
+                    fullImage(image: user.photos[i])
                 }
             }
         }
-        
-        ForEach (5..<8) { i in
-            if (user.photos[i] == nil) {
-                fullImage(image: user.photos[i])
-            }
+    }
+    
+    func imageTop(num : Int) -> some View {
+        VStack {
+            splitImage(image: user.photos[num+2])
+            splitText(prompt: user.prompts[num], ans: user.answers[num])
+        }
+    }
+    
+    func imageBtm(num : Int) -> some View {
+        VStack {
+            splitText(prompt: user.prompts[num], ans: user.answers[num])
+            splitImage(image: user.photos[num+2])
         }
     }
     
