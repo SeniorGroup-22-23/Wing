@@ -14,7 +14,7 @@ struct CreateProfiles: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("profiles")
             .id()
-            .field("user_id", .uuid, .required, .references("users", "id"))
+            .field("user_id", .uuid, .required)
             .field("name", .string)
             .field("birthdate", .datetime)
             .field("occupation", .string)
@@ -26,6 +26,9 @@ struct CreateProfiles: AsyncMigration {
             .field("max_distance", .int16)
             .field("curr_latitude", .double)
             .field("curr_longitude", .double)
+        
+            .foreignKey("user_id", references: "users", "id", onDelete: .cascade)
+        
             .create()
     }
 

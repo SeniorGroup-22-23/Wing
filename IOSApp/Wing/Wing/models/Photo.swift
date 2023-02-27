@@ -11,12 +11,14 @@ struct Photo: Codable{
     
     var id: UUID?
     var userId: UUID?
-    var photo: [UInt8]?
+    var photo: Data?
+    var index: Int16?
     
-    init(id: UUID? = nil, userId: UUID? = nil, photo: [UInt8]? = nil){
+    init(id: UUID? = nil, userId: UUID? = nil, photo: Data? = nil, index: Int16){
         self.id = id
         self.userId = userId
         self.photo = photo
+        self.index = index
     }
 }
 
