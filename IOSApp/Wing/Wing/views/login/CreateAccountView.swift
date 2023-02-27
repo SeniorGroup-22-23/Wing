@@ -22,7 +22,6 @@ class ChosenMethod: ObservableObject {
 struct CreateAccountView : View {
 
     @ObservedObject var chosen_method: ChosenMethod = .method
-    
     @ObservedObject var viewModel: SignupViewModel = .method
     
     var body: some View {
@@ -36,7 +35,8 @@ struct CreateAccountView : View {
                             .cornerRadius(20.0)
                     }
                     .simultaneousGesture(TapGesture().onEnded{
-                        viewModel.email_method = true
+                        self.chosen_method.email_method = true
+                        self.chosen_method.phone_method = false
                         
                     })
                     .padding(.bottom, 17)
@@ -45,7 +45,8 @@ struct CreateAccountView : View {
                             .cornerRadius(20.0)
                     }
                     .simultaneousGesture(TapGesture().onEnded{
-                        viewModel.phone_method = true
+                        self.chosen_method.phone_method = true
+                        self.chosen_method.email_method = false
                         
                     })
                     SubTextMods()

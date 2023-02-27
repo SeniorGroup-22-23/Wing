@@ -33,7 +33,6 @@ struct HomePageView: View {
                                 viewModel.username = ""
                                 viewModel.password = ""
                             })
-                        TermsAndConditionsText()
                     }
             }
         }
@@ -88,24 +87,3 @@ struct GreenLogo: View {
 }
 
 
-struct Text1: View {
-    var body: some View {
-        Text("By creating an account or logging in, you agree to our ")
-        +
-        Text("[Terms and Conditions](https://example.com)")
-            .underline()
-    }
-}
-
-
-struct TermsAndConditionsText: View {
-    var body: some View {
-        Text1()
-            .font(.custom(FontManager.NotoSans.regular,fixedSize:16))
-            .multilineTextAlignment(.center)
-            .frame(width:300, height:120)
-            .offset(y:40)
-            .foregroundColor(.white)
-            .accentColor(.white)
-    }
-}

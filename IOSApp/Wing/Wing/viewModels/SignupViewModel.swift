@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 
-
 class SignupViewModel: ObservableObject{
     
     static var method : SignupViewModel = SignupViewModel()
@@ -55,9 +54,6 @@ class SignupViewModel: ObservableObject{
     
     @Published var profilePreview: ProfilePreview = ProfilePreview()
     
-    @Published var email_method = false
-    @Published var phone_method = false
-    
     var baseURL = "http://127.0.0.1:8080"
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
@@ -69,7 +65,7 @@ class SignupViewModel: ObservableObject{
     
     func setMethod(){
         SignupViewModel.method = SignupViewModel()
-        print("HI")
+
     }
     
     func getUsernames(username: String) async throws{
@@ -108,7 +104,20 @@ class SignupViewModel: ObservableObject{
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let user = User(username: self.username, password: self.password, phone: self.ext + self.number, email: self.email)
+        let refNum = self.number.filter{
+            if($0 == " "){
+                return false
+            }
+            else if($0 == "-"){
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        
+        let user = User(username: self.username, password: self.password, phone: self.ext + refNum, email: self.email)
+
         
         urlRequest.httpBody = try? JSONEncoder().encode(user)
 
@@ -137,8 +146,6 @@ class SignupViewModel: ObservableObject{
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let profile = Profile(userId: self.user.id, name: self.name, birthdate: self.birthdate, occupation: self.occupation, bio: self.bio, gender: self.gender, preference: self.preference, minAge: self.minAge, maxAge: self.maxAge, maxDistance: self.maxDistance, currLatitude: self.currLatitude, currLongitude: self.currLongitude)
-        
-        print(profile)
 
         urlRequest.httpBody = try? encoder.encode(profile)
         
@@ -192,8 +199,6 @@ class SignupViewModel: ObservableObject{
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let profilePreview = ProfilePreview(userId: self.user.id, username: self.username, name: self.name, primaryPhoto: self.imagesData[0])
-        
-        print(profilePreview)
 
         urlRequest.httpBody = try? encoder.encode(profilePreview)
         
@@ -255,7 +260,19 @@ class SignupViewModel: ObservableObject{
     
     func checkPhone() async throws{
         
-        let url = URL(string: baseURL + "/check/phone/\(self.ext + self.number)")!
+        let refNum = self.number.filter{
+            if($0 == " "){
+                return false
+            }
+            else if($0 == "-"){
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        
+        let url = URL(string: baseURL + "/check/phone/\(self.ext + refNum)")!
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -303,8 +320,21 @@ class SignupViewModel: ObservableObject{
     ///LOGIN functionality
     
     func getUserbyPhone() async throws{
+        
+        let refNum = self.credential.filter{
+            if($0 == " "){
+                return false
+            }
+            else if($0 == "-"){
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        
 
-        let url = URL(string: baseURL + "/user/phone/\(self.credential)/\(self.password)")!
+        let url = URL(string: baseURL + "/user/phone/\(refNum)/\(self.password)")!
 
         var urlRequest = URLRequest(url: url)
 

@@ -15,10 +15,8 @@ struct AgePreferenceView: View {
         ZStack {
             Color(.white)
             VStack {
-                Image("WhiteLogo")
-                    .resizable()
-                    .frame(width: 120.0, height: 127.0)
-                    .offset(y:-30)
+                LoadWingImage()
+                    .offset(y:-47)
                 
                 Text("My age preference is...")
                     .font(.custom(FontManager.NotoSans.semiBold, size: 24.0))

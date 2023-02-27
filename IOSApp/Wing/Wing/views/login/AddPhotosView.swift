@@ -31,7 +31,8 @@ struct AddPhotosView: View {
             Color(.white)
             VStack{
                 VStack {
-                    LoadLogo()
+                    LoadWingImage()
+                        .offset(y:-30)
                     
                     HStack {
                         LoadUploadPhotosText()
@@ -126,14 +127,6 @@ struct AddPhotosView: View {
         viewModel.imagesData[numPhotos] = inputImage.jpegData(compressionQuality: 0.0)
     
         numPhotos += 1
-    }
-}
-
-struct LoadLogo : View {
-    var body : some View {
-        Image("WhiteLogo")
-            .resizable()
-            .frame(width : 120.0, height : 127.0)
     }
 }
 

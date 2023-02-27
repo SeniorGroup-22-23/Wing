@@ -27,10 +27,8 @@ struct BioView: View {
         ZStack {
             Color(.white)
             VStack {
-                Image("WhiteLogo")
-                    .resizable()
-                    .frame(width: 120.0, height: 127.0)
-                    .offset(y:-30)
+                LoadWingImage()
+                    .offset(y:-55)
                 Spacer()
                     .frame(height: 100)
                 Text("Tell us about yourself... write a short bio")

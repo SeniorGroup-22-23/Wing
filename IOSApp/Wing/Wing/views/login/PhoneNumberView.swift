@@ -25,7 +25,7 @@ struct PhoneNumberView: View {
                 return true
             }
         }
-        if((viewModel.ext + refNumber).count > 10){
+        if((viewModel.ext + refNumber).count > 9){
             try await viewModel.checkPhone()
         }
         
@@ -59,10 +59,8 @@ struct PhoneNumberView: View {
             ZStack {
                 Color(.white)
                 VStack {
-                    Image("WhiteLogo")
-                        .resizable()
-                        .frame(width: 120.0, height: 127.0)
-                        .offset(y:-30)
+                    LoadWingImage()
+                        .offset(y:-55)
                     Spacer()
                         .frame(height: 150)
                     Text("""

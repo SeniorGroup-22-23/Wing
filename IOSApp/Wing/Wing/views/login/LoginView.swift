@@ -43,7 +43,6 @@ struct LoginView : View {
                 .background(.white)
                 .padding(.bottom, 40)
                 .frame(width: 300)
-            ForgotPasswordText()
             NavigationLink(destination : HomePageView().navigationBarBackButtonHidden(true)){
                 ButtonContent()
             }
@@ -104,18 +103,6 @@ struct ButtonContent: View {
     }
 }
 
-struct ForgotPasswordText: View {
-    var body: some View {
-        Text("[Forgot Password?](https://example.com)")
-            .underline()
-            .font(.custom(FontManager.NotoSans.regular,fixedSize:15))
-            .accentColor(Color.black)
-            .padding(.bottom, 20)
-            .offset(y: -20)
-            
-            
-    }
-}
 
 struct BackgroundLogo: View {
     var body: some View {
