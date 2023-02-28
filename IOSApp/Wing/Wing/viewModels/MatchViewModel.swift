@@ -24,6 +24,8 @@ class MatchViewModel: ObservableObject{
     @Published var swipeProspectID: UUID = UUID()
     @Published var swipeType: Int16 = 1
     
+    @Published var wingLikeProspect: Bool = false
+    
     // getting info about the next profile to load to swipe on
     @Published var prospectID: [UUID] = []
     @Published var prospectProfile: Profile = Profile()
@@ -158,6 +160,28 @@ class MatchViewModel: ObservableObject{
         }
         else{
             print("swipe \(httpResponse.statusCode) error")
+            throw URLError(.badServerResponse)
+        }
+    }
+    
+    func checkWingLike() async throws {
+        let url = URL(string: baseURL + "/wing/like/\(self.prospectProfile.userId!)/\(self.primaryUserId)")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data,response) = try await URLSession.shared.data(for: urlRequest)
+      
+        guard let httpResponse = response as? HTTPURLResponse else { return }
+        
+        if(httpResponse.statusCode == 200){
+            let wingLike = try JSONDecoder().decode(Bool.self, from: data)
+            DispatchQueue.main.async {
+                self.wingLikeProspect = wingLike
+            }
+        }
+        else{
+            print("/wing/like/ \(httpResponse.statusCode) error")
             throw URLError(.badServerResponse)
         }
     }

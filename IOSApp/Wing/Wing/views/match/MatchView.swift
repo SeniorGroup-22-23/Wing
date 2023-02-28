@@ -83,7 +83,8 @@ struct MatchView: View {
                                     potentialMatch.prompts = tempNewProspect?.prompts ?? ["", "", ""]
                                     potentialMatch.answers = tempNewProspect?.answers ?? ["", "", ""]
                                     potentialMatch.photos = tempNewProspect?.photos ?? [Image?](repeating : nil, count : 8)
-                                    potentialMatch.wing = tempNewProspect?.wing ?? false
+                                    potentialMatch.wing = matchViewModel.wingLikeProspect
+                        
                                 }
                             }
                         })
@@ -166,6 +167,10 @@ struct MatchView: View {
                     thirdPrompt = self.matchViewModel.prompt.promptText ?? ""
                     thirdResponse = promptResponses[2].responseText ?? ""
                 }
+                
+                // check if it's a wing like
+                try await matchViewModel.checkWingLike()
+                
             } catch {
                 print("Can't get user's prompts. Error: \(error)")
             }
