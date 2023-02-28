@@ -157,7 +157,6 @@ func matchRoutes(_ app: Application) throws {
                 .filter(\.$birthdate <= maxBirthdate)
                 .filter(\.$birthdate >= minBirthdate)
                 .all(\.$id)
- 
         }
         
         for prospect in prospects {
@@ -170,6 +169,23 @@ func matchRoutes(_ app: Application) throws {
             
             if(Int(distancekm) <= swiperProfile.maxDistance){
                 prospectsInRange.append(prospect)
+            }
+        }
+        
+        //Add users who have liked current user via wing
+        let likedUserViaWing = try await Swipe.query(on: req.db)
+            .filter(\.$prospectId == userId)
+            .filter(\.$type == 3)
+            .all(\.$swiperId) //get all the user ids of swipers
+        
+        //Get profiles of users who have liked current user via wing
+        let likedUserViaWing_Profiles = try await Profile.query(on: req.db)
+            .filter(\.$userId ~~ likedUserViaWing)
+            .all(\.$id)
+        
+        for profile in likedUserViaWing_Profiles { //add profiles to prospect list 
+            if !prospectsInRange.contains(profile) {
+                prospectsInRange.append(profile)
             }
         }
         
