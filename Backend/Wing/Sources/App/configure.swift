@@ -5,15 +5,21 @@ import Vapor
 // configures your application
 public func configure(_ app: Application) throws {
 
-    //Add database configuration
-    //All default setup on local host 
-    app.databases.use(.postgres(
-        hostname: "localhost",
-        username: "postgres",
-        password: "",
-        database: "postgres"
-    ), as: .psql)
-
+    //Try to run in prod, if not set up avail try locally 
+    if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
+        postgresConfig.tlsConfiguration = .makeClientConfiguration()
+        postgresConfig.tlsConfiguration?.certificateVerification = .none
+        app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
+        
+    } else {
+        app.databases.use(.postgres(
+                hostname: "localhost",
+                username: "postgres",
+                password: "",
+                database: "postgres"
+            ), as: .psql)
+    }
+    
     //Migrations to run
     app.migrations.add(CreateUsers())
     app.migrations.add(CreatePrompts())
@@ -28,8 +34,6 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateMessages())
     app.migrations.add(CreateBlocks())
 
-    // run SQL shell script
-    
     
     // register routes
     try propmtRoutes(app)

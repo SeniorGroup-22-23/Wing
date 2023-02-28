@@ -14,6 +14,30 @@ func userRoutes(_ app: Application) throws {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .iso8601
     
+    //GET Users with phone (check for unique)
+    app.get("check", "phone", ":phone") { req async throws -> Bool in
+        let phone = req.parameters.get("phone")!
+        guard let _ = try await User.query(on: req.db)
+            .filter(\.$phone == phone)
+            .first()
+        else{
+            return true //phone is okay to use
+        }
+        return false //phone is duplicate (do not use)
+    }
+    
+    //GET Users with email (check for unqiue)
+    app.get("check", "email", ":email") { req async throws -> Bool in
+        let email = req.parameters.get("email")!
+        guard let _ = try await User.query(on: req.db)
+            .filter(\.$email == email)
+            .first()
+        else{
+            return true //email is okay to use
+        }
+        return false //email is duplicate (do not use)
+    }
+    
     //GET Usernames
     app.get("usernames", ":usernameMatch") {  req async throws -> [String] in
         let charMatch = req.parameters.get("usernameMatch")! //! forces decode to string, if empty no error

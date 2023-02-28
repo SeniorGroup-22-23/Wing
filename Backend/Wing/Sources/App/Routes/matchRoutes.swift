@@ -8,6 +8,7 @@
 import FluentPostgresDriver
 import Vapor
 import Models
+import CoreLocation
 
 let userCalendar = Calendar.current
 
@@ -138,8 +139,10 @@ func matchRoutes(_ app: Application) throws {
             .all(\.$firstUserId)
         
         let prospects: [UUID] //initially empty array
+        var prospectsInRange: [UUID] = []
         let maxBirthdate = userCalendar.date(byAdding: .year, value: -Int(swiperProfile.minAge), to: Date())!
         let minBirthdate = userCalendar.date(byAdding: .year, value: -Int(swiperProfile.maxAge), to: Date())!
+        let userLocation = CLLocation(latitude: swiperProfile.currLatitude, longitude: swiperProfile.currLongitude)
         
         if(swiperProfile.preference == 3){ //do not check gender in req (pref == any)
             prospects = try await Profile.query(on: req.db)
@@ -147,8 +150,6 @@ func matchRoutes(_ app: Application) throws {
                 .filter(\.$birthdate <= maxBirthdate)
                 .filter(\.$birthdate >= minBirthdate)
                 .all(\.$id)
-               //TODO: add location filter
-            
         } else {
             prospects = try await Profile.query(on: req.db)
                 .filter(\.$userId !~ invalids)
@@ -156,12 +157,64 @@ func matchRoutes(_ app: Application) throws {
                 .filter(\.$birthdate <= maxBirthdate)
                 .filter(\.$birthdate >= minBirthdate)
                 .all(\.$id)
-               //TODO: add location filter
         }
         
-        return prospects //returns empty array if no prospects
+        for prospect in prospects {
+            let profile = try await Profile.query(on: req.db)
+                .filter(\.$id == prospect)
+                .first()
+            
+            let prospectLocation = CLLocation(latitude: profile!.currLatitude, longitude: profile!.currLongitude)
+            let distancekm = userLocation.distance(from: prospectLocation) / 1000.00 //.distance returns in meters 
+            
+            if(Int(distancekm) <= swiperProfile.maxDistance){
+                prospectsInRange.append(prospect)
+            }
+        }
+        
+        //Add users who have liked current user via wing
+        let likedUserViaWing = try await Swipe.query(on: req.db)
+            .filter(\.$prospectId == userId)
+            .filter(\.$type == 3)
+            .all(\.$swiperId) //get all the user ids of swipers
+        
+        //Get profiles of users who have liked current user via wing
+        let likedUserViaWing_Profiles = try await Profile.query(on: req.db)
+            .filter(\.$userId ~~ likedUserViaWing)
+            .all(\.$id)
+        
+        for profile in likedUserViaWing_Profiles { //add profiles to prospect list 
+            if !prospectsInRange.contains(profile) {
+                prospectsInRange.append(profile)
+            }
+        }
+        
+        return prospectsInRange //returns empty array if no prospects
     }
     
     
+    app.get("wing", "like", ":swiperId", ":prospectId"){ req async throws -> Bool in
+        guard let swiperId = UUID(req.parameters.get("swiperId")!.lowercased())
+        else{
+            throw Error.nilId
+        }
+        
+        guard let prospectId = UUID(req.parameters.get("prospectId")!.lowercased())
+        else{
+            throw Error.nilId
+        }
+    
+        let existingRecord = try await Swipe.query(on: req.db)
+                .filter(\.$swiperId == swiperId)
+                .filter(\.$prospectId == prospectId)
+                .filter(\.$type == 3)
+                .first()
+        
+        if(existingRecord == nil){
+            return false
+        }
+    
+        return true
+    }
     
 }

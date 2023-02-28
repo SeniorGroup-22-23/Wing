@@ -4,13 +4,15 @@
 1. [Get User by Phone](#getuserphone) 
 2. [Get User by Email](#getuseremail) 
 1. [Get Usernames](#getusernames) 
-2. [Create User](#createuser1) 
-3. [Create Profile](#createprofile)
-1. [Edit User](#edituser) 
-2. [Get Profile by UserID](#getprofile)
-3. [Get Profile by ID](#getprofileid)
-4. [Edit Profile](#editprofile)
-12. [Delete User] TODO (also delete all corresponding records in other tables)
+2. [Check Phone](#checkphone)
+3. [Check Email](#checkemail)
+4. [Create User](#createuser1) 
+5. [Create Profile](#createprofile)
+6. [Edit User](#edituser) 
+7. [Get Profile by UserID](#getprofile)
+8. [Get Profile by ID](#getprofileid)
+9. [Edit Profile](#editprofile)
+12. [Delete User] TODO
    
 
 
@@ -164,7 +166,7 @@ _Note: This is case sensitive (can be changed)_
 {
   "username" : "janeDoe123", 
   "password" : "Password1", 
-  "phone" : "506 1234567"
+  "phone" : "506 1234567",
   "email" : "jane@hotmail.com" 
 }
 ```
@@ -503,4 +505,86 @@ The ID associated with the profile you would like to retrieve
 <img width="943" alt="Screenshot 2022-12-28 at 6 00 57 PM" src="https://user-images.githubusercontent.com/80468156/209876888-c640abf0-eaf1-4bcb-a61f-66fb62f33fc1.png">
 
 <img width="1115" alt="Screenshot 2022-12-28 at 6 01 07 PM" src="https://user-images.githubusercontent.com/80468156/209876899-2ff117dc-9a70-4f2c-ae0a-9cb26ca0bd68.png">
+
+---
+
+### Check Phone <a name="checkphone"></a>
+
+#### URL:   
+`/check/phone/:phone`
+
+#### Method:
+`GET` 
+
+#### URL Parameters:  
+###### :phone
+String           
+Phone number you would like to check.             
+
+
+#### Success Response:
+_Note: Will return true if phone number is okay to use (not a duplicate) false otherwise._       
+200 OK
+```json
+true
+```
+
+#### Error Response: 
+If no phone number is provided.           
+404 Not Found
+```json
+{
+	"error": true,
+	"reason": "Not Found"
+}
+```
+
+#### Example    
+
+<img width="1109" alt="Screenshot 2023-01-30 at 5 38 43 PM" src="https://user-images.githubusercontent.com/80468156/215601527-154778bb-bb0a-411a-be44-4f63aa232373.png">
+
+<img width="1109" alt="Screenshot 2023-01-30 at 5 38 53 PM" src="https://user-images.githubusercontent.com/80468156/215601540-edaf6efc-6200-4374-916d-3f55bcac2b4c.png">
+
+---
+
+### Check Email <a name="checkemail"></a>
+
+#### URL:   
+`/check/email/:email`
+
+#### Method:
+`GET` 
+
+#### URL Parameters:  
+###### :email
+String           
+Email you would like to check.          
+
+
+#### Success Response:
+_Note: Will return true if email is okay to use (not a duplicate) false otherwise._        
+200 OK
+```json
+true
+```
+
+#### Error Response: 
+If no email is provided.           
+404 Not Found
+```json
+{
+	"error": true,
+	"reason": "Not Found"
+}
+```
+
+#### Example  
+
+<img width="1109" alt="Screenshot 2023-01-30 at 5 42 25 PM" src="https://user-images.githubusercontent.com/80468156/215601932-9d914b13-c730-47c1-98af-4bea34e2e324.png">
+
+<img width="1109" alt="Screenshot 2023-01-30 at 5 42 32 PM" src="https://user-images.githubusercontent.com/80468156/215601942-03fc5d6e-eca3-47a8-9a93-b95820a900e9.png">
+
+
+<img width="1109" alt="Screenshot 2023-01-30 at 5 42 42 PM" src="https://user-images.githubusercontent.com/80468156/215601992-b93db2be-be1a-4016-897b-d31db84bd5c8.png">
+
 
