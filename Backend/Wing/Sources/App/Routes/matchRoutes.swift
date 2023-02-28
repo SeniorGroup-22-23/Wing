@@ -177,5 +177,28 @@ func matchRoutes(_ app: Application) throws {
     }
     
     
+    app.get("wing", "like", ":swiperId", ":prospectId"){ req async throws -> Bool in
+        guard let swiperId = UUID(req.parameters.get("swiperId")!.lowercased())
+        else{
+            throw Error.nilId
+        }
+        
+        guard let prospectId = UUID(req.parameters.get("prospectId")!.lowercased())
+        else{
+            throw Error.nilId
+        }
+    
+        let existingRecord = try await Swipe.query(on: req.db)
+                .filter(\.$swiperId == swiperId)
+                .filter(\.$prospectId == prospectId)
+                .filter(\.$type == 3)
+                .first()
+        
+        if(existingRecord == nil){
+            return false
+        }
+    
+        return true
+    }
     
 }
