@@ -21,10 +21,8 @@ class MatchViewModel: ObservableObject{
     @Published var matchType: Int16 = 1
     
     @Published var swipe: Swipe = Swipe()
-    @Published var swiperId: UUID = UUID()
-    @Published var prospectId: UUID = UUID()
+    @Published var swipeProspectID: UUID = UUID()
     @Published var swipeType: Int16 = 1
-    @Published var createdAt: Date = Date()
     
     // getting info about the next profile to load to swipe on
     @Published var prospectID: [UUID] = []
@@ -40,10 +38,6 @@ class MatchViewModel: ObservableObject{
     init(){
         encoder.dateEncodingStrategy = .iso8601
         decoder.dateDecodingStrategy = .iso8601
-    }
-    
-    func setUser(userID : UUID) {
-        self.primaryUserId = userID
     }
     
     func getPromptResponses(prospectID : UUID) async throws {
@@ -137,32 +131,33 @@ class MatchViewModel: ObservableObject{
 
     }
 
+    //TODO: once the photos stuff is figured out
     func loadProspectPhotos(prospectID : UUID) async throws {
         
     }
     
-    func postSwipe(swiperID: UUID, prospectId: UUID) async throws {
+    func postSwipe() async throws {
         let url = URL(string: baseURL + "/swipe")!
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let user = Swipe(swiperId: self.swiperId, prospectId: self.prospectId, type: self.swipeType, createdAt: self.createdAt)
+        let swipe = Swipe(swiperId: self.primaryUserId, prospectId: self.swipeProspectID, type: self.swipeType)
         
-        urlRequest.httpBody = try? JSONEncoder().encode(user)
+        urlRequest.httpBody = try? JSONEncoder().encode(swipe)
 
         let (data,response) = try await URLSession.shared.data(for: urlRequest)
         
         guard let httpResponse = response as? HTTPURLResponse else { return }
 
         if(httpResponse.statusCode == 200){
-            let decodedUser = try JSONDecoder().decode(Swipe.self, from: data)
+            let decodedSwipe = try JSONDecoder().decode(Swipe.self, from: data)
             DispatchQueue.main.async {
-                self.swipe = decodedUser
+                self.swipe = decodedSwipe
             }
         }
         else{
-            print("user \(httpResponse.statusCode) error")
+            print("swipe \(httpResponse.statusCode) error")
             throw URLError(.badServerResponse)
         }
     }

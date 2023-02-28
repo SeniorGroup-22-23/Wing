@@ -33,8 +33,8 @@ struct MatchView: View {
     @State private var numProspects = 0
     @ObservedObject var signupViewModel: SignupViewModel = .method
     @ObservedObject var matchViewModel: MatchViewModel = .method
-    @StateObject var potentialMatch = PotentialMatch(name: "tester", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
-    
+    @StateObject var potentialMatch = PotentialMatch(name: "", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
+
     var body: some View {
         ZStack {
             Color("MainGreen")
@@ -62,6 +62,18 @@ struct MatchView: View {
                                 print(verticalAmount < 0 ? "up swipe" : "down swipe")
                                 
                                 Task {
+                                    // first get ready to post swipe by intializing the proper attributes in the viewmodel
+                                    matchViewModel.swipeProspectID = matchViewModel.prospectID[numProspects-1]
+                                    
+                                    if (verticalAmount < 0) {
+                                        // up swipe
+                                        matchViewModel.swipeType = 1
+                                    } else {
+                                        // down swipe
+                                        matchViewModel.swipeType = 2
+                                    }
+                                    
+                                    // get the next prospect's profile
                                     let tempNewProspect = await getProspect()
                                     
                                     potentialMatch.name = tempNewProspect?.name ?? ""
@@ -88,9 +100,20 @@ struct MatchView: View {
             .onAppear {
                 Task {
                     if let unwrappedID = signupViewModel.user.id {
-                        matchViewModel.setUser(userID: unwrappedID)
+                        matchViewModel.primaryUserId = unwrappedID
                     }
                     try await matchViewModel.getProspects()
+                    
+                    let firstProspect = await getProspect()
+                    
+                    potentialMatch.name = firstProspect?.name ?? ""
+                    potentialMatch.age = firstProspect?.age ?? -1
+                    potentialMatch.occupation = firstProspect?.occupation ?? ""
+                    potentialMatch.bio = firstProspect?.bio ?? ""
+                    potentialMatch.prompts = firstProspect?.prompts ?? ["", "", ""]
+                    potentialMatch.answers = firstProspect?.answers ?? ["", "", ""]
+                    potentialMatch.photos = firstProspect?.photos ?? [Image?](repeating : nil, count : 8)
+                    potentialMatch.wing = firstProspect?.wing ?? false
                 }
             }
             .environmentObject(potentialMatch)
