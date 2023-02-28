@@ -3,6 +3,7 @@
 1. [Post Swipe](#createswipe)
 2. [Get Prospects](#getprospects)
 3. [Unmatch](#unmatch)
+4. [Check for Existing Wing Like](#checkwing)
 
 ---
 
@@ -142,5 +143,48 @@ _Note: If invalid ID is provided for either parameter error will occur._
 
 <img width="1183" alt="Screenshot 2023-01-03 at 1 07 13 PM" src="https://user-images.githubusercontent.com/80468156/210405790-5da02dfb-6141-406d-abcc-8cc073f5b7ce.png">
 
+
+---
+
+### Check for Wing Like <a name="checkwing"></a>      
+Returns true if a swipe record exists where given swiper id has liked given prospect id via wing (swipe type 3). Returns false otherwise. 
+
+#### URL:  
+`/wing/like/:swiperId/:prospectId`
+
+#### Method: 
+`GET`
+
+#### Parameters: 
+###### :swiperId
+The id of the user who may have previously "wing liked" the current user (in this use case a prospect).
+
+###### :prospectId
+The id of the user who may have previously been liked (in this use case the ID of the user currently using the app). 
+
+
+#### Success Response:
+_Note: Endpoint will return false if no swipe record with type 3 exists._       
+```json
+true
+```
+
+#### Error Response: 
+_Note: If invalid ID is provided for either parameter error will occur._      
+404 Not Found
+```json
+{
+        "error": true,
+	"reason": "Illegal nil ID."
+}
+```
+
+#### Example
+
+<img width="1464" alt="Screenshot 2023-02-28 at 9 55 04 AM" src="https://user-images.githubusercontent.com/80468156/221876997-d62b19fe-fd4e-4fb6-a246-19297bcd9b1f.png">
+
+<img width="1464" alt="Screenshot 2023-02-28 at 9 55 18 AM" src="https://user-images.githubusercontent.com/80468156/221877020-6ff65ba6-dd0e-44fd-8f58-1726bfb957a8.png">
+
+<img width="1464" alt="Screenshot 2023-02-28 at 9 55 26 AM" src="https://user-images.githubusercontent.com/80468156/221877054-3d5395ad-0260-4e67-a184-f4cd2910b172.png">
 
 ---

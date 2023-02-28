@@ -157,7 +157,6 @@ func matchRoutes(_ app: Application) throws {
                 .filter(\.$birthdate <= maxBirthdate)
                 .filter(\.$birthdate >= minBirthdate)
                 .all(\.$id)
- 
         }
         
         for prospect in prospects {
@@ -173,9 +172,49 @@ func matchRoutes(_ app: Application) throws {
             }
         }
         
+        //Add users who have liked current user via wing
+        let likedUserViaWing = try await Swipe.query(on: req.db)
+            .filter(\.$prospectId == userId)
+            .filter(\.$type == 3)
+            .all(\.$swiperId) //get all the user ids of swipers
+        
+        //Get profiles of users who have liked current user via wing
+        let likedUserViaWing_Profiles = try await Profile.query(on: req.db)
+            .filter(\.$userId ~~ likedUserViaWing)
+            .all(\.$id)
+        
+        for profile in likedUserViaWing_Profiles { //add profiles to prospect list 
+            if !prospectsInRange.contains(profile) {
+                prospectsInRange.append(profile)
+            }
+        }
+        
         return prospectsInRange //returns empty array if no prospects
     }
     
     
+    app.get("wing", "like", ":swiperId", ":prospectId"){ req async throws -> Bool in
+        guard let swiperId = UUID(req.parameters.get("swiperId")!.lowercased())
+        else{
+            throw Error.nilId
+        }
+        
+        guard let prospectId = UUID(req.parameters.get("prospectId")!.lowercased())
+        else{
+            throw Error.nilId
+        }
+    
+        let existingRecord = try await Swipe.query(on: req.db)
+                .filter(\.$swiperId == swiperId)
+                .filter(\.$prospectId == prospectId)
+                .filter(\.$type == 3)
+                .first()
+        
+        if(existingRecord == nil){
+            return false
+        }
+    
+        return true
+    }
     
 }
