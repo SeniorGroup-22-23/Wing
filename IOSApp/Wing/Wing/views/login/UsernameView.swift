@@ -42,12 +42,12 @@ struct UsernameView: View {
                     }
                 if viewModel.isTaken {
                     Text("username already taken")
-                        .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                        .font(.custom(FontManager.NotoSans.regular, size: 13.0))
                         .foregroundColor(.red)
                 }
                 else{
                     Spacer()
-                        .frame(height: 30)
+                        .frame(height: 38)
                 }
                 NavigationLink(destination: ProfileCompletionView()) {
                     Text("Next")

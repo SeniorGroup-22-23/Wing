@@ -94,12 +94,12 @@ struct PhoneNumberView: View {
                     }
                     if (!viewModel.checkTaken) {
                         Text("This phone number is already associated with an account!")
-                            .font(.custom(FontManager.NotoSans.regular, size: 15.0))
+                            .font(.custom(FontManager.NotoSans.regular, size: 13.0))
                             .foregroundColor(.red)
                     }
                     else{
                         Spacer()
-                            .frame(height: 30)
+                            .frame(height: 38)
                     }
                     NavigationLink(destination: UsernameView()) {
                         Text("Next")

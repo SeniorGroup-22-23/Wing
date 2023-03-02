@@ -237,7 +237,7 @@ struct ProfileCompletionView: View {
                         }
                         else{
                             Spacer()
-                                .frame(height: 37)
+                                .frame(height: 35)
                                 .offset(y: -20)
                         }
                     }
