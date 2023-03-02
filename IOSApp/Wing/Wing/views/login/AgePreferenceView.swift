@@ -24,6 +24,7 @@ struct AgePreferenceView: View {
                     Text("Min")
                         .font(.custom(FontManager.NotoSans.regular, size: 20.0))
                         .frame(width: 100)
+                        .offset(y:-40)
 
                     Picker(selection: $viewModel.minAge, label: Text("Min age")) {
                         ForEach(Int16(18) ..< Int16(90), id: \.self) {  i in
@@ -34,15 +35,17 @@ struct AgePreferenceView: View {
                     .pickerStyle(WheelPickerStyle())
                     .frame(width: 80)
                     .clipped()
+                    .offset(y:-40)
                         
                 }
                 Text("to")
                     .font(.custom(FontManager.NotoSans.regular, size: 20.0))
+                    .offset(y:-30)
                 HStack{
                     Text("Max")
                         .font(.custom(FontManager.NotoSans.regular, size: 20.0))
                         .frame(width: 100)
-                        .offset(y:-40)
+                        .offset(y:-70)
                     Picker(selection: $viewModel.maxAge, label: Text("Max age")) {
                         ForEach(Int16(18) ..< Int16(90), id: \.self) {  j in
                             Text("\(j)")
@@ -52,7 +55,7 @@ struct AgePreferenceView: View {
                         .pickerStyle(WheelPickerStyle())
                         .frame(width: 80)
                         .clipped()
-                        .offset(y:-40)
+                        .offset(y:-70)
                 }
                 Spacer()
                 NavigationLink(destination: MaximumDistanceView()) {
@@ -63,6 +66,7 @@ struct AgePreferenceView: View {
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
+                .offset(y: -25)
             }
         }
     }

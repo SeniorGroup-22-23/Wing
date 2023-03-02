@@ -55,6 +55,7 @@ struct BioView: View {
                     self.bio_method.bio_method = viewModel.bio
                     
                 })
+                .offset(y: -15)
             }
         }
     }

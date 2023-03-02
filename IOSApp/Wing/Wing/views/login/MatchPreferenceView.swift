@@ -37,6 +37,7 @@ struct MatchPreferenceView: View {
                         .cornerRadius(20)
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
+                .offset(y: -15)
             }
         }
     }

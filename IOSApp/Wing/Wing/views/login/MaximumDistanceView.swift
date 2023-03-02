@@ -63,6 +63,10 @@ struct MaximumDistanceView: View {
                             viewModel.currLongitude = location.longitude
                         }
                 }
+                else{
+                    Spacer()
+                        .frame(height: 30)
+                }
                 LocationButton {
                     locationManager.requestLocation()
                 }
@@ -80,6 +84,7 @@ struct MaximumDistanceView: View {
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
                 .disabled(locationManager.location?.latitude == nil)
+                .offset(y: -15)
             }
         }
     }
