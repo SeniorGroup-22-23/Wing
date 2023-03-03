@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
-options: "6edd52da3142774bc787ef917517dcc98cdd7948ec53a29e3dde60d9e0310350"
-build_start_time: [1669055828, 930426120]
-build_end_time: [1669055845, 412618160]
-inputs:
-  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-metrics/Sources/CoreMetrics/Locks.swift": [1669055734, 854736328]
-  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-metrics/Sources/CoreMetrics/Metrics.swift": [1669055734, 863810300]

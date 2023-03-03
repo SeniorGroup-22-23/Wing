@@ -1,4 +1,0 @@
-module Models {
-    header "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/Models.build/Models-Swift.h"
-    requires objc
-}

@@ -1,4 +1,0 @@
-module NIOTransportServices {
-    header "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/NIOTransportServices.build/NIOTransportServices-Swift.h"
-    requires objc
-}

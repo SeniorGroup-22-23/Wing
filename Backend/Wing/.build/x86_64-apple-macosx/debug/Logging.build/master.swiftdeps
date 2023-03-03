@@ -1,8 +1,0 @@
-version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
-options: "23445cca8100015d5eda4cc9a32a0dfd52d1a8893a8189adc770450b58229cef"
-build_start_time: [1669055806, 447438001]
-build_end_time: [1669055828, 282143115]
-inputs:
-  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-log/Sources/Logging/Locks.swift": [1669055733, 818201065]
-  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-log/Sources/Logging/LogHandler.swift": [1669055733, 818665027]
-  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-log/Sources/Logging/Logging.swift": [1669055733, 820356369]

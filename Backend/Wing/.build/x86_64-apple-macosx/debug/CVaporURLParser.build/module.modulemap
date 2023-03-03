@@ -1,4 +1,0 @@
-module CVaporURLParser {
-    umbrella "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/vapor/Sources/CVaporURLParser/include"
-    export *
-}
