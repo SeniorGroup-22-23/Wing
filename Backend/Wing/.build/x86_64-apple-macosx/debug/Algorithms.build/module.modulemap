@@ -1,4 +1,0 @@
-module Algorithms {
-    header "/Users/brynhaines/Wing/Backend/Wing/.build/x86_64-apple-macosx/debug/Algorithms.build/Algorithms-Swift.h"
-    requires objc
-}

@@ -1,8 +1,0 @@
-version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
-options: "1d104992dac8f0c813e8534df7b23f5209b01279718bd1750efcdd5b4ea3af46"
-build_start_time: [1669056126, 941286087]
-build_end_time: [1669056133, 428123950]
-inputs:
-  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOTLS/ApplicationProtocolNegotiationHandler.swift": [1669055753, 295139312]
-  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOTLS/SNIHandler.swift": [1669055753, 295562744]
-  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOTLS/TLSEvents.swift": [1669055753, 295911312]

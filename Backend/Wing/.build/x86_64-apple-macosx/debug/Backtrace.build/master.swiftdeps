@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
-options: "b0726adbfdfaa50e402d9f5c070e3306813031e728805f273f508fdabe359818"
-build_start_time: [1669056062, 297225952]
-build_end_time: [1669056062, 882143020]
-inputs:
-  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-backtrace/Sources/Backtrace/Backtrace.swift": [1669055755, 553744316]
-  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-backtrace/Sources/Backtrace/Demangle.swift": [1669055755, 554548263]
