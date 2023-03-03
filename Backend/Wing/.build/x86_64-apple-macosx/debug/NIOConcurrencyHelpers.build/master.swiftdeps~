@@ -1,0 +1,10 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "bea171ec42155ef95b9ec503d42acabaf66c149f285706279591e9ca79d9d565"
+build_start_time: [1669056071, 719290971]
+build_end_time: [1669056075, 286672115]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/NIOAtomic.swift": [1669055752, 862765789]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/NIOLock.swift": [1669055752, 872775554]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/NIOLockedValueBox.swift": [1669055752, 873216629]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/atomics.swift": [1669055752, 874727487]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/lock.swift": [1669055752, 875316619]

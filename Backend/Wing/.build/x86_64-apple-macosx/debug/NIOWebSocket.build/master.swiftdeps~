@@ -1,0 +1,16 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "09ea895207573e6a93f2455440580b1ec590ffb2ea5ccb56dabb54624d10ace0"
+build_start_time: [1669056180, 50489902]
+build_end_time: [1669056192, 70177078]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/Base64.swift": [1669055753, 300662994]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/NIOWebSocketClientUpgrader.swift": [1669055753, 302143573]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/NIOWebSocketFrameAggregator.swift": [1669055753, 302547454]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/NIOWebSocketServerUpgrader.swift": [1669055753, 303018093]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/SHA1.swift": [1669055753, 304564237]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketErrorCodes.swift": [1669055753, 304909229]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketFrame.swift": [1669055753, 305268287]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketFrameDecoder.swift": [1669055753, 305763483]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketFrameEncoder.swift": [1669055753, 306179523]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketOpcode.swift": [1669055753, 306915283]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketProtocolErrorHandler.swift": [1669055753, 307237625]

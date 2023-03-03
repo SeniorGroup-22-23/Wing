@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "0dca1571906c03191faf1e1dd19c1ee9425fe7cf6a9f57529cb64b5b1d57f299"
+build_start_time: [1673820965, 879085063]
+build_end_time: [1673820966, 211691856]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIO/Exports.swift": [1673820914, 630582809]

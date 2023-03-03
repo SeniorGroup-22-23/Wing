@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "50fc8a449b70f918b4c1a5018d6a548b5c70878ac2e01f79c82402100fe35903"
+build_start_time: [1674172641, 895339012]
+build_end_time: [1674172642, 266461849]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/Sources/Run/main.swift": [1669042321, 345352649]

@@ -5,7 +5,7 @@ import Vapor
 // configures your application
 public func configure(_ app: Application) throws {
 
-    //Try to run in prod, if not set up avail try locally 
+    //Try to run in prod, if not set up avail try locally
     if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
         postgresConfig.tlsConfiguration = .makeClientConfiguration()
         postgresConfig.tlsConfiguration?.certificateVerification = .none

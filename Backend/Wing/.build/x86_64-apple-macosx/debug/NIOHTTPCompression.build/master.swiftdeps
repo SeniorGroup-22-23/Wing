@@ -1,0 +1,11 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "3b8d120f73fbf2ca584efafe881fbb9d213b1608eb56778fc474cb55f82ea3f4"
+build_start_time: [1673821010, 830882072]
+build_end_time: [1673821014, 587671995]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPCompression.swift": [1669055732, 16036987]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPDecompression.swift": [1669055732, 16814231]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPRequestCompressor.swift": [1669055732, 17307281]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPRequestDecompressor.swift": [1669055732, 17792940]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPResponseCompressor.swift": [1669055732, 18440961]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPResponseDecompressor.swift": [1669055732, 18942117]

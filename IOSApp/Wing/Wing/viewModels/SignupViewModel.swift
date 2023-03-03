@@ -9,10 +9,9 @@ import Foundation
 import SwiftUI
 
 
-
 class SignupViewModel: ObservableObject{
     
-    static var method = SignupViewModel()
+    static var method : SignupViewModel = SignupViewModel()
 
     @Published var isTaken: Bool = false
     
@@ -49,6 +48,10 @@ class SignupViewModel: ObservableObject{
     @Published var isValid: Bool = false
     @Published var credential: String = ""
     
+    @Published var imagesData = [Data?](repeating : nil, count : 8)
+    
+    @Published var checkTaken: Bool = true
+    
     @Published var profilePreview: ProfilePreview = ProfilePreview()
     
     var baseURL = "http://127.0.0.1:8080"
@@ -58,6 +61,11 @@ class SignupViewModel: ObservableObject{
     init(){
         encoder.dateEncodingStrategy = .iso8601
         decoder.dateDecodingStrategy = .iso8601
+    }
+    
+    func setMethod(){
+        SignupViewModel.method = SignupViewModel()
+
     }
     
     func getUsernames(username: String) async throws{
@@ -78,10 +86,7 @@ class SignupViewModel: ObservableObject{
                 for name in decodedUsers{
                     if(name == username){
                         self.isTaken = true
-
-                    }
-                    else{
-                        self.isTaken = false
+                        return
                     }
                 }
             }
@@ -99,7 +104,20 @@ class SignupViewModel: ObservableObject{
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let user = User(username: self.username, password: self.password, phone: self.ext + self.number, email: self.email)
+        let refNum = self.number.filter{
+            if($0 == " "){
+                return false
+            }
+            else if($0 == "-"){
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        
+        let user = User(username: self.username, password: self.password, phone: self.ext + refNum, email: self.email)
+
         
         urlRequest.httpBody = try? JSONEncoder().encode(user)
 
@@ -128,8 +146,6 @@ class SignupViewModel: ObservableObject{
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let profile = Profile(userId: self.user.id, name: self.name, birthdate: self.birthdate, occupation: self.occupation, bio: self.bio, gender: self.gender, preference: self.preference, minAge: self.minAge, maxAge: self.maxAge, maxDistance: self.maxDistance, currLatitude: self.currLatitude, currLongitude: self.currLongitude)
-        
-        print(profile)
 
         urlRequest.httpBody = try? encoder.encode(profile)
         
@@ -182,7 +198,7 @@ class SignupViewModel: ObservableObject{
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let profilePreview = ProfilePreview(userId: self.user.id, username: self.username, name: self.name, primaryPhoto: Data())
+        let profilePreview = ProfilePreview(userId: self.user.id, username: self.username, name: self.name, primaryPhoto: Data() /*self.imagesData[0]*/ )
 
         urlRequest.httpBody = try? encoder.encode(profilePreview)
         
@@ -242,12 +258,83 @@ class SignupViewModel: ObservableObject{
         }
     }
     
+    func checkPhone() async throws{
+        
+        let refNum = self.number.filter{
+            if($0 == " "){
+                return false
+            }
+            else if($0 == "-"){
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        
+        let url = URL(string: baseURL + "/check/phone/\(self.ext + refNum)")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data,response) = try await URLSession.shared.data(for: urlRequest)
+      
+        guard let httpResponse = response as? HTTPURLResponse else { return }
+
+        if(httpResponse.statusCode == 200){
+            let check = try JSONDecoder().decode(Bool.self, from: data)
+            DispatchQueue.main.async {
+                self.checkTaken = check
+            }
+        }
+        else{
+            print("usernames \(httpResponse.statusCode) error")
+            throw URLError(.badServerResponse)
+        }
+    }
+    
+    func checkEmail() async throws{
+        
+        let url = URL(string: baseURL + "/check/email/\(self.email)")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data,response) = try await URLSession.shared.data(for: urlRequest)
+      
+        guard let httpResponse = response as? HTTPURLResponse else { return }
+        
+        if(httpResponse.statusCode == 200){
+            let check = try JSONDecoder().decode(Bool.self, from: data)
+            DispatchQueue.main.async {
+                self.checkTaken = check
+            }
+        }
+        else{
+            print("usernames \(httpResponse.statusCode) error")
+            throw URLError(.badServerResponse)
+        }
+    }
+    
     
     ///LOGIN functionality
     
     func getUserbyPhone() async throws{
+        
+        let refNum = self.credential.filter{
+            if($0 == " "){
+                return false
+            }
+            else if($0 == "-"){
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        
 
-        let url = URL(string: baseURL + "/user/phone/\(self.credential)/\(self.password)")!
+        let url = URL(string: baseURL + "/user/phone/\(refNum)/\(self.password)")!
 
         var urlRequest = URLRequest(url: url)
 

@@ -40,10 +40,8 @@ struct MaximumDistanceView: View {
         ZStack {
             Color(.white)
             VStack {
-                Image("WhiteLogo")
-                    .resizable()
-                    .frame(width: 120.0, height: 127.0)
-                    .offset(y:-30)
+                LoadWingImage()
+                    .offset(y:-55)
                 Spacer()
                     .frame(height: 50)
                 Text("My maximum distance...(km)")
@@ -65,6 +63,10 @@ struct MaximumDistanceView: View {
                             viewModel.currLongitude = location.longitude
                         }
                 }
+                else{
+                    Spacer()
+                        .frame(height: 30)
+                }
                 LocationButton {
                     locationManager.requestLocation()
                 }
@@ -82,6 +84,7 @@ struct MaximumDistanceView: View {
                         .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                 }
                 .disabled(locationManager.location?.latitude == nil)
+                .offset(y: -15)
             }
         }
     }

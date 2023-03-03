@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "a5f908c76cb9c8ffb540a4a7f8073ccac9e9d4c63bae21533c20f4a7cd10aa54"
+build_start_time: [1669056104, 85659027]
+build_end_time: [1669056109, 62811851]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOEmbedded/AsyncTestingChannel.swift": [1669055753, 49843311]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOEmbedded/AsyncTestingEventLoop.swift": [1669055753, 50483703]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio/Sources/NIOEmbedded/Embedded.swift": [1669055753, 52864074]

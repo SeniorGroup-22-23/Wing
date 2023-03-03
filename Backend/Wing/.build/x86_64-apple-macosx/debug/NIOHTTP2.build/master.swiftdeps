@@ -1,0 +1,88 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "a4fa237e1c4718d357a4862b2bf2039cd9f1d225698185888a34cd4e1c446281"
+build_start_time: [1673821021, 343392848]
+build_end_time: [1673821032, 703969001]
+inputs:
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/ConnectionStateMachine.swift"
+  : [1669055762, 447081327]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/ConnectionStreamsState.swift"
+  : [1669055762, 448645591]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/MayReceiveFrames.swift"
+  : [1669055762, 449580669]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingDataState.swift"
+  : [1669055762, 449926853]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingGoAwayState.swift"
+  : [1669055762, 450266599]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingHeadersState.swift"
+  : [1669055762, 450577497]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingPushPromiseState.swift"
+  : [1669055762, 450965166]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingRstStreamState.swift"
+  : [1669055762, 451380491]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingWindowUpdateState.swift"
+  : [1669055762, 451808452]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/MaySendFrames.swift"
+  : [1669055762, 452501773]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingDataState.swift"
+  : [1669055762, 452869892]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingGoawayState.swift"
+  : [1669055762, 453226089]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingHeadersState.swift"
+  : [1669055762, 453549861]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingPushPromiseState.swift"
+  : [1669055762, 453935861]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingRstStreamState.swift"
+  : [1669055762, 454230308]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingWindowUpdateState.swift"
+  : [1669055762, 454686641]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/HTTP2SettingsState.swift"
+  : [1669055762, 455101490]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/HasFlowControlWindows.swift"
+  : [1669055762, 455569744]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/HasLocalSettings.swift"
+  : [1669055762, 455970048]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/HasRemoteSettings.swift"
+  : [1669055762, 456283569]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/LocallyQuiescingState.swift"
+  : [1669055762, 456627368]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/QuiescingState.swift"
+  : [1669055762, 456965446]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/RemotelyQuiescingState.swift"
+  : [1669055762, 457348108]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/SendAndReceiveGoawayState.swift"
+  : [1669055762, 457661628]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/StateMachineResult.swift"
+  : [1669055762, 458044528]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ContentLengthVerifier.swift": [1669055762, 458386898]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/DOSHeuristics.swift": [1669055762, 459133148]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/Frame Buffers/ConcurrentStreamBuffer.swift": [1669055762, 462621212]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/Frame Buffers/ControlFrameBuffer.swift": [1669055762, 463003158]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/Frame Buffers/OutboundFlowControlBuffer.swift"
+  : [1669055762, 463596582]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/Frame Buffers/OutboundFrameBuffer.swift": [1669055762, 464051246]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HPACKHeaders+Validation.swift": [1669055762, 464940786]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2ChannelHandler.swift": [1669055762, 465613603]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2ConnectionStateChange.swift": [1669055762, 466081142]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2Error.swift": [1669055762, 466839313]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2ErrorCode.swift": [1669055762, 469087123]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2FlowControlWindow.swift": [1669055762, 469721794]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2Frame.swift": [1669055762, 470182418]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2FrameEncoder.swift": [1669055762, 470818519]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2FrameParser.swift": [1669055762, 471566677]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2PingData.swift": [1669055762, 472423553]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2PipelineHelpers.swift": [1669055762, 473230838]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2Settings.swift": [1669055762, 473632574]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2Stream.swift": [1669055762, 475557565]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2StreamChannel.swift": [1669055762, 476270914]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2StreamID.swift": [1669055762, 478998422]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2StreamMultiplexer.swift": [1669055762, 480218887]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2ToHTTP1Codec.swift": [1669055762, 480945110]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2UserEvents.swift": [1669055762, 481328248]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/InboundEventBuffer.swift": [1669055762, 482237815]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/InboundWindowManager.swift": [1669055762, 489245414]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/MultiplexerAbstractChannel.swift": [1669055762, 489619493]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/StreamChannelFlowController.swift": [1669055762, 489915370]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/StreamChannelList.swift": [1669055762, 490251541]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/StreamMap.swift": [1669055762, 490694046]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/StreamStateMachine.swift": [1669055762, 492168426]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/WatermarkedFlowController.swift": [1669055762, 492680549]

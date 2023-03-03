@@ -1,0 +1,104 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "32356312f4f605b695684ad6d13dad5c03553aa810e399c16b915198979ccf24"
+build_start_time: [1673821076, 633700847]
+build_end_time: [1673821102, 849226951]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/AnyAsyncSequence.swift": [1669055768, 730429887]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/AsyncLazySequence.swift"
+  : [1669055768, 730838298]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/HTTPClient+execute.swift"
+  : [1669055768, 731228351]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/HTTPClient+shutdown.swift"
+  : [1669055768, 732084274]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/HTTPClientRequest+Prepared.swift"
+  : [1669055768, 732461452]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/HTTPClientRequest.swift"
+  : [1669055768, 732978820]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/HTTPClientResponse.swift"
+  : [1669055768, 733364343]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/SingleIteratorPrecondition.swift"
+  : [1669055768, 734320878]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/Transaction+StateMachine.swift"
+  : [1669055768, 735005855]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/Transaction.swift": [1669055768, 735499143]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/TransactionBody.swift": [1669055768, 735809803]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/Base64.swift": [1669055768, 736446857]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/BestEffortHashableTLSConfiguration.swift"
+  : [1669055768, 736785888]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool.swift": [1669055768, 737246274]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/ChannelHandler/HTTP1ProxyConnectHandler.swift"
+  : [1669055768, 737929344]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/ChannelHandler/SOCKSEventsHandler.swift"
+  : [1669055768, 738276481]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/ChannelHandler/TLSEventsHandler.swift"
+  : [1669055768, 738618373]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP1/HTTP1ClientChannelHandler.swift"
+  : [1669055768, 739336013]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP1/HTTP1Connection.swift"
+  : [1669055768, 739931583]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP1/HTTP1ConnectionStateMachine.swift"
+  : [1669055768, 740950584]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP2/HTTP2ClientRequestHandler.swift"
+  : [1669055768, 741507768]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP2/HTTP2Connection.swift"
+  : [1669055768, 741775512]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP2/HTTP2IdleHandler.swift"
+  : [1669055768, 742148160]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPConnectionEvent.swift"
+  : [1669055768, 742463111]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPConnectionPool+Factory.swift"
+  : [1669055768, 743079662]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPConnectionPool+Manager.swift"
+  : [1669055768, 743532180]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPConnectionPool.swift"
+  : [1669055768, 743987560]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPExecutableRequest.swift"
+  : [1669055768, 744783639]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPRequestStateMachine+Demand.swift"
+  : [1669055768, 745209693]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPRequestStateMachine.swift"
+  : [1669055768, 745613336]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/RequestBodyLength.swift"
+  : [1669055768, 746037483]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/RequestFramingMetadata.swift"
+  : [1669055768, 746844768]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/RequestOptions.swift"
+  : [1669055768, 747418880]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+Backoff.swift"
+  : [1669055768, 748115539]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+HTTP1Connections.swift"
+  : [1669055768, 748874187]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+HTTP1StateMachine.swift"
+  : [1669055768, 749914169]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+HTTP2Connections.swift"
+  : [1669055768, 751382350]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+HTTP2StateMachine.swift"
+  : [1669055768, 752051115]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+RequestQueue.swift"
+  : [1669055768, 752539634]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+StateMachine.swift"
+  : [1669055768, 752882480]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionTarget.swift": [1669055768, 753183364]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/DeconstructedURL.swift": [1669055768, 753842115]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/FileDownloadDelegate.swift": [1669055768, 756273269]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/FoundationExtensions.swift": [1669055768, 756642341]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/HTTPClient+HTTPCookie.swift": [1669055768, 757016181]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/HTTPClient+Proxy.swift": [1669055768, 757346630]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/HTTPClient.swift": [1669055768, 758317470]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/HTTPHandler.swift": [1669055768, 760025501]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/LRUCache.swift": [1669055768, 760736227]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/NIOTransportServices/NWErrorHandler.swift"
+  : [1669055768, 761294364]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/NIOTransportServices/NWWaitingHandler.swift"
+  : [1669055768, 761883497]
+  ? "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/NIOTransportServices/TLSConfiguration.swift"
+  : [1669055768, 762276649]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/RedirectState.swift": [1669055768, 762582778]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/RequestBag+StateMachine.swift": [1669055768, 763157367]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/RequestBag.swift": [1669055768, 763624191]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/RequestValidation.swift": [1669055768, 764073848]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/SSLContextCache.swift": [1669055768, 764391183]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/Scheme.swift": [1669055768, 764698743]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/StringConvertibleInstances.swift": [1669055768, 765079975]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/UnsafeTransfer.swift": [1669055768, 765375614]
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/Utils.swift": [1669055768, 765669822]

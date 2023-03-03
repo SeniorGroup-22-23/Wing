@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "df0258c4d2298118422b63a2cc7d9e643c64cbb2e88cc9a061a3a16f158ec26a"
+build_start_time: [1669055846, 688434123]
+build_end_time: [1669055894, 40892124]
+inputs:
+  "/Users/brynhaines/Wing/Backend/Wing/.build/checkouts/swift-metrics/Sources/Metrics/Metrics.swift": [1669055734, 865312099]
