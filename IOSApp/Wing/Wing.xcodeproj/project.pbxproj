@@ -21,7 +21,6 @@
 		67971CE12924598C0088C6BD /* MatchPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67971CE02924598C0088C6BD /* MatchPreferenceView.swift */; };
 		67971CE3292459BA0088C6BD /* EmailAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67971CE2292459BA0088C6BD /* EmailAddressView.swift */; };
 		67971CE5292459E50088C6BD /* AgePreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67971CE4292459E50088C6BD /* AgePreferenceView.swift */; };
-		67971CE729245A1C0088C6BD /* ConfirmationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67971CE629245A1C0088C6BD /* ConfirmationCodeView.swift */; };
 		747DAE9A28FE0087004FF768 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DAE9928FE0087004FF768 /* HomePageView.swift */; };
 		747DAEAB28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAE9F28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf */; };
 		747DAEAD28FF7F6C004FF768 /* KumbhSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747DAEA128FF7F6C004FF768 /* KumbhSans-Bold.ttf */; };
@@ -101,7 +100,6 @@
 		67971CE02924598C0088C6BD /* MatchPreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPreferenceView.swift; sourceTree = "<group>"; };
 		67971CE2292459BA0088C6BD /* EmailAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddressView.swift; sourceTree = "<group>"; };
 		67971CE4292459E50088C6BD /* AgePreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgePreferenceView.swift; sourceTree = "<group>"; };
-		67971CE629245A1C0088C6BD /* ConfirmationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationCodeView.swift; sourceTree = "<group>"; };
 		741E07A028F9B9E1001D6478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		747DAE9928FE0087004FF768 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		747DAE9F28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KumbhSans-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 				67971CE02924598C0088C6BD /* MatchPreferenceView.swift */,
 				67971CE2292459BA0088C6BD /* EmailAddressView.swift */,
 				67971CE4292459E50088C6BD /* AgePreferenceView.swift */,
-				67971CE629245A1C0088C6BD /* ConfirmationCodeView.swift */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -495,7 +492,6 @@
 				7498AE7F29803FDA00FB3638 /* FooterTab.swift in Sources */,
 				67971CD9292457F60088C6BD /* UsernameView.swift in Sources */,
 				999A4C7229300EB1000EA950 /* LoginView.swift in Sources */,
-				67971CE729245A1C0088C6BD /* ConfirmationCodeView.swift in Sources */,
 				994385F129665488009B4452 /* Friendship.swift in Sources */,
 				999A4C7429300EC3000EA950 /* CreateAccountView.swift in Sources */,
 				74C9938329A55B570068B532 /* NoProspectsMatchView.swift in Sources */,

@@ -10,6 +10,9 @@ import Foundation
 let MediumGreen = Color("MediumGreen")
 
 struct HomePageView: View {
+    
+    @ObservedObject var viewModel: SignupViewModel = .method
+    
     var body: some View {
         NavigationView{
             ZStack {
@@ -26,7 +29,10 @@ struct HomePageView: View {
                             LoginButton()
                                 .cornerRadius(20.0)
                         }.offset(y:65)
-                        TermsAndConditionsText()
+                            .simultaneousGesture(TapGesture().onEnded{
+                                viewModel.username = ""
+                                viewModel.password = ""
+                            })
                     }
             }
         }
@@ -81,24 +87,3 @@ struct GreenLogo: View {
 }
 
 
-struct Text1: View {
-    var body: some View {
-        Text("By creating an account or logging in, you agree to our ")
-        +
-        Text("[Terms and Conditions](https://example.com)")
-            .underline()
-    }
-}
-
-
-struct TermsAndConditionsText: View {
-    var body: some View {
-        Text1()
-            .font(.custom(FontManager.NotoSans.regular,fixedSize:16))
-            .multilineTextAlignment(.center)
-            .frame(width:300, height:120)
-            .offset(y:40)
-            .foregroundColor(.white)
-            .accentColor(.white)
-    }
-}

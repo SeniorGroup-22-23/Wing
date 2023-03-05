@@ -10,19 +10,45 @@ import SwiftUI
 struct PhoneNumberView: View {
     
     @ObservedObject var viewModel: SignupViewModel = .method
+    @State var isDisabled = true
+    @State var refNumber: String = String()
     
-    func validateNumber(value: String) -> Bool {
+    func checkNumber() async throws{
+        let refNumber = viewModel.number.filter{
+            if($0 == " "){
+                return false
+            }
+            else if($0 == "-"){
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        if((viewModel.ext + refNumber).count > 9){
+            try await viewModel.checkPhone()
+        }
+        
+        if(viewModel.checkTaken && validateNumber() && validateExt()){
+            isDisabled = false
+        }
+        else{
+            isDisabled = true
+        }
+    }
+    
+    func validateNumber() -> Bool {
         let phonePattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
-        let result = value.range(
+        let result = viewModel.number.range(
             of: phonePattern,
             options: .regularExpression
         )
         return result != nil
     }
-    
-    func validateExt(value: String) -> Bool {
+
+    func validateExt() -> Bool {
         let pattern = #"^(\+?\d{1,3}|\d{1,4})$"#
-        let result = value.range(
+        let result = viewModel.ext.range(
             of: pattern,
             options: .regularExpression
         )
@@ -33,10 +59,8 @@ struct PhoneNumberView: View {
             ZStack {
                 Color(.white)
                 VStack {
-                    Image("WhiteLogo")
-                        .resizable()
-                        .frame(width: 120.0, height: 127.0)
-                        .offset(y:-30)
+                    LoadWingImage()
+                        .offset(y:-55)
                     Spacer()
                         .frame(height: 150)
                     Text("""
@@ -54,32 +78,44 @@ struct PhoneNumberView: View {
                         TextField("+1", text: $viewModel.ext)
                             .frame(width:81.0, height: 48.0)
                             .textFieldStyle(.roundedBorder)
+                            .onChange(of: viewModel.ext){ newValue in
+                                Task{
+                                    try await checkNumber()
+                                }
+                            }
                         TextField("123-456-7890", text: $viewModel.number)
                             .frame(width:213.0, height: 48.0)
                             .textFieldStyle(.roundedBorder)
+                            .onChange(of: viewModel.number){ newValue in
+                                Task{
+                                    try await checkNumber()
+                                }
+                            }
                     }
-                    Spacer()
-                        .frame(height: 30)
-                    NavigationLink(destination: ConfirmationCodeView()) {
+                    if (!viewModel.checkTaken) {
+                        Text("This phone number is already associated with an account!")
+                            .font(.custom(FontManager.NotoSans.regular, size: 13.0))
+                            .foregroundColor(.red)
+                    }
+                    else{
+                        Spacer()
+                            .frame(height: 38)
+                    }
+                    NavigationLink(destination: UsernameView()) {
                         Text("Next")
                             .frame(width: 231.0, height: 55.0)
                             .foregroundColor(.white)
-                            .background((!(self.validateExt(value: viewModel.ext)) || !(self.validateNumber(value: viewModel.number))) ? Color("DarkGrey") : Color("MainGreen"))
+                            .background(isDisabled ? Color("DarkGrey") : Color("MainGreen"))
                             .cornerRadius(20)
                             .font(.custom(FontManager.NotoSans.regular, size: 16.0))
                     }
-                    .disabled(!(self.validateExt(value: viewModel.ext)) || !(self.validateNumber(value: viewModel.number)))
-                    .simultaneousGesture(TapGesture().onEnded{
-                        Task{
-                                
-                        }
-                    })
-                        
+                    .disabled(isDisabled)
                     Spacer()
                 }
             }
         }
 }
+
 
 struct PhoneNumberView_Previews: PreviewProvider {
     static var previews: some View {

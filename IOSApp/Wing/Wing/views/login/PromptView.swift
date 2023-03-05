@@ -17,6 +17,7 @@ struct PromptView: View {
             
             VStack {
                 LoadWingImage()
+                    .offset(y:-55)
                 LoadPromptHeadline()
                 
                 Spacer()
