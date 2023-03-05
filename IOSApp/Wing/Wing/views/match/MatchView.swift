@@ -106,6 +106,7 @@ struct MatchView: View {
                     try await matchViewModel.getProspects()
                     
                     let firstProspect = await getProspect()
+                    let firstProspectPhotos = matchViewModel.prospectProfilePreview.primaryPhoto
                     
                     potentialMatch.name = firstProspect?.name ?? ""
                     potentialMatch.age = firstProspect?.age ?? -1
@@ -114,6 +115,14 @@ struct MatchView: View {
                     potentialMatch.prompts = firstProspect?.prompts ?? ["", "", ""]
                     potentialMatch.answers = firstProspect?.answers ?? ["", "", ""]
                     potentialMatch.photos = firstProspect?.photos ?? [Image?](repeating : nil, count : 8)
+                    
+                    // testing purposes for image
+                    let profilePreview = matchViewModel.prospectProfilePreview
+                    let photoData = profilePreview.primaryPhoto!
+                    let photoUIimage = UIImage(data : photoData)!
+                    potentialMatch.photos[0] = Image(uiImage: photoUIimage)
+
+                    
                     potentialMatch.wing = firstProspect?.wing ?? false
                 }
             }
@@ -178,6 +187,12 @@ struct MatchView: View {
             
             let profile = self.matchViewModel.prospectProfile
             
+            do {
+                try await self.matchViewModel.loadProspectPreview()
+            } catch {
+                print("Can't get user's photos. Error: \(error)")
+            }
+            
             return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: [firstPrompt, secondPrompt, thirdPrompt], answers: [firstResponse, secondResponse, thirdResponse], photos: [Image?](repeating : nil, count : 8), wing: false)
         }
         
@@ -230,7 +245,7 @@ struct LoadSlides : View {
     
     var body : some View {
         if (user.name != "") {
-            fullImage(image: user.photos[0])
+            user.photos[0]
                 .id(0)
             if (user.bio == "") {
                 fullImage(image: user.photos[1])

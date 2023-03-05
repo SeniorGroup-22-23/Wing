@@ -29,6 +29,7 @@ class MatchViewModel: ObservableObject{
     // getting info about the next profile to load to swipe on
     @Published var prospectID: [UUID] = []
     @Published var prospectProfile: Profile = Profile()
+    @Published var prospectProfilePreview: ProfilePreview = ProfilePreview()
     
     @Published var promptResponses: [PromptResponse] = []
     @Published var prompt: Prompt = Prompt()
@@ -134,8 +135,26 @@ class MatchViewModel: ObservableObject{
     }
 
     //TODO: once the photos stuff is figured out
-    func loadProspectPhotos(prospectID : UUID) async throws {
+    func loadProspectPreview() async throws {
+        let url = URL(string: baseURL + "/profilePreview/userId/\(self.prospectProfile.userId ?? UUID())")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        let (data,response) = try await URLSession.shared.data(for: urlRequest)
+      
+        guard let httpResponse = response as? HTTPURLResponse else { return }
+        
+        if(httpResponse.statusCode == 200){
+            let decodedUsers = try JSONDecoder().decode(ProfilePreview.self, from: data)
+            DispatchQueue.main.async {
+                self.prospectProfilePreview = decodedUsers
+            }
+        }
+        else{
+            print("prospect profile preview \(httpResponse.statusCode) error")
+            throw URLError(.badServerResponse)
+        }
     }
     
     func postSwipe() async throws {
