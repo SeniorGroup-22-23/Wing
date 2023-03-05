@@ -63,7 +63,6 @@ struct MatchView: View {
                                 
                                 Task {
                                     // first get ready to post swipe by intializing the proper attributes in the viewmodel
-                                    matchViewModel.swipeProspectID = matchViewModel.prospectID[numProspects-1]
                                     
                                     if (verticalAmount < 0) {
                                         // up swipe
@@ -72,6 +71,8 @@ struct MatchView: View {
                                         // down swipe
                                         matchViewModel.swipeType = 2
                                     }
+                                    
+                                    try await matchViewModel.postSwipe()
                                     
                                     // get the next prospect's profile
                                     let tempNewProspect = await getProspect()
@@ -93,7 +94,6 @@ struct MatchView: View {
                         value.scrollTo(0, anchor: .trailing)
                     }
                 }
-                
                 CheckNoProspects()
                 
                 FooterTab()
@@ -137,6 +137,7 @@ struct MatchView: View {
             // First get the profile of the prospect to show
             do {
                 try await self.matchViewModel.loadProspectProfile(prospectID : idList[numProspects])
+                matchViewModel.swipeProspectID = matchViewModel.prospectProfile.userId!
                 numProspects += 1
             } catch {
                 print("Can't load prospect profile. Error: \(error)")

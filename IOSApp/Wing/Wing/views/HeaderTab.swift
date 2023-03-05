@@ -18,8 +18,6 @@ struct HeaderTab: View {
                     Spacer()
                     LoadSettingsBtn()
                 }
-                
-                
             }
         }
     }

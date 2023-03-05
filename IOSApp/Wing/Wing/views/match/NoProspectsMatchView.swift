@@ -16,7 +16,7 @@ struct NoProspectsMatchView: View {
                 .frame(width: 420, height: 420)
                 .opacity(0.2)
             
-            VStack {
+            VStack{
                 Text("You're all caught up!")
                     .font(.custom(FontManager.NotoSans.semiBold, size : 28.0))
                 Text("Expand your distance preferences or wait to see new profiles in your area!")

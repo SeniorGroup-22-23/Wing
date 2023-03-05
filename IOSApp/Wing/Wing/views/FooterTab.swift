@@ -20,8 +20,6 @@ struct FooterTab : View {
                     Spacer()
                     LoadMessageBtn()
                 }
-                
-                
             }
         }
     }
