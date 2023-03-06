@@ -7,27 +7,28 @@
 
 import SwiftUI
 
-struct Match: Hashable {
+struct Matches: Hashable {
     let id: Int
     let name: String
     let photo: String
     var new: Bool
     let number: String
     var numberSent: Bool
+    
 }
 
 //TODO: to be replaced later with real profiles from the database
-var profiles: [Match] = [
-    Match(id: 1, name: "Mike", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: true),
-    Match(id: 2, name: "Colin", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: false),
-    Match(id: 3, name: "Kathy", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: false),
-    Match(id: 4, name: "Jake", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: true),
-    Match(id: 5, name: "Hannah", photo: "", new: true, number: "+1 (876) 123-1234", numberSent: false),
-    Match(id: 6, name: "Sarah", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: false),
-    Match(id: 7, name: "Nina", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: true),
-    Match(id: 8, name: "Josh", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: true),
-    Match(id: 9, name: "Drake", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: false),
-    Match(id: 10, name: "Kylie", photo: "", new: false, number: "+1 (886) 123-1234", numberSent: false)
+var profiles: [Matches] = [
+    Matches(id: 1, name: "Mike", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: true),
+    Matches(id: 2, name: "Colin", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: false),
+    Matches(id: 3, name: "Kathy", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: false),
+    Matches(id: 4, name: "Jake", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: true),
+    Matches(id: 5, name: "Hannah", photo: "", new: true, number: "+1 (876) 123-1234", numberSent: false),
+    Matches(id: 6, name: "Sarah", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: false),
+    Matches(id: 7, name: "Nina", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: true),
+    Matches(id: 8, name: "Josh", photo: "", new: true, number: "+1 (506) 123-1234", numberSent: true),
+    Matches(id: 9, name: "Drake", photo: "", new: false, number: "+1 (506) 123-1234", numberSent: false),
+    Matches(id: 10, name: "Kylie", photo: "", new: false, number: "+1 (886) 123-1234", numberSent: false)
 ]
 
 //Filters the profiles array into two diffferent arrays
@@ -88,15 +89,6 @@ struct LoadNoMatchesText : View {
         }
     }
 }
-//TODO: can be removed once merged into main
-struct BackgroundLogo: View {
-    var body: some View {
-        Image("GreenLogo")
-            .padding(.trailing)
-            .frame(width: 200, height: 400)
-            .opacity(0.2)
-    }
-}
 
 struct LoadMatchesBox : View {
     var body : some View {
@@ -128,7 +120,7 @@ let layout = [
 ]
 
 struct LoadMatchProfiles : View {
-    @State private var selectedMatch: Match?
+    @State private var selectedMatch: Matches?
     @State var sortedMatches = matches.sorted{$0.new && !$1.new }
     
     var body : some View {
@@ -196,7 +188,7 @@ struct LoadNumbersBox : View {
 }
 
 struct LoadNumberProfiles : View {
-    @State private var selectedNumber: Match?
+    @State private var selectedNumber: Matches?
     @State var sortedNumbers = numbers.sorted{$0.new && !$1.new }
     
     var body : some View {

@@ -16,7 +16,7 @@ struct WingedProfiles{
 }
 
 //TODO: Replace this list with real winged profiles after endpoint implementation
-let profiles: [WingedProfiles] = [
+let wingprofiles: [WingedProfiles] = [
     WingedProfiles(name: "Aubrey", age: 32, photo: "", wingSent: "Mike", wingmanPhoto: ""),
     WingedProfiles(name: "Joe", age: 29, photo: "", wingSent: "Colin", wingmanPhoto: ""),
     WingedProfiles(name: "Kait", age: 24, photo: "", wingSent: "Mike", wingmanPhoto: ""),
@@ -163,7 +163,7 @@ struct LoadWingBox : View {
                 .frame(width: 337, height: 520)
                 .cornerRadius(10)
             VStack{
-                if ((profiles.count) == 0){
+                if ((wingprofiles.count) == 0){
                     LoadWaitMessage()
                     LoadNoWingsText()
                 }

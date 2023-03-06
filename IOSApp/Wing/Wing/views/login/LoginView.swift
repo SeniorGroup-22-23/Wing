@@ -60,7 +60,7 @@ struct LoginView : View {
             })
         }
         .background(
-            BackgroundLogo())
+            LoginBackgroundLogo())
     }
 
 }
@@ -104,7 +104,7 @@ struct ButtonContent: View {
 }
 
 
-struct BackgroundLogo: View {
+struct LoginBackgroundLogo: View {
     var body: some View {
         Image("WhiteLogo")
             .resizable()

@@ -24,7 +24,7 @@ struct SettingsHomeView: View {
                     .padding(.top, 120)
             }
             .background(
-                BackgroundLogo())
+                SettingsBackgroundLogo())
         }
     }
 }
@@ -37,7 +37,7 @@ struct ShowSettingsText: View {
     }
 }
 
-struct BackgroundLogo: View {
+struct SettingsBackgroundLogo: View {
     var body : some View {
         Image("GreenLogo")
             .resizable()

@@ -8,30 +8,6 @@ import CoreLocation
 import CoreLocationUI
 import SwiftUI
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    let manager = CLLocationManager()
-    
-    @Published var location: CLLocationCoordinate2D?
-    
-    override init() {
-        super.init()
-        manager.delegate = self
-    }
-    func requestLocation() {
-        manager.requestLocation()
-        print("Requesting location")
-    }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.first?.coordinate
-                
-    }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // Error handling
-        print(error)
-        //Error Domain=kCLErrorDomain Code=1 "(null)" asks user to give access to location
-    }
-}
-
 struct EditPreferencesView: View {
     @State private var selected = 1
     var body: some View {

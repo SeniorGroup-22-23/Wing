@@ -26,7 +26,7 @@ struct CreateAccountView : View {
     
     var body: some View {
             ZStack{
-                BackgroundLogo()
+                LoginBackgroundLogo()
                     .offset(y:-40)
                 VStack {
                     CreateAccountText()

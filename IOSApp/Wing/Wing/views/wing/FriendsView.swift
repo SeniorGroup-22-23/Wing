@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-struct Friend{
-    let name: String
-    let username: String
-    let photo: String
-}
-
-//TODO: Replace this list with real friends after endpoint implementation
-let friends: [Friend] = [
-    Friend(name: "Mike", username: "mikewing", photo: ""),
-    Friend(name: "Colin", username: "colinfindslove", photo: ""),
-    Friend(name: "Kathy", username: "kathyiscool", photo: ""),
-    Friend(name: "Jake", username: "jakeyyy", photo: ""),
-    Friend(name: "Hannah", username: "hannahforever", photo: "")
-]
 
 //TODO: Replace this list with real profiles after endpoint implementation
 let potentialFriends: [Friend] = [
@@ -202,7 +188,7 @@ struct LoadFriendsListBox : View {
             VStack{
                 if (friends.count == 0){
                     LoadNoFriendsText()
-                        .background(BackgroundLogo())
+                        .background(LoginBackgroundLogo())
                 }
                 else{
                     ViewFriendsList()

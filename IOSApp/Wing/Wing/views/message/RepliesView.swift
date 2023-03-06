@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RepliesView: View {
-    @Binding var numberChosen: Match
+    @Binding var numberChosen: Matches
     var body: some View {
         ZStack {
             Color("MainGreen")
@@ -27,7 +27,7 @@ struct RepliesView: View {
 }
 
 struct LoadReplyBox : View {
-    @Binding var numberChosen: Match
+    @Binding var numberChosen: Matches
     
     var body : some View {
         VStack{
@@ -71,7 +71,7 @@ struct LoadReplyBox : View {
 }
 
 struct RepliesView_Previews: PreviewProvider {
-    @State static var selectedNumber = Match(id: 1, name: "Hannah", photo: "", new: true, number: "+1 (886) 123-1234", numberSent: false)
+    @State static var selectedNumber = Matches(id: 1, name: "Hannah", photo: "", new: true, number: "+1 (886) 123-1234", numberSent: false)
     
     static var previews: some View {
         RepliesView(numberChosen: $selectedNumber)

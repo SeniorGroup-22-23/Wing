@@ -34,23 +34,6 @@ let friends: [Friend] = [
     Friend(name: "Hannah", username: "hannahforever", photo: "")
 ]
 
-//TODO: can be replaced when merged into main finally
-struct LoadNoFriendsText : View {
-    var body : some View {
-        VStack{
-            Text("No friends yet")
-                .font(.custom(FontManager.NotoSans.semiBold, size: 20.0))
-                .foregroundColor(Color("DarkGreen"))
-                .multilineTextAlignment(.center)
-            Text("Add friends to grow your friend list.")
-                .font(.custom(FontManager.NotoSans.regular, size: 14.0))
-                .foregroundColor(Color("DarkGreen"))
-                .multilineTextAlignment(.center)
-                .offset(y: 5)
-        }
-    }
-}
-
 class SelectedFriend: ObservableObject {
     @Published var selected: Friend?
     
