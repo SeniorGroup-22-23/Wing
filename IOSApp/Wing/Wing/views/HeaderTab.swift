@@ -37,7 +37,7 @@ struct LoadLogo : View {
 struct LoadSettingsBtn : View {
     var body : some View {
         // TODO : change navigation destination once settings view is created
-        NavigationLink(destination : HomePageView()) {
+        NavigationLink(destination : SettingsHomeView()) {
             Image("SettingsBtn")
                 .resizable()
                 .frame(width: 30.0, height: 30.0)

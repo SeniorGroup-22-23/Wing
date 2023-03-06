@@ -54,6 +54,7 @@ struct MessageView: View {
                 }
             }
         }
+        .navigationBarHidden(true)
     }
 }
 

@@ -30,7 +30,7 @@ struct FooterTab : View {
 struct LoadWingBtn : View {
     // TODO : change navigation destination once settings view is created
     var body : some View {
-        NavigationLink(destination : HomePageView()) {
+        NavigationLink(destination : WingView()) {
             Image("WingTab")
                 .resizable()
                 .frame(width: 40.0, height: 40.0)
@@ -42,7 +42,7 @@ struct LoadWingBtn : View {
 struct LoadMatchBtn : View {
     // TODO : change navigation destination once settings view is created
     var body : some View {
-        NavigationLink(destination : HomePageView()) {
+        NavigationLink(destination : MatchView()) {
             Image("MatchTab")
                 .resizable()
                 .frame(width: 40.0, height: 40.0)
@@ -53,7 +53,7 @@ struct LoadMatchBtn : View {
 struct LoadMessageBtn : View {
     // TODO : change navigation destination once settings view is created
     var body : some View {
-        NavigationLink(destination : HomePageView()) {
+        NavigationLink(destination : MessageView()) {
             Image("MessageTab")
                 .resizable()
                 .frame(width: 40.0, height: 40.0)

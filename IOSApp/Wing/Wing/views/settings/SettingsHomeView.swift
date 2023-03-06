@@ -9,23 +9,26 @@ import SwiftUI
 
 struct SettingsHomeView: View {
     var body: some View {
-        ZStack {
-            Color("MainGreen")
-                .ignoresSafeArea()
-            VStack {
-                HeaderTab()
-                    .padding(.bottom, 100)
-                
-                ShowSettingsText()
-                
-                ShowOptions()
-                
-                FooterTab()
-                    .padding(.top, 120)
+        NavigationView {
+            ZStack {
+                Color("MainGreen")
+                    .ignoresSafeArea()
+                VStack {
+                    HeaderTab()
+                        .padding(.bottom, 100)
+                    
+                    ShowSettingsText()
+                    
+                    ShowOptions()
+                    
+                    FooterTab()
+                        .padding(.top, 120)
+                }
+                .background(
+                    SettingsBackgroundLogo())
             }
-            .background(
-                SettingsBackgroundLogo())
         }
+        .navigationBarHidden(true)
     }
 }
 

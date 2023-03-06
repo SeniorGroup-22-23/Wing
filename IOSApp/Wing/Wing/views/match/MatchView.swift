@@ -41,88 +41,91 @@ struct MatchView: View {
     @StateObject var potentialMatch = PotentialMatch(name: "Nury", age: 23, occupation: "Software Engineering", bio: "This is my bio! I am a student at UNB and I can't wait to use the Wing app. Woohoo!", prompts: ["What's your favourite sport?", "Who's your celeb crush?", ""], answers: ["Football. Can't wait for the superbowl!!", "Probably Brad Pitt..", ""], photos: [Image?](repeating : nil, count : 8))
     
     var body: some View {
-        ZStack {
-            Color("MainGreen")
-                .ignoresSafeArea()
-            VStack {
-                HeaderTab()
-                if ($showingBlockAlert.bothAlert.wrappedValue == true && $showingBlockAlert.blockAlert.wrappedValue == false){
-                    let _ = self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
-                        ReportPopUpView(showingBlockAlert: showingBlockAlert)
-                    }
-                }
+        NavigationView {
+            ZStack {
+                Color("MainGreen")
+                    .ignoresSafeArea()
                 VStack {
-                    LoadNextUser()
-                    
-                    ScrollView(.horizontal) {
-                        HStack {
-                            LoadSlides()
+                    HeaderTab()
+                    if ($showingBlockAlert.bothAlert.wrappedValue == true && $showingBlockAlert.blockAlert.wrappedValue == false){
+                        let _ = self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                            ReportPopUpView(showingBlockAlert: showingBlockAlert)
                         }
-                        .padding(.leading)
                     }
+                    VStack {
+                        LoadNextUser()
+                        
+                        ScrollView(.horizontal) {
+                            HStack {
+                                LoadSlides()
+                            }
+                            .padding(.leading)
+                        }
+                    }
+                    .simultaneousGesture(
+                        TapGesture(count: 2)
+                            .onEnded { _ in
+                                //Double Tap gesture
+                                self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                                    WingPopUpView()
+                                            }
+                            }
+                    )
+                    .simultaneousGesture(
+                        LongPressGesture()
+                            .onEnded { _ in
+                                self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                                    ModalPopUpView(showingBlockAlert: showingBlockAlert)
+                                            }
+                            }
+                    )
+                    .highPriorityGesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
+                        .onEnded({ value in
+                            let horizontalAmount = value.translation.width
+                            let verticalAmount = value.translation.height
+                            if abs(verticalAmount) > abs(horizontalAmount) {
+                                print(verticalAmount < 0 ? "up swipe" : "down swipe")
+                                
+                                potentialMatch.name = "Nury"
+                                potentialMatch.age = 23
+                                potentialMatch.occupation = "Software Engineer"
+                                potentialMatch.bio = "Hey this is my bio!"
+                                potentialMatch.prompts = ["Who's your celeb crush?", "What's your favourite sport?", "What's your favourite animal?"]
+                                potentialMatch.answers = ["Brad Pitt", "Football!!", "dogsss"]
+                            }
+                        })
+                    )
+                    .environmentObject(potentialMatch)
+                    HStack{
+                        Text("")
+                            .alert(isPresented:$showingBlockAlert.blockAlert) {
+                                Alert(
+                                    title: Text("Block this user?"),
+                                    message: Text("We want to ensure a safe and supportive user experience at Wing. Block any user that you would not like to see on the app."),
+                                    primaryButton: .destructive(Text("Block")) {
+                                        $showingBlockAlert.blockAlert.wrappedValue = false
+                                        print("Blocking...")
+                                    },
+                                    secondaryButton: .cancel()
+                                )
+                            }
+                            .hidden()
+                        Text("")
+                            .alert(isPresented:$showingBlockAlert.reportAlert) {
+                                Alert(
+                                    title: Text("Your report has been submitted and will be reviewed."),
+                                    message: Text("Thank you for keeping Wing safe."),
+                                    dismissButton: .default(Text("OK"))
+                                )
+                            }
+                            .hidden()
+                    }
+                    
+                    FooterTab()
                 }
-                .simultaneousGesture(
-                    TapGesture(count: 2)
-                        .onEnded { _ in
-                            //Double Tap gesture
-                            self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
-                                WingPopUpView()
-                                        }
-                        }
-                )
-                .simultaneousGesture(
-                    LongPressGesture()
-                        .onEnded { _ in
-                            self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
-                                ModalPopUpView(showingBlockAlert: showingBlockAlert)
-                                        }
-                        }
-                )
-                .highPriorityGesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
-                    .onEnded({ value in
-                        let horizontalAmount = value.translation.width
-                        let verticalAmount = value.translation.height
-                        if abs(verticalAmount) > abs(horizontalAmount) {
-                            print(verticalAmount < 0 ? "up swipe" : "down swipe")
-                            
-                            potentialMatch.name = "Nury"
-                            potentialMatch.age = 23
-                            potentialMatch.occupation = "Software Engineer"
-                            potentialMatch.bio = "Hey this is my bio!"
-                            potentialMatch.prompts = ["Who's your celeb crush?", "What's your favourite sport?", "What's your favourite animal?"]
-                            potentialMatch.answers = ["Brad Pitt", "Football!!", "dogsss"]
-                        }
-                    })
-                )
-                .environmentObject(potentialMatch)
-                HStack{
-                    Text("")
-                        .alert(isPresented:$showingBlockAlert.blockAlert) {
-                            Alert(
-                                title: Text("Block this user?"),
-                                message: Text("We want to ensure a safe and supportive user experience at Wing. Block any user that you would not like to see on the app."),
-                                primaryButton: .destructive(Text("Block")) {
-                                    $showingBlockAlert.blockAlert.wrappedValue = false
-                                    print("Blocking...")
-                                },
-                                secondaryButton: .cancel()
-                            )
-                        }
-                        .hidden()
-                    Text("")
-                        .alert(isPresented:$showingBlockAlert.reportAlert) {
-                            Alert(
-                                title: Text("Your report has been submitted and will be reviewed."),
-                                message: Text("Thank you for keeping Wing safe."),
-                                dismissButton: .default(Text("OK"))
-                            )
-                        }
-                        .hidden()
-                }
-                
-                FooterTab()
             }
         }
+        .navigationBarHidden(true)
     }
 }
 

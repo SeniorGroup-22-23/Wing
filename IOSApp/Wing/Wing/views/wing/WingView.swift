@@ -50,6 +50,7 @@ struct WingView: View {
                 }
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
