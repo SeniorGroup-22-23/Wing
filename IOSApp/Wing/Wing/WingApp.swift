@@ -11,7 +11,8 @@ import SwiftUI
 struct WingApp: App{
     var body: some Scene {
         WindowGroup {
-            HomePageView()
+            //HomePageView()
+            MatchView()
         }
     }
 }
