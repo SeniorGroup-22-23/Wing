@@ -15,6 +15,7 @@ class SignupViewModel: ObservableObject{
 
     @Published var isTaken: Bool = false
     
+    //@Published var user: User = User(id: UUID(uuidString: "1d6810d1-812c-4c25-a621-3fb111ac901b")!, username: "Allie", password: "P@ssword", phone: "", email: "a@unb.ca") FOR TESTING when views are not connected. Can be removed when views have been connected.
     @Published var user: User = User()
     @Published var username: String = String()
     @Published var password: String = String()

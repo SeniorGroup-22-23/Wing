@@ -11,9 +11,10 @@ import SwiftUI
 
 class BlockReportViewModel: ObservableObject{
     
+    @ObservedObject var SignupModel: SignupViewModel = .method //To use data collected in sign up view model
     static var method : BlockReportViewModel = BlockReportViewModel()
     
-    @Published var id: UUID = UUID(uuidString: "1d6810d1-812c-4c25-a621-3fb111ac901b")! //TODO: changes to have the current users id
+    //@Published var id: UUID = UUID(uuidString: "1d6810d1-812c-4c25-a621-3fb111ac901b")! //for  testing 
     @Published var issue: Int16 = 0
     
     var baseURL = "http://127.0.0.1:8080"
@@ -37,7 +38,7 @@ class BlockReportViewModel: ObservableObject{
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-        let blockUserBody = BlockUserBody(blockedUserId: blockedUserId, blockedById: id, reported: reported, issue: issue)
+        let blockUserBody = Block(blockedUserId: blockedUserId, blockedById: SignupModel.user.id, reported: reported, issue: issue)
         
         urlRequest.httpBody = try? JSONEncoder().encode(blockUserBody)
 
@@ -49,23 +50,5 @@ class BlockReportViewModel: ObservableObject{
             print("block \(httpResponse.statusCode) error")
             throw URLError(.badServerResponse)
         }
-    }
-}
-
-//Request Body for POST Block
-//Used to encode to JSON
-struct BlockUserBody: Codable{
-    
-    var blockedUserId: UUID?
-    var blockedById: UUID?
-    var reported: Bool?
-    var issue: Int16?
-    
-
-    init(blockedUserId: UUID? = nil, blockedById: UUID? = nil, reported: Bool? = nil, issue: Int16? = nil){
-        self.blockedUserId = blockedUserId
-        self.blockedById = blockedById
-        self.reported = reported
-        self.issue = issue
     }
 }

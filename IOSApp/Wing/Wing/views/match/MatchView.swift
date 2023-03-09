@@ -106,7 +106,7 @@ struct MatchView: View {
                                     $showingBlockAlert.blockAlert.wrappedValue = false
                                     print("Blocking...")
                                     Task{
-                                        try await blockReportViewModel.blockUser(blockedUserId: UUID(uuidString: "28ff7407-e6b2-44e7-8fb6-eb0483fa12cf")!, reported: false, issue: 0) //This is good need to change so correct UUID is passed in (should always be false and 0)
+                                        try await blockReportViewModel.blockUser(blockedUserId: UUID(uuidString: "28ff7407-e6b2-44e7-8fb6-eb0483fa12cf")!, reported: false, issue: 0) //TODO:  change so correct UUID is passed in (should always be false and 0) (potentialmatch.userId)
                                     }
                                 },
                                 secondaryButton: .cancel()
@@ -121,7 +121,7 @@ struct MatchView: View {
                                 dismissButton: .default(Text("OK")) {
                                     print("Reporting...")
                                     Task{
-                                        try await blockReportViewModel.blockUser(blockedUserId: UUID(uuidString: "28ff7407-e6b2-44e7-8fb6-eb0483fa12cf")!, reported: true, issue: blockReportViewModel.issue) //need to change so correct UUID is passed in 
+                                        try await blockReportViewModel.blockUser(blockedUserId: UUID(uuidString: "28ff7407-e6b2-44e7-8fb6-eb0483fa12cf")!, reported: true, issue: blockReportViewModel.issue) //TODO: need to change so correct UUID is passed in (potentialmatch.userId)
                                     }
                                 }
                             )
