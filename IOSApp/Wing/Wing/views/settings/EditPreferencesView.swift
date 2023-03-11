@@ -148,7 +148,7 @@ struct EditMaxDistanceView: View {
                     .foregroundColor(.white)
                     Spacer()
                     NavigationLink(destination: SettingsHomeView()) {
-                        Text("Done")
+                        Text("Save")
                             .frame(width: 231.0, height: 55.0)
                             .foregroundColor(.white)
                             .background((locationManager.location?.latitude == nil) ? Color("DarkGrey") : Color("MainGreen"))

@@ -122,6 +122,7 @@ struct MatchView: View {
                     }
                     
                     FooterTab()
+                        .padding(.top, 70)
                 }
             }
         }

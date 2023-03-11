@@ -43,14 +43,14 @@ struct MessageView: View {
                     .ignoresSafeArea()
                 VStack {
                     HeaderTab() // wing symbol and settings button
-                        .frame(width: 380)
                         .offset(y: 50)
+                        .padding(.top, 50)
                     LoadMatchesBox() // this section shows matches
                     LoadNumbersBox() // this section shows replies
                         .offset(y: -60)
                     FooterTab() // wing symbol, match symbol, and messages symbol
-                        .frame(width: 300)
                         .offset(y: -40)
+                        .padding(.bottom, 70)
                 }
             }
         }

@@ -20,7 +20,7 @@ struct FooterTab : View {
                     Spacer()
                     LoadMessageBtn()
                 }
-                
+                .frame(width: 350)
                 
             }
         }

@@ -22,7 +22,7 @@ struct SettingsHomeView: View {
                     ShowOptions()
                     
                     FooterTab()
-                        .padding(.top, 120)
+                        .padding(.top, 150)
                 }
                 .background(
                     SettingsBackgroundLogo())

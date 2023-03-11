@@ -37,8 +37,6 @@ struct WingView: View {
                     .ignoresSafeArea()
                 VStack {
                     HeaderTab()
-                        .offset(y: 15)
-                        .frame(width: 380)
                     LoadWingBox()
                         .frame(height: 500)
                         .offset(y: -25)
@@ -46,7 +44,6 @@ struct WingView: View {
                         .offset(y: -15)
                     FooterTab()
                         .offset(y: -7)
-                        .frame(width: 300)
                 }
             }
         }
