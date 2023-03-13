@@ -34,7 +34,6 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateWings())
     app.migrations.add(CreateSwipes())
     app.migrations.add(CreateMatches())
-    app.migrations.add(CreateMessages())
     app.migrations.add(CreateBlocks())
 
     
