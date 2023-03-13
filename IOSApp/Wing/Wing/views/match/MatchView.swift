@@ -54,9 +54,14 @@ struct MatchView: View {
                             .padding(.leading)
                             .padding(.trailing)
                         }
-                        .popover(isPresented: $matchPopUp) {
-                            Text("It's a match")
+                        /*
+                         check if matchPopUp is true :
+                         self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                            MatchPopUpView()
                         }
+                         
+                         matchPopUp false
+                         */
                     }
                     .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
                         .onEnded({ value in
