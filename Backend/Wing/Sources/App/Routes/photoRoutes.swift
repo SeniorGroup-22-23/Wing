@@ -74,9 +74,6 @@ func photoRoutes(_ app: Application) throws {
     }
     
     app.get("photo", "userId", "index", ":userId", ":index"){ req async throws -> Photo in
-        
-
-        
         guard let indexMatch = Int16(req.parameters.get("index")!)
         else{
             throw Error.nilIndex
@@ -88,7 +85,7 @@ func photoRoutes(_ app: Application) throws {
         guard let photo = try await Photo.query(on: req.db)
             .filter(\.$userId == userId)
             .filter(\.$index == indexMatch)
-            .all()
+            .first()
         else{
             throw Error.photoNotFoundwIndex
         }
