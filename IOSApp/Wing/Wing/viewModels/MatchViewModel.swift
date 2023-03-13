@@ -15,15 +15,10 @@ class MatchViewModel: ObservableObject{
     @Published var user: User = User()
     @Published var primaryUserId: UUID = UUID()
     
-    @Published var match: Match = Match()
-    @Published var firstUserId: UUID = UUID()
-    @Published var secondUserId: UUID = UUID()
-    @Published var matchType: Int16 = 1
-    
-    @Published var swipe: Swipe = Swipe()
     @Published var swipeProspectID: UUID = UUID()
     @Published var swipeType: Int16 = 1
     
+    @Published var match: Bool = false
     @Published var wingLikeProspect: Bool = false
     
     // getting info about the next profile to load to swipe on
@@ -164,17 +159,16 @@ class MatchViewModel: ObservableObject{
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let swipe = Swipe(swiperId: self.primaryUserId, prospectId: self.swipeProspectID, type: self.swipeType)
-        
         urlRequest.httpBody = try? JSONEncoder().encode(swipe)
 
         let (data,response) = try await URLSession.shared.data(for: urlRequest)
         
         guard let httpResponse = response as? HTTPURLResponse else { return }
-
+        
         if(httpResponse.statusCode == 200){
-            let decodedSwipe = try JSONDecoder().decode(Swipe.self, from: data)
+            let decodedSwipe = try JSONDecoder().decode(Bool.self, from: data)
             DispatchQueue.main.async {
-                self.swipe = decodedSwipe
+                self.match = decodedSwipe
             }
         }
         else{

@@ -31,6 +31,7 @@ class PotentialMatch : ObservableObject {
 
 struct MatchView: View {
     @State private var numProspects = 0
+    @State private var matchPopUp = false
     @ObservedObject var signupViewModel: SignupViewModel = .method
     @ObservedObject var matchViewModel: MatchViewModel = .method
     @StateObject var potentialMatch = PotentialMatch(name: "", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
@@ -53,6 +54,9 @@ struct MatchView: View {
                             .padding(.leading)
                             .padding(.trailing)
                         }
+                        .popover(isPresented: $matchPopUp) {
+                            Text("It's a match")
+                        }
                     }
                     .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
                         .onEnded({ value in
@@ -74,6 +78,12 @@ struct MatchView: View {
                                     
                                     try await matchViewModel.postSwipe()
                                     
+                                    if (matchViewModel.match) {
+                                        matchPopUp = true
+                                    }
+                                }
+                                
+                                Task {
                                     // get the next prospect's profile
                                     let tempNewProspect = await getProspect()
                                     
@@ -106,7 +116,6 @@ struct MatchView: View {
                     try await matchViewModel.getProspects()
                     
                     let firstProspect = await getProspect()
-                    let firstProspectPhotos = matchViewModel.prospectProfilePreview.primaryPhoto
                     
                     potentialMatch.name = firstProspect?.name ?? ""
                     potentialMatch.age = firstProspect?.age ?? -1
@@ -117,11 +126,12 @@ struct MatchView: View {
                     potentialMatch.photos = firstProspect?.photos ?? [Image?](repeating : nil, count : 8)
                     
                     // testing purposes for image
+                    /*
                     let profilePreview = matchViewModel.prospectProfilePreview
                     let photoData = profilePreview.primaryPhoto!
                     let photoUIimage = UIImage(data : photoData)!
                     potentialMatch.photos[0] = Image(uiImage: photoUIimage)
-
+                    */
                     
                     potentialMatch.wing = firstProspect?.wing ?? false
                 }
@@ -187,11 +197,11 @@ struct MatchView: View {
             
             let profile = self.matchViewModel.prospectProfile
             
-            do {
-                try await self.matchViewModel.loadProspectPreview()
-            } catch {
-                print("Can't get user's photos. Error: \(error)")
-            }
+//            do {
+//                try await self.matchViewModel.loadProspectPreview()
+//            } catch {
+//                print("Can't get user's photos. Error: \(error)")
+//            }
             
             return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: [firstPrompt, secondPrompt, thirdPrompt], answers: [firstResponse, secondResponse, thirdResponse], photos: [Image?](repeating : nil, count : 8), wing: false)
         }
