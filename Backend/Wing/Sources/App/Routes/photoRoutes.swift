@@ -18,7 +18,6 @@ func photoRoutes(_ app: Application) throws {
         do{
             try await photo.create(on: req.db)
         } catch {
-            // ******** CHANGE ERROR MESSAGE HERE ***********
             if(error.localizedDescription.contains("profile_previews_user_id_fkey")){
                 throw Error.notFoundwID("user", photo.userId)
             } else {
@@ -27,6 +26,7 @@ func photoRoutes(_ app: Application) throws {
         }
         return photo
     }
+    
     
     app.put("photo"){ req async throws -> Photo in
         let photo = try req.content.decode(Photo.self)
@@ -57,27 +57,25 @@ func photoRoutes(_ app: Application) throws {
         return photo
     }
     
-    app.get("photo", "userId", ":userId"){ req async throws -> Photo in
+    
+    app.get("photo", "userId", ":userId"){ req async throws -> [Photo] in
         
         guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {
              throw Error.nilId
         }
-        guard let photo = try await Photo.query(on: req.db)
+        let photos = try await Photo.query(on: req.db)
             .filter(\.$userId == userId)
-            .first()
-        else {
-            throw Error.notFoundwID("Profile Preview", userId)
-        }
+            .all()
+
         
-        return photo
+        return photos
         
     }
     
-    app.get("photo", "userId", "index", ":userId", ":index"){ req async throws -> [Photo] in
+    app.get("photo", "userId", "index", ":userId", ":index"){ req async throws -> Photo in
         
-        //empty array to store retreived photos
-        var photo = [Photo]()
+
         
         guard let indexMatch = Int16(req.parameters.get("index")!)
         else{
@@ -87,11 +85,11 @@ func photoRoutes(_ app: Application) throws {
         else {
              throw Error.nilId
         }//! forces decode to string, if empty no error
-        photo = try await Photo.query(on: req.db)
+        guard let photo = try await Photo.query(on: req.db)
             .filter(\.$userId == userId)
             .filter(\.$index == indexMatch)
             .all()
-        if(photo.isEmpty){
+        else{
             throw Error.photoNotFoundwIndex
         }
         return photo

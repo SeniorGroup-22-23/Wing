@@ -46,5 +46,6 @@ public func configure(_ app: Application) throws {
     try profilePreviewRoutes(app)
     try matchRoutes(app)
     try wingRoutes(app)
+    try photoRoutes(app)
 
 }
