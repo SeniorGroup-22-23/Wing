@@ -20,6 +20,7 @@ public func configure(_ app: Application) throws {
             ), as: .psql)
     }
     
+
     //increase max request payload size
     app.routes.defaultMaxBodySize = "500kb"
     
@@ -45,5 +46,6 @@ public func configure(_ app: Application) throws {
     try profilePreviewRoutes(app)
     try matchRoutes(app)
     try wingRoutes(app)
+    try photoRoutes(app)
 
 }
