@@ -198,7 +198,7 @@ class SignupViewModel: ObservableObject{
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let profilePreview = ProfilePreview(userId: self.user.id, username: self.username, name: self.name, primaryPhoto: self.imagesData[0] )
+        let profilePreview = ProfilePreview(userId: self.user.id, username: self.username, name: self.name, primaryPhoto: self.imagesData[0])
 
         urlRequest.httpBody = try? encoder.encode(profilePreview)
         
