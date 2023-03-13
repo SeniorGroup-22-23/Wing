@@ -126,12 +126,11 @@ struct MatchView: View {
                     potentialMatch.photos = firstProspect?.photos ?? [Image?](repeating : nil, count : 8)
                     
                     // testing purposes for image
-                    /*
+                    
                     let profilePreview = matchViewModel.prospectProfilePreview
                     let photoData = profilePreview.primaryPhoto!
                     let photoUIimage = UIImage(data : photoData)!
                     potentialMatch.photos[0] = Image(uiImage: photoUIimage)
-                    */
                     
                     potentialMatch.wing = firstProspect?.wing ?? false
                 }
@@ -257,6 +256,8 @@ struct LoadSlides : View {
         if (user.name != "") {
             user.photos[0]
                 .id(0)
+                .frame(width : 360, height : 475)
+                .cornerRadius(10)
             if (user.bio == "") {
                 fullImage(image: user.photos[1])
             } else {
