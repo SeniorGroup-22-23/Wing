@@ -20,6 +20,9 @@ public func configure(_ app: Application) throws {
             ), as: .psql)
     }
     
+    
+    app.routes.defaultMaxBodySize = "500kb"
+    
     //Migrations to run
     app.migrations.add(CreateUsers())
     app.migrations.add(CreatePrompts())

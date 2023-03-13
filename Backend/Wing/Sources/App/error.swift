@@ -17,6 +17,8 @@ enum Error {
     case profileNotFound
     case nilId
     case dupVal(String, String)
+    case nilIndex
+    case photoNotFoundwIndex
 }
 
 extension Error: AbortError {
@@ -34,6 +36,11 @@ extension Error: AbortError {
             return "Illegal nil ID."
         case .dupVal(let field, let val):
             return "Illegal \(field) value: \(val)."
+        case .nilIndex:
+            return "No photo for user with given index."
+        case .photoNotFoundwIndex:
+            return "No photo record found."
+            
         }
     }
     var status: HTTPStatus {
@@ -50,6 +57,10 @@ extension Error: AbortError {
             return .notFound
         case .dupVal:
             return .internalServerError
+        case .nilIndex:
+            return .notFound
+        case .photoNotFoundwIndex:
+            return .notFound
         }
     }
 }
