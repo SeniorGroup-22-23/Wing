@@ -4,7 +4,6 @@
 //
 //  Created by Nury Kim on 2022-11-29.
 //
-
 import SwiftUI
 
 struct FooterTab : View {
@@ -20,8 +19,6 @@ struct FooterTab : View {
                     Spacer()
                     LoadMessageBtn()
                 }
-                
-                
             }
         }
     }

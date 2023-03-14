@@ -7,32 +7,6 @@
 
 import SwiftUI
 
-//TODO: Remove previously defined struct
-class Friend: ObservableObject, Equatable {
-    let name: String
-    let username: String
-    let photo: String
-    
-    init(name: String, username: String, photo: String) {
-        self.name = name
-        self.username = username
-        self.photo = photo
-    }
-    
-    static func == (lhs: Friend, rhs: Friend) -> Bool {
-        return lhs.name == rhs.name && lhs.username == rhs.username && lhs.photo == rhs.photo
-    }
-}
-
-//TODO: Replace this list with real friends after endpoint implementation
-let friends: [Friend] = [
-    Friend(name: "Mike", username: "mikewing", photo: ""),
-    Friend(name: "Colin", username: "colinfindslove", photo: ""),
-    Friend(name: "Kathy", username: "kathyiscool", photo: ""),
-    Friend(name: "Jake", username: "jakeyyy", photo: ""),
-    Friend(name: "Hannah", username: "hannahforever", photo: "")
-]
-
 //TODO: can be replaced when merged into main finally
 struct LoadNoFriendsText : View {
     var body : some View {
@@ -50,11 +24,11 @@ struct LoadNoFriendsText : View {
     }
 }
 
-class SelectedFriend: ObservableObject {
-    @Published var selected: Friend?
+class SelectedPreview: ObservableObject {
+    @Published var selected: ProfilePreview?
     
-    func select(friend: Friend) {
-        self.selected = friend
+    func select(preview: ProfilePreview) {
+        self.selected = preview
     }
     func reset() {
         self.selected = nil
@@ -62,27 +36,29 @@ class SelectedFriend: ObservableObject {
 }
 
 struct LoadFriendsProfilesForPopup : View {
-    @EnvironmentObject var selectedFriend: SelectedFriend
+    
+    @ObservedObject var wingPopupViewModel: WingPopupViewModel = .method
+    @EnvironmentObject var selectedPreview: SelectedPreview
 
     var body : some View {
         ScrollView(.horizontal){
            LazyHStack{
-                ForEach(friends, id:\.name) { friend in
+               ForEach(wingPopupViewModel.friendProfilePreviews, id:\.userId) { preview in
                     VStack{
-                        Circle()
+                        Circle() //TODO: change this to preview.PrimaryPhoto
                             .fill(.white)
                             .frame(width: 45, height: 45)
                             .overlay(
                                 Circle()
-                                    .stroke(self.selectedFriend.selected == friend ? Color.red : Color.clear, lineWidth: 2)
+                                    .stroke(self.selectedPreview.selected?.userId == preview.userId ? Color.red : Color.clear, lineWidth: 2)
                             )
                             .onTapGesture {
-                                self.selectedFriend.select(friend: friend)
+                                self.selectedPreview.select(preview: preview)
                             }
-                        Text(friend.name)
+                        Text(preview.name!)
                             .font(.custom(FontManager.NotoSans.semiBold, size: 10.0))
                             .foregroundColor(Color("DarkGreen"))
-                        Text("@\(friend.username)")
+                        Text("@\(preview.username!)")
                             .font(.custom(FontManager.NotoSans.regular, size: 10.0))
                             .foregroundColor(Color("DarkGreen"))
                             .frame(width: 90)
@@ -91,22 +67,30 @@ struct LoadFriendsProfilesForPopup : View {
             }
         }
         .frame(width: 300, height: 90)
+        .onAppear{
+            Task {
+                try await wingPopupViewModel.getFriends() 
+                try await wingPopupViewModel.getProfilePreviews()
+            }
+        }
     }
 }
 
 
 struct LoadFriendsBoxForPopup : View {
-    @EnvironmentObject var selectedFriend: SelectedFriend
+    @EnvironmentObject var selectedPreview: SelectedPreview
+    @ObservedObject var wingPopupViewModel: WingPopupViewModel = .method
     
     var body : some View {
         ZStack{
             VStack{
-                if ((friends.count) == 0){
+                if (wingPopupViewModel.noFriends){
+                    //TODO: bug. when friend is added during sim (no frinds to 1 friend) it still does not load (works the other way when friend is removed)
                     LoadNoFriendsText()
                 }
-                else{
+                else {
                     LoadFriendsProfilesForPopup()
-                        .environmentObject(selectedFriend)
+                        .environmentObject(selectedPreview)
                 }
             }
         }
@@ -199,7 +183,12 @@ struct ModalPopUpView: View {
 struct WingPopUpView: View {
     
     @Environment(\.viewController) private var viewControllerHolder: UIViewController?
-    @StateObject var selectedFriend = SelectedFriend()
+    @StateObject var selectedPreview = SelectedPreview()
+    
+    @ObservedObject var wingPopupViewModel: WingPopupViewModel = .method
+    
+    //add match view model to get prospects userID for post wing
+    var prospectUserId = UUID(uuidString: "8acbe8c8-61ba-402f-8b53-d59e5b87dd3e")! //FOR NOW ONLY TODO: add match view model and use prospectId
     
     var body: some View {
         
@@ -212,7 +201,7 @@ struct WingPopUpView: View {
                 .foregroundColor(Color("DarkGrey"))
             
             LoadFriendsBoxForPopup()
-                .environmentObject(selectedFriend)
+                .environmentObject(selectedPreview)
             
             Divider()
                 .frame(width: 310, height: 2)
@@ -221,7 +210,7 @@ struct WingPopUpView: View {
             HStack{
                 Button(action: {
                     self.viewControllerHolder?.dismiss(animated: true, completion: nil)
-                    self.selectedFriend.reset()
+                    self.selectedPreview.reset()
                     
                 }) {
                     Text("Cancel")
@@ -236,14 +225,18 @@ struct WingPopUpView: View {
                 
                 Button(action: {
                     self.viewControllerHolder?.dismiss(animated: true, completion: nil)
-                    //Write code to send friend the profile
+                    Task {
+                        if(selectedPreview.selected != nil){
+                            try await wingPopupViewModel.wingUser(prospectId: prospectUserId, recipientId: selectedPreview.selected!.userId!) //TODO: change prospectUserId
+                        }
+                    }
                     
                 }) {
                     Text("Send")
+
                 }.foregroundColor(.black)
                     .padding(.horizontal, 55)
                     .padding(.vertical, 15)
-                    
             }
                 
         }
@@ -372,6 +365,6 @@ struct PopUpView_Previews: PreviewProvider {
         //ModalPopUpView(showingBlockAlert: showBlock())
         //ReportPopUpView(showingBlockAlert: showBlock())
         WingPopUpView()
-            .environmentObject(SelectedFriend())
+            .environmentObject(SelectedPreview())
     }
 }
