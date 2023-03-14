@@ -102,6 +102,12 @@ _Note: Difference in PUT is Request Body must include the photoId
 
 #### Error: 
 404 Not Found (Photo with given photoId does not exist)
+```json 
+{
+	"error": true,
+	"reason": "No Photo record found with ID: 2DF374E9-0BE4-4367-AD2A-4E93F6E3897E."
+}
+```
 
 #### Example:
 
@@ -129,6 +135,9 @@ _Note: Difference in PUT is Request Body must include the photoId
 
 #### Error: 
 404 Not Found (No photos with given userId does not exist)
+
+<img width="1015" alt="Screenshot 2023-03-13 at 10 25 12 PM" src="https://user-images.githubusercontent.com/77448773/224868354-4e4f2b3d-657a-4f98-94e8-d495dd2add50.png">
+
 
 #### Example: 
 
@@ -159,6 +168,12 @@ _NOTE: notice this is an array of photos._
 
 #### Error: 
 404 Not Found (No photo with given userId and/or index exists)
+```json
+{
+	"error": true,
+	"reason": "No photo record found."
+}
+```
 
 #### Example: 
 
