@@ -1,6 +1,6 @@
 # Photo API Endpoints 
 
-_NOTE: I am only including a sample of the JSON for one response object due to the large amount of characters in the photo field._
+_NOTE: I am only including one sample of the JSON for one response object due to the large amount of characters in the photo field._
 
 1. [Create New Photo Record for User](#createphoto) 
 2. [Update Existing Photo Record](#updatephoto) 
