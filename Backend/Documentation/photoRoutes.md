@@ -43,6 +43,6 @@
 
 #### Example
 
-<img width="731" alt="Screenshot 2023-03-13 at 9 27 43 PM" src="https://user-images.githubusercontent.com/77448773/224861296-b765cb02-aeca-4fe1-b698-c48326c58f64.png">
+<img width="696" alt="Screenshot 2023-03-13 at 9 32 00 PM" src="https://user-images.githubusercontent.com/77448773/224862053-678f6a26-a978-4a95-8b61-4d536376556a.png">
 
 ---
