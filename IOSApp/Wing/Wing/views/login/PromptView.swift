@@ -63,7 +63,7 @@ struct PromptView: View {
                         }
                         
                         var index = 0
-                        while(viewModel.imagesData[index] != nil){
+                        while(index < 8 && viewModel.imagesData[index] != nil){
                             try await viewModel.postPhoto(index: index)
                             index += 1
                         }
