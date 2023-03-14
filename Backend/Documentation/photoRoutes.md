@@ -56,7 +56,7 @@ _NOTE: I am only including one sample of the JSON for one response object due to
 ---
 
 ### Update Existing Photo Record <a name="updatephoto"></a>
-_Note: Difference in PUT is Request Body must include the photoId
+_NOTE: Difference in PUT is Request Body must include the photoId._
 
 #### URL:
 `/photo`
