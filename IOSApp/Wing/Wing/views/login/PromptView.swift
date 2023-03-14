@@ -61,6 +61,12 @@ struct PromptView: View {
                         if(!viewModel.ans3.isEmpty){
                             try await viewModel.setPromptResponse(n: 3)
                         }
+                        
+                        var index = 0
+                        while(index < 8 && viewModel.imagesData[index] != nil){
+                            try await viewModel.postPhoto(index: index)
+                            index += 1
+                        }
                     }
                 })
                 .disabled(viewModel.ans1.isEmpty)
