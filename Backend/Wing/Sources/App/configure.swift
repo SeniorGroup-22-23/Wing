@@ -22,7 +22,7 @@ public func configure(_ app: Application) throws {
     
 
     //increase max request payload size
-    app.routes.defaultMaxBodySize = "500kb"
+    app.routes.defaultMaxBodySize = "1000kb"
     
     //Migrations to run
     app.migrations.add(CreateUsers())
