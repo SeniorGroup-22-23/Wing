@@ -89,18 +89,7 @@ struct MatchView: View {
                                 }
                                 
                                 Task {
-                                    // get the next prospect's profile
-                                    let tempNewProspect = await getProspect()
-                                    
-                                    potentialMatch.name = tempNewProspect?.name ?? ""
-                                    potentialMatch.age = tempNewProspect?.age ?? -1
-                                    potentialMatch.occupation = tempNewProspect?.occupation ?? ""
-                                    potentialMatch.bio = tempNewProspect?.bio ?? ""
-                                    potentialMatch.prompts = tempNewProspect?.prompts ?? ["", "", ""]
-                                    potentialMatch.answers = tempNewProspect?.answers ?? ["", "", ""]
-                                    potentialMatch.photos = tempNewProspect?.photos ?? [Image?](repeating : nil, count : 8)
-                                    potentialMatch.wing = matchViewModel.wingLikeProspect
-                        
+                                    await loadProspectVariable()
                                 }
                             }
                         })
@@ -119,29 +108,38 @@ struct MatchView: View {
                         matchViewModel.primaryUserId = unwrappedID
                     }
                     try await matchViewModel.getProspects()
-                    
-                    let firstProspect = await getProspect()
-                    
-                    potentialMatch.name = firstProspect?.name ?? ""
-                    potentialMatch.age = firstProspect?.age ?? -1
-                    potentialMatch.occupation = firstProspect?.occupation ?? ""
-                    potentialMatch.bio = firstProspect?.bio ?? ""
-                    potentialMatch.prompts = firstProspect?.prompts ?? ["", "", ""]
-                    potentialMatch.answers = firstProspect?.answers ?? ["", "", ""]
-                    potentialMatch.photos = firstProspect?.photos ?? [Image?](repeating : nil, count : 8)
-                    
-                    // testing purposes for image
-                    
-                    let profilePreview = matchViewModel.prospectProfilePreview
-                    let photoData = profilePreview.primaryPhoto!
-                    let photoUIimage = UIImage(data : photoData)!
-                    potentialMatch.photos[0] = Image(uiImage: photoUIimage)
-                    
-                    potentialMatch.wing = firstProspect?.wing ?? false
+                }
+                
+                Task {
+                    await loadProspectVariable()
                 }
             }
             .environmentObject(potentialMatch)
         }.navigationBarBackButtonHidden(true)
+        
+    }
+    
+    func loadProspectVariable() async {
+        let firstProspect = await getProspect()
+        var counter = 0
+        
+        potentialMatch.name = firstProspect?.name ?? ""
+        potentialMatch.age = firstProspect?.age ?? -1
+        potentialMatch.occupation = firstProspect?.occupation ?? ""
+        potentialMatch.bio = firstProspect?.bio ?? ""
+        potentialMatch.prompts = firstProspect?.prompts ?? ["", "", ""]
+        potentialMatch.answers = firstProspect?.answers ?? ["", "", ""]
+        potentialMatch.wing = firstProspect?.wing ?? false
+        
+        print(matchViewModel.prospectPhotos.count)
+        
+        matchViewModel.prospectPhotos.forEach { pic in
+            let photoData = pic.photo!
+            let photoUI = UIImage(data: photoData)!
+            
+            potentialMatch.photos[counter] = Image(uiImage: photoUI)
+            counter += 1
+        }
         
     }
     
@@ -201,11 +199,11 @@ struct MatchView: View {
             
             let profile = self.matchViewModel.prospectProfile
             
-//            do {
-//                try await self.matchViewModel.loadProspectPreview()
-//            } catch {
-//                print("Can't get user's photos. Error: \(error)")
-//            }
+            do {
+                try await self.matchViewModel.loadProspectPhotos()
+            } catch {
+                print("Can't get user's photos. Error: \(error)")
+            }
             
             return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: [firstPrompt, secondPrompt, thirdPrompt], answers: [firstResponse, secondResponse, thirdResponse], photos: [Image?](repeating : nil, count : 8), wing: false)
         }
@@ -259,10 +257,12 @@ struct LoadSlides : View {
     
     var body : some View {
         if (user.name != "") {
-            user.photos[0]
-                .id(0)
+            user.photos[0]!
+                .resizable()
+                .scaledToFill()
                 .frame(width : 360, height : 475)
                 .cornerRadius(10)
+                .id(0)
             if (user.bio == "") {
                 fullImage(image: user.photos[1])
             } else {

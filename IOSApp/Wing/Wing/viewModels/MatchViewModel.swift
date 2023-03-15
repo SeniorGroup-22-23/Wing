@@ -24,7 +24,7 @@ class MatchViewModel: ObservableObject{
     // getting info about the next profile to load to swipe on
     @Published var prospectID: [UUID] = []
     @Published var prospectProfile: Profile = Profile()
-    @Published var prospectProfilePreview: ProfilePreview = ProfilePreview()
+    @Published var prospectPhotos: [Photo] = []
     
     @Published var promptResponses: [PromptResponse] = []
     @Published var prompt: Prompt = Prompt()
@@ -55,7 +55,7 @@ class MatchViewModel: ObservableObject{
             }
         }
         else{
-            print("prompts \(httpResponse.statusCode) error")
+            print("prompt responses \(httpResponse.statusCode) error")
             throw URLError(.badServerResponse)
         }
     }
@@ -123,15 +123,14 @@ class MatchViewModel: ObservableObject{
             
         }
         else{
-            print("prospects \(httpResponse.statusCode) error")
+            print("prospect profile \(httpResponse.statusCode) error")
             throw URLError(.badServerResponse)
         }
 
     }
 
-    //TODO: once the photos stuff is figured out
-    func loadProspectPreview() async throws {
-        let url = URL(string: baseURL + "/profilePreview/userId/\(self.prospectProfile.userId ?? UUID())")!
+    func loadProspectPhotos() async throws {
+        let url = URL(string: baseURL + "/photo/userId/\(self.prospectProfile.userId ?? UUID())")!
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -141,13 +140,13 @@ class MatchViewModel: ObservableObject{
         guard let httpResponse = response as? HTTPURLResponse else { return }
         
         if(httpResponse.statusCode == 200){
-            let decodedUsers = try JSONDecoder().decode(ProfilePreview.self, from: data)
+            let decodedPhotos = try JSONDecoder().decode([Photo].self, from: data)
             DispatchQueue.main.async {
-                self.prospectProfilePreview = decodedUsers
+                self.prospectPhotos = decodedPhotos
             }
         }
         else{
-            print("prospect profile preview \(httpResponse.statusCode) error")
+            print("prospect profile photos \(httpResponse.statusCode) error")
             throw URLError(.badServerResponse)
         }
     }
@@ -194,7 +193,7 @@ class MatchViewModel: ObservableObject{
             }
         }
         else{
-            print("/wing/like/ \(httpResponse.statusCode) error")
+            print("wing like \(httpResponse.statusCode) error")
             throw URLError(.badServerResponse)
         }
     }
