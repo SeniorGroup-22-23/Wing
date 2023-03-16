@@ -87,9 +87,9 @@ struct MatchView: View {
                                         matchPopUp = true
                                     }
                                 }
-                                
+                        
                                 Task {
-                                    await loadProspectVariable()
+                                    await loadProspectVariable(prospect: getProspect())
                                 }
                             }
                         })
@@ -107,40 +107,36 @@ struct MatchView: View {
                     if let unwrappedID = signupViewModel.user.id {
                         matchViewModel.primaryUserId = unwrappedID
                     }
+                    // load all of the prospects of the user
                     try await matchViewModel.getProspects()
+                    
+                    await loadProspectVariable(prospect: getProspect())
                 }
                 
-                Task {
-                    await loadProspectVariable()
-                }
             }
             .environmentObject(potentialMatch)
         }.navigationBarBackButtonHidden(true)
         
     }
     
-    func loadProspectVariable() async {
-        let firstProspect = await getProspect()
+    func loadProspectVariable(prospect: PotentialMatch?) async {
         var counter = 0
+         
+        potentialMatch.name = prospect?.name ?? ""
+        potentialMatch.age = prospect?.age ?? -1
+        potentialMatch.occupation = prospect?.occupation ?? ""
+        potentialMatch.bio = prospect?.bio ?? ""
+        potentialMatch.prompts = prospect?.prompts ?? ["", "", ""]
+        potentialMatch.answers = prospect?.answers ?? ["", "", ""]
+        potentialMatch.wing = prospect?.wing ?? false
         
-        potentialMatch.name = firstProspect?.name ?? ""
-        potentialMatch.age = firstProspect?.age ?? -1
-        potentialMatch.occupation = firstProspect?.occupation ?? ""
-        potentialMatch.bio = firstProspect?.bio ?? ""
-        potentialMatch.prompts = firstProspect?.prompts ?? ["", "", ""]
-        potentialMatch.answers = firstProspect?.answers ?? ["", "", ""]
-        potentialMatch.wing = firstProspect?.wing ?? false
-        
-        print(matchViewModel.prospectPhotos.count)
-        
+        // loading the prospect's photos
         matchViewModel.prospectPhotos.forEach { pic in
-            let photoData = pic.photo!
-            let photoUI = UIImage(data: photoData)!
+            let photoUI = UIImage(data: pic.photo!)!
             
             potentialMatch.photos[counter] = Image(uiImage: photoUI)
             counter += 1
         }
-        
     }
     
     func getProspect() async -> PotentialMatch? {
