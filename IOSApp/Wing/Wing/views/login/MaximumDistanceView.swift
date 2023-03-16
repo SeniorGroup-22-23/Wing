@@ -57,7 +57,7 @@ struct MaximumDistanceView: View {
                     .offset(y:20)
                 Spacer()
                 if let location = locationManager.location {
-                    Text("Your location: \(location.latitude), \(location.longitude)")
+                    Spacer()
                         .task{
                             viewModel.currLatitude = location.latitude
                             viewModel.currLongitude = location.longitude

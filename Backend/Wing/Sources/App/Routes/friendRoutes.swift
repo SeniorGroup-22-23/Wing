@@ -76,6 +76,26 @@ func friendRoutes(_ app: Application) throws {
         return profilePreviews
     }
     
+    //Get Friendships (returns array of friendship structs)
+    app.get("friendships", ":userId"){ req async throws -> [Friendship] in
+        guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
+        else {
+             throw Error.nilId
+        }
+        
+        let friends1 = try await Friendship.query(on: req.db) //get any friends where userId was respondent & accepted
+            .filter(\.$respondentId == userId)
+            .filter(\.$status == 2)
+            .all()
+        
+        let friends2 = try await Friendship.query(on: req.db) //get any friends where userId was requester & respondent accepted
+            .filter(\.$requesterId == userId)
+            .filter(\.$status == 2)
+            .all()
+        
+        return friends1 + friends2
+    }
+    
     app.get("friendRequests", ":userId"){ req async throws -> [Friendship] in
         guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
         else {

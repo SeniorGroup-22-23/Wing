@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProfilePreview: Codable{
+struct ProfilePreview: Codable, Identifiable{
     
     var id: UUID?
     var userId: UUID?

@@ -43,7 +43,7 @@ struct LoginView : View {
                 .background(.white)
                 .padding(.bottom, 40)
                 .frame(width: 300)
-            NavigationLink(destination : HomePageView().navigationBarBackButtonHidden(true)){
+            NavigationLink(destination : WingView().navigationBarBackButtonHidden(true)){
                 ButtonContent()
             }
             .disabled(!viewModel.isValid)
