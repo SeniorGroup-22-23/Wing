@@ -3,7 +3,7 @@
 //  Wing
 //
 //  Created by Nury Kim on 2022-12-02.
-//
+//  
 
 import SwiftUI
 
@@ -253,11 +253,7 @@ struct LoadSlides : View {
     
     var body : some View {
         if (user.name != "") {
-            user.photos[0]!
-                .resizable()
-                .scaledToFill()
-                .frame(width : 360, height : 475)
-                .cornerRadius(10)
+            fullImage(image: user.photos[0])
                 .id(0)
             if (user.bio == "") {
                 fullImage(image: user.photos[1])
@@ -269,7 +265,7 @@ struct LoadSlides : View {
             }
             
             ForEach (0..<3) { i in
-                if (user.photos[i+2] == nil) {
+                if (user.photos[i+2] != nil) {
                     if (user.prompts[i] != "" && user.answers[i] != "") {
                         if (i % 2 == 0) {
                             imageTop(num: i)
@@ -287,7 +283,7 @@ struct LoadSlides : View {
             }
             
             ForEach (5..<8) { i in
-                if (user.photos[i] == nil) {
+                if (user.photos[i] != nil) {
                     fullImage(image: user.photos[i])
                 }
             }
@@ -310,10 +306,11 @@ struct LoadSlides : View {
     
     func fullImage(image : Image?) -> some View {
         // TODO : change to image once endpoints ready
-        return Rectangle()
-                .fill(Color("DarkGreen"))
-                .frame(width : 360, height : 475)
-                .cornerRadius(10)
+        return image!
+            .resizable()
+            .scaledToFill()
+            .frame(width : 360, height : 475)
+            .cornerRadius(10)
     }
     
     func fullText(prompt : String, ans : String) -> some View {
@@ -350,8 +347,9 @@ struct LoadSlides : View {
     
     func splitImage(image : Image?) -> some View {
         // TODO : change to image once endpoints ready
-        return Rectangle()
-            .fill(Color("DarkGreen"))
+        return image!
+                .resizable()
+                .scaledToFill()
                 .frame(width : 360, height : 345)
                 .cornerRadius(10)
     }
