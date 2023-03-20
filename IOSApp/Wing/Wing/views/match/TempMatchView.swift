@@ -29,44 +29,30 @@ class PotentialMatch : ObservableObject {
     }
 }
 
-class showBlock: ObservableObject {
-    @Published var blockAlert = false
-    @Published var bothAlert = false
-    @Published var reportAlert = false
-}
-
 struct MatchView: View {
     @State private var numProspects = 0
     @State private var matchPopUp = false
     @ObservedObject var signupViewModel: SignupViewModel = .method
     @ObservedObject var matchViewModel: MatchViewModel = .method
     @StateObject var potentialMatch = PotentialMatch(name: "", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
-    @ObservedObject var blockReportViewModel: BlockReportViewModel = .method
-    @StateObject var showingBlockAlert = showBlock()
-    
-    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
-    
+
     var body: some View {
         ZStack {
             Color("MainGreen")
                 .ignoresSafeArea()
             VStack {
                 HeaderTab()
-                if ($showingBlockAlert.bothAlert.wrappedValue == true && $showingBlockAlert.blockAlert.wrappedValue == false){
-                    let _ = self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
-                        ReportPopUpView(showingBlockAlert: showingBlockAlert)
-                    }
-                }
                 
                 ScrollViewReader { value in
                     VStack {
                         LoadNextUser()
-                        
+                    
                         ScrollView(.horizontal) {
                             HStack {
                                 LoadSlides()
                             }
                             .padding(.leading)
+                            .padding(.trailing)
                         }
                         /*
                          check if matchPopUp is true :
@@ -108,77 +94,12 @@ struct MatchView: View {
                             }
                         })
                     )
-                    .simultaneousGesture(
-                        TapGesture(count: 2)
-                            .onEnded { _ in
-                                //Double Tap gesture
-                                self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
-                                    WingPopUpView()
-                                }
-                            }
-                    )
-                    .simultaneousGesture(
-                        LongPressGesture()
-                            .onEnded { _ in
-                                self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
-                                    ModalPopUpView(showingBlockAlert: showingBlockAlert)
-                                }
-                            }
-                    )
-                    .highPriorityGesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
-                        .onEnded({ value in
-                            let horizontalAmount = value.translation.width
-                            let verticalAmount = value.translation.height
-                            if abs(verticalAmount) > abs(horizontalAmount) {
-                                print(verticalAmount < 0 ? "up swipe" : "down swipe")
-                                
-                                potentialMatch.name = "Nury"
-                                potentialMatch.age = 23
-                                potentialMatch.occupation = "Software Engineer"
-                                potentialMatch.bio = "Hey this is my bio!"
-                                potentialMatch.prompts = ["Who's your celeb crush?", "What's your favourite sport?", "What's your favourite animal?"]
-                                potentialMatch.answers = ["Brad Pitt", "Football!!", "dogsss"]
-                            }
-                        })
-                    )
-                    .environmentObject(potentialMatch)
                     .onChange(of: potentialMatch.name) { _ in
                         value.scrollTo(0, anchor: .trailing)
                     }
-                    HStack{
-                        Text("")
-                            .alert(isPresented:$showingBlockAlert.blockAlert) {
-                                Alert(
-                                    title: Text("Block this user?"),
-                                    message: Text("We want to ensure a safe and supportive user experience at Wing. Block any user that you would not like to see on the app."),
-                                    primaryButton: .destructive(Text("Block")) {
-                                        $showingBlockAlert.blockAlert.wrappedValue = false
-                                        print("Blocking...")
-                                        Task{
-                                            try await blockReportViewModel.blockUser(blockedUserId: UUID(uuidString: "28ff7407-e6b2-44e7-8fb6-eb0483fa12cf")!, reported: false, issue: 0) //TODO:  change so correct UUID is passed in (should always be false and 0) (potentialmatch.userId)
-                                        }
-                                    },
-                                    secondaryButton: .cancel()
-                                )
-                            }
-                            .hidden()
-                        Text("")
-                            .alert(isPresented:$showingBlockAlert.reportAlert) {
-                                Alert(
-                                    title: Text("Your report has been submitted and will be reviewed."),
-                                    message: Text("Thank you for keeping Wing safe."),
-                                    dismissButton: .default(Text("OK")) {
-                                        print("Reporting...")
-                                        Task{
-                                            try await blockReportViewModel.blockUser(blockedUserId: UUID(uuidString: "28ff7407-e6b2-44e7-8fb6-eb0483fa12cf")!, reported: true, issue: blockReportViewModel.issue) //TODO: need to change so correct UUID is passed in (potentialmatch.userId)
-                                        }
-                                    }
-                                )
-                            }
-                            .hidden()
-                    }
                 }
                 CheckNoProspects()
+                
                 FooterTab()
             }
             .onAppear {
@@ -195,6 +116,7 @@ struct MatchView: View {
             }
             .environmentObject(potentialMatch)
         }.navigationBarBackButtonHidden(true)
+        
     }
     
     func loadProspectVariable(prospect: PotentialMatch?) async {
@@ -432,6 +354,7 @@ struct LoadSlides : View {
                 .cornerRadius(10)
     }
 }
+
 
 struct MatchView_Previews: PreviewProvider {
     static var previews: some View {
