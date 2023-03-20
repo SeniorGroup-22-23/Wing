@@ -125,26 +125,7 @@ struct MatchView: View {
                                 }
                             }
                     )
-                    .highPriorityGesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
-                        .onEnded({ value in
-                            let horizontalAmount = value.translation.width
-                            let verticalAmount = value.translation.height
-                            if abs(verticalAmount) > abs(horizontalAmount) {
-                                print(verticalAmount < 0 ? "up swipe" : "down swipe")
-                                
-                                potentialMatch.name = "Nury"
-                                potentialMatch.age = 23
-                                potentialMatch.occupation = "Software Engineer"
-                                potentialMatch.bio = "Hey this is my bio!"
-                                potentialMatch.prompts = ["Who's your celeb crush?", "What's your favourite sport?", "What's your favourite animal?"]
-                                potentialMatch.answers = ["Brad Pitt", "Football!!", "dogsss"]
-                            }
-                        })
-                    )
-                    .environmentObject(potentialMatch)
-                    .onChange(of: potentialMatch.name) { _ in
-                        value.scrollTo(0, anchor: .trailing)
-                    }
+                    
                     HStack{
                         Text("")
                             .alert(isPresented:$showingBlockAlert.blockAlert) {
@@ -155,7 +136,7 @@ struct MatchView: View {
                                         $showingBlockAlert.blockAlert.wrappedValue = false
                                         print("Blocking...")
                                         Task{
-                                            try await blockReportViewModel.blockUser(blockedUserId: UUID(uuidString: "28ff7407-e6b2-44e7-8fb6-eb0483fa12cf")!, reported: false, issue: 0) //TODO:  change so correct UUID is passed in (should always be false and 0) (potentialmatch.userId)
+                                            try await blockReportViewModel.blockUser(blockedUserId: matchViewModel.prospectProfile.userId!, reported: false, issue: 0)
                                         }
                                     },
                                     secondaryButton: .cancel()
@@ -170,7 +151,7 @@ struct MatchView: View {
                                     dismissButton: .default(Text("OK")) {
                                         print("Reporting...")
                                         Task{
-                                            try await blockReportViewModel.blockUser(blockedUserId: UUID(uuidString: "28ff7407-e6b2-44e7-8fb6-eb0483fa12cf")!, reported: true, issue: blockReportViewModel.issue) //TODO: need to change so correct UUID is passed in (potentialmatch.userId)
+                                            try await blockReportViewModel.blockUser(blockedUserId: matchViewModel.prospectProfile.userId!, reported: true, issue: blockReportViewModel.issue)
                                         }
                                     }
                                 )
@@ -383,7 +364,6 @@ struct LoadSlides : View {
     }
     
     func fullImage(image : Image?) -> some View {
-        // TODO : change to image once endpoints ready
         return image!
             .resizable()
             .scaledToFill()
@@ -424,7 +404,6 @@ struct LoadSlides : View {
     }
     
     func splitImage(image : Image?) -> some View {
-        // TODO : change to image once endpoints ready
         return image!
                 .resizable()
                 .scaledToFill()
