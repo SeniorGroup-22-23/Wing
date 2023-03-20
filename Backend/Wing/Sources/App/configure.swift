@@ -20,6 +20,10 @@ public func configure(_ app: Application) throws {
             ), as: .psql)
     }
     
+
+    //increase max request payload size
+    app.routes.defaultMaxBodySize = "1000kb"
+    
     //Migrations to run
     app.migrations.add(CreateUsers())
     app.migrations.add(CreatePrompts())
@@ -31,7 +35,6 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateWings())
     app.migrations.add(CreateSwipes())
     app.migrations.add(CreateMatches())
-    app.migrations.add(CreateMessages())
     app.migrations.add(CreateBlocks())
 
     
@@ -43,5 +46,6 @@ public func configure(_ app: Application) throws {
     try profilePreviewRoutes(app)
     try matchRoutes(app)
     try wingRoutes(app)
+    try photoRoutes(app)
 
 }

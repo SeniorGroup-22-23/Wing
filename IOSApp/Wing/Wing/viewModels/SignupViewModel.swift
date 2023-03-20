@@ -199,7 +199,7 @@ class SignupViewModel: ObservableObject{
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let profilePreview = ProfilePreview(userId: self.user.id, username: self.username, name: self.name, primaryPhoto: Data() /*self.imagesData[0]*/ )
+        let profilePreview = ProfilePreview(userId: self.user.id, username: self.username, name: self.name, primaryPhoto: self.imagesData[0])
 
         urlRequest.httpBody = try? encoder.encode(profilePreview)
         
@@ -384,4 +384,30 @@ class SignupViewModel: ObservableObject{
 //
 //        }
     }
+    
+    
+    func postPhoto(index: Int) async throws{
+
+            let url = URL(string: baseURL + "/photo")!
+
+            var urlRequest = URLRequest(url: url)
+
+            urlRequest.httpMethod = "POST"
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            let photo = Photo(userId: self.user.id, photo: self.imagesData[index], index: Int16(index))
+
+
+            urlRequest.httpBody = try? JSONEncoder().encode(photo)
+
+            let (_,response) = try await URLSession.shared.data(for: urlRequest)
+
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+
+            if(httpResponse.statusCode != 200){
+                print("error posting photo \(index)")
+            }
+        }
+    
+    
 }

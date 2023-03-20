@@ -4,7 +4,8 @@
 1. [Create Friendship](#createfriendship) 
 2. [Edit Friendship](#editfriendship) 
 1. [Get Friends](#getfriends) 
-2. [Get Friend Requests](#getfriendrequests)
+2. [Get Friendships](#getfriendships)
+3. [Get Friend Requests](#getfriendrequests)
 
 ---
 
@@ -146,6 +147,57 @@ _Note: If no friends are found empty array is returned._
 <img width="1088" alt="Screenshot 2023-01-05 at 4 23 54 PM" src="https://user-images.githubusercontent.com/80468156/210873211-2c252b73-cee5-4219-9187-a6e366abf445.png">
 
 <img width="1088" alt="Screenshot 2023-01-05 at 4 24 01 PM" src="https://user-images.githubusercontent.com/80468156/210873227-371d409c-4e09-45dd-a0a0-6f7b084edf26.png">
+
+---
+
+### Get Friendships <a name="getfriendships"></a>
+Returns an array of friendships (friend records with status 2) where the given user Id is either the resquester or respondent. If no friendships are found empty array is returned.        
+
+#### URL:   
+`/friendships/:userId`
+
+#### Method:
+`GET` 
+
+#### URL Parameters:
+###### :userId
+UUID   
+User ID of the user whos friends you would like to retrieve. 
+
+#### Success Response:   
+_Note: If no friends are found empty array is returned._   
+200 OK
+```json
+[
+	{
+		"status": 2,
+		"id": "2092F234-8691-45F6-92E7-4F23AB3D4209",
+		"respondentId": "28FF7407-E6B2-44E7-8FB6-EB0483FA12CF",
+		"requesterId": "1D6810D1-812C-4C25-A621-3FB111AC901B"
+	},
+	{
+		"status": 2,
+		"id": "5F8DC36F-001C-4A40-A8CB-B38948411A0D",
+		"respondentId": "8ACBE8C8-61BA-402F-8B53-D59E5B87DD3E",
+		"requesterId": "1D6810D1-812C-4C25-A621-3FB111AC901B"
+	}
+]
+```
+
+#### Error Response:  
+404 Not Found (invalid UUID format)
+```json
+{
+	"error": true,
+	"reason": "Illegal nil ID."
+}
+```
+
+#### Example    
+
+<img width="1361" alt="Screenshot 2023-03-10 at 8 56 17 AM" src="https://user-images.githubusercontent.com/80468156/224322337-d61c3608-9fd7-4315-b28b-b4d588f606fc.png">
+
+<img width="1361" alt="Screenshot 2023-03-10 at 8 55 19 AM" src="https://user-images.githubusercontent.com/80468156/224322362-12e98031-da65-45c7-b4b7-bd3307d835b8.png">
 
 ---
 
