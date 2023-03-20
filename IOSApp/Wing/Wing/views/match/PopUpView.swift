@@ -45,8 +45,11 @@ struct LoadFriendsProfilesForPopup : View {
            LazyHStack{
                ForEach(wingPopupViewModel.friendProfilePreviews, id:\.userId) { preview in
                     VStack{
-                        Circle() //TODO: change this to preview.PrimaryPhoto
-                            .fill(.white)
+                        var photoData = selectedPreview.selected!.primaryPhoto!
+                        var photoUI = UIImage(data: photoData)!
+                        var mainPhoto = Image(uiImage: photoUI)
+                        
+                        mainPhoto
                             .frame(width: 45, height: 45)
                             .overlay(
                                 Circle()
