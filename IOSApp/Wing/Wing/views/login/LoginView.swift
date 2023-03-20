@@ -14,6 +14,7 @@ struct LoginView : View {
     
     @ObservedObject var viewModel: SignupViewModel = .method
     @State private var selection: Bool = false
+    @State private var errorMessage = ""
     
     var body: some View {
         VStack {
@@ -43,10 +44,18 @@ struct LoginView : View {
                 .background(.white)
                 .padding(.bottom, 40)
                 .frame(width: 300)
-            NavigationLink(destination : MatchView().navigationBarBackButtonHidden(true)){
+            NavigationLink(destination : MatchView().navigationBarBackButtonHidden(true),
+                                       isActive: Binding(
+                                        get: { viewModel.isValid },
+                                        set: {_,_ in
+                                            if !viewModel.isValid {
+                                            errorMessage = "Incorrect credentials!"
+                                            }
+                                        }
+                                       )
+            ){
                 ButtonContent()
             }
-            .disabled(!viewModel.isValid)
             .simultaneousGesture(TapGesture().onEnded{
                 Task{
                     if(viewModel.credential.contains("@")){
@@ -58,6 +67,14 @@ struct LoginView : View {
                     
                 }
             })
+            if !viewModel.isValid {
+                VStack {
+                    Text(errorMessage)
+                    .foregroundColor(.red)
+                    .padding()
+                    Spacer()
+                }
+            }
         }
         .background(
             BackgroundLogo())
