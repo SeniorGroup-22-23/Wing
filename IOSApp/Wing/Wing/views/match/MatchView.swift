@@ -136,6 +136,13 @@ struct MatchView: View {
                                         Task{
                                             try await blockReportViewModel.blockUser(blockedUserId: matchViewModel.prospectProfile.userId!, reported: false, issue: 0)
                                         }
+                                        Task {
+                                            matchViewModel.swipeType = 2
+                                            try await matchViewModel.postSwipe()
+                                        }
+                                        Task {
+                                            await loadProspectVariable(prospect: getProspect())
+                                        }
                                     },
                                     secondaryButton: .cancel()
                                 )
@@ -150,6 +157,13 @@ struct MatchView: View {
                                         print("Reporting...")
                                         Task{
                                             try await blockReportViewModel.blockUser(blockedUserId: matchViewModel.prospectProfile.userId!, reported: true, issue: blockReportViewModel.issue)
+                                        }
+                                        Task {
+                                                matchViewModel.swipeType = 2
+                                                try await matchViewModel.postSwipe()
+                                        }
+                                        Task {
+                                            await loadProspectVariable(prospect: getProspect())
                                         }
                                     }
                                 )
