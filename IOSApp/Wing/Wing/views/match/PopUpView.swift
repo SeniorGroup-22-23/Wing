@@ -45,11 +45,14 @@ struct LoadFriendsProfilesForPopup : View {
            LazyHStack{
                ForEach(wingPopupViewModel.friendProfilePreviews, id:\.userId) { preview in
                     VStack{
-                        var photoData = selectedPreview.selected!.primaryPhoto!
-                        var photoUI = UIImage(data: photoData)!
-                        var mainPhoto = Image(uiImage: photoUI)
+                        let photoData = preview.primaryPhoto!
+                        let photoUI = UIImage(data: photoData)!
+                        let mainPhoto = Image(uiImage: photoUI)
                         
                         mainPhoto
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
                             .frame(width: 45, height: 45)
                             .overlay(
                                 Circle()
@@ -227,7 +230,6 @@ struct WingPopUpView: View {
                 .padding(10)
             Text("Send this profile to a friend")
                 .font(.custom(FontManager.NotoSans.semiBold, size : 18.0))
-                .foregroundColor(Color("DarkGrey"))
             
             LoadFriendsBoxForPopup()
                 .environmentObject(selectedPreview)
