@@ -12,7 +12,6 @@
 7. [Get Profile by UserID](#getprofile)
 8. [Get Profile by ID](#getprofileid)
 9. [Edit Profile](#editprofile)
-12. [Delete User] TODO
    
 
 
