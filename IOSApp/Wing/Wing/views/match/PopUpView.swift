@@ -128,6 +128,33 @@ extension UIViewController {
     }
 }
 
+struct MatchPopUpView: View {
+    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
+    
+    var body: some View {
+        VStack(alignment: .center) {
+            Text("It's a MATCH!")
+                .font(.custom(FontManager.NotoSans.semiBold, size : 24.0))
+                .padding(.top)
+            
+            Text("Check the Messages tab\nto browse your matches.")
+                .font(.custom(FontManager.NotoSans.regular, size : 16.0))
+                .padding(10)
+            
+            Divider()
+                .frame(width: 300, height: 2)
+                .overlay(Color("DarkGrey"))
+                .offset(y: 15)
+            Button(action: {
+                self.viewControllerHolder?.dismiss(animated: true, completion: nil)
+            }) {
+                Text("OK")
+            }.foregroundColor(.black).padding(20)
+        }.background(.white.opacity(0.8)).clipShape(RoundedRectangle(cornerRadius: 10))
+            .shadow(radius: 3)
+    }
+}
+
 struct ModalPopUpView: View {
     @ObservedObject var showingBlockAlert: showBlock
     @Environment(\.viewController) private var viewControllerHolder: UIViewController?

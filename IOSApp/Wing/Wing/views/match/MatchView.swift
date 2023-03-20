@@ -37,7 +37,6 @@ class showBlock: ObservableObject {
 
 struct MatchView: View {
     @State private var numProspects = 0
-    @State private var matchPopUp = false
     @ObservedObject var signupViewModel: SignupViewModel = .method
     @ObservedObject var matchViewModel: MatchViewModel = .method
     @StateObject var potentialMatch = PotentialMatch(name: "", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
@@ -67,15 +66,9 @@ struct MatchView: View {
                                 LoadSlides()
                             }
                             .padding(.leading)
+                            .padding(.trailing)
                         }
-                        /*
-                         check if matchPopUp is true :
-                         self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
-                            MatchPopUpView()
-                        }
-                         
-                         matchPopUp false
-                         */
+                        
                     }
                     .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
                         .onEnded({ value in
@@ -98,7 +91,9 @@ struct MatchView: View {
                                     try await matchViewModel.postSwipe()
                                     
                                     if (matchViewModel.match) {
-                                        matchPopUp = true
+                                        self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                                            MatchPopUpView()
+                                        }
                                     }
                                 }
                         
@@ -108,7 +103,7 @@ struct MatchView: View {
                             }
                         })
                     )
-                    .simultaneousGesture(
+                    .gesture(
                         TapGesture(count: 2)
                             .onEnded { _ in
                                 //Double Tap gesture
@@ -117,7 +112,7 @@ struct MatchView: View {
                                 }
                             }
                     )
-                    .simultaneousGesture(
+                    .gesture(
                         LongPressGesture()
                             .onEnded { _ in
                                 self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
@@ -125,6 +120,9 @@ struct MatchView: View {
                                 }
                             }
                     )
+                    .onChange(of: potentialMatch.name) { _ in
+                        value.scrollTo(0, anchor: .trailing)
+                    }
                     
                     HStack{
                         Text("")
@@ -159,6 +157,7 @@ struct MatchView: View {
                             .hidden()
                     }
                 }
+                
                 CheckNoProspects()
                 FooterTab()
             }
