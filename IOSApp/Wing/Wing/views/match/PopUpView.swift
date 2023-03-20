@@ -213,9 +213,8 @@ struct WingPopUpView: View {
     @StateObject var selectedPreview = SelectedPreview()
     
     @ObservedObject var wingPopupViewModel: WingPopupViewModel = .method
+    @ObservedObject var matchViewModel: MatchViewModel = .method
     
-    //add match view model to get prospects userID for post wing
-    var prospectUserId = UUID(uuidString: "8acbe8c8-61ba-402f-8b53-d59e5b87dd3e")! //FOR NOW ONLY TODO: add match view model and use prospectId
     
     var body: some View {
         
@@ -254,7 +253,7 @@ struct WingPopUpView: View {
                     self.viewControllerHolder?.dismiss(animated: true, completion: nil)
                     Task {
                         if(selectedPreview.selected != nil){
-                            try await wingPopupViewModel.wingUser(prospectId: prospectUserId, recipientId: selectedPreview.selected!.userId!) //TODO: change prospectUserId
+                            try await wingPopupViewModel.wingUser(prospectId: matchViewModel.prospectProfile.userId!, recipientId: selectedPreview.selected!.userId!)
                         }
                     }
                     

@@ -33,9 +33,7 @@ class WingPopupViewModel: ObservableObject{
     
     func getFriends() async throws {
 
-        //let url = URL(string: baseURL + "/friends/\(String(describing: SignupModel.user.id))")! //TODO: keep this one
-        let url = URL(string: baseURL + "/friends/1d6810d1-812c-4c25-a621-3fb111ac901b")! //TODO: remove (this was just for testing)
-
+        let url = URL(string: baseURL + "/friends/\(String(describing: SignupModel.user.id))")!
         var urlRequest = URLRequest(url: url)
 
         urlRequest.httpMethod = "GET"

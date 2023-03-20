@@ -14,7 +14,6 @@ class BlockReportViewModel: ObservableObject{
     @ObservedObject var SignupModel: SignupViewModel = .method //To use data collected in sign up view model
     static var method : BlockReportViewModel = BlockReportViewModel()
     
-    //@Published var id: UUID = UUID(uuidString: "1d6810d1-812c-4c25-a621-3fb111ac901b")! //for  testing 
     @Published var issue: Int16 = 0
     
     var baseURL = "http://127.0.0.1:8080"
