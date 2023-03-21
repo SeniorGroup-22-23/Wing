@@ -228,17 +228,21 @@ class SignupViewModel: ObservableObject{
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         var ans = String()
+        var currPrompt = Prompt()
         if(n == 1){
             ans = self.ans1
+            currPrompt = self.prompt1
         }
         else if(n == 2){
             ans = self.ans2
+            currPrompt = self.prompt2
         }
         else{
             ans = self.ans3
+            currPrompt = self.prompt3
         }
         
-        let promptResponse = PromptResponse(userId: self.user.id, promptId: self.prompt1.id, responseText: ans)
+        let promptResponse = PromptResponse(userId: self.user.id, promptId: currPrompt.id, responseText: ans)
         
         urlRequest.httpBody = try? JSONEncoder().encode(promptResponse)
 
