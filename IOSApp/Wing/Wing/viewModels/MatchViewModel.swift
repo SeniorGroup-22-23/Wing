@@ -142,6 +142,7 @@ class MatchViewModel: ObservableObject{
         if(httpResponse.statusCode == 200){
             let decodedPhotos = try JSONDecoder().decode([Photo].self, from: data)
             DispatchQueue.main.async {
+                self.prospectPhotos = []
                 self.prospectPhotos = decodedPhotos
             }
         }
