@@ -130,6 +130,8 @@ class MatchViewModel: ObservableObject{
     }
 
     func loadProspectPhotos() async throws {
+        self.prospectPhotos = [] //empty previous prospects photos
+        
         let url = URL(string: baseURL + "/photo/userId/\(self.prospectProfile.userId ?? UUID())")!
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
@@ -142,7 +144,6 @@ class MatchViewModel: ObservableObject{
         if(httpResponse.statusCode == 200){
             let decodedPhotos = try JSONDecoder().decode([Photo].self, from: data)
             DispatchQueue.main.async {
-                self.prospectPhotos = []
                 self.prospectPhotos = decodedPhotos
             }
         }
