@@ -193,7 +193,18 @@ struct MatchView: View {
     
     func loadProspectVariable(prospect: PotentialMatch?) async {
         var counter = 0
-         
+        
+        // resetting the potentialMatch variable first
+        potentialMatch.name = ""
+        potentialMatch.age = -1
+        potentialMatch.occupation = ""
+        potentialMatch.bio = ""
+        potentialMatch.prompts = ["", "", ""]
+        potentialMatch.answers = ["", "", ""]
+        potentialMatch.wing = false
+        potentialMatch.photos = [Image?](repeating : nil, count : 8)
+        
+        // now actually setting the variable to the correct prospect
         potentialMatch.name = prospect?.name ?? ""
         potentialMatch.age = prospect?.age ?? -1
         potentialMatch.occupation = prospect?.occupation ?? ""
