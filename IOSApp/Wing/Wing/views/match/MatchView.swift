@@ -273,7 +273,7 @@ struct MatchView: View {
                 print("Can't get user's photos. Error: \(error)")
             }
             
-            return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: [firstPrompt, secondPrompt, thirdPrompt], answers: [firstResponse, secondResponse, thirdResponse], photos: [Image?](repeating : nil, count : 8), wing: false)
+            return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: [firstPrompt, secondPrompt, thirdPrompt], answers: [firstResponse, secondResponse, thirdResponse], photos: [Image?](repeating : nil, count : 8), wing: matchViewModel.wingLikeProspect)
         }
         
         return PotentialMatch(name: "", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
