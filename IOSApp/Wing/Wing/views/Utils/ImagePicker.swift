@@ -3,7 +3,6 @@
 //  Wing
 //
 //  Created by Nury Kim on 2022-11-23.
-//  Code from https://www.hackingwithswift.com/books/ios-swiftui/importing-an-image-into-swiftui-using-phpickerviewcontroller
 
 import PhotosUI
 import SwiftUI

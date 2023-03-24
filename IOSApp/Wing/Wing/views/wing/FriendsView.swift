@@ -6,28 +6,6 @@
 //
 import SwiftUI
 
-struct Friend{
-    let name: String
-    let username: String
-    let photo: String
-}
-
-//TODO: Replace this list with real friends after endpoint implementation
-let friends: [Friend] = [
-    Friend(name: "Mike", username: "mikewing", photo: ""),
-    Friend(name: "Colin", username: "colinfindslove", photo: ""),
-    Friend(name: "Kathy", username: "kathyiscool", photo: ""),
-    Friend(name: "Jake", username: "jakeyyy", photo: ""),
-    Friend(name: "Hannah", username: "hannahforever", photo: "")
-]
-
-//TODO: Replace this list with real profiles after endpoint implementation
-let potentialFriends: [Friend] = [
-    Friend(name: "Sasha", username: "sashawing", photo: ""),
-    Friend(name: "Mary", username: "maryfindslove", photo: ""),
-    Friend(name: "Tom", username: "tomiscool", photo: ""),
-    Friend(name: "Andrew", username: "drew", photo: ""),
-]
 
 struct FriendsView: View {
     var body: some View {
@@ -35,10 +13,6 @@ struct FriendsView: View {
             Color("MainGreen")
                 .ignoresSafeArea()
             VStack {
-                // Removed cause the header was too crowded
-                //HeaderTab()
-                    //.offset(y: 20)
-                    //.frame(width: 380)
                 Spacer()
                     .frame(height: 40)
                 LoadFriendsListBox()
@@ -74,7 +48,7 @@ struct LoadRequestsBox : View {
                     LoadRequestsHeader()
                         .offset(y: 10)
                     LoadRequestProfiles()
-                        .offset(x: 53, y: -5)
+                        .offset( y: -5)
                 }
             }
         }
@@ -131,8 +105,12 @@ struct LoadRequestProfiles : View {
                             .frame(width: 90)
                         Button(action: {
                             Task{
-                                try await wingViewModel.getFriendRequests()
                                 try await wingViewModel.acceptFriend(friendID: friend.userId!)
+                                wingViewModel.clearFriendRequestProfiles()
+                                try await wingViewModel.getFriendRequests()
+                                for requesterID in wingViewModel.friendRequests{
+                                    try await wingViewModel.getFriendRequestProfiles(requesterID: requesterID.requesterId!)
+                                }
                             }
                         }, label: {
                             Text("Accept")
@@ -146,7 +124,7 @@ struct LoadRequestProfiles : View {
                 }
             }
         }
-        //.frame(width: 320)
+        .frame(width: 300)
     }
 }
 
@@ -228,9 +206,18 @@ struct AddFriend : View {
                         Button(action: {
                             Task{
                                 try await wingViewModel.addFriend(friendID: wingViewModel.searchedUser.userId!)
+                                try await wingViewModel.getRequestedFriends()
                             }
                         }, label: {
-                            Text("Add")
+                            if(wingViewModel.isSearchRequested){
+                                Text("Requested")
+                                    .font(.custom(FontManager.NotoSans.regular, size: 12.0))
+                                
+                            }
+                            else if(!wingViewModel.isSearchRequested){
+                                Text("Add")
+                            }
+                            
                         })
                         .frame(width: 70, height: 28)
                         .font(.custom(FontManager.NotoSans.regular, size: 14.0))
@@ -296,6 +283,7 @@ struct ViewFriendsList: View {
                                 Task{
                                     try await wingViewModel.getConfirmedFriendRequests()
                                     try await wingViewModel.deleteFriendship(friendID: friend.userId!)
+                                    wingViewModel.clearFriendProfiles()
                                     try await wingViewModel.getFriendIDs()
                                     for prospect in wingViewModel.friendIDs{
                                         try await wingViewModel.getFriendProfilePreviews(friendID: prospect)
@@ -323,10 +311,12 @@ struct ViewFriendsList: View {
                     if let unwrappedID = signupViewModel.user.id {
                         wingViewModel.userID = unwrappedID
                     }
+                    wingViewModel.clearFriendRequestProfiles()
                     try await wingViewModel.getFriendRequests()
                     for requesterID in wingViewModel.friendRequests{
                         try await wingViewModel.getFriendRequestProfiles(requesterID: requesterID.requesterId!)
                     }
+                    try await wingViewModel.getRequestedFriends()
                 }
             }
         }
@@ -335,6 +325,8 @@ struct ViewFriendsList: View {
 
 struct LoadFriendsListBox : View {
     
+    @ObservedObject var wingViewModel: WingViewModel = .method
+    
     var body : some View {
         ZStack{
             Rectangle()
@@ -342,7 +334,7 @@ struct LoadFriendsListBox : View {
                 .frame(width: 337, height: 245)
                 .cornerRadius(10)
             VStack{
-                if (friends.count == 0){
+                if (wingViewModel.friendIDs.count == 0){
                     LoadNoFriendsText()
                         .background(BackgroundLogo())
                 }

@@ -4,14 +4,12 @@
 //
 //  Created by Bryn Haines on 2023-03-03.
 //
-
 import Foundation
 import SwiftUI
 
 class WingViewModel: ObservableObject{
     
     static var method : WingViewModel = WingViewModel()
-    //@ObservedObject var signupViewModel: SignupViewModel = .method
     
     @Published var wingedList: [Wing] = []
     @Published var wingedProfiles: [Profile] = []
@@ -25,8 +23,11 @@ class WingViewModel: ObservableObject{
     @Published var friendRequestPreviews: [ProfilePreview] = []
     
     @Published var searchedUser: ProfilePreview = ProfilePreview()
+    @Published var isSearchRequested: Bool = Bool()
     
     @Published var confirmedFriendRequests: [Friendship] = []
+    
+    @Published var requestedFriends: [Friendship] = []
     
     var baseURL = "http://127.0.0.1:8080"
     let encoder = JSONEncoder()
@@ -105,7 +106,6 @@ class WingViewModel: ObservableObject{
             let decodedIDs = try decoder.decode([String].self, from: data)
             DispatchQueue.main.async {
                 self.friendIDs = decodedIDs
-                print(self.friendIDs)
             }
         }
         else{
@@ -139,6 +139,11 @@ class WingViewModel: ObservableObject{
         
     }
     
+    func clearFriendProfiles(){
+        self.friendProfilePreviews = []
+    }
+    
+    //Returns friendships with status of 1
     func getFriendRequests() async throws {
         
         let url = URL(string: baseURL + "/friendRequests/\(self.userID)")!
@@ -178,7 +183,6 @@ class WingViewModel: ObservableObject{
             let decodedPreview = try decoder.decode(ProfilePreview.self, from: data)
             DispatchQueue.main.async {
                 self.friendRequestPreviews.append(decodedPreview)
-                print(self.friendRequestPreviews)
             }
         }
         else{
@@ -188,6 +192,13 @@ class WingViewModel: ObservableObject{
         
     }
     
+    func clearFriendRequestProfiles(){
+        DispatchQueue.main.async {
+            self.friendRequestPreviews = []
+        }
+    }
+    
+    //Returns an array of friendships (friend records with status 2)
     func getConfirmedFriendRequests() async throws{
         
         let url = URL(string: baseURL + "/friendships/\(self.userID)")!
@@ -252,12 +263,21 @@ class WingViewModel: ObservableObject{
         
         DispatchQueue.main.async {
             self.searchedUser = ProfilePreview()
+            self.isSearchRequested = false
         }
         
         if(httpResponse.statusCode == 200){
             let decodedSearch = try decoder.decode(ProfilePreview.self, from: data)
             DispatchQueue.main.async {
                 self.searchedUser = decodedSearch
+                print(self.searchedUser)
+                print(self.friendRequests)
+                for requestedFriend in self.requestedFriends{
+                    if(requestedFriend.requesterId == self.searchedUser.userId || requestedFriend.respondentId == self.searchedUser.userId){
+                        self.isSearchRequested = true
+                        print(self.isSearchRequested)
+                    }
+                }
             }
         }
         else{
@@ -266,6 +286,31 @@ class WingViewModel: ObservableObject{
         }
         
     }
+    
+    func getRequestedFriends() async throws{
+        
+        let url = URL(string: baseURL + "/requestedFriends/\(self.userID)")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data,response) = try await URLSession.shared.data(for: urlRequest)
+        
+        guard let httpResponse = response as? HTTPURLResponse else { return }
+        
+        if(httpResponse.statusCode == 200){
+            let decodedRequests = try decoder.decode([Friendship].self, from: data)
+            DispatchQueue.main.async {
+                self.requestedFriends = decodedRequests
+            }
+        }
+        else{
+            print("get requested friends \(httpResponse.statusCode) error")
+            throw URLError(.badServerResponse)
+        }
+        
+    }
+    
     
     func addFriend(friendID: UUID) async throws {
         
@@ -294,29 +339,32 @@ class WingViewModel: ObservableObject{
     
     func acceptFriend(friendID: UUID) async throws {
         
-        var friend = self.confirmedFriendRequests.filter{$0.requesterId == friendID || $0.respondentId == friendID}[0]
-        
-        friend.status = 2
+        if(self.friendRequests.count >= 1){
 
-        let url = URL(string: baseURL + "/friend")!
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "PUT"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        urlRequest.httpBody = try? encoder.encode(friend)
-        
-        let (_,response) = try await URLSession.shared.data(for: urlRequest)
-        
-        guard let httpResponse = response as? HTTPURLResponse else { return }
-        
-        if(httpResponse.statusCode == 200){
-            return
+            var friend = self.friendRequests.filter{$0.requesterId == friendID || $0.respondentId == friendID}[0]
+            
+            friend.status = 2
+            
+            let url = URL(string: baseURL + "/friend")!
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "PUT"
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            urlRequest.httpBody = try? encoder.encode(friend)
+            
+            let (_,response) = try await URLSession.shared.data(for: urlRequest)
+            
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+            
+            if(httpResponse.statusCode == 200){
+                return
+            }
+            else{
+                print("accept friendship \(httpResponse.statusCode) error")
+                throw URLError(.badServerResponse)
+            }
+            
         }
-        else{
-            print("delete friendship \(httpResponse.statusCode) error")
-            throw URLError(.badServerResponse)
-        }
-        
     }
     
 }

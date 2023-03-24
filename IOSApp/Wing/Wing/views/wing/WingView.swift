@@ -6,28 +6,6 @@
 //
 import SwiftUI
 
-struct WingedProfiles{
-    let name: String
-    let age: Int
-    let photo: String
-    let wingSent: String
-    let wingmanPhoto: String
-}
-
-//TODO: Replace this list with real winged profiles after endpoint implementation
-let profiles: [WingedProfiles] = [
-    WingedProfiles(name: "Aubrey", age: 32, photo: "", wingSent: "Mike", wingmanPhoto: "")
-//    ,
-//    WingedProfiles(name: "Joe", age: 29, photo: "", wingSent: "Colin", wingmanPhoto: ""),
-//    WingedProfiles(name: "Kait", age: 24, photo: "", wingSent: "Mike", wingmanPhoto: ""),
-//    WingedProfiles(name: "Mark", age: 30, photo: "", wingSent: "Mike", wingmanPhoto: ""),
-//    WingedProfiles(name: "Nancy", age: 26, photo: "", wingSent: "Colin", wingmanPhoto: ""),
-//    WingedProfiles(name: "Bob", age: 28, photo: "", wingSent: "Colin", wingmanPhoto: ""),
-//    WingedProfiles(name: "Walter", age: 22, photo: "", wingSent: "Mike", wingmanPhoto: ""),
-//    WingedProfiles(name: "Nina", age: 36, photo: "", wingSent: "Colin", wingmanPhoto: ""),
-//    WingedProfiles(name: "Wayne", age: 40, photo: "", wingSent: "Colin", wingmanPhoto: ""),
-//    WingedProfiles(name: "Brandon", age: 30, photo: "", wingSent: "Mike", wingmanPhoto: "")
-]
 
 struct WingView: View {
     @ObservedObject var wingViewModel: WingViewModel = .method
@@ -60,6 +38,7 @@ struct WingView: View {
                     for prospect in wingViewModel.wingedList{
                         try await wingViewModel.getWingProfile(prospectID: prospect.prospectId!)
                     }
+                    wingViewModel.clearFriendProfiles()
                     try await wingViewModel.getFriendIDs()
                     for prospect in wingViewModel.friendIDs{
                         try await wingViewModel.getFriendProfilePreviews(friendID: prospect)
@@ -200,6 +179,9 @@ struct LoadWingBox : View {
 }
 
 struct LoadFriendsBox : View {
+    
+    @ObservedObject var wingViewModel: WingViewModel = .method
+    
     var body : some View {
         ZStack{
             Rectangle()
@@ -207,7 +189,7 @@ struct LoadFriendsBox : View {
                 .frame(width: 337, height: 120)
                 .cornerRadius(10)
             VStack{
-                if ((friends.count) == 0){
+                if ((wingViewModel.friendIDs.count) == 0){
                     LoadFriendHeader()
                     LoadNoFriendsText()
                 }

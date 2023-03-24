@@ -76,14 +76,22 @@ struct ProfilesGridView: View {
     }
     
     func getItems(size: CGSize, page: Int) -> [Profile] {
-//        let pageSize = getPageSize(size: size)
-//        let startIdx = (page-1) * pageSize
-//        let endIdx = min(startIdx + pageSize-1, profiles.count-1)
+        var startIdx: Int = Int()
+        var endIdx: Int = Int()
+        if(page.self == 1){
+            startIdx = 0
+            endIdx = 3
+        }
+        else if(page.self == 2){
+            startIdx = 4
+            endIdx = 6
+        }
+       // let pageSize = getPageSize(size: size)
+       // let startIdx = page.self-1
+        //let endIdx = min(startIdx + pageSize-1, wingViewModel.wingedProfiles.count-1)
         var array : [Profile] = []
-        for number in numbers{
-            if(number < wingViewModel.wingedProfiles.count){
-                array.append(wingViewModel.wingedProfiles[number])
-            }
+        if(startIdx >= 0 && endIdx <= (wingViewModel.wingedProfiles.count-1) && startIdx <= endIdx){
+            array = Array(wingViewModel.wingedProfiles[startIdx...endIdx])
         }
         return array
     }
@@ -102,8 +110,8 @@ struct ProfilesGridView: View {
     }
     
     func getNumPages(size: CGSize) -> Int {
-        var retval = profiles.count / getPageSize(size: size) + 1
-        if profiles.count % getPageSize(size: size) == 0 {
+        var retval = wingViewModel.wingedList.count / getPageSize(size: size) + 1
+        if wingViewModel.wingedList.count % getPageSize(size: size) == 0 {
             retval = retval - 1
         }
         return retval
