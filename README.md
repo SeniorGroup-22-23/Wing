@@ -27,6 +27,4 @@ A hosted version of the API exists at https://wing-backend-1.herokuapp.com/. Doc
 
 
 ## Contributing
-To contribute to Wing create a branch following `feature-devName` naming convention. When you are happy with the changes made, create a PR and request reviews from the appropriate developpers. If backend code has been modified, CI will be run to ensure the project can be built as expected. Make sure your code is easy to understand with relevant comments and commit messages. After a review and, merge your PR. 
-
-Congrats! You have contributed to Wing. 
+To contribute to Wing create a branch following `feature-devName` naming convention. When you are happy with the changes made, create a PR and request reviews from the appropriate developpers. If backend code has been modified, CI will run to ensure the project can be built as expected. Make sure your code is easy to understand with relevant comments and commit messages. After a review, merge your PR. Congrats! You have contributed to Wing. 
