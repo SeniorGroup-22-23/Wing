@@ -5,7 +5,7 @@
 2. [Edit Friendship](#editfriendship) 
 1. [Get Friends](#getfriends) 
 2. [Get Friend Requests](#getfriendrequests)
-
+2. [Get Requested Friends](#getrequestedfriends)
 ---
 
 ### Create Friendship <a name="createfriendship"></a>
@@ -196,5 +196,53 @@ User ID of the user whos friend requests you would like to retrieve (pending fri
 <img width="1088" alt="Screenshot 2023-01-05 at 4 28 56 PM" src="https://user-images.githubusercontent.com/80468156/210874297-427417a8-f3f2-4dc3-ad0f-81a7c6b03c4c.png">
 
 <img width="1088" alt="Screenshot 2023-01-05 at 4 29 14 PM" src="https://user-images.githubusercontent.com/80468156/210874313-113adb6f-9a3c-4706-8c58-1d4e499ddf42.png">
+
+---
+
+### Get Requested Friends <a name="#getrequestedfriends"></a>
+Returns an array of Friendship objects the user has sent. To render and display friend requests, follow this enpoint with calls to "Get Profile Preview by User Id", passing in the requester's userId.      
+
+#### URL:   
+`/requestedFriends/:userId`
+
+#### Method:
+`GET` 
+
+#### URL Parameters:
+###### :userId
+UUID   
+User ID of the user whos sent requests you would like to retrieve (pending friend requests where userId == resquesterId). 
+
+#### Success Response:   
+200 OK
+```json
+[
+	{
+		"status": 1,
+		"id": "A27AEB2A-4E84-439F-8108-79A84A7FA7FD",
+		"respondentId": "CF2AFC12-47C4-4DB5-860E-89890FBCB013",
+		"requesterId": "DC730399-E21C-4BA4-8248-3E7A8753947B"
+	},
+	{
+		"status": 1,
+		"id": "A682E044-CFA2-45F9-A99E-79F54BDBCD44",
+		"respondentId": "CF2AFC12-47C4-4DB5-860E-89890FBCB013",
+		"requesterId": "DC730399-E21C-4BA4-8248-3E7A8753947B"
+	}
+]
+```
+
+#### Error Response:  
+404 Not Found (invalid UUID format)
+```json
+{
+	"error": true,
+	"reason": "Illegal nil ID."
+}
+```
+
+#### Example    
+
+//TODO:
 
 ---
