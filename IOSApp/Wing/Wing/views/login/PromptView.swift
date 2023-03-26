@@ -46,7 +46,7 @@ struct PromptView: View {
                 
                 Spacer()
 
-                NavigationLink(destination: HomePageView().navigationBarBackButtonHidden(true)) {
+                NavigationLink(destination: MatchView().navigationBarBackButtonHidden(true)) {
                     loadDoneBtn()
                 }
                 .simultaneousGesture(TapGesture().onEnded{

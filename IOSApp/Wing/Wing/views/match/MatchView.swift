@@ -1,0 +1,447 @@
+//
+//  MatchView.swift
+//  Wing
+//
+//  Created by Nury Kim on 2022-12-02.
+//
+
+import SwiftUI
+
+class PotentialMatch : ObservableObject {
+    @Published var name : String
+    @Published var age : Int
+    @Published var occupation : String
+    @Published var bio : String
+    @Published var prompts : [String]
+    @Published var answers : [String]
+    @Published var photos : [Image?]
+    @Published var wing : Bool
+    
+    init(name : String, age : Int, occupation : String, bio : String, prompts : [String], answers : [String], photos : [Image?], wing : Bool) {
+        self.name = name
+        self.age = age
+        self.occupation = occupation
+        self.bio = bio
+        self.prompts = prompts
+        self.answers = answers
+        self.photos = photos
+        self.wing = wing
+    }
+}
+
+class showBlock: ObservableObject {
+    @Published var blockAlert = false
+    @Published var bothAlert = false
+    @Published var reportAlert = false
+}
+
+struct MatchView: View {
+    @State private var numProspects = 0
+    @ObservedObject var signupViewModel: SignupViewModel = .method
+    @ObservedObject var matchViewModel: MatchViewModel = .method
+    @StateObject var potentialMatch = PotentialMatch(name: "", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
+    @ObservedObject var blockReportViewModel: BlockReportViewModel = .method
+    @StateObject var showingBlockAlert = showBlock()
+    
+    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
+    
+    var body: some View {
+        ZStack {
+            Color("MainGreen")
+                .ignoresSafeArea()
+            VStack {
+                HeaderTab()
+                if ($showingBlockAlert.bothAlert.wrappedValue == true && $showingBlockAlert.blockAlert.wrappedValue == false){
+                    let _ = self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                        ReportPopUpView(showingBlockAlert: showingBlockAlert)
+                    }
+                }
+                
+                ScrollViewReader { value in
+                    VStack {
+                        LoadNextUser()
+                        
+                        ScrollView(.horizontal) {
+                            HStack {
+                                LoadSlides()
+                            }
+                            .padding(.leading)
+                            .padding(.trailing)
+                        }
+                        
+                    }
+                    .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .local)
+                        .onEnded({ value in
+                            let horizontalAmount = value.translation.width
+                            let verticalAmount = value.translation.height
+                            if abs(verticalAmount) > abs(horizontalAmount) {
+                                print(verticalAmount < 0 ? "up swipe" : "down swipe")
+                                
+                                Task {
+                                    // first get ready to post swipe by intializing the proper attributes in the viewmodel
+                                    
+                                    if (verticalAmount < 0) {
+                                        // up swipe
+                                        matchViewModel.swipeType = 1
+                                    } else {
+                                        // down swipe
+                                        matchViewModel.swipeType = 2
+                                    }
+                                    
+                                    try await matchViewModel.postSwipe()
+                                    
+                                    if (matchViewModel.match) {
+                                        self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                                            MatchPopUpView()
+                                        }
+                                    }
+                                }
+                        
+                                Task {
+                                    await loadProspectVariable(prospect: getProspect())
+                                }
+                            }
+                        })
+                    )
+                    .gesture(
+                        TapGesture(count: 2)
+                            .onEnded { _ in
+                                //Double Tap gesture
+                                self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                                    WingPopUpView()
+                                }
+                            }
+                    )
+                    .gesture(
+                        LongPressGesture()
+                            .onEnded { _ in
+                                self.viewControllerHolder?.present(style: .overCurrentContext, transitionStyle: .crossDissolve) {
+                                    ModalPopUpView(showingBlockAlert: showingBlockAlert)
+                                }
+                            }
+                    )
+                    .onChange(of: potentialMatch.name) { _ in
+                        value.scrollTo(0, anchor: .trailing)
+                    }
+                    
+                    HStack{
+                        Text("")
+                            .alert(isPresented:$showingBlockAlert.blockAlert) {
+                                Alert(
+                                    title: Text("Block this user?"),
+                                    message: Text("We want to ensure a safe and supportive user experience at Wing. Block any user that you would not like to see on the app."),
+                                    primaryButton: .destructive(Text("Block")) {
+                                        $showingBlockAlert.blockAlert.wrappedValue = false
+                                        print("Blocking...")
+                                        Task{
+                                            try await blockReportViewModel.blockUser(blockedUserId: matchViewModel.prospectProfile.userId!, reported: false, issue: 0)
+                                        }
+                                        Task {
+                                            matchViewModel.swipeType = 2
+                                            try await matchViewModel.postSwipe()
+                                        }
+                                        Task {
+                                            await loadProspectVariable(prospect: getProspect())
+                                        }
+                                    },
+                                    secondaryButton: .cancel()
+                                )
+                            }
+                            .hidden()
+                        Text("")
+                            .alert(isPresented:$showingBlockAlert.reportAlert) {
+                                Alert(
+                                    title: Text("Your report has been submitted and will be reviewed."),
+                                    message: Text("Thank you for keeping Wing safe."),
+                                    dismissButton: .default(Text("OK")) {
+                                        print("Reporting...")
+                                        Task{
+                                            try await blockReportViewModel.blockUser(blockedUserId: matchViewModel.prospectProfile.userId!, reported: true, issue: blockReportViewModel.issue)
+                                        }
+                                        Task {
+                                                matchViewModel.swipeType = 2
+                                                try await matchViewModel.postSwipe()
+                                        }
+                                        Task {
+                                            await loadProspectVariable(prospect: getProspect())
+                                        }
+                                    }
+                                )
+                            }
+                            .hidden()
+                    }
+                }
+                
+                CheckNoProspects()
+                FooterTab()
+            }
+            .onAppear {
+                Task {
+                    if let unwrappedID = signupViewModel.user.id {
+                        matchViewModel.primaryUserId = unwrappedID
+                    }
+                    // load all of the prospects of the user
+                    try await matchViewModel.getProspects()
+                    
+                    await loadProspectVariable(prospect: getProspect())
+                }
+                
+            }
+            .environmentObject(potentialMatch)
+        }.navigationBarBackButtonHidden(true)
+    }
+    
+    func loadProspectVariable(prospect: PotentialMatch?) async {
+        var counter = 0
+        
+        // resetting the potentialMatch variable first
+        potentialMatch.name = ""
+        potentialMatch.age = -1
+        potentialMatch.occupation = ""
+        potentialMatch.bio = ""
+        potentialMatch.prompts = ["", "", ""]
+        potentialMatch.answers = ["", "", ""]
+        potentialMatch.wing = false
+        potentialMatch.photos = [Image?](repeating : nil, count : 8)
+        
+        // now actually setting the variable to the correct prospect
+        potentialMatch.name = prospect?.name ?? ""
+        potentialMatch.age = prospect?.age ?? -1
+        potentialMatch.occupation = prospect?.occupation ?? ""
+        potentialMatch.bio = prospect?.bio ?? ""
+        potentialMatch.prompts = prospect?.prompts ?? ["", "", ""]
+        potentialMatch.answers = prospect?.answers ?? ["", "", ""]
+        potentialMatch.wing = prospect?.wing ?? false
+        
+        // loading the prospect's photos
+        matchViewModel.prospectPhotos.forEach { pic in
+            let photoUI = UIImage(data: pic.photo!)!
+            
+            potentialMatch.photos[counter] = Image(uiImage: photoUI)
+            counter += 1
+        }
+    }
+    
+    func getProspect() async -> PotentialMatch? {
+        let idList = self.matchViewModel.prospectID
+        
+        var firstPrompt = ""
+        var secondPrompt = ""
+        var thirdPrompt = ""
+        
+        var firstResponse = ""
+        var secondResponse = ""
+        var thirdResponse = ""
+        
+        if (numProspects < idList.count) {
+            // First get the profile of the prospect to show
+            do {
+                try await self.matchViewModel.loadProspectProfile(prospectID : idList[numProspects])
+                matchViewModel.swipeProspectID = matchViewModel.prospectProfile.userId!
+                numProspects += 1
+            } catch {
+                print("Can't load prospect profile. Error: \(error)")
+            }
+            
+            // Then get the prompt responses of the prospect
+            do {
+                try await self.matchViewModel.getPromptResponses(prospectID: self.matchViewModel.prospectProfile.userId!)
+                let promptResponses = self.matchViewModel.promptResponses
+                
+                if (promptResponses.count >= 1) {
+                    try await self.matchViewModel.getPrompt(promptID: promptResponses[0].promptId!)
+                    
+                    firstPrompt = self.matchViewModel.prompt.promptText ?? ""
+                    firstResponse = promptResponses[0].responseText ?? ""
+                }
+                
+                if (promptResponses.count >= 2) {
+                    try await self.matchViewModel.getPrompt(promptID: promptResponses[1].promptId!)
+                    
+                    secondPrompt = self.matchViewModel.prompt.promptText ?? ""
+                    secondResponse = promptResponses[1].responseText ?? ""
+                }
+                
+                if (promptResponses.count == 3) {
+                    try await self.matchViewModel.getPrompt(promptID: promptResponses[2].promptId!)
+                    
+                    thirdPrompt = self.matchViewModel.prompt.promptText ?? ""
+                    thirdResponse = promptResponses[2].responseText ?? ""
+                }
+                
+                // check if it's a wing like
+                try await matchViewModel.checkWingLike()
+                
+            } catch {
+                print("Can't get user's prompts. Error: \(error)")
+            }
+            
+            let profile = self.matchViewModel.prospectProfile
+            
+            do {
+                try await self.matchViewModel.loadProspectPhotos()
+            } catch {
+                print("Can't get user's photos. Error: \(error)")
+            }
+            
+            return PotentialMatch(name: profile.name ?? "", age: profile.birthdate?.age ?? -1, occupation: profile.occupation ?? "", bio: profile.bio ?? "", prompts: [firstPrompt, secondPrompt, thirdPrompt], answers: [firstResponse, secondResponse, thirdResponse], photos: [Image?](repeating : nil, count : 8), wing: matchViewModel.wingLikeProspect)
+        }
+        
+        return PotentialMatch(name: "", age: -1, occupation: "", bio: "", prompts: ["", "", ""], answers: ["", "", ""], photos: [Image?](repeating : nil, count : 8), wing: false)
+    }
+}
+
+struct LoadNextUser : View {
+    @EnvironmentObject var user : PotentialMatch
+    
+    var body : some View {
+        if (user.name != "") {
+            HStack {
+                VStack {
+                    (Text(user.name) + Text(", ") + Text(String(user.age)))
+                        .font(.custom(FontManager.NotoSans.semiBold, size : 28.0))
+                        .offset(x : 15)
+                    Text(user.occupation)
+                        .font(.custom(FontManager.NotoSans.regular, size : 15.0))
+                        .offset(x: 30)
+                }
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                
+                if (user.wing) {
+                    Image("WingMatchBadge")
+                        .resizable()
+                        .frame(width: 75.0, height: 75.0)
+                }
+                Spacer()
+            }
+        }
+    }
+}
+
+struct CheckNoProspects : View {
+    @EnvironmentObject var user : PotentialMatch
+    
+    var body : some View {
+        if (user.name == "") {
+            NoProspectsMatchView()
+        }
+    }
+}
+
+struct LoadSlides : View {
+    @EnvironmentObject var user : PotentialMatch
+    
+    var body : some View {
+        if (user.name != "") {
+            fullImage(image: user.photos[0])
+                .id(0)
+            if (user.bio == "") {
+                fullImage(image: user.photos[1])
+            } else {
+                VStack {
+                    splitText(prompt: "", ans: user.bio)
+                    splitImage(image: user.photos[1])
+                }
+            }
+            
+            ForEach (0..<3) { i in
+                if (user.photos[i+2] != nil) {
+                    if (user.prompts[i] != "" && user.answers[i] != "") {
+                        if (i % 2 == 0) {
+                            imageTop(num: i)
+                        } else {
+                            imageBtm(num: i)
+                        }
+                    } else {
+                        fullImage(image: user.photos[i+2])
+                    }
+                } else {
+                    if (user.prompts[i] != "" && user.answers[i] != "") {
+                        fullText(prompt: user.prompts[i], ans: user.answers[i])
+                    }
+                }
+            }
+            
+            ForEach (5..<8) { i in
+                if (user.photos[i] != nil) {
+                    fullImage(image: user.photos[i])
+                }
+            }
+        }
+    }
+    
+    func imageTop(num : Int) -> some View {
+        VStack {
+            splitImage(image: user.photos[num+2])
+            splitText(prompt: user.prompts[num], ans: user.answers[num])
+        }
+    }
+    
+    func imageBtm(num : Int) -> some View {
+        VStack {
+            splitText(prompt: user.prompts[num], ans: user.answers[num])
+            splitImage(image: user.photos[num+2])
+        }
+    }
+    
+    func fullImage(image : Image?) -> some View {
+        return image!
+            .resizable()
+            .scaledToFill()
+            .frame(width : 360, height : 475)
+            .cornerRadius(10)
+    }
+    
+    func fullText(prompt : String, ans : String) -> some View {
+        return ZStack {
+            VStack {
+                Text(prompt)
+                    .font(.custom(FontManager.KumbhSans.semiBold, size : 20.0))
+
+                Text(ans)
+                    .font(.custom(FontManager.NotoSans.regular, size : 15.0))
+            }
+        }
+            .frame(width : 360, height : 475)
+            .background(.white.opacity(0.3))
+            .cornerRadius(10)
+    }
+    
+    func splitText(prompt : String, ans : String) -> some View {
+        return ZStack {
+            VStack {
+                if (prompt != "") {
+                    Text(prompt)
+                        .font(.custom(FontManager.KumbhSans.semiBold, size : 20.0))
+                }
+                
+                Text(ans)
+                    .font(.custom(FontManager.NotoSans.regular, size : 15.0))
+            }
+        }
+            .frame(width : 360, height : 120)
+            .background(.white.opacity(0.3))
+            .cornerRadius(10)
+    }
+    
+    func splitImage(image : Image?) -> some View {
+        return image!
+                .resizable()
+                .scaledToFill()
+                .frame(width : 360, height : 345)
+                .cornerRadius(10)
+    }
+}
+
+struct MatchView_Previews: PreviewProvider {
+    static var previews: some View {
+        MatchView()
+    }
+}
+
+extension Date {
+    var age: Int { Calendar.current.dateComponents([.year], from: self, to: Date()).year! }
+}
