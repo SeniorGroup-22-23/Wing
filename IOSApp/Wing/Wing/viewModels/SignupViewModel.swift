@@ -127,7 +127,7 @@ class SignupViewModel: ObservableObject{
 
         if(httpResponse.statusCode == 200){
             let decodedUser = try JSONDecoder().decode(User.self, from: data)
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 self.user = decodedUser
             }
         }
@@ -156,7 +156,7 @@ class SignupViewModel: ObservableObject{
         if(httpResponse.statusCode == 200){
 
             let decodedProfile = try decoder.decode(Profile.self, from: data)
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 self.profile = decodedProfile
             }
         }
@@ -208,7 +208,7 @@ class SignupViewModel: ObservableObject{
         
         if(httpResponse.statusCode == 200){
             let decodedProfilePreview = try decoder.decode(ProfilePreview.self, from: data)
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 self.profilePreview = decodedProfilePreview
             }
         }
@@ -252,7 +252,7 @@ class SignupViewModel: ObservableObject{
         
         if(httpResponse.statusCode == 200){
             let decodedPromptResponse = try JSONDecoder().decode(PromptResponse.self, from: data)
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 self.promptResponses.append(decodedPromptResponse)
             }
         }
