@@ -63,6 +63,8 @@
 		999A4C7229300EB1000EA950 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999A4C7129300EB1000EA950 /* LoginView.swift */; };
 		999A4C7429300EC3000EA950 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999A4C7329300EC3000EA950 /* CreateAccountView.swift */; };
 		99FFE8B9297B441400D8BB10 /* ProfilePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FFE8B8297B441400D8BB10 /* ProfilePreview.swift */; };
+		BCEFBEF129D39E3700326E63 /* WingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEFBEF029D39E3700326E63 /* WingViewModel.swift */; };
+		BCEFBEF329D39E6A00326E63 /* wing in Resources */ = {isa = PBXBuildFile; fileRef = BCEFBEF229D39E6A00326E63 /* wing */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +141,8 @@
 		999A4C7129300EB1000EA950 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		999A4C7329300EC3000EA950 /* CreateAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		99FFE8B8297B441400D8BB10 /* ProfilePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreview.swift; sourceTree = "<group>"; };
+		BCEFBEF029D39E3700326E63 /* WingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingViewModel.swift; sourceTree = "<group>"; };
+		BCEFBEF229D39E6A00326E63 /* wing */ = {isa = PBXFileReference; lastKnownFileType = folder; path = wing; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +236,7 @@
 		741E079728F9ADE5001D6478 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				BCEFBEF229D39E6A00326E63 /* wing */,
 				023B7A0029B95CD300EE67A9 /* match */,
 				749BDCED292EAB31000DB411 /* ImagePicker.swift */,
 				023B79F929B95A3000EE67A9 /* HeaderTab.swift */,
@@ -324,6 +329,7 @@
 		995B258C293298560016FC8A /* viewModels */ = {
 			isa = PBXGroup;
 			children = (
+				BCEFBEF029D39E3700326E63 /* WingViewModel.swift */,
 				023B79F329B959FE00EE67A9 /* BlockReportViewModel.swift */,
 				9937E6A9295E0BC400F30F18 /* SignupViewModel.swift */,
 				025B822C29BFE26E0066858E /* WingPopUpViewModel.swift */,
@@ -447,6 +453,7 @@
 				747DAEAB28FF7F6C004FF768 /* KumbhSans-SemiBold.ttf in Resources */,
 				747DAEAD28FF7F6C004FF768 /* KumbhSans-Bold.ttf in Resources */,
 				747DAEDB28FF7F85004FF768 /* NotoSans-Italic.ttf in Resources */,
+				BCEFBEF329D39E6A00326E63 /* wing in Resources */,
 				02C71E7D28EB8F1100447686 /* Assets.xcassets in Resources */,
 				747DAEC928FF7F85004FF768 /* NotoSans-Regular.ttf in Resources */,
 			);
@@ -505,6 +512,7 @@
 				74ABD4E229C7D58100EFDA8F /* MatchViewModel.swift in Sources */,
 				994385F329665495009B4452 /* Match.swift in Sources */,
 				994385FB296654FC009B4452 /* PromptResponse.swift in Sources */,
+				BCEFBEF129D39E3700326E63 /* WingViewModel.swift in Sources */,
 				747DAEDD28FF7F96004FF768 /* FontManager.swift in Sources */,
 				749BDCEE292EAB31000DB411 /* ImagePicker.swift in Sources */,
 				67971CD7292456B70088C6BD /* PhoneNumberView.swift in Sources */,
