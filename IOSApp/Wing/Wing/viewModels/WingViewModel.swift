@@ -389,5 +389,25 @@ class WingViewModel: ObservableObject{
         }
         
     }
+    func getFirstPhoto(iD : UUID) async throws -> Photo{
+        
+        let url = URL(string: baseURL + "/photo/userId/index/\(iD)/0")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data,response) = try await URLSession.shared.data(for: urlRequest)
+        
+        guard let httpResponse = response as? HTTPURLResponse else { throw URLError(.badServerResponse)}
+        
+        if(httpResponse.statusCode == 200){
+            let decodedPhoto = try decoder.decode(Photo.self, from: data)
+            return decodedPhoto
+        }
+        else{
+            print("get photo \(httpResponse.statusCode) error")
+            throw URLError(.badServerResponse)
+        }
+    }
     
 }
