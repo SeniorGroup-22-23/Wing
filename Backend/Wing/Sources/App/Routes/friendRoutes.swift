@@ -109,4 +109,16 @@ func friendRoutes(_ app: Application) throws {
             
         return requests //need to return whole struct to allow for updates (need friendship Id)
     }
+    app.get("requestedFriends", ":userId"){ req async throws -> [Friendship] in
+            guard let userId = UUID(uuidString: req.parameters.get("userId")!.lowercased())
+            else {
+                 throw Error.nilId
+            }
+            let requests = try await Friendship.query(on: req.db)
+                .filter(\.$requesterId == userId)
+                .filter(\.$status == 1)
+                .all()
+                
+            return requests //need to return whole struct to allow for updates (need friendship Id)
+    }
 }

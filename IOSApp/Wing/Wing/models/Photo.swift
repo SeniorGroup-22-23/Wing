@@ -14,7 +14,7 @@ struct Photo: Codable{
     var photo: Data?
     var index: Int16?
     
-    init(id: UUID? = nil, userId: UUID? = nil, photo: Data? = nil, index: Int16){
+    init(id: UUID? = nil, userId: UUID? = nil, photo: Data? = nil, index: Int16? = nil){
         self.id = id
         self.userId = userId
         self.photo = photo
