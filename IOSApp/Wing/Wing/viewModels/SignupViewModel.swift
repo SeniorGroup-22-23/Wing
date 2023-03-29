@@ -46,6 +46,7 @@ class SignupViewModel: ObservableObject{
     @Published var promptResponses: [PromptResponse] = []
     
     @Published var isValid: Bool = false
+    @Published var loginAttempted: Bool = false 
     @Published var credential: String = ""
     
     @Published var imagesData = [Data?](repeating : nil, count : 8)
@@ -321,8 +322,7 @@ class SignupViewModel: ObservableObject{
     }
     
     
-    ///LOGIN functionality
-    
+    //Login Functionality
     func getUserbyPhone() async throws{
         
         let refNum = self.credential.filter{
@@ -355,15 +355,14 @@ class SignupViewModel: ObservableObject{
                 self.user = decodedUsers
                 self.isValid = true
             }
+        } else {
+            DispatchQueue.main.async {
+                self.loginAttempted = true
+            }
         }
-//        else{
-//            throw URLError(.badServerResponse)
-//
-//        }
     }
     
     func getUserbyEmail() async throws{
-
         let url = URL(string: baseURL + "/user/email/\(self.credential)/\(self.password)")!
 
         var urlRequest = URLRequest(url: url)
@@ -381,11 +380,11 @@ class SignupViewModel: ObservableObject{
                 self.user = decodedUsers
                 self.isValid = true
             }
+        } else {
+            DispatchQueue.main.async {
+                self.loginAttempted = true
+            }
         }
-//        else{
-//            throw URLError(.badServerResponse)
-//
-//        }
     }
     
     

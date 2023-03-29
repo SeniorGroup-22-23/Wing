@@ -14,7 +14,7 @@ struct LoginView : View {
     
     @ObservedObject var viewModel: SignupViewModel = .method
     @State private var selection: Bool = false
-    @State private var errorMessage = ""
+    @State private var errorMessage = " "
     
     var body: some View {
         VStack {
@@ -48,9 +48,7 @@ struct LoginView : View {
                                        isActive: Binding(
                                         get: { viewModel.isValid },
                                         set: {_,_ in
-                                            if !viewModel.isValid {
-                                            errorMessage = "Incorrect credentials!"
-                                            }
+                                            //set nothing
                                         }
                                        )
             ){
@@ -65,16 +63,15 @@ struct LoginView : View {
                         try await viewModel.getUserbyPhone()
                     }
                     
+                    if !viewModel.isValid && viewModel.loginAttempted{ //user is not valid AND they have attempted to login in this session
+                        errorMessage = "Incorrect credentials!"
+                    }
+                    
                 }
             })
-            if !viewModel.isValid {
-                VStack {
-                    Text(errorMessage)
-                    .foregroundColor(.red)
-                    .padding()
-                    Spacer()
-                }
-            }
+            Text(errorMessage)
+                .foregroundColor(.red)
+                .padding()
         }
         .background(
             BackgroundLogo())
@@ -116,7 +113,7 @@ struct ButtonContent: View {
             .frame(width: 220, height: 60)
             .background(MainGreen)
             .cornerRadius(15.0)
-            .offset(y:-10)
+            .offset(y:-5)
     }
 }
 
