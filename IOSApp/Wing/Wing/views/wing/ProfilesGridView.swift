@@ -1,3 +1,4 @@
+
 //
 //  ProfilesGridView.swift
 //  Wing
@@ -35,21 +36,36 @@ struct ProfilesGridView: View {
                                             .frame(width: 150, height: 200)
                                             .cornerRadius(10)
                                         VStack{
-                                            Rectangle()
-                                                .fill(Color(.white).opacity(0.8))
+                                            let photoData = profile.firstPhoto.photo!
+                                            let photoUI = UIImage(data: photoData)!
+                                            let mainPhoto = Image(uiImage: photoUI)
+                                            
+                                            mainPhoto
+                                                .resizable()
+                                                .scaledToFill()
+                                                .clipShape(Rectangle())
                                                 .frame(width: 130, height: 140)
                                                 .cornerRadius(10)
                                                 .offset(y: 10)
+                                            
                                             Text("\(profile.profile.name!), \(profile.profile.birthdate!.age)")
                                                 .font(.custom(FontManager.NotoSans.semiBold, size: 18.0))
                                                 .foregroundColor(Color(.white))
                                                 .frame(width: 130, alignment: .leading)
                                                 .offset(y: 3)
                                             HStack{
-                                                Circle()
-                                                    .fill(.white)
+                                                let photoData = profile.senderPhoto.photo!
+                                                let photoUI = UIImage(data: photoData)!
+                                                let mainPhoto = Image(uiImage: photoUI)
+                                                
+                                                mainPhoto
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .clipShape(Circle())
                                                     .frame(width: 20, height: 20)
                                                     .offset(y: -10)
+                                                
+                                         
                                                 Text("Sent by \(profile.sender.name!)")
                                                     .font(.custom(FontManager.NotoSans.regular, size: 10.0))
                                                     .foregroundColor(Color(.white))

@@ -10,6 +10,8 @@ struct wing{
     var id = UUID()
     var profile = Profile()
     var sender = Profile()
+    var firstPhoto = Photo()
+    var senderPhoto = Photo()
 }
 
 var wings: [wing] = []
@@ -46,7 +48,9 @@ struct WingView: View {
                     for prospect in wingViewModel.wingedList{
                         let sender = try await wingViewModel.getProfile(iD: prospect.senderId!)
                         let sendee = try await wingViewModel.getProfile(iD: prospect.prospectId!)
-                        let newWing = wing(profile: sendee, sender: sender)
+                        let photo = try await wingViewModel.getFirstPhoto(iD: prospect.prospectId!)
+                        let senderPhoto = try await wingViewModel.getFirstPhoto(iD: prospect.senderId!)
+                        let newWing = wing(profile: sendee, sender: sender, firstPhoto: photo, senderPhoto: senderPhoto)
                         wings.append(newWing)
                         print(wings)
                     }
@@ -146,9 +150,16 @@ struct LoadFriendsProfiles : View {
            LazyHStack{
                ForEach(wingViewModel.friendProfilePreviews) { friend in
                     VStack{
-                        Circle()
-                            .fill(.white)
+                        let photoData = friend.primaryPhoto!
+                        let photoUI = UIImage(data: photoData)!
+                        let mainPhoto = Image(uiImage: photoUI)
+                        
+                        mainPhoto
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
                             .frame(width: 45, height: 45)
+                        
                         Text(friend.name!)
                             .font(.custom(FontManager.NotoSans.semiBold, size: 10.0))
                             .foregroundColor(Color("DarkGreen"))
@@ -221,3 +232,4 @@ struct WingView_Previews: PreviewProvider {
         WingView()
     }
 }
+

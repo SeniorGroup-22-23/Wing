@@ -93,9 +93,17 @@ struct LoadRequestProfiles : View {
            LazyHStack{
                ForEach(wingViewModel.friendRequestPreviews) { friend in
                     VStack{
-                        Circle()
-                            .fill(.white)
+                        
+                        let photoData = friend.primaryPhoto!
+                        let photoUI = UIImage(data: photoData)!
+                        let mainPhoto = Image(uiImage: photoUI)
+                        
+                        mainPhoto
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
                             .frame(width: 45, height: 45)
+                           
                         Text(friend.name!)
                             .font(.custom(FontManager.NotoSans.semiBold, size: 10.0))
                             .foregroundColor(Color("DarkGreen"))
@@ -207,8 +215,14 @@ struct AddFriend : View {
             }
             if(wingViewModel.searchedUser.username != nil){
                 HStack{
-                    Circle()
-                        .fill(.white)
+                    let photoData = wingViewModel.searchedUser.primaryPhoto!
+                    let photoUI = UIImage(data: photoData)!
+                    let mainPhoto = Image(uiImage: photoUI)
+                    
+                    mainPhoto
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
                         .frame(width: 75, height: 75)
                     VStack{
                         Text(wingViewModel.searchedUser.name!)
@@ -223,6 +237,7 @@ struct AddFriend : View {
                             Task{
                                 try await wingViewModel.addFriend(friendID: wingViewModel.searchedUser.userId!)
                                 try await wingViewModel.getRequestedFriends()
+                                try await wingViewModel.searchUser(username: searchText)
                             }
                         }, label: {
                             if(wingViewModel.isSearchRequested){
@@ -283,9 +298,16 @@ struct ViewFriendsList: View {
                 ScrollView{
                 ForEach(wingViewModel.friendProfilePreviews.filter ({ searchText.isEmpty ? true : $0.name!.contains(searchText) })) { friend in
                     HStack{
-                        Circle()
-                            .fill(.white)
+                        let photoData = friend.primaryPhoto!
+                        let photoUI = UIImage(data: photoData)!
+                        let mainPhoto = Image(uiImage: photoUI)
+                        
+                        mainPhoto
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
                             .frame(width: 75, height: 75)
+
                         VStack{
                             Text(friend.name!)
                                 .font(.custom(FontManager.NotoSans.semiBold, size: 15.0))
@@ -367,3 +389,4 @@ struct FriendsView_Previews: PreviewProvider {
         FriendsView()
     }
 }
+
