@@ -4,7 +4,7 @@
 
 ## Wing
 
-Wing is an iOS dating app made as a senior desgin project. Wing uses models found in the `SeniorGroup22-23/Models` repository. New releases of this repository are made as needed. Please note Wing is currently under development. Future itterations of the project will have increased security measures and message functionality. Current Wing fucntionality is as follows ... 
+Wing is an iOS dating app made as a senior desgin project. Wing uses models found in the `SeniorGroup22-23/Models` repository. New releases of this repository are made as needed. Please note Wing is currently under development. Future iterations of the project will have increased security measures and message functionality. Current Wing fucntionality is as follows ... 
 
 #### Set up your profile :woman:
 Upload photos, respond to prompts, and describe yourself to create a profile. Your profile will be shared potential matches!   
