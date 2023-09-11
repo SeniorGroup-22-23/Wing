@@ -38,7 +38,14 @@ In Xcode, go to Product>Test
 
 ## Common Errors  <a name="commonErrors"></a>
 - **Blocked certificate when trying to push/pull from Xcode**                   
-There is a problem with certificates when using Xcode git controls on Eduroam. Not sure how to fix - but when off Eduroam git controls work just fine. Same issue with public internet connections.      
+There is a problem with certificates when using Xcode git controls on Eduroam. Not sure how to fix - but when off Eduroam git controls work just fine. Same issue with public internet connections.
+- **Stale postmaster.pid file**
+1. Open Postgres desktop app
+2. Click Server Settings...
+3. Click Show on the data directory
+4. Open folder
+5. Rename or delete postmaster.pid
+6. Click Start in the desktop app again.
 
 # Installations   <a name="installation"></a>
 
