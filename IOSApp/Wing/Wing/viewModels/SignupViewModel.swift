@@ -71,6 +71,7 @@ class SignupViewModel: ObservableObject{
     func getUsernames(username: String) async throws{
         
         let url = URL(string: baseURL + "/usernames/\(username)")!
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -116,8 +117,12 @@ class SignupViewModel: ObservableObject{
             }
         }
         
+        
+        let encryptionKey = generateSymmetricKey()
+        let encryptedData = try encryptString(message: self.password, key: encryptionKey)
+        let encodedUsername = encryptedData.base64EncodedString()
+        
         let user = User(username: self.username, password: self.password, phone: self.ext + refNum, email: self.email)
-
         
         urlRequest.httpBody = try? JSONEncoder().encode(user)
 
@@ -375,6 +380,7 @@ class SignupViewModel: ObservableObject{
             let decodedUsers = try JSONDecoder().decode(User.self, from: data)
             DispatchQueue.main.async {
                 self.user = decodedUsers
+                print(self.user)
                 self.isValid = true
             }
         }

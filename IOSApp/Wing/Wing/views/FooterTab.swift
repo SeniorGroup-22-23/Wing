@@ -27,12 +27,13 @@ struct FooterTab : View {
 struct LoadWingBtn : View {
     // TODO : change navigation destination once settings view is created
     var body : some View {
-        NavigationLink(destination : HomePageView()) {
+        NavigationLink(destination : WingView().navigationBarBackButtonHidden(true)) {
             Image("WingTab")
                 .resizable()
                 .frame(width: 40.0, height: 40.0)
                 .offset(x : 20)
         }
+        
     }
 }
 

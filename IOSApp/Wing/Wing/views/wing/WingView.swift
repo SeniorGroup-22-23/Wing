@@ -9,6 +9,7 @@ import SwiftUI
 struct wing{
     var id = UUID()
     var profile = Profile()
+   // var photo = Photo()
     var sender = Profile()
 }
 
@@ -48,7 +49,7 @@ struct WingView: View {
                         let sendee = try await wingViewModel.getProfile(iD: prospect.prospectId!)
                         let newWing = wing(profile: sendee, sender: sender)
                         wings.append(newWing)
-                        print(wings)
+                        
                     }
                     wingViewModel.clearFriendProfiles()
                     try await wingViewModel.getFriendIDs()

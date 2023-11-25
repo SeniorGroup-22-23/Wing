@@ -8,7 +8,7 @@
 import SwiftUI
 
 //TODO: can be replaced when merged into main finally
-struct LoadNoFriendsText : View {
+struct PopupNoFriendsText : View {
     var body : some View {
         VStack{
             Text("No friends yet")
@@ -92,7 +92,7 @@ struct LoadFriendsBoxForPopup : View {
             VStack{
                 if (wingPopupViewModel.noFriends){
                     //TODO: bug. when friend is added during sim (no frinds to 1 friend) it still does not load (works the other way when friend is removed)
-                    LoadNoFriendsText()
+                    PopupNoFriendsText()
                 }
                 else {
                     LoadFriendsProfilesForPopup()

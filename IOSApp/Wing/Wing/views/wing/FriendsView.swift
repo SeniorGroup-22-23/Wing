@@ -223,6 +223,7 @@ struct AddFriend : View {
                             Task{
                                 try await wingViewModel.addFriend(friendID: wingViewModel.searchedUser.userId!)
                                 try await wingViewModel.getRequestedFriends()
+                                try await wingViewModel.searchUser(username: searchText)
                             }
                         }, label: {
                             if(wingViewModel.isSearchRequested){
