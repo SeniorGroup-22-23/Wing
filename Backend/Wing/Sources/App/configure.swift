@@ -4,25 +4,38 @@ import Vapor
 
 // configures your application
 public func configure(_ app: Application) throws {
-
-    //Try to run in prod, if not set up avail try locally
-    if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
-        postgresConfig.tlsConfiguration = .makeClientConfiguration()
-        postgresConfig.tlsConfiguration?.certificateVerification = .none
-        app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
-        
-    } else {
-        app.databases.use(.postgres(
-                hostname: "localhost",
-                username: "postgres",
-                password: "",
-                database: "postgres"
-            ), as: .psql)
-    }
     
+    // Check if DATABASE_URL is available
+       if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
+           postgresConfig.tlsConfiguration = .forClient(certificateVerification: .none)
+           app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
+       } else {
+           // Configure for local development without TLS
+           app.databases.use(.postgres(
+               hostname: "localhost",
+               username: "postgres",
+               password: "",
+               database: "postgres"
+           ), as: .psql)
+       }
 
-    //increase max request payload size
-    app.routes.defaultMaxBodySize = "1000kb"
+       // Configure HTTPS
+       let certificatePath = "brynhaines/Wing"
+       let privateKeyPath = "brynhaines/Wing"
+
+       guard let tlsConfiguration = try? TLSConfiguration.forServer(
+           certificateChain: [.file(certificatePath)],
+           privateKey: .file(privateKeyPath)
+       ) else {
+           throw Abort(.internalServerError)
+       }
+
+       app.http.server.configuration.hostname = "0.0.0.0"
+       app.http.server.configuration.port = 443
+       app.http.server.configuration.tlsConfiguration = tlsConfiguration
+
+       // Increase max request payload size
+       app.routes.defaultMaxBodySize = "1000kb"
     
     //Migrations to run
     app.migrations.add(CreateUsers())

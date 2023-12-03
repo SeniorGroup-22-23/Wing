@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CryptoKit
 
 
 class SignupViewModel: ObservableObject{
@@ -53,6 +54,8 @@ class SignupViewModel: ObservableObject{
     @Published var checkTaken: Bool = true
     
     @Published var profilePreview: ProfilePreview = ProfilePreview()
+    
+    @Published var encryptionKey:SymmetricKey = SymmetricKey(size: .bits256)
     
     var baseURL = "http://127.0.0.1:8080"
     let encoder = JSONEncoder()
@@ -118,11 +121,13 @@ class SignupViewModel: ObservableObject{
         }
         
         
-        let encryptionKey = generateSymmetricKey()
-        let encryptedData = try encryptString(message: self.password, key: encryptionKey)
-        let encodedUsername = encryptedData.base64EncodedString()
+        encryptionKey = generateSymmetricKey()
+        let encodedPassword = (try encryptString(message: self.password, key: encryptionKey)).base64EncodedString()
+        let encodedUsername = (try encryptString(message: self.username, key: encryptionKey)).base64EncodedString()
+        let encodedNumber = (try encryptString(message: self.ext + refNum, key: encryptionKey)).base64EncodedString()
+        let encodedEmail = (try encryptString(message: self.email, key: encryptionKey)).base64EncodedString()
         
-        let user = User(username: self.username, password: self.password, phone: self.ext + refNum, email: self.email)
+        let user = User(username: encodedUsername, password: encodedPassword, phone: encodedNumber, email: encodedEmail)
         
         urlRequest.httpBody = try? JSONEncoder().encode(user)
 
