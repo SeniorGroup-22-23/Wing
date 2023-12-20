@@ -18,7 +18,7 @@ class WingPopupViewModel: ObservableObject{
     @Published var friendProfilePreviewIds: [UUID] = []
     @Published var noFriends = false
     
-    var baseURL = "http://127.0.0.1:8080"
+    var baseURL = "https://127.0.0.1:8443"
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
 

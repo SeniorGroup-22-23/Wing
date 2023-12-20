@@ -29,7 +29,7 @@ class MatchViewModel: ObservableObject{
     @Published var promptResponses: [PromptResponse] = []
     @Published var prompt: Prompt = Prompt()
 
-    var baseURL = "http://127.0.0.1:8080"
+    var baseURL = "https://127.0.0.1:8443"
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
 

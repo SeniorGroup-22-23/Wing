@@ -57,7 +57,7 @@ class SignupViewModel: ObservableObject{
     
     @Published var encryptionKey:SymmetricKey = SymmetricKey(size: .bits256)
     
-    var baseURL = "http://127.0.0.1:8080"
+    var baseURL = "https://127.0.0.1:8443"
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
 

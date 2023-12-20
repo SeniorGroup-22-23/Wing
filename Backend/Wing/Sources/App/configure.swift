@@ -4,7 +4,6 @@ import Vapor
 
 // configures your application
 public func configure(_ app: Application) throws {
-    
     // Check if DATABASE_URL is available
        if let databaseURL = Environment.get("DATABASE_URL"), var postgresConfig = PostgresConfiguration(url: databaseURL) {
            postgresConfig.tlsConfiguration = .forClient(certificateVerification: .none)
@@ -20,8 +19,8 @@ public func configure(_ app: Application) throws {
        }
 
        // Configure HTTPS
-       let certificatePath = "brynhaines/Wing"
-       let privateKeyPath = "brynhaines/Wing"
+       let certificatePath = "/Users/brynhaines/Wing/cert.pem"
+       let privateKeyPath = "/Users/brynhaines/Wing/key.pem"
 
        guard let tlsConfiguration = try? TLSConfiguration.forServer(
            certificateChain: [.file(certificatePath)],
@@ -30,8 +29,8 @@ public func configure(_ app: Application) throws {
            throw Abort(.internalServerError)
        }
 
-       app.http.server.configuration.hostname = "0.0.0.0"
-       app.http.server.configuration.port = 443
+       app.http.server.configuration.hostname = "127.0.0.1"
+       app.http.server.configuration.port = 8443
        app.http.server.configuration.tlsConfiguration = tlsConfiguration
 
        // Increase max request payload size
